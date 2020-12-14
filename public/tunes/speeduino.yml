@@ -1,0 +1,154 @@
+---
+signature: speeduino 202009-dev
+
+constants:
+  reqFuel:
+    type: scalar
+    unit: ms
+  algorithm:
+    type: bits
+    values: [MAP, TPS, IMAP/EMAP]
+  divider:
+    type: scalar
+  alternate:
+    type: bits
+    values: [Simultaneous, Alternating]
+  twoStroke:
+    type: bits
+    values: [Four-stroke, Two-stroke]
+  nCylinders:
+    type: bits
+    values: [INVALID, 1, 2, 3, 4, 5, 6, INVALID, 8, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+  injType:
+    type: bits
+    values: [Port, Throttle Body]
+  nInjectors:
+    type: bits
+    values: [INVALID, 1, 2, 3, 4, 5, 6, INVALID, 8, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+  engineType:
+    type: bits
+    values: [Even fire, Odd fire]
+  stoich:
+    type: scalar
+    unit: :1
+    # TODO: add this to the rest
+    max: 14.7
+    min: 9
+  injLayout:
+    type: bits
+    values: [Paired, Semi-Sequential, INVALID, Sequential]
+  pinLayout:
+    type: bits
+    values: [Speeduino v0.1, Speeduino v0.2, Speeduino v0.3, Speeduino v0.4, INVALID, INVALID, 01-05 MX5 PNP, INVALID, 96-97 MX5 PNP, NA6 MX5 PNP, Turtana PCB, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, Plazomat I/O 0.1, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, Daz V6 Shield 0.1, BMW PnP, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, NO2C, UA4C, INVALID, INVALID, INVALID, DIY-EFI CORE4 v1.0, INVALID, INVALID, INVALID, INVALID, dvjcodec Teensy RevA, dvjcodec Teensy RevB, INVALID, INVALID, INVALID, Drop Bear, INVALID, INVALID, INVALID, INVALID, Black STM32F407VET6 V0.1, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+  mapSample:
+    type: bits
+    values: [Instantaneous, Cycle Average, Cycle Minimum, Event Average]
+  oddfire2:
+    type: scalar
+    unit: deg
+  oddfire3:
+    type: scalar
+    unit: deg
+  oddfire4:
+    type: scalar
+    unit: deg
+
+dialogs:
+  - engineConstants:
+      title: Engine Constants
+      help:
+        link: https://wiki.speeduino.com/en/configuration/Engine_Constants
+      groups:
+        - title: Required Fuel
+          fields:
+            - name: reqFuel
+              title: Required Fuel
+        - fields:
+            - name: algorithm
+              title: Control Algorithm
+              help: >
+                Test
+            - name: divider
+              title: Squirts Per Engine Cycle
+            - name: alternate
+              title: Injector Staging
+            - name: twoStroke
+              title: Engine Stroke
+            - name: nCylinders
+              title: Number of Cylinders
+            - name: injType
+              title: Injector Port Type
+            - name: nInjectors
+              title: Number of Injectors
+            - name: engineType
+              title: Engine Type
+        - title: Board
+          fields:
+            - name: stoich
+              title: Stoichiometric ratio
+            - name: injLayout
+              title: Injector Layout
+            - name: pinLayout
+              title: Board Layout
+            - name: mapSample
+              title: Map Sample method
+              help: >
+                The method used for calculating the MAP reading
+                For 1-2 Cylinder engines, Cycle Minimum is recommended.
+                For more than 2 cylinders Cycle Average is recommended.
+        - title: Odd Fire Angles
+          fields:
+            - name: oddfire2
+              title: Channel 2 angle
+              condition: tune.engineType == 1
+            - name: oddfire3
+              title: Channel 3 angle
+              condition: tune.engineType == 1 && tune.nCylinders >= 3
+            - name: oddfire4
+              title: Channel 4 angle
+              condition: tune.engineType == 1 && tune.nCylinders >= 4
+
+menus:
+  - settings:
+      title: Settings
+      subMenus:
+        - engineConstants:
+            title: Engine Constants
+        - injectorCharacteristics:
+            title: Injector Characteristics
+        - triggerSetup:
+            title: Trigger Setup
+        - airDensity:
+            title: IAT Density
+        - barometricCorrection:
+            title: Barometric Correction
+        - resetControl:
+            title: Reset Control
+        - separator:
+        - gaugeLimits:
+            title: Gauge Limits
+        - separator:
+        - ioSummary:
+            title: I/O Summary
+        - separator:
+        - programmableOutputs:
+            title: Programmable outputs
+
+  - spark:
+      title: Spark
+      subMenus:
+        - sparkSettings:
+            title: Spark Settings
+        - sparkTable:
+            title: Spark Table, 2
+        - dwellSettings:
+            title: Dwell settings
+        - dwellCompensation:
+            title: Dwell Compensation
+        - iatRetard:
+            title: IAT Retard
+        - coldAdvance:
+            title: Cold Advance
+        - rotaryIgnition:
+            title: Rotary Ignition
+            condition: sparkMode == 4

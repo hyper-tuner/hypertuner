@@ -1,27 +1,22 @@
 {
-  "name": "speeduino-tune-viewer",
+  "name": "speedy-tuner",
+  "description": "Speeduino Tuning Software",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.0",
-    "@testing-library/user-event": "^12.2.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.0",
-    "web-vitals": "^0.2.4"
-  },
+  "license": "MIT",
+  "homepage": "./",
+  "main": "./src/electron.js",
   "scripts": {
     "start": "react-scripts start",
+    "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "dev-web": "concurrently --kill-others \"npm:dev-backend\" \"npm:start\"",
+    "dev-backend": "cd ./backend && npm run dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -34,5 +29,30 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
+    "@types/node": "^14.14.13",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.12",
+    "antd": "^4.9.3",
+    "concurrently": "^5.3.0",
+    "electron": "^11.1.0",
+    "electron-is-dev": "^1.2.0",
+    "fs-extra": "^9.0.1",
+    "js-yaml": "^3.14.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1",
+    "react-spreadsheet": "^0.5.0",
+    "typescript": "^4.1.3",
+    "victory": "^35.4.3",
+    "wait-on": "^5.2.0",
+    "web-vitals": "^0.2.4",
+    "xml2js": "^0.4.23",
+    "yarn": "^1.22.10"
   }
 }
