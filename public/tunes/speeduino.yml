@@ -54,101 +54,101 @@ constants:
     unit: deg
 
 dialogs:
-  - engineConstants:
-      title: Engine Constants
-      help:
-        link: https://wiki.speeduino.com/en/configuration/Engine_Constants
-      groups:
-        - title: Required Fuel
-          fields:
-            - name: reqFuel
-              title: Required Fuel
-        - fields:
-            - name: algorithm
-              title: Control Algorithm
-              help: >
-                Test
-            - name: divider
-              title: Squirts Per Engine Cycle
-            - name: alternate
-              title: Injector Staging
-            - name: twoStroke
-              title: Engine Stroke
-            - name: nCylinders
-              title: Number of Cylinders
-            - name: injType
-              title: Injector Port Type
-            - name: nInjectors
-              title: Number of Injectors
-            - name: engineType
-              title: Engine Type
-        - title: Board
-          fields:
-            - name: stoich
-              title: Stoichiometric ratio
-            - name: injLayout
-              title: Injector Layout
-            - name: pinLayout
-              title: Board Layout
-            - name: mapSample
-              title: Map Sample method
-              help: >
-                The method used for calculating the MAP reading
-                For 1-2 Cylinder engines, Cycle Minimum is recommended.
-                For more than 2 cylinders Cycle Average is recommended.
-        - title: Odd Fire Angles
-          fields:
-            - name: oddfire2
-              title: Channel 2 angle
-              condition: tune.engineType == 1
-            - name: oddfire3
-              title: Channel 3 angle
-              condition: tune.engineType == 1 && tune.nCylinders >= 3
-            - name: oddfire4
-              title: Channel 4 angle
-              condition: tune.engineType == 1 && tune.nCylinders >= 4
+  - name: engineConstants
+    title: Engine Constants
+    help:
+      link: https://wiki.speeduino.com/en/configuration/Engine_Constants
+    groups:
+      - title: Required Fuel
+        fields:
+          - name: reqFuel
+            title: Required Fuel
+      - fields:
+          - name: algorithm
+            title: Control Algorithm
+            help: >
+              Test
+          - name: divider
+            title: Squirts Per Engine Cycle
+          - name: alternate
+            title: Injector Staging
+          - name: twoStroke
+            title: Engine Stroke
+          - name: nCylinders
+            title: Number of Cylinders
+          - name: injType
+            title: Injector Port Type
+          - name: nInjectors
+            title: Number of Injectors
+          - name: engineType
+            title: Engine Type
+      - title: Board
+        fields:
+          - name: stoich
+            title: Stoichiometric ratio
+          - name: injLayout
+            title: Injector Layout
+          - name: pinLayout
+            title: Board Layout
+          - name: mapSample
+            title: Map Sample method
+            help: >
+              The method used for calculating the MAP reading
+              For 1-2 Cylinder engines, Cycle Minimum is recommended.
+              For more than 2 cylinders Cycle Average is recommended.
+      - title: Odd Fire Angles
+        fields:
+          - name: oddfire2
+            title: Channel 2 angle
+            condition: tune.engineType == 1
+          - name: oddfire3
+            title: Channel 3 angle
+            condition: tune.engineType == 1 && tune.nCylinders >= 3
+          - name: oddfire4
+            title: Channel 4 angle
+            condition: tune.engineType == 1 && tune.nCylinders >= 4
 
 menus:
-  - settings:
-      title: Settings
-      subMenus:
-        - engineConstants:
-            title: Engine Constants
-        - injectorCharacteristics:
-            title: Injector Characteristics
-        - triggerSetup:
-            title: Trigger Setup
-        - airDensity:
-            title: IAT Density
-        - barometricCorrection:
-            title: Barometric Correction
-        - resetControl:
-            title: Reset Control
-        - separator:
-        - gaugeLimits:
-            title: Gauge Limits
-        - separator:
-        - ioSummary:
-            title: I/O Summary
-        - separator:
-        - programmableOutputs:
-            title: Programmable outputs
+  - name: settings
+    title: Settings
+    subMenus:
+      - name: engineConstants
+        title: Engine Constants
+      - name: injectorCharacteristics
+        title: Injector Characteristics
+      - name: triggerSetup
+        title: Trigger Setup
+      - name: airDensity
+        title: IAT Density
+      - name: barometricCorrection
+        title: Barometric Correction
+      - name: resetControl
+        title: Reset Control
+      # - name: separator
+      - name: gaugeLimits
+        title: Gauge Limits
+      # - name: separator
+      - name: ioSummary
+        title: I/O Summary
+      # - name: separator
+      - name: programmableOutputs
+        title: Programmable outputs
 
-  - spark:
-      title: Spark
-      subMenus:
-        - sparkSettings:
-            title: Spark Settings
-        - sparkTable:
-            title: Spark Table, 2
-        - dwellSettings:
-            title: Dwell settings
-        - dwellCompensation:
-            title: Dwell Compensation
-        - iatRetard:
-            title: IAT Retard
-        - coldAdvance:
-            title: Cold Advance
-        - rotaryIgnition:
-            title: Rotary Ignition
-            condition: sparkMode == 4
+  - name: spark
+    title: Spark
+    subMenus:
+      - name: sparkSettings
+        title: Spark Settings
+      - name: sparkTable
+        title: Spark Table (2)
+      - name: dwellSettings
+        title: Dwell settings
+      - name: dwellCompensation
+        title: Dwell Compensation
+      - name: iatRetard
+        title: IAT Retard
+      - name: coldAdvance
+        title: Cold Advance
+      - name: rotaryIgnition
+        title: Rotary Ignition
+        condition: sparkMode == 4

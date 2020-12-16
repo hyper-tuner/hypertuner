@@ -1,6 +1,9 @@
-import { Radio, Select } from 'antd'
+import {
+  // Radio,
+  Select
+} from 'antd'
 
-export default ({ fieldName, constant, value, onChange }: any) => {
+const SmartSelect = ({ fieldName, constant, value, onChange }: any) => {
   const values = constant.values.filter((value: string) => value !== 'INVALID');
 
   // if (values.length < 3) {
@@ -20,4 +23,6 @@ export default ({ fieldName, constant, value, onChange }: any) => {
       )}
     </Select>
   )
-}
+};
+
+export default SmartSelect;

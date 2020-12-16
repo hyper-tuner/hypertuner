@@ -13,6 +13,7 @@
     "dev-backend": "cd ./backend && npm run dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint src",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,11 +33,11 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
-    "@types/node": "^14.14.13",
+    "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.12",
-    "antd": "^4.9.3",
+    "antd": "^4.9.4",
     "concurrently": "^5.3.0",
     "electron": "^11.1.0",
     "electron-is-dev": "^1.2.0",

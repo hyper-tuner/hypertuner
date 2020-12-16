@@ -6,10 +6,12 @@ import {
   Card,
   Button,
   Tooltip,
+  Space,
+  message,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
-import Select from './inputs/Select';
+import Select from './Dialog/SmartSelect';
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -18,26 +20,31 @@ const mapStateToProps = (state: AppState) => {
   }
 }
 
-// const mapDispatchToProps = { increment, decrement, reset }
-
-const Dialog = ({ config, tune }: any) => {
+const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }) => {
   if (!config || !config.signature) {
     return <Skeleton />;
   }
 
-  const dialogConfig = config.dialogs[0].engineConstants;
+  const dialogConfig = config.dialogs.find((dialog: any) => dialog.name === name);
+
+  if (!dialogConfig) {
+    message.error({
+      content: 'Dialog not found',
+    });
+
+    return <Skeleton />;
+  }
 
   const groups = dialogConfig.groups.map((group: any) => {
     return (
-      <Card key={group.title} title={group.title}>
+      <Card key={group.title} title={group.title} style={{ width: 800, margin: '0 auto' }}>
         {group.fields.map((field: any) => {
           const constant = config.constants[field.name];
           const tuneField = tune.constants[field.name];
           let input;
 
           if (!tuneField) {
-            // console.error('Field not found: ', field.name);
-            return;
+            return null;
           }
 
           let enabled = true;
@@ -102,7 +109,11 @@ const Dialog = ({ config, tune }: any) => {
         wrapperCol={{ span: 8 }}
         onFinish={(values: any) => console.log(values)}
       >
-        {groups}
+        <Space
+          direction="vertical"
+        >
+          {groups}
+        </Space>
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Burn

@@ -1,5 +1,5 @@
 body {
-  background-color: #f0f2f5;
+  /* background-color: #f0f2f5; */
 }
 
 .site-layout-background {
@@ -16,7 +16,7 @@ button,
 }
 
 .ant-page-header {
-  padding: 0 0 25px 0;
+  /* padding: 0 0 25px 0; */
 }
 
 .ant-layout-sider-trigger {
