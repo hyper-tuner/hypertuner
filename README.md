@@ -2,6 +2,21 @@
 
 Speeduino Tuner Studio
 
+Single repository for 3 cross-platform apps:
+
+- Desktop (Windows, Linux, MacOs, Raspberry Pi)
+- Web - tune viewer (backend and frontend)
+- Mobile (Android, iOS)
+
+## Shared code
+
+|            | Desktop | Web | Mobile |
+|------------|---------|-----|--------|
+| state      | x       | x   | x      |
+| styles     | x       | x   | x      |
+| components | x       | x   |        |
+| comms      | x       |     | x      |
+
 ## Available Scripts
 
 In the project directory, you can run:
