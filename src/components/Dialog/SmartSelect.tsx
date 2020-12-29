@@ -4,7 +4,7 @@ import {
 } from 'antd'
 
 const SmartSelect = ({ fieldName, constant, value, onChange }: any) => {
-  const values = constant.values.filter((value: string) => value !== 'INVALID');
+  const values = constant.values.filter((val: string) => val !== 'INVALID');
 
   // if (values.length < 3) {
   //   return (

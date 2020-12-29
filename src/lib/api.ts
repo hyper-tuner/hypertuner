@@ -1,7 +1,10 @@
 import store from '../store';
+
 const yaml = require('js-yaml');
 
 export const loadAll = () => {
+  const started = new Date();
+
   fetch('/tunes/speeduino.yml')
     .then((response) => response.text())
     .then((config) => {
@@ -13,7 +16,7 @@ export const loadAll = () => {
           const xmlPages = xml.getElementsByTagName('page');
           const constants: any = {};
 
-          for (let key in xmlPages) {
+          for (const key in xmlPages) {
             const page = xmlPages[key];
             const pageElements = page.children;
 
@@ -30,10 +33,10 @@ export const loadAll = () => {
                 const val = element.textContent?.replace(/"/g, '').toString();
 
                 constants[attributes.name] = {
-                  value: isNaN(Number(val)) ? val : Number(val),
-                  digits: isNaN(Number(attributes.digits)) ? attributes.digits : Number(attributes.digits),
-                  cols: isNaN(Number(attributes.cols)) ? attributes.cols : Number(attributes.cols),
-                  rows: isNaN(Number(attributes.rows)) ? attributes.rows : Number(attributes.rows),
+                  value: Number.isNaN(Number(val)) ? val : Number(val),
+                  digits: Number.isNaN(Number(attributes.digits)) ? attributes.digits : Number(attributes.digits),
+                  cols: Number.isNaN(Number(attributes.cols)) ? attributes.cols : Number(attributes.cols),
+                  rows: Number.isNaN(Number(attributes.rows)) ? attributes.rows : Number(attributes.rows),
                   units: attributes.units ?? '',
                 }
               }
@@ -42,6 +45,10 @@ export const loadAll = () => {
 
           store.dispatch({ type: 'config/load', payload: yaml.safeLoad(config) });
           store.dispatch({ type: 'tune/load', payload: { constants } });
+
+          console.info('Tune loaded in:', (new Date().getTime() - started.getTime()), 'ms')
         });
     });
 }
+
+export const test = () => 'test';

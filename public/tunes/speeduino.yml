@@ -1,4 +1,6 @@
 ---
+apiVersion: '1.0'
+
 signature: speeduino 202009-dev
 
 constants:

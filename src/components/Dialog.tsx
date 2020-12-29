@@ -13,12 +13,10 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
 import Select from './Dialog/SmartSelect';
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    config: state.config,
-    tune: state.tune,
-  }
-}
+const mapStateToProps = (state: AppState) => ({
+  config: state.config,
+  tune: state.tune,
+});
 
 const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }) => {
   if (!config || !config.signature) {
@@ -35,8 +33,7 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
     return <Skeleton />;
   }
 
-  const groups = dialogConfig.groups.map((group: any) => {
-    return (
+  const groups = dialogConfig.groups.map((group: any) => (
       <Card key={group.title} title={group.title} style={{ width: 800, margin: '0 auto' }}>
         {group.fields.map((field: any) => {
           const constant = config.constants[field.name];
@@ -51,6 +48,7 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
           if (field.condition) {
             // TODO: strip eval from `command` etc...!
             // https://www.electronjs.org/docs/tutorial/security
+            // eslint-disable-next-line no-eval
             enabled = eval(field.condition);
           }
 
@@ -99,8 +97,7 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
           );
         })}
       </Card>
-    )
-  });
+    ));
 
   return (
     <>

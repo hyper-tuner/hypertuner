@@ -2,17 +2,15 @@ import { Layout, Menu, Skeleton, Input } from 'antd';
 import {
   ToolOutlined,
 } from '@ant-design/icons';
-import { AppState } from '../types';
 import { connect } from 'react-redux';
+import { AppState } from '../types';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-const mapStateToProps = (state: AppState) => {
-  return {
+const mapStateToProps = (state: AppState) => ({
     config: state.config,
-  }
-}
+  })
 
 const siderProps = {
   width: 250,
@@ -36,14 +34,14 @@ const SideBar = ({ config }: any) => {
   }
 
   // TODO: add types
-  const menus = (menus: any) => (
+  const menusList = (menus: any) => (
     menus.map((menu: any) => (
       <SubMenu
         key={`menu-${menu.name}`}
         icon={<ToolOutlined />}
         title={menu.title}
       >
-        {menu.subMenus.map((subMenu: any, index: number) => (
+        {menu.subMenus.map((subMenu: any) => (
           <Menu.Item key={`sub-menu-${subMenu.name}`}>
               {subMenu.title}
             </Menu.Item>
@@ -61,7 +59,7 @@ const SideBar = ({ config }: any) => {
         defaultOpenKeys={['menu-settings']}
         mode="inline"
       >
-        {menus(config.menus)}
+        {menusList(config.menus)}
       </Menu>
     </Sider>
   );
