@@ -23,6 +23,10 @@
     "import/extensions": 0,
     "react/react-in-jsx-scope": 0,
     "react/jsx-props-no-spreading": 0,
-    "no-console": 0
+    "no-console": 0,
+
+    // dev
+    "no-undef": 1,
+    "no-unused-vars": 1
   }
 }

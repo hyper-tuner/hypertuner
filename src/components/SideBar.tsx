@@ -27,6 +27,7 @@ const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
     },
     collapsible: true,
     breakpoint: 'lg',
+    trigger: null,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
 

@@ -8,7 +8,7 @@ import {
   message,
   Divider,
 } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { FireOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
 import Select from './Dialog/SmartSelect';
 
@@ -114,7 +114,14 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
       >
         {groups}
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            size="large"
+            danger
+            htmlType="submit"
+            icon={<FireOutlined />}
+            style={{ position: 'fixed', right: 25, bottom: 25 }}
+          >
             Burn
           </Button>
         </Form.Item>
