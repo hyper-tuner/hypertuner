@@ -27,6 +27,7 @@ const mapStateToProps = (state: AppState) => ({
 
 function App({ ui }: { ui: UIState }) {
   const margin = ui.sidebarCollapsed ? 80 : 250;
+  const appBarHeight = 38;
 
   // const trigger = () => {
   //   const triggerProps = {
@@ -44,31 +45,30 @@ function App({ ui }: { ui: UIState }) {
   }, []);
 
   return (
-    <Layout>
-      <SideBar />
-      <Layout
-        className="site-layout"
-        style={{ marginLeft: margin }}
-      >
-        <Content style={{ height: '100vh', overflow: 'hidden' }}>
-          <Header>
-            {/* {trigger()} */}
-
-            <div style={{ textAlign: 'right' }}>
-              <Space>
-                  <Badge count={100} offset={[-43, 8]}>
-                    <Button size="large" icon={<BellOutlined />} />
-                  </Badge>
-                  <Button size="large" icon={<UserOutlined />} />
-              </Space>
-            </div>
-          </Header>
-          <PerfectScrollbar>
-            <Dialog name="engineConstants" />
-          </PerfectScrollbar>
-        </Content>
+    <>
+      <Layout>
+        <Header className="app-bar">
+          <div style={{ textAlign: 'right' }}>
+            <Space>
+                <Badge size="small" dot>
+                  <Button icon={<BellOutlined />} />
+                </Badge>
+                <Button icon={<UserOutlined />} />
+            </Space>
+          </div>
+        </Header>
+        <Layout style={{ marginLeft: margin }}>
+          <SideBar topOffset={appBarHeight} />
+          <Layout>
+            <Content style={{ marginTop: appBarHeight, overflow: 'hidden' }}>
+              <PerfectScrollbar>
+                <Dialog name="engineConstants" />
+              </PerfectScrollbar>
+            </Content>
+          </Layout>
+        </Layout>
       </Layout>
-    </Layout>
+    </>
   );
 }
 

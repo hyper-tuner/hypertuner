@@ -15,7 +15,7 @@ const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
 });
 
-const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
+const SideBar = ({ config, ui, topOffset }: { config: any, ui: UIState, topOffset: number }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
@@ -23,10 +23,10 @@ const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
       height: '100vh',
       position: 'fixed',
       left: 0,
-      top: ui.sidebarCollapsed ? 0 : 33,
+      top: ui.sidebarCollapsed ? 0 : (topOffset - 2) * 2,
     },
     collapsible: true,
-    breakpoint: 'lg',
+    breakpoint: 'md',
     trigger: null,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
@@ -34,10 +34,11 @@ const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
   const filterStyles = {
     boxShadow: 'rgb(0 0 0 / 10%) -2px 5px 7px 0px',
     position: 'fixed',
-    top: 0,
+    top: topOffset,
     left: 0,
     width: sidebarWidth,
-    zIndex: 10,
+    zIndex: 1,
+    border: 'none',
   } as any;
 
   if (!config || !config.signature) {

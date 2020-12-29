@@ -3,6 +3,9 @@
 // @import '~antd/lib/style/themes/dark.less';
 // @import '~antd/lib/style/themes/compact.less';
 
+// @main-dark: #191C1E;
+@main-light: #2E3338;
+
 // enable dark mode
 @import './themes/dark.less';
 
@@ -12,7 +15,19 @@
 @layout-trigger-color: @text-color;
 
 @layout-header-padding: 0 10px;
+@layout-header-height: 38px;
 
 .row {
   margin: 20px;
+}
+
+.app-bar {
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: rgb(0 0 0 e('/') 1%) -2px 5px 7px 0px;
+  // background-color: @main-light;
 }

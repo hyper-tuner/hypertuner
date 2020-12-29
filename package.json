@@ -1,10 +1,10 @@
 {
   "name": "speedy-tuner",
   "description": "Speeduino Tuning Software",
-  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "homepage": "./",
+  "main": "./src/electron.js",
   "scripts": {
     "start": "craco start",
     "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
