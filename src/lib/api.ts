@@ -38,7 +38,7 @@ export const loadAll = () => {
                   cols: Number.isNaN(Number(attributes.cols)) ? attributes.cols : Number(attributes.cols),
                   rows: Number.isNaN(Number(attributes.rows)) ? attributes.rows : Number(attributes.rows),
                   units: attributes.units ?? '',
-                }
+                };
               }
             });
           });
@@ -46,9 +46,9 @@ export const loadAll = () => {
           store.dispatch({ type: 'config/load', payload: yaml.safeLoad(config) });
           store.dispatch({ type: 'tune/load', payload: { constants } });
 
-          console.info('Tune loaded in:', (new Date().getTime() - started.getTime()), 'ms')
+          console.info('Tune loaded in:', (new Date().getTime() - started.getTime()), 'ms');
         });
     });
-}
+};
 
 export const test = () => 'test';

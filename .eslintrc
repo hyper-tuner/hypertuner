@@ -18,7 +18,7 @@
     "prettier"
   ],
   "rules": {
-    "semi": 0,
+    "semi": ["error", "always"],
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "import/extensions": 0,
     "react/react-in-jsx-scope": 0,

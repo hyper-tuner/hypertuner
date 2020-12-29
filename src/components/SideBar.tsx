@@ -3,28 +3,42 @@ import {
   ToolOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import { AppState } from '../types';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import store from '../store';
+import { AppState, UIState } from '../types';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const mapStateToProps = (state: AppState) => ({
-    config: state.config,
-  })
+  config: state.config,
+  ui: state.ui,
+});
 
-const siderProps = {
-  width: 250,
-  style: {
-    overflow: 'auto',
-    height: '100vh',
+const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
+  const sidebarWidth = 250;
+  const siderProps = {
+    width: sidebarWidth,
+    style: {
+      height: '100vh',
+      position: 'fixed',
+      left: 0,
+      top: ui.sidebarCollapsed ? 0 : 33,
+    },
+    collapsible: true,
+    breakpoint: 'lg',
+    onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
+  } as any;
+
+  const filterStyles = {
+    boxShadow: 'rgb(0 0 0 / 10%) -2px 5px 7px 0px',
     position: 'fixed',
+    top: 0,
     left: 0,
-  },
-  collapsible: false,
-  className: 'site-layout-background',
-} as any;
+    width: sidebarWidth,
+    zIndex: 10,
+  } as any;
 
-const SideBar = ({ config }: any) => {
   if (!config || !config.signature) {
     return (
       <Sider {...siderProps}>
@@ -52,15 +66,19 @@ const SideBar = ({ config }: any) => {
 
   return (
     <Sider {...siderProps}>
-      <Input allowClear placeholder="search" />
-      <Menu
-        // theme="dark"
-        defaultSelectedKeys={['menu-settings']}
-        defaultOpenKeys={['menu-settings']}
-        mode="inline"
-      >
-        {menusList(config.menus)}
-      </Menu>
+      {!ui.sidebarCollapsed && (<div style={filterStyles}>
+        <Input allowClear placeholder="Filter" />
+      </div>)}
+      <PerfectScrollbar>
+        <Menu
+          defaultSelectedKeys={['menu-settings']}
+          defaultOpenKeys={['menu-settings', 'menu-spark']}
+          mode="inline"
+          style={{ height: '100%' }}
+        >
+          {menusList(config.menus)}
+        </Menu>
+      </PerfectScrollbar>
     </Sider>
   );
 };

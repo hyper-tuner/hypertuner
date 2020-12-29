@@ -1,34 +1,43 @@
 import { useEffect } from 'react';
 import { Layout,  } from 'antd';
+import { connect } from 'react-redux';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dialog from './components/Dialog';
 import { loadAll } from './lib/api';
-
-import 'antd/dist/antd.css';
-import './App.css';
 import SideBar from './components/SideBar';
+import { AppState, UIState } from './types';
+
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import './App.less';
 
 const { Content } = Layout;
 
-function App() {
+const mapStateToProps = (state: AppState) => ({
+  ui: state.ui,
+});
+
+function App({ ui }: { ui: UIState }) {
+  const margin = ui.sidebarCollapsed ? 80 : 250;
+
   useEffect(() => {
     loadAll();
   }, []);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout>
       <SideBar />
       <Layout
         className="site-layout"
-        style={{ marginLeft: 250 }}
+        style={{ marginLeft: margin }}
       >
-        <Content style={{ margin: '0 16px' }}>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+        <Content style={{ height: '100vh', overflow: 'hidden' }}>
+          <PerfectScrollbar>
             <Dialog name="engineConstants" />
-          </div>
+          </PerfectScrollbar>
         </Content>
       </Layout>
     </Layout>
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App);

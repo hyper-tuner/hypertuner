@@ -3,11 +3,10 @@ import {
   Form,
   InputNumber,
   Skeleton,
-  Card,
   Button,
   Tooltip,
-  Space,
   message,
+  Divider,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
@@ -18,9 +17,15 @@ const mapStateToProps = (state: AppState) => ({
   tune: state.tune,
 });
 
+const containerStyle = {
+  padding: 20,
+};
+
+const skeleton = () => <div style={containerStyle}><Skeleton /></div>;
+
 const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }) => {
   if (!config || !config.signature) {
-    return <Skeleton />;
+    return skeleton();
   }
 
   const dialogConfig = config.dialogs.find((dialog: any) => dialog.name === name);
@@ -30,11 +35,12 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
       content: 'Dialog not found',
     });
 
-    return <Skeleton />;
+    return skeleton();
   }
 
   const groups = dialogConfig.groups.map((group: any) => (
-      <Card key={group.title} title={group.title} style={{ width: 800, margin: '0 auto' }}>
+      <div className="row">
+        <Divider>{group.title}</Divider>
         {group.fields.map((field: any) => {
           const constant = config.constants[field.name];
           const tuneField = tune.constants[field.name];
@@ -96,29 +102,25 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
             </Form.Item>
           );
         })}
-      </Card>
+      </div>
     ));
 
   return (
-    <>
+    <div style={containerStyle}>
       <Form
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 8 }}
         onFinish={(values: any) => console.log(values)}
       >
-        <Space
-          direction="vertical"
-        >
-          {groups}
-        </Space>
+        {groups}
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Burn
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </div>
   );
-}
+};
 
 export default connect(mapStateToProps)(Dialog);
