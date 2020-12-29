@@ -16,19 +16,19 @@ export const loadAll = () => {
           const xmlPages = xml.getElementsByTagName('page');
           const constants: any = {};
 
-          for (const key in xmlPages) {
+          Object.keys(xmlPages).forEach((key: any) => {
             const page = xmlPages[key];
             const pageElements = page.children;
 
-            for (const item in pageElements) {
+            Object.keys(pageElements).forEach((item: any) => {
               const element = pageElements[item];
 
               if (element.tagName === 'constant') {
                 const attributes: any = {};
 
-                for (const attr in element.attributes) {
+                Object.keys(element.attributes).forEach((attr: any) => {
                   attributes[element.attributes[attr].name] = element.attributes[attr].value;
-                }
+                });
 
                 const val = element.textContent?.replace(/"/g, '').toString();
 
@@ -40,8 +40,8 @@ export const loadAll = () => {
                   units: attributes.units ?? '',
                 }
               }
-            }
-          }
+            });
+          });
 
           store.dispatch({ type: 'config/load', payload: yaml.safeLoad(config) });
           store.dispatch({ type: 'tune/load', payload: { constants } });
