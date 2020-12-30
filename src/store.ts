@@ -8,6 +8,9 @@ const updateTune = createAction<Types.UpdateTunePayload>('tune/update');
 const loadTune = createAction<Types.TuneState>('tune/load');
 const loadConfig = createAction<Types.ConfigState>('config/load');
 
+// status bar
+const setStatus = createAction<string>('status');
+
 // ui
 const setSidebarCollapsed = createAction<boolean>('ui/sidebarCollapsed');
 
@@ -18,6 +21,9 @@ const initialState: Types.AppState = {
   config: {},
   ui: {
     sidebarCollapsed: false,
+  },
+  status: {
+    text: null,
   },
 };
 
@@ -34,6 +40,9 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSidebarCollapsed, (state: Types.AppState, action) => {
       state.ui.sidebarCollapsed = action.payload;
+    })
+    .addCase(setStatus, (state: Types.AppState, action) => {
+      state.status.text = action.payload;
     });
 });
 

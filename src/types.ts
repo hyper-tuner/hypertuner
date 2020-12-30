@@ -12,10 +12,15 @@ interface UIState {
   sidebarCollapsed: boolean,
 }
 
+interface StatusState {
+  text: string | null,
+}
+
 interface AppState {
   tune: TuneState,
   config: ConfigState,
   ui: UIState,
+  status: StatusState,
 }
 
 interface UpdateTunePayload {
@@ -29,4 +34,5 @@ export type {
   AppState,
   UpdateTunePayload,
   UIState,
+  StatusState,
 };

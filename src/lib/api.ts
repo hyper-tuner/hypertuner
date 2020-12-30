@@ -46,7 +46,10 @@ export const loadAll = () => {
           store.dispatch({ type: 'config/load', payload: yaml.safeLoad(config) });
           store.dispatch({ type: 'tune/load', payload: { constants } });
 
-          console.info('Tune loaded in:', (new Date().getTime() - started.getTime()), 'ms');
+          store.dispatch({
+            type: 'status',
+            payload: `Tune loaded in ${(new Date().getTime() - started.getTime())}ms 💪`,
+          });
         });
     });
 };

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Layout, Space, Button, Badge, Input } from 'antd';
+import { Layout, Space, Button, Badge, Input, Row, Col } from 'antd';
 import {
   BellOutlined,
   UserOutlined,
@@ -15,7 +15,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dialog from './components/Dialog';
 import { loadAll } from './lib/api';
 import SideBar from './components/SideBar';
-import { AppState, UIState } from './types';
+import { AppState, StatusState, UIState } from './types';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
@@ -25,9 +25,10 @@ const { Content, Header, Footer } = Layout;
 
 const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
+  status: state.status,
 });
 
-function App({ ui }: { ui: UIState }) {
+function App({ ui, status }: { ui: UIState, status: StatusState }) {
   const margin = ui.sidebarCollapsed ? 80 : 250;
 
   // const trigger = () => {
@@ -49,20 +50,28 @@ function App({ ui }: { ui: UIState }) {
     <>
       <Layout>
         <Header className="app-top-bar">
-          <div style={{ textAlign: 'right' }}>
-            <Space>
+          <Row>
+            <Col span={8}>
+              <Space>
                 <Button icon={<LeftOutlined />} />
                 <Button icon={<RightOutlined />} />
+              </Space>
+            </Col>
+            <Col span={8} style={{ textAlign: 'center' }}>
+              <Input placeholder="Search" />
+            </Col>
+            <Col span={8} style={{ textAlign: 'right' }}>
+              <Space>
                 <Button icon={<CloudUploadOutlined />} />
                 <Button icon={<CloudDownloadOutlined />} />
                 <Button icon={<ShareAltOutlined />} />
-                <Input placeholder="Search" />
                 <Badge size="small">
                   <Button icon={<BellOutlined />} />
                 </Badge>
                 <Button icon={<UserOutlined />} />
-            </Space>
-          </div>
+              </Space>
+            </Col>
+          </Row>
         </Header>
         <Layout style={{ marginLeft: margin }}>
           <SideBar />
@@ -77,10 +86,17 @@ function App({ ui }: { ui: UIState }) {
       </Layout>
       <Layout>
         <Footer className="app-status-bar">
-          <Space>
-            <CarOutlined />
-            default
-          </Space>
+          <Row>
+            <Col span={12}>
+              <Space>
+                <CarOutlined />
+                default
+              </Space>
+            </Col>
+            <Col span={12} style={{ textAlign: 'right' }}>
+              {status.text}
+            </Col>
+          </Row>
         </Footer>
       </Layout>
     </>
