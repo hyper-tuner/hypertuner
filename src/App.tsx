@@ -6,6 +6,9 @@ import {
   CarOutlined,
   LeftOutlined,
   RightOutlined,
+  ShareAltOutlined,
+  CloudUploadOutlined,
+  CloudDownloadOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -50,6 +53,9 @@ function App({ ui }: { ui: UIState }) {
             <Space>
                 <Button icon={<LeftOutlined />} />
                 <Button icon={<RightOutlined />} />
+                <Button icon={<CloudUploadOutlined />} />
+                <Button icon={<CloudDownloadOutlined />} />
+                <Button icon={<ShareAltOutlined />} />
                 <Input placeholder="Search" />
                 <Badge size="small">
                   <Button icon={<BellOutlined />} />

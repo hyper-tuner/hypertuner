@@ -6,6 +6,7 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    title: 'SpeedyTuner',
     width: 1400,
     height: 1000,
     show: false,
