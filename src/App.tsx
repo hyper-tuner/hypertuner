@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
-import { Layout, Avatar, Space, Button, Badge } from 'antd';
+import { Layout, Space, Button, Badge } from 'antd';
 import {
   BellOutlined,
-  BellFilled,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  RightCircleFilled,
   UserOutlined,
   CarOutlined,
 } from '@ant-design/icons';
@@ -15,10 +11,10 @@ import Dialog from './components/Dialog';
 import { loadAll } from './lib/api';
 import SideBar from './components/SideBar';
 import { AppState, UIState } from './types';
-// import store from './store';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
+import BurnButton from './components/BurnButton';
 
 const { Content, Header, Footer } = Layout;
 
@@ -50,7 +46,7 @@ function App({ ui }: { ui: UIState }) {
         <Header className="app-top-bar">
           <div style={{ textAlign: 'right' }}>
             <Space>
-                <Badge size="small" dot>
+                <Badge size="small">
                   <Button icon={<BellOutlined />} />
                 </Badge>
                 <Button icon={<UserOutlined />} />
@@ -62,7 +58,7 @@ function App({ ui }: { ui: UIState }) {
           <Layout className="app-content">
             <Content>
               <PerfectScrollbar>
-                <Dialog name="engineConstants" />
+                <Dialog name="engineConstants" burnButton={<BurnButton simple={ui.sidebarCollapsed} />} />
               </PerfectScrollbar>
             </Content>
           </Layout>

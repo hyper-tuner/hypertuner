@@ -3,12 +3,11 @@ import {
   Form,
   InputNumber,
   Skeleton,
-  Button,
   Tooltip,
   message,
   Divider,
 } from 'antd';
-import { FireOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
 import SmartSelect from './Dialog/SmartSelect';
 
@@ -23,7 +22,7 @@ const containerStyle = {
 
 const skeleton = () => <div style={containerStyle}><Skeleton /></div>;
 
-const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }) => {
+const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, name: string, burnButton: any }) => {
   if (!config || !config.signature) {
     return skeleton();
   }
@@ -114,16 +113,7 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
       >
         {groups}
         <Form.Item>
-          <Button
-            type="primary"
-            size="large"
-            danger
-            htmlType="submit"
-            icon={<FireOutlined />}
-            style={{ position: 'fixed', right: 35, bottom: 45 }}
-          >
-            Burn
-          </Button>
+          {burnButton}
         </Form.Item>
       </Form>
     </div>
