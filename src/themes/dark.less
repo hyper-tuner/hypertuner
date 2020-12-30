@@ -2,31 +2,30 @@
 @main-dark: #191C1E;
 @main-light: #2E3338;
 @text: #ddd;
-@text-light: #fff;
+// @text-light: #fff;
 @text-dark: #222;
 @text-disabled: #999;
 @main-divider: #33383e;
 
 // First
-@primary: #26547C;
+@primary-color: #26547C;
 // @info: #FFD166;
 // @success: #06D6A0;
 // @error: #EF476F;
 // @warn: #E55934;
 
 // Second
-// @primary: #004E64;
+// @primary-color: #004E64;
 @info: #F2C14E;
 @success: #499F68;
 @error: #DA2C38;
 @warn: #ED5A31;
 
 // new ant
-@primary-1: @primary;
+@primary-1: @primary-color;
 
 @layout-header-height: 48px;
 
-@primary-color: @primary;
 @processing-color: @info;
 @info-color: @info;
 @success-color: @success;
@@ -39,14 +38,14 @@
 @text-color-secondary: @text-disabled;
 @heading-color: @text-light;
 @heading-color-dark: @text-dark;
-@link-color: lighten(@primary, 10%);
+@link-color: lighten(@primary-color, 10%);
 
 @body-background: @main;
 @component-background: @main-light;
-@item-active-bg: @primary;
-@item-hover-bg: @primary;
+@item-active-bg: @primary-color;
+@item-hover-bg: @primary-color;
 @menu-highlight-color: @text;
-@table-row-hover-bg: darken(@primary, 10%);
+@table-row-hover-bg: darken(@primary-color, 10%);
 
 @descriptions-bg: @main-light;
 @menu-bg: @main-dark;

@@ -1,19 +1,12 @@
 @import '~antd/dist/antd.less';
-// @import '~antd/lib/style/themes/default.less';
-// @import '~antd/lib/style/themes/dark.less';
-// @import '~antd/lib/style/themes/compact.less';
-
-// @main-dark: #191C1E;
-// @main-light: #2E3338;
-
-// enable dark mode
 @import './themes/dark.less';
+
+@text-light: #fff;
 
 @border-radius-base: 5px;
 @layout-header-background: @component-background;
 @layout-trigger-background: @component-background;
 @layout-trigger-color: @text-color;
-@layout-footer-background: @main-dark;
 
 @layout-header-padding: 0 10px;
 @layout-header-height: 38px;
@@ -52,8 +45,9 @@
   bottom: 0;
   width: 100%;
   height: @layout-footer-height;
-  background-color: @primary;
+  background-color: @primary-color;
   font-size: @font-size-sm;
+  color: @text-light;
 }
 
 .app-content {
