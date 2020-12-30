@@ -68,48 +68,75 @@ dialogs:
             title: Required Fuel
           - name: algorithm
             title: Control Algorithm
-            help: >
-              Test
+            help: Fueling calculation algorithm
           - name: divider
             title: Squirts Per Engine Cycle
           - name: alternate
             title: Injector Staging
+            help: |
+              Whether or not the injectors should be fired at the same time.
+              This setting is ignored when Sequential is selected below, however it will still affect req_fuel value.
           - name: twoStroke
             title: Engine Stroke
+            help: Four-stroke (most engines), Two-stroke
           - name: nCylinders
             title: Number of Cylinders
+            help: Cylinder count
           - name: injType
             title: Injector Port Type
+            help: Port Injection (one injector for each cylinder) or Throttle Body (injectors shared by cylinders)
           - name: nInjectors
             title: Number of Injectors
+            help: Number of primary injectors
           - name: engineType
             title: Engine Type
+            help: |
+              Engines with an equal number of degrees between all firings (This is most engines) should select Even fire.
+              Some 2 and 6 cylinder engines are Odd fire however
       - name: board
         title: Board
         fields:
           - name: stoich
             title: Stoichiometric ratio
+            help: |
+              The stoichiometric ration of the fuel being used.
+              For flex fuel, choose the primary fuel.
           - name: injLayout
             title: Injector Layout
+            help: |
+              The injector layout and timing to be used. Options are:
+              1. Paired - 2 injectors per output. Outputs active is equal to half the number of cylinders. Outputs are timed over 1 crank revolution.
+              2. Semi-sequential: Same as paired except that injector channels are mirrored (1&4, 2&3) meaning the number of outputs used are equal to the number of cylinders. Only valid for 4 cylinders or less.
+              3. Banked: 2 outputs only used.
+              4. Sequential: 1 injector per output and outputs used equals the number of cylinders. Injection is timed over full cycle.
           - name: pinLayout
             title: Board Layout
           - name: mapSample
             title: Map Sample method
-            help: >
-              The method used for calculating the MAP reading
-              For 1-2 Cylinder engines, Cycle Minimum is recommended.
-              For more than 2 cylinders Cycle Average is recommended.
+            help: |
+              The method used for calculating the MAP reading.
+              - For 1-2 Cylinder engines, Cycle Minimum is recommended.
+              - For more than 2 cylinders Cycle Average is recommended.
       - name: oddFireAngles
         title: Odd Fire Angles
         fields:
           - name: oddfire2
             title: Channel 2 angle
+            help: |
+              The ATDC angle of channel 2 for oddfire engines.
+              This is relative to the TDC angle of channel 1
             condition: tune.engineType == 1
           - name: oddfire3
             title: Channel 3 angle
+            help: |
+              The ATDC angle of channel 3 for oddfire engines.
+              This is relative to the TDC angle of channel 1 (NOT channel 2)
             condition: tune.engineType == 1 && tune.nCylinders >= 3
           - name: oddfire4
             title: Channel 4 angle
+            help: |
+              The ATDC angle of channel 4 for oddfire engines.
+              This is relative to the TDC angle of channel 1 (NOT channel 3)
             condition: tune.engineType == 1 && tune.nCylinders >= 4
 
 menus:

@@ -3,11 +3,12 @@ import {
   Form,
   InputNumber,
   Skeleton,
-  Tooltip,
   message,
   Divider,
   Col,
   Row,
+  Popover,
+  Space,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types/state';
@@ -28,7 +29,7 @@ const containerStyle = {
   padding: 20,
 };
 
-const skeleton = () => <div style={containerStyle}><Skeleton /></div>;
+const skeleton = <div style={containerStyle}><Skeleton /></div>;
 
 const Dialog = ({
   config,
@@ -42,7 +43,7 @@ const Dialog = ({
   burnButton: any
 }) => {
   if (!config || !config.signature) {
-    return skeleton();
+    return skeleton;
   }
 
   const dialogConfig = config.dialogs.find((dialog: DialogType) => dialog.name === name);
@@ -52,7 +53,7 @@ const Dialog = ({
       content: 'Dialog not found',
     });
 
-    return skeleton();
+    return skeleton;
   }
 
   const groups = dialogConfig.groups.map((group: GroupType) => (
@@ -107,12 +108,12 @@ const Dialog = ({
             <Form.Item
               key={field.name}
               label={
-                <span>
-                  {field.title}&nbsp;
-                  <Tooltip title="What do you want others to call you?">
+                <Space>
+                  {field.title}
+                  {field.help && (<Popover content={field.help.split('\n').map((line) => <div key={line}>{line}</div>)}>
                     <QuestionCircleOutlined />
-                  </Tooltip>
-                </span>
+                  </Popover>)}
+                </Space>
               }
             >
               {input}
@@ -124,6 +125,16 @@ const Dialog = ({
 
   return (
     <div style={containerStyle}>
+      <Popover
+        content={
+          <a href={`${dialogConfig.help.link}`} target="__blank" rel="noopener">
+            {dialogConfig.help.link}
+          </a>
+        }
+        placement="right"
+      >
+        <QuestionCircleOutlined style={{ float: 'left' }} />
+      </Popover>
       <Form
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 10 }}
