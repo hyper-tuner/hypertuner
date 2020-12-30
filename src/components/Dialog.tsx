@@ -6,6 +6,8 @@ import {
   Tooltip,
   message,
   Divider,
+  Col,
+  Row,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
@@ -38,7 +40,7 @@ const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, na
   }
 
   const groups = dialogConfig.groups.map((group: any) => (
-      <div className="row">
+      <Col span={24} xl={12}>
         <Divider>{group.title}</Divider>
         {group.fields.map((field: any) => {
           const constant = config.constants[field.name];
@@ -101,17 +103,19 @@ const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, na
             </Form.Item>
           );
         })}
-      </div>
+      </Col>
     ));
 
   return (
     <div style={containerStyle}>
       <Form
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 8 }}
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 10 }}
         onFinish={(values: any) => console.log(values)}
       >
-        {groups}
+        <Row gutter={30}>
+          {groups}
+        </Row>
         <Form.Item>
           {burnButton}
         </Form.Item>

@@ -61,11 +61,10 @@ dialogs:
     help:
       link: https://wiki.speeduino.com/en/configuration/Engine_Constants
     groups:
-      - title: Required Fuel
+      - title: Engine Constants
         fields:
           - name: reqFuel
             title: Required Fuel
-      - fields:
           - name: algorithm
             title: Control Algorithm
             help: >
