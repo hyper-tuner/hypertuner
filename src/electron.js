@@ -12,7 +12,7 @@ function createWindow() {
     height: 1000,
     show: false,
     titleBarStyle: 'hiddenInset',
-    backgroundColor: '#222629',
+    backgroundColor: '#2E3338',
   });
   mainWindow.setMenuBarVisibility(false);
 
