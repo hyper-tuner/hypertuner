@@ -39,8 +39,9 @@ const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, na
     return skeleton();
   }
 
+  let groupKey = 0;
   const groups = dialogConfig.groups.map((group: any) => (
-      <Col span={24} xl={12}>
+      <Col key={groupKey++} span={24} xl={12}>
         <Divider>{group.title}</Divider>
         {group.fields.map((field: any) => {
           const constant = config.constants[field.name];
