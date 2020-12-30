@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
 import { AppState } from '../types/state';
+import { Config, Menu as MenuType, SubMenu as SubMenuType } from '../types/config';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,7 +16,7 @@ const mapStateToProps = (state: AppState) => ({
   config: state.config,
 });
 
-const SideBar = ({ config }: { config: any }) => {
+const SideBar = ({ config }: { config: Config }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
@@ -38,15 +39,14 @@ const SideBar = ({ config }: { config: any }) => {
     spark: <FireOutlined />,
   } as any;
 
-  // TODO: add types
-  const menusList = (menus: any) => (
-    menus.map((menu: any) => (
+  const menusList = (menus: MenuType[]) => (
+    menus.map((menu: MenuType) => (
       <SubMenu
         key={`menu-${menu.name}`}
         icon={icons[menu.name]}
         title={menu.title}
       >
-        {menu.subMenus.map((subMenu: any) => (
+        {menu.subMenus.map((subMenu: SubMenuType) => (
           <Menu.Item key={`sub-menu-${subMenu.name}`}>
               {subMenu.title}
             </Menu.Item>

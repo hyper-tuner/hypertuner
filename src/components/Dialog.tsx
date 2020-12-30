@@ -12,7 +12,12 @@ import {
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
-import { Dialog, Group, Config } from '../types/config';
+import {
+  Dialog as DialogType,
+  Group as GroupType,
+  Config as ConfigType,
+  Field as FieldType,
+} from '../types/config';
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -25,12 +30,22 @@ const containerStyle = {
 
 const skeleton = () => <div style={containerStyle}><Skeleton /></div>;
 
-const DialogComponent = ({ config, tune, name, burnButton }: { config: Config, tune: any, name: string, burnButton: any }) => {
+const Dialog = ({
+  config,
+  tune,
+  name,
+  burnButton
+}: {
+  config: ConfigType,
+  tune: any,
+  name: string,
+  burnButton: any
+}) => {
   if (!config || !config.signature) {
     return skeleton();
   }
 
-  const dialogConfig = config.dialogs.find((dialog: Dialog) => dialog.name === name);
+  const dialogConfig = config.dialogs.find((dialog: DialogType) => dialog.name === name);
 
   if (!dialogConfig) {
     message.error({
@@ -40,10 +55,10 @@ const DialogComponent = ({ config, tune, name, burnButton }: { config: Config, t
     return skeleton();
   }
 
-  const groups = dialogConfig.groups.map((group: Group) => (
+  const groups = dialogConfig.groups.map((group: GroupType) => (
       <Col key={group.name} span={24} xl={12}>
         <Divider>{group.title}</Divider>
-        {group.fields.map((field: any) => {
+        {group.fields.map((field: FieldType) => {
           const constant = config.constants[field.name];
           const tuneField = tune.constants[field.name];
           let input;
@@ -125,4 +140,4 @@ const DialogComponent = ({ config, tune, name, burnButton }: { config: Config, t
   );
 };
 
-export default connect(mapStateToProps)(DialogComponent);
+export default connect(mapStateToProps)(Dialog);

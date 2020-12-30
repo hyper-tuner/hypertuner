@@ -2,8 +2,19 @@ import {
   // Radio,
   Select
 } from 'antd';
+import { Constant } from '../../types/config';
 
-const SmartSelect = ({ fieldName, constant, value, onChange }: any) => {
+const SmartSelect = ({
+  fieldName,
+  constant,
+  value,
+  disabled,
+}: {
+  fieldName: string,
+  constant: Constant,
+  value: string | number,
+  disabled: boolean,
+}) => {
   const values = constant.values.filter((val: string) => val !== 'INVALID');
 
   // if (values.length < 3) {
@@ -17,7 +28,12 @@ const SmartSelect = ({ fieldName, constant, value, onChange }: any) => {
   // }
 
   return (
-    <Select key={fieldName} value={value} showSearch onChange={onChange}>
+    <Select
+      key={fieldName}
+      value={value}
+      showSearch
+      disabled={disabled}
+    >
       {values.map((val: string) =>
         <Select.Option key={val} value={val}>{val}</Select.Option>
       )}

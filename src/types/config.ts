@@ -5,6 +5,7 @@ interface Entity {
 
 interface Field extends Entity {
   help: string,
+  condition: string,
 }
 
 interface Group extends Entity {
@@ -27,19 +28,21 @@ interface Menu extends Entity {
 interface Constant {
   type: string,
   unit: string,
-  values: string[] | number[],
+  values: string[],
   min: number,
   max: number,
+}
+
+interface Constants {
+  [name: string]: Constant,
 }
 
 interface Config {
   apiVersion: string,
   signature: string,
-  constants: {
-    [name: string]: Constant,
-  },
+  constants: Constants,
   dialogs: Dialog[],
-  menus: any,
+  menus: Menu[],
 }
 
 export type {
@@ -49,5 +52,6 @@ export type {
   SubMenu,
   Menu,
   Constant,
+  Constants,
   Config,
 };
