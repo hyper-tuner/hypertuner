@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
-import { AppState } from '../types';
+import { AppState } from '../types/state';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;

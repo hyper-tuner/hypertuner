@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
-import * as Types from './types';
+import * as Types from './types/state';
 
 // tune and config
 const updateTune = createAction<Types.UpdateTunePayload>('tune/update');
@@ -18,7 +18,7 @@ const initialState: Types.AppState = {
   tune: {
     constants: {},
   },
-  config: {},
+  config: {} as any,
   ui: {
     sidebarCollapsed: false,
   },

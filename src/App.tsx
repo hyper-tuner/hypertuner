@@ -6,7 +6,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dialog from './components/Dialog';
 import { loadAll } from './lib/api';
 import SideBar from './components/SideBar';
-import { AppState, StatusState, UIState } from './types';
+import { AppState, StatusState, UIState } from './types/state';
 import BurnButton from './components/BurnButton';
 import TopBar from './components/TopBar';
 

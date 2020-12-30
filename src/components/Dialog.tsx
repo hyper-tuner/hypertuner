@@ -10,8 +10,9 @@ import {
   Row,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { AppState } from '../types';
+import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
+import { Dialog, Group, Config } from '../types/config';
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -24,12 +25,12 @@ const containerStyle = {
 
 const skeleton = () => <div style={containerStyle}><Skeleton /></div>;
 
-const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, name: string, burnButton: any }) => {
+const DialogComponent = ({ config, tune, name, burnButton }: { config: Config, tune: any, name: string, burnButton: any }) => {
   if (!config || !config.signature) {
     return skeleton();
   }
 
-  const dialogConfig = config.dialogs.find((dialog: any) => dialog.name === name);
+  const dialogConfig = config.dialogs.find((dialog: Dialog) => dialog.name === name);
 
   if (!dialogConfig) {
     message.error({
@@ -39,9 +40,8 @@ const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, na
     return skeleton();
   }
 
-  let groupKey = 0;
-  const groups = dialogConfig.groups.map((group: any) => (
-      <Col key={groupKey++} span={24} xl={12}>
+  const groups = dialogConfig.groups.map((group: Group) => (
+      <Col key={group.name} span={24} xl={12}>
         <Divider>{group.title}</Divider>
         {group.fields.map((field: any) => {
           const constant = config.constants[field.name];
@@ -125,4 +125,4 @@ const Dialog = ({ config, tune, name, burnButton }: { config: any, tune: any, na
   );
 };
 
-export default connect(mapStateToProps)(Dialog);
+export default connect(mapStateToProps)(DialogComponent);

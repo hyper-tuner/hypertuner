@@ -61,7 +61,8 @@ dialogs:
     help:
       link: https://wiki.speeduino.com/en/configuration/Engine_Constants
     groups:
-      - title: Engine Constants
+      - name: engineConstants
+        title: Engine Constants
         fields:
           - name: reqFuel
             title: Required Fuel
@@ -83,7 +84,8 @@ dialogs:
             title: Number of Injectors
           - name: engineType
             title: Engine Type
-      - title: Board
+      - name: board
+        title: Board
         fields:
           - name: stoich
             title: Stoichiometric ratio
@@ -97,7 +99,8 @@ dialogs:
               The method used for calculating the MAP reading
               For 1-2 Cylinder engines, Cycle Minimum is recommended.
               For more than 2 cylinders Cycle Average is recommended.
-      - title: Odd Fire Angles
+      - name: oddFireAngles
+        title: Odd Fire Angles
         fields:
           - name: oddfire2
             title: Channel 2 angle

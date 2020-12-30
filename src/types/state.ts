@@ -1,10 +1,10 @@
-interface ConfigState {
-  [id: string]: {},
-}
+import { Config } from './config';
+
+interface ConfigState extends Config {}
 
 interface TuneState {
   constants: {
-    [id: string]: {},
+    [name: string]: string | number,
   },
 }
 
