@@ -18,7 +18,7 @@ const SideBar = ({ config }: { config: Config }) => {
   const siderProps = {
     width: sidebarWidth,
     collapsible: true,
-    breakpoint: 'lg',
+    breakpoint: 'md',
     trigger: null,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;

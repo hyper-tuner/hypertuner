@@ -129,7 +129,7 @@ const Dialog = ({
         wrapperCol={{ span: 10 }}
         onFinish={(values: any) => console.log(values)}
       >
-        <Row gutter={30}>
+        <Row gutter={20}>
           {groups}
         </Row>
         <Form.Item>
