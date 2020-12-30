@@ -24,19 +24,19 @@ const TopBar = () => (
     <Row>
       <Col span={0} sm={8} />
       <Col span={0} sm={8} style={{ textAlign: 'center' }}>
-        <Tooltip title="⌘+P">
+        <Tooltip mouseEnterDelay={0.5} title="⌘+P">
           <Input placeholder="Search anything" className="electron-not-draggable" />
         </Tooltip>
       </Col>
       <Col span={24} sm={8} style={{ textAlign: 'right' }}>
         <Space className="electron-not-draggable">
-          <Tooltip title="Upload">
+          <Tooltip mouseEnterDelay={0.5} title="Upload">
             <Button icon={<CloudUploadOutlined />} />
           </Tooltip>
-          <Tooltip title="Download">
+          <Tooltip mouseEnterDelay={0.5} title="Download">
             <Button icon={<CloudDownloadOutlined />} />
           </Tooltip>
-          <Tooltip title="Share">
+          <Tooltip mouseEnterDelay={0.5} title="Share">
             <Button icon={<ShareAltOutlined />} />
           </Tooltip>
           <Button icon={<UserOutlined />} />
