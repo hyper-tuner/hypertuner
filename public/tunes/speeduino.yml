@@ -138,13 +138,43 @@ menus:
       - name: programmableOutputs
         title: Programmable outputs
 
+  - name: tuning
+    title: Tuning
+    subMenus:
+      - name: realtimeDisplay
+        title: Realtime Display
+      - name: accelerationEnrichment
+        title: Acceleration Enrichment
+      - name: aFRO2
+        title: AFR/O2
+      - name: engineProtection
+        title: Engine Protection
+      - name: flexFuel
+        title: Flex Fuel
+      - name: veTable
+        title: VE Table
+      - name: sparkTable
+        title: Spark Table
+      - name: afrTable
+        title: AFR Table
+      - name: secondFuelTable
+        title: Second Fuel Table
+      - name: secondSparkTable
+        title: Second spark Table
+      - name: sequentialFuelTrim
+        title: Sequential Fuel trim
+      - name: stagedInjection
+        title: Staged Injection
+      - name: fuelTempCorrection
+        title: Fuel Temp Correction
+
   - name: spark
     title: Spark
     subMenus:
       - name: sparkSettings
         title: Spark Settings
       - name: sparkTable
-        title: Spark Table (2)
+        title: Spark Table
       - name: dwellSettings
         title: Dwell settings
       - name: dwellCompensation

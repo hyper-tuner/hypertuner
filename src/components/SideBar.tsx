@@ -1,7 +1,17 @@
 import { Layout, Menu, Skeleton } from 'antd';
 import {
+  ApartmentOutlined,
+  CarOutlined,
+  ControlOutlined,
+  DashboardOutlined,
+  FieldTimeOutlined,
   FireOutlined,
+  FundOutlined,
+  FundProjectionScreenOutlined,
+  SettingOutlined,
+  TableOutlined,
   ToolOutlined,
+  UnorderedListOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -34,22 +44,74 @@ const SideBar = ({ config }: { config: Config }) => {
     );
   }
 
-  const icons = {
-    settings: <ToolOutlined />,
-    spark: <FireOutlined />,
-  } as any;
+  const chooseTuneIcon = (name: string) => {
+    switch (name) {
+      // main menu
+      case 'settings':
+        return <ToolOutlined />;
+      case 'tuning':
+        return <CarOutlined />;
+      case 'spark':
+        return <FireOutlined />;
+
+      // common, 2D table
+      case 'injectorCharacteristics':
+      case 'airDensity':
+      case 'barometricCorrection':
+      case 'dwellCompensation':
+      case 'iatRetard':
+      case 'coldAdvance':
+      case 'rotaryIgnition':
+      case 'accelerationEnrichment':
+      case 'flexFuel':
+        return <FundOutlined />;
+
+      // common 3D table / map
+      case 'sparkTable':
+      case 'veTable':
+      case 'afrTable':
+      case 'secondFuelTable':
+      case 'secondSparkTable':
+      case 'sequentialFuelTrim':
+      case 'stagedInjection':
+      case 'fuelTempCorrection':
+        return <TableOutlined />;
+
+      case 'engineConstants':
+        return <ControlOutlined />;
+      case 'gaugeLimits':
+        return <DashboardOutlined />;
+      case 'ioSummary':
+        return <UnorderedListOutlined />;
+      case 'programmableOutputs':
+        return <ApartmentOutlined />;
+      case 'realtimeDisplay':
+        return <FundProjectionScreenOutlined />;
+      case 'sparkSettings':
+        return <FireOutlined />;
+      case 'dwellSettings':
+        return <FieldTimeOutlined />;
+
+      // common, default
+      default:
+        return <SettingOutlined />;
+    }
+  };
 
   const menusList = (menus: MenuType[]) => (
     menus.map((menu: MenuType) => (
       <SubMenu
         key={`menu-${menu.name}`}
-        icon={icons[menu.name]}
+        icon={chooseTuneIcon(menu.name)}
         title={menu.title}
       >
         {menu.subMenus.map((subMenu: SubMenuType) => (
-          <Menu.Item key={`sub-menu-${subMenu.name}`}>
-              {subMenu.title}
-            </Menu.Item>
+          <Menu.Item
+            key={`sub-menu-${subMenu.name}`}
+            icon={chooseTuneIcon(subMenu.name)}
+          >
+            {subMenu.title}
+          </Menu.Item>
         ))}
       </SubMenu>
     ))
@@ -60,7 +122,11 @@ const SideBar = ({ config }: { config: Config }) => {
       <PerfectScrollbar>
         <Menu
           defaultSelectedKeys={['menu-settings']}
-          defaultOpenKeys={['menu-settings', 'menu-spark']}
+          defaultOpenKeys={[
+            // 'menu-settings',
+            'menu-tuning',
+            'menu-spark',
+          ]}
           mode="inline"
           style={{ height: '100%' }}
         >
