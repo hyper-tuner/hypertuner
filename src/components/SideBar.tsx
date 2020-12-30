@@ -1,4 +1,4 @@
-import { Layout, Menu, Skeleton, Input } from 'antd';
+import { Layout, Menu, Skeleton } from 'antd';
 import {
   FireOutlined,
   ToolOutlined,
@@ -6,17 +6,16 @@ import {
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
-import { AppState, UIState } from '../types';
+import { AppState } from '../types';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
-  ui: state.ui,
 });
 
-const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
+const SideBar = ({ config }: { config: any }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,

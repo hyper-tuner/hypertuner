@@ -48,7 +48,7 @@ export const loadAll = () => {
 
           store.dispatch({
             type: 'status',
-            payload: `Tune loaded in ${(new Date().getTime() - started.getTime())}ms 💪`,
+            payload: `Tune loaded in ${(new Date().getTime() - started.getTime())}ms`,
           });
         });
     });

@@ -25,8 +25,16 @@
   margin: 20px;
 }
 
-.app-top-bar {
+.electron-draggable {
   -webkit-app-region: drag;
+}
+
+.electron-not-draggable {
+  -webkit-app-region: no-drag;
+}
+
+.app-top-bar {
+  .electron-draggable;
   box-shadow: rgb(0 0 0 e('/') 1%) -2px 5px 7px 0px;
   position: sticky;
   top: 0;

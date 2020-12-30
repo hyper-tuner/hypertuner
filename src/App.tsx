@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
-import { Layout, Space, Button, Badge, Input, Row, Col } from 'antd';
+import { Layout, Space, Button, Input, Row, Col } from 'antd';
 import {
-  BellOutlined,
   UserOutlined,
   CarOutlined,
-  LeftOutlined,
-  RightOutlined,
   ShareAltOutlined,
   CloudUploadOutlined,
   CloudDownloadOutlined,
@@ -51,23 +48,15 @@ function App({ ui, status }: { ui: UIState, status: StatusState }) {
       <Layout>
         <Header className="app-top-bar">
           <Row>
-            <Col span={8}>
-              <Space>
-                <Button icon={<LeftOutlined />} />
-                <Button icon={<RightOutlined />} />
-              </Space>
+            <Col span={0} sm={8} />
+            <Col span={0} sm={8} style={{ textAlign: 'center' }}>
+              <Input placeholder="Search" className="electron-not-draggable" />
             </Col>
-            <Col span={8} style={{ textAlign: 'center' }}>
-              <Input placeholder="Search" />
-            </Col>
-            <Col span={8} style={{ textAlign: 'right' }}>
-              <Space>
+            <Col span={24} sm={8} style={{ textAlign: 'right' }}>
+              <Space className="electron-not-draggable">
                 <Button icon={<CloudUploadOutlined />} />
                 <Button icon={<CloudDownloadOutlined />} />
                 <Button icon={<ShareAltOutlined />} />
-                <Badge size="small">
-                  <Button icon={<BellOutlined />} />
-                </Badge>
                 <Button icon={<UserOutlined />} />
               </Space>
             </Col>
@@ -78,7 +67,7 @@ function App({ ui, status }: { ui: UIState, status: StatusState }) {
           <Layout className="app-content">
             <Content>
               <PerfectScrollbar>
-                <Dialog name="engineConstants" burnButton={<BurnButton simple={ui.sidebarCollapsed} />} />
+                <Dialog name="engineConstants" burnButton={<BurnButton />} />
               </PerfectScrollbar>
             </Content>
           </Layout>
