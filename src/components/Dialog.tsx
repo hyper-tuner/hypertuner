@@ -10,7 +10,7 @@ import {
 } from 'antd';
 import { FireOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types';
-import Select from './Dialog/SmartSelect';
+import SmartSelect from './Dialog/SmartSelect';
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -61,7 +61,7 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
           switch (constant.type) {
             case 'bits':
             case 'array':
-              input = <Select
+              input = <SmartSelect
                         fieldName={field.name}
                         constant={constant}
                         value={tuneField.value}
@@ -120,7 +120,7 @@ const Dialog = ({ config, tune, name }: { config: any, tune: any, name: string }
             danger
             htmlType="submit"
             icon={<FireOutlined />}
-            style={{ position: 'fixed', right: 25, bottom: 25 }}
+            style={{ position: 'fixed', right: 35, bottom: 45 }}
           >
             Burn
           </Button>

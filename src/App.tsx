@@ -7,6 +7,7 @@ import {
   MenuUnfoldOutlined,
   RightCircleFilled,
   UserOutlined,
+  CarOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -19,7 +20,7 @@ import { AppState, UIState } from './types';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
 
-const { Content, Header } = Layout;
+const { Content, Header, Footer } = Layout;
 
 const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
@@ -45,30 +46,36 @@ function App({ ui }: { ui: UIState }) {
   }, []);
 
   return (
-    <>
-      <Layout>
-        <Header className="app-bar">
-          <div style={{ textAlign: 'right' }}>
-            <Space>
-                <Badge size="small" dot>
-                  <Button icon={<BellOutlined />} />
-                </Badge>
-                <Button icon={<UserOutlined />} />
-            </Space>
-          </div>
-        </Header>
-        <Layout style={{ marginLeft: margin }}>
-          <SideBar topOffset={appBarHeight} />
-          <Layout>
-            <Content style={{ marginTop: appBarHeight, overflow: 'hidden' }}>
-              <PerfectScrollbar>
-                <Dialog name="engineConstants" />
-              </PerfectScrollbar>
-            </Content>
-          </Layout>
+    <Layout>
+      <Header className="app-top-bar">
+        <div style={{ textAlign: 'right' }}>
+          <Space>
+              <Badge size="small" dot>
+                <Button icon={<BellOutlined />} />
+              </Badge>
+              <Button icon={<UserOutlined />} />
+          </Space>
+        </div>
+      </Header>
+      <Layout style={{ marginLeft: margin }}>
+        <SideBar topOffset={appBarHeight} />
+        <Layout>
+          <Content
+            style={{ paddingTop: appBarHeight, height: '100vh' }}
+          >
+            <PerfectScrollbar>
+              <Dialog name="engineConstants" />
+            </PerfectScrollbar>
+          </Content>
         </Layout>
       </Layout>
-    </>
+      <Footer className="app-status-bar">
+        <Space>
+          <CarOutlined />
+          default
+        </Space>
+      </Footer>
+    </Layout>
   );
 }
 

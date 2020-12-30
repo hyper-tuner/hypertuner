@@ -23,10 +23,10 @@ const SideBar = ({ config, ui, topOffset }: { config: any, ui: UIState, topOffse
       height: '100vh',
       position: 'fixed',
       left: 0,
-      top: ui.sidebarCollapsed ? 0 : (topOffset - 2) * 2,
+      paddingTop: ui.sidebarCollapsed ? 0 : (topOffset - 2) * 2,
     },
     collapsible: true,
-    breakpoint: 'md',
+    breakpoint: 'lg',
     trigger: null,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;

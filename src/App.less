@@ -4,7 +4,7 @@
 // @import '~antd/lib/style/themes/compact.less';
 
 // @main-dark: #191C1E;
-@main-light: #2E3338;
+// @main-light: #2E3338;
 
 // enable dark mode
 @import './themes/dark.less';
@@ -13,21 +13,35 @@
 @layout-header-background: @component-background;
 @layout-trigger-background: @component-background;
 @layout-trigger-color: @text-color;
+@layout-footer-background: @main-dark;
 
 @layout-header-padding: 0 10px;
 @layout-header-height: 38px;
+
+@layout-footer-padding: 2px 10px;
 
 .row {
   margin: 20px;
 }
 
-.app-bar {
+.app-top-bar {
   -webkit-app-region: drag;
+  box-shadow: rgb(0 0 0 e('/') 1%) -2px 5px 7px 0px;
+  // background-color: @main-light;
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
-  box-shadow: rgb(0 0 0 e('/') 1%) -2px 5px 7px 0px;
-  // background-color: @main-light;
+  z-index: 1;
+}
+
+.app-status-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: @primary;
+  font-size: @font-size-sm;
 }

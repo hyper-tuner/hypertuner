@@ -6,12 +6,14 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1080,
-    height: 1080,
+    width: 1400,
+    height: 1000,
     show: false,
     titleBarStyle: 'hiddenInset',
     backgroundColor: '#222629',
   });
+  mainWindow.setMenuBarVisibility(false);
+
   const startURL = isDev
     ? 'http://localhost:3000'
     : `file://${path.join(__dirname, '../build/index.html')}`;
