@@ -1,5 +1,6 @@
 import { Layout, Menu, Skeleton, Input } from 'antd';
 import {
+  FireOutlined,
   ToolOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
@@ -15,46 +16,35 @@ const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
 });
 
-const SideBar = ({ config, ui, topOffset }: { config: any, ui: UIState, topOffset: number }) => {
+const SideBar = ({ config, ui }: { config: any, ui: UIState }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
-    style: {
-      height: '100vh',
-      position: 'fixed',
-      left: 0,
-      paddingTop: ui.sidebarCollapsed ? 0 : (topOffset - 2) * 2,
-    },
     collapsible: true,
     breakpoint: 'lg',
     trigger: null,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
 
-  const filterStyles = {
-    boxShadow: 'rgb(0 0 0 / 10%) -2px 5px 7px 0px',
-    position: 'fixed',
-    top: topOffset,
-    left: 0,
-    width: sidebarWidth,
-    zIndex: 1,
-    border: 'none',
-  } as any;
-
   if (!config || !config.signature) {
     return (
-      <Sider {...siderProps}>
+      <Sider {...siderProps} className="app-sidebar">
         <Skeleton />
       </Sider>
     );
   }
+
+  const icons = {
+    settings: <ToolOutlined />,
+    spark: <FireOutlined />,
+  } as any;
 
   // TODO: add types
   const menusList = (menus: any) => (
     menus.map((menu: any) => (
       <SubMenu
         key={`menu-${menu.name}`}
-        icon={<ToolOutlined />}
+        icon={icons[menu.name]}
         title={menu.title}
       >
         {menu.subMenus.map((subMenu: any) => (
@@ -67,10 +57,7 @@ const SideBar = ({ config, ui, topOffset }: { config: any, ui: UIState, topOffse
   );
 
   return (
-    <Sider {...siderProps}>
-      {!ui.sidebarCollapsed && (<div style={filterStyles}>
-        <Input allowClear placeholder="Filter" />
-      </div>)}
+    <Sider {...siderProps} className="app-sidebar">
       <PerfectScrollbar>
         <Menu
           defaultSelectedKeys={['menu-settings']}

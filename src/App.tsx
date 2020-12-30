@@ -28,7 +28,6 @@ const mapStateToProps = (state: AppState) => ({
 
 function App({ ui }: { ui: UIState }) {
   const margin = ui.sidebarCollapsed ? 80 : 250;
-  const appBarHeight = 38;
 
   // const trigger = () => {
   //   const triggerProps = {
@@ -46,36 +45,38 @@ function App({ ui }: { ui: UIState }) {
   }, []);
 
   return (
-    <Layout>
-      <Header className="app-top-bar">
-        <div style={{ textAlign: 'right' }}>
-          <Space>
-              <Badge size="small" dot>
-                <Button icon={<BellOutlined />} />
-              </Badge>
-              <Button icon={<UserOutlined />} />
-          </Space>
-        </div>
-      </Header>
-      <Layout style={{ marginLeft: margin }}>
-        <SideBar topOffset={appBarHeight} />
-        <Layout>
-          <Content
-            style={{ paddingTop: appBarHeight, height: '100vh' }}
-          >
-            <PerfectScrollbar>
-              <Dialog name="engineConstants" />
-            </PerfectScrollbar>
-          </Content>
+    <>
+      <Layout>
+        <Header className="app-top-bar">
+          <div style={{ textAlign: 'right' }}>
+            <Space>
+                <Badge size="small" dot>
+                  <Button icon={<BellOutlined />} />
+                </Badge>
+                <Button icon={<UserOutlined />} />
+            </Space>
+          </div>
+        </Header>
+        <Layout style={{ marginLeft: margin }}>
+          <SideBar />
+          <Layout className="app-content">
+            <Content>
+              <PerfectScrollbar>
+                <Dialog name="engineConstants" />
+              </PerfectScrollbar>
+            </Content>
+          </Layout>
         </Layout>
       </Layout>
-      <Footer className="app-status-bar">
-        <Space>
-          <CarOutlined />
-          default
-        </Space>
-      </Footer>
-    </Layout>
+      <Layout>
+        <Footer className="app-status-bar">
+          <Space>
+            <CarOutlined />
+            default
+          </Space>
+        </Footer>
+      </Layout>
+    </>
   );
 }
 
