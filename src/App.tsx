@@ -1,24 +1,19 @@
 import { useEffect } from 'react';
-import { Layout, Space, Button, Input, Row, Col } from 'antd';
-import {
-  UserOutlined,
-  CarOutlined,
-  ShareAltOutlined,
-  CloudUploadOutlined,
-  CloudDownloadOutlined,
-} from '@ant-design/icons';
+import { Layout, Space, Row, Col } from 'antd';
+import { CarOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dialog from './components/Dialog';
 import { loadAll } from './lib/api';
 import SideBar from './components/SideBar';
 import { AppState, StatusState, UIState } from './types';
+import BurnButton from './components/BurnButton';
+import TopBar from './components/TopBar';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
-import BurnButton from './components/BurnButton';
 
-const { Content, Header, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
@@ -28,17 +23,6 @@ const mapStateToProps = (state: AppState) => ({
 function App({ ui, status }: { ui: UIState, status: StatusState }) {
   const margin = ui.sidebarCollapsed ? 80 : 250;
 
-  // const trigger = () => {
-  //   const triggerProps = {
-  //     className: 'trigger',
-  //     onClick: store.dispatch({ type: 'ui/sidebarCollapsed', payload: !ui.sidebarCollapsed }),
-  //   } as any;
-
-  //   return ui.sidebarCollapsed
-  //     ? <MenuUnfoldOutlined {...triggerProps} />
-  //     : <MenuFoldOutlined {...triggerProps} />;
-  // };
-
   useEffect(() => {
     loadAll();
   }, []);
@@ -46,22 +30,7 @@ function App({ ui, status }: { ui: UIState, status: StatusState }) {
   return (
     <>
       <Layout>
-        <Header className="app-top-bar">
-          <Row>
-            <Col span={0} sm={8} />
-            <Col span={0} sm={8} style={{ textAlign: 'center' }}>
-              <Input placeholder="Search" className="electron-not-draggable" />
-            </Col>
-            <Col span={24} sm={8} style={{ textAlign: 'right' }}>
-              <Space className="electron-not-draggable">
-                <Button icon={<CloudUploadOutlined />} />
-                <Button icon={<CloudDownloadOutlined />} />
-                <Button icon={<ShareAltOutlined />} />
-                <Button icon={<UserOutlined />} />
-              </Space>
-            </Col>
-          </Row>
-        </Header>
+        <TopBar />
         <Layout style={{ marginLeft: margin }}>
           <SideBar />
           <Layout className="app-content">
