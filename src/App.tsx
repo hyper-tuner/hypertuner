@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
-import { Layout, Space, Button, Badge } from 'antd';
+import { Layout, Space, Button, Badge, Input } from 'antd';
 import {
   BellOutlined,
   UserOutlined,
   CarOutlined,
+  LeftOutlined,
+  RightOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -46,6 +48,9 @@ function App({ ui }: { ui: UIState }) {
         <Header className="app-top-bar">
           <div style={{ textAlign: 'right' }}>
             <Space>
+                <Button icon={<LeftOutlined />} />
+                <Button icon={<RightOutlined />} />
+                <Input placeholder="Search" />
                 <Badge size="small">
                   <Button icon={<BellOutlined />} />
                 </Badge>
