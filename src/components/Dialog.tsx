@@ -133,7 +133,7 @@ const Dialog = ({
         }
         placement="right"
       >
-        <QuestionCircleOutlined style={{ float: 'left' }} />
+        <QuestionCircleOutlined style={{ position: 'sticky', top: 15 }} />
       </Popover>
       <Form
         labelCol={{ span: 10 }}
