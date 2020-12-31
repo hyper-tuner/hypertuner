@@ -12,6 +12,7 @@ import TopBar from './components/TopBar';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
+import { isDesktop } from './lib/env';
 
 const { Content, Footer } = Layout;
 
@@ -36,7 +37,7 @@ function App({ ui, status }: { ui: UIState, status: StatusState }) {
           <Layout className="app-content">
             <Content>
               <PerfectScrollbar>
-                <Dialog name="engineConstants" burnButton={<BurnButton />} />
+                <Dialog name="engineConstants" burnButton={isDesktop() && <BurnButton />} />
               </PerfectScrollbar>
             </Content>
           </Layout>

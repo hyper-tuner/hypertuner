@@ -1,10 +1,19 @@
-import { Layout, Space, Button, Input, Row, Col, Tooltip } from 'antd';
+import {
+  Layout,
+  Space,
+  Button,
+  Input,
+  Row,
+  Col,
+  Tooltip
+} from 'antd';
 import {
   UserOutlined,
   ShareAltOutlined,
   CloudUploadOutlined,
   CloudDownloadOutlined,
 } from '@ant-design/icons';
+import { isMac } from '../lib/env';
 
 const { Header } = Layout;
 
@@ -24,19 +33,19 @@ const TopBar = () => (
     <Row>
       <Col span={0} sm={8} />
       <Col span={0} sm={8} style={{ textAlign: 'center' }}>
-        <Tooltip mouseEnterDelay={0.5} title="⌘+P">
+        <Tooltip title={isMac() ? '⌘+SHIFT+P' : 'CTRL+SHIFT+P'}>
           <Input placeholder="Search anything" className="electron-not-draggable" />
         </Tooltip>
       </Col>
       <Col span={24} sm={8} style={{ textAlign: 'right' }}>
         <Space className="electron-not-draggable">
-          <Tooltip mouseEnterDelay={0.5} title="Upload">
-            <Button icon={<CloudUploadOutlined />} />
-          </Tooltip>
-          <Tooltip mouseEnterDelay={0.5} title="Download">
+          <Button icon={<CloudUploadOutlined />}>
+            Upload
+          </Button>
+          <Tooltip title="Download">
             <Button icon={<CloudDownloadOutlined />} />
           </Tooltip>
-          <Tooltip mouseEnterDelay={0.5} title="Share">
+          <Tooltip title="Share">
             <Button icon={<ShareAltOutlined />} />
           </Tooltip>
           <Button icon={<UserOutlined />} />
