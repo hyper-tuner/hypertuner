@@ -20,7 +20,6 @@ import {
   UserAddOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
-import { isMac } from '../lib/env';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -88,7 +87,7 @@ const TopBar = () => {
             <Input
               ref={searchInput}
               onKeyUp={(e) => e.key === 'Escape' && e.currentTarget.blur()}
-              placeholder="Search"
+              placeholder="Search / Command"
               className="electron-not-draggable"
             />
           </Tooltip>

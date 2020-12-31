@@ -1,27 +1,32 @@
 import { useEffect } from 'react';
-import { Layout, Space, Row, Col } from 'antd';
-import { CarOutlined } from '@ant-design/icons';
+import {
+  BrowserRouter,
+  // Switch,
+  // Route,
+} from 'react-router-dom';
+import { Layout } from 'antd';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dialog from './components/Dialog';
 import { loadAll } from './lib/api';
 import SideBar from './components/SideBar';
-import { AppState, StatusState, UIState } from './types/state';
+import { AppState, UIState } from './types/state';
 import BurnButton from './components/BurnButton';
 import TopBar from './components/TopBar';
+import StatusBar from './components/StatusBar';
+import { isDesktop } from './lib/env';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
-import { isDesktop } from './lib/env';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
   status: state.status,
 });
 
-function App({ ui, status }: { ui: UIState, status: StatusState }) {
+const App = ({ ui }: { ui: UIState }) => {
   const margin = ui.sidebarCollapsed ? 80 : 250;
 
   useEffect(() => {
@@ -29,7 +34,7 @@ function App({ ui, status }: { ui: UIState, status: StatusState }) {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <Layout>
         <TopBar />
         <Layout style={{ marginLeft: margin }}>
@@ -37,29 +42,18 @@ function App({ ui, status }: { ui: UIState, status: StatusState }) {
           <Layout className="app-content">
             <Content>
               <PerfectScrollbar>
-                <Dialog name="engineConstants" burnButton={isDesktop() && <BurnButton />} />
+                <Dialog
+                  name="engineConstants"
+                  burnButton={isDesktop() && <BurnButton />}
+                />
               </PerfectScrollbar>
             </Content>
           </Layout>
         </Layout>
       </Layout>
-      <Layout>
-        <Footer className="app-status-bar">
-          <Row>
-            <Col span={12}>
-              <Space>
-                <CarOutlined />
-                default
-              </Space>
-            </Col>
-            <Col span={12} style={{ textAlign: 'right' }}>
-              {status.text}
-            </Col>
-          </Row>
-        </Footer>
-      </Layout>
-    </>
+      <StatusBar />
+    </BrowserRouter>
   );
-}
+};
 
 export default connect(mapStateToProps)(App);
