@@ -1,6 +1,6 @@
 import { Layout, Menu, Skeleton } from 'antd';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
 import { AppState } from '../types/state';
@@ -25,6 +25,8 @@ const SideBar = ({ config }: { config: Config }) => {
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
 
+  const { pathname } = useLocation();
+
   if (!config || !config.signature) {
     return (
       <Sider {...siderProps} className="app-sidebar" >
@@ -35,21 +37,21 @@ const SideBar = ({ config }: { config: Config }) => {
     );
   }
 
+  const buildLinkUrl = (main: string, sub: string) => camelToUrlCase(`/${main}/${sub}`);
+
   const menusList = (menus: MenuType[]) => (
     menus.map((menu: MenuType) => (
       <SubMenu
-        key={`menu-${menu.name}`}
+        key={`/${menu.name}`}
         icon={<Icon name={menu.name} />}
         title={menu.title}
       >
         {menu.subMenus.map((subMenu: SubMenuType) => (
           <Menu.Item
-            key={`sub-menu-${subMenu.name}`}
+            key={buildLinkUrl(menu.name, subMenu.name)}
             icon={<Icon name={subMenu.name} />}
           >
-            <Link
-              to={camelToUrlCase(`/${menu.name}/${subMenu.name}`)}
-            >
+            <Link to={buildLinkUrl(menu.name, subMenu.name)}>
               {subMenu.title}
             </Link>
           </Menu.Item>
@@ -62,11 +64,9 @@ const SideBar = ({ config }: { config: Config }) => {
     <Sider {...siderProps} className="app-sidebar">
       <PerfectScrollbar>
         <Menu
-          defaultSelectedKeys={['sub-menu-engineConstants']}
+          defaultSelectedKeys={[pathname]}
           defaultOpenKeys={[
-            'menu-settings',
-            // 'menu-tuning',
-            // 'menu-spark',
+            `/${pathname.substr(1).split('/')[0]}`
           ]}
           mode="inline"
           style={{ height: '100%' }}
