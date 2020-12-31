@@ -34,7 +34,7 @@ const skeleton = (<div style={containerStyle}>
   <Skeleton /><Skeleton />
 </div>);
 
-// TODO: refactor this! check and get rid of multiple calls
+// TODO: refactor this! check and get rid of multiple calls, optimize!
 const Dialog = ({
   config,
   tune,
@@ -60,11 +60,29 @@ const Dialog = ({
 
   const dialogGroups = dialogConfig.groups || [];
 
+  const calculateSpan = (dialogsCount: number) => {
+    let xxl = 24;
+    let xl = 24;
+
+    if (dialogsCount > 1) {
+      xl = 12;
+      xxl = dialogsCount === 2 ? 12 : 8;
+    }
+
+    return {
+      span: 24,
+      xxl,
+      xl,
+    };
+  };
+
   const groups = dialogGroups.map((group: GroupType) => (
-      <Col key={group.name} span={24} xxl={8} xl={12}>
+      <Col key={group.name} {...calculateSpan(dialogConfig.groups.length)}>
         <Divider>{group.title}</Divider>
         {(group.fields || []).map((field: FieldType) => {
-          const pageFound = config.pages.find((page: PageType) => 'reqFuel' in page.constants) || { constants: {} } as PageType;
+          const pageFound = config
+            .pages
+            .find((page: PageType) => field.name in page.constants) || { constants: {} } as PageType;
           const constant = pageFound.constants[field.name];
           const tuneField = tune.constants[field.name];
           let input;
