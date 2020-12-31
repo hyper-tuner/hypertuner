@@ -25,8 +25,10 @@ const SideBar = ({ config }: { config: Config }) => {
 
   if (!config || !config.signature) {
     return (
-      <Sider {...siderProps} className="app-sidebar" style={{ paddingLeft: 10 }}>
-        <Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton />
+      <Sider {...siderProps} className="app-sidebar" >
+        <div style={{ paddingLeft: 10 }}>
+          <Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton />
+        </div>
       </Sider>
     );
   }
