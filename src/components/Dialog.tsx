@@ -18,6 +18,7 @@ import {
   Group as GroupType,
   Config as ConfigType,
   Field as FieldType,
+  Page as PageType,
 } from '../types/config';
 
 const mapStateToProps = (state: AppState) => ({
@@ -33,6 +34,7 @@ const skeleton = (<div style={containerStyle}>
   <Skeleton /><Skeleton />
 </div>);
 
+// TODO: refactor this! check and get rid of multiple calls
 const Dialog = ({
   config,
   tune,
@@ -59,10 +61,11 @@ const Dialog = ({
   const dialogGroups = dialogConfig.groups || [];
 
   const groups = dialogGroups.map((group: GroupType) => (
-      <Col key={group.name} span={24} xl={dialogGroups.length === 1 ? 24 : 12}>
+      <Col key={group.name} span={24} xxl={8} xl={12}>
         <Divider>{group.title}</Divider>
         {(group.fields || []).map((field: FieldType) => {
-          const constant = config.constants[field.name];
+          const pageFound = config.pages.find((page: PageType) => 'reqFuel' in page.constants) || { constants: {} } as PageType;
+          const constant = pageFound.constants[field.name];
           const tuneField = tune.constants[field.name];
           let input;
 
@@ -78,6 +81,8 @@ const Dialog = ({
             enabled = eval(field.condition);
           }
 
+          const precision = constant.units === '%' ? 0 : 1;
+
           switch (constant.type) {
             case 'bits':
             case 'array':
@@ -91,9 +96,10 @@ const Dialog = ({
             case 'scalar':
               input = <InputNumber
                         defaultValue={tuneField.value}
-                        precision={tuneField.digits}
+                        precision={precision}
                         min={constant.min}
                         max={constant.max}
+                        step={10**-precision}
                         disabled={!enabled}
                         formatter={(value) => `${value}${constant.units || ''}`}
                         parser={(value) => value ? value.replace(constant.units || '', '') : ''}

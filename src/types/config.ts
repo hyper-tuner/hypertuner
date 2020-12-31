@@ -27,20 +27,30 @@ interface Menu extends Entity {
 
 interface Constant {
   type: string,
+  size: 'U08' | 'S08' | 'U16' | 'S16'
+  offset: number,
   units: string,
-  values: string[],
+  scale: number,
+  transform: number,
   min: number,
   max: number,
+  values: string[],
 }
 
 interface Constants {
   [name: string]: Constant,
 }
 
+interface Page {
+  number: number,
+  size: number,
+  constants: Constants,
+}
+
 interface Config {
   apiVersion: string,
   signature: string,
-  constants: Constants,
+  pages: Page[],
   dialogs: Dialog[],
   menus: Menu[],
 }
@@ -53,5 +63,6 @@ export type {
   Menu,
   Constant,
   Constants,
+  Page,
   Config,
 };
