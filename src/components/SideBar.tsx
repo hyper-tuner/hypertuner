@@ -1,10 +1,12 @@
 import { Layout, Menu, Skeleton } from 'antd';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
 import { AppState } from '../types/state';
 import { Config, Menu as MenuType, SubMenu as SubMenuType } from '../types/config';
 import Icon from './SideBar/Icon';
+import { camelToUrlCase } from '../lib/utils';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -45,7 +47,11 @@ const SideBar = ({ config }: { config: Config }) => {
             key={`sub-menu-${subMenu.name}`}
             icon={<Icon name={subMenu.name} />}
           >
-            {subMenu.title}
+            <Link
+              to={camelToUrlCase(`/${menu.name}/${subMenu.name}`)}
+            >
+              {subMenu.title}
+            </Link>
           </Menu.Item>
         ))}
       </SubMenu>

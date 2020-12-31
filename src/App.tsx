@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
-import {
-  BrowserRouter,
-  // Switch,
-  // Route,
-} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Layout } from 'antd';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -18,6 +14,7 @@ import { isDesktop } from './lib/env';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
+import { snakeToCamelCase } from './lib/utils';
 
 const { Content } = Layout;
 
@@ -29,12 +26,15 @@ const mapStateToProps = (state: AppState) => ({
 const App = ({ ui }: { ui: UIState }) => {
   const margin = ui.sidebarCollapsed ? 80 : 250;
 
+  const { pathname } = useLocation();
+  const dialogName = snakeToCamelCase(pathname.substr(1)).split('/')[1];
+
   useEffect(() => {
     loadAll();
   }, []);
 
   return (
-    <BrowserRouter>
+    <>
       <Layout>
         <TopBar />
         <Layout style={{ marginLeft: margin }}>
@@ -43,7 +43,7 @@ const App = ({ ui }: { ui: UIState }) => {
             <Content>
               <PerfectScrollbar>
                 <Dialog
-                  name="engineConstants"
+                  name={dialogName}
                   burnButton={isDesktop() && <BurnButton />}
                 />
               </PerfectScrollbar>
@@ -52,7 +52,7 @@ const App = ({ ui }: { ui: UIState }) => {
         </Layout>
       </Layout>
       <StatusBar />
-    </BrowserRouter>
+    </>
   );
 };
 

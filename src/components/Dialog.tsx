@@ -3,12 +3,12 @@ import {
   Form,
   InputNumber,
   Skeleton,
-  message,
   Divider,
   Col,
   Row,
   Popover,
   Space,
+  Result,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types/state';
@@ -51,11 +51,9 @@ const Dialog = ({
   const dialogConfig = config.dialogs.find((dialog: DialogType) => dialog.name === name);
 
   if (!dialogConfig) {
-    message.error({
-      content: 'Dialog not found',
-    });
-
-    return skeleton;
+    return (
+      <Result status="warning" title="Not found" style={{ marginTop: 50 }} />
+    );
   }
 
   const groups = dialogConfig.groups.map((group: GroupType) => (
