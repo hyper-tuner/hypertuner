@@ -277,7 +277,6 @@ pages:
       stoich:
         type: scalar
         units: :1
-        # TODO: add this to the rest
         max: 14.7
         min: 9
       oddfire2:

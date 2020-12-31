@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
-import { AppState } from '../types/state';
+import { AppState, UIState } from '../types/state';
 import { Config, Menu as MenuType, SubMenu as SubMenuType } from '../types/config';
 import Icon from './SideBar/Icon';
 import { camelToUrlCase } from '../lib/utils';
@@ -13,15 +13,16 @@ const { SubMenu } = Menu;
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
+  ui: state.ui,
 });
 
-const SideBar = ({ config }: { config: Config }) => {
+const SideBar = ({ config, ui }: { config: Config, ui: UIState }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
     collapsible: true,
     breakpoint: 'md',
-    // trigger: null,
+    collapsed: ui.sidebarCollapsed,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
 

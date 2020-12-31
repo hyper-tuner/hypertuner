@@ -13,6 +13,7 @@ const setStatus = createAction<string>('status');
 
 // ui
 const setSidebarCollapsed = createAction<boolean>('ui/sidebarCollapsed');
+const toggleSidebar = createAction('ui/toggleSidebar');
 
 const initialState: Types.AppState = {
   tune: {
@@ -40,6 +41,9 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSidebarCollapsed, (state: Types.AppState, action) => {
       state.ui.sidebarCollapsed = action.payload;
+    })
+    .addCase(toggleSidebar, (state: Types.AppState) => {
+      state.ui.sidebarCollapsed = !state.ui.sidebarCollapsed;
     })
     .addCase(setStatus, (state: Types.AppState, action) => {
       state.status.text = action.payload;

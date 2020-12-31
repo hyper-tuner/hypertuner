@@ -20,6 +20,7 @@ import {
   UserAddOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
+import store from '../store';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -61,15 +62,18 @@ const TopBar = () => {
   );
 
   const searchInput = useRef({} as any);
-
   useEffect(() => {
     document.onkeydown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
-
         if (searchInput) {
           e.preventDefault();
           searchInput.current.focus();
         }
+      }
+
+      if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
+        e.preventDefault();
+        store.dispatch({ type: 'ui/toggleSidebar'});
       }
     };
 
