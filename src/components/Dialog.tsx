@@ -112,7 +112,9 @@ const Dialog = ({
               label={
                 <Space>
                   {field.title}
-                  {field.help && (<Popover content={field.help.split('\n').map((line) => <div key={line}>{line}</div>)}>
+                  {field.help && (<Popover content={
+                    field.help.split('\n').map((line) => <div key={line}>{line}</div>)
+                  }>
                     <QuestionCircleOutlined />
                   </Popover>)}
                 </Space>
@@ -129,7 +131,11 @@ const Dialog = ({
     <div style={containerStyle}>
       <Popover
         content={
-          <a href={`${dialogConfig.help.link}`} target="__blank" rel="noopener">
+          <a
+            href={`${dialogConfig.help.link}`}
+            target="__blank"
+            rel="noopener noreferrer"
+          >
             {dialogConfig.help.link}
           </a>
         }
