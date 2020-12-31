@@ -43,24 +43,18 @@ const TopBar = () => {
     <Menu>
       <Menu.Item>
         <a href="/login">
-          <Space>
-            <LoginOutlined />Login
-          </Space>
+          <LoginOutlined /> Login
         </a>
       </Menu.Item>
       <Menu.Item>
         <a href="/sign-up">
-          <Space>
-            <UserAddOutlined />Sign-up
-          </Space>
+          <UserAddOutlined /> Sign-up
         </a>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item>
         <a href="/preferences">
-          <Space>
-            <SettingOutlined />Preferences
-          </Space>
+          <SettingOutlined /> Preferences
         </a>
       </Menu.Item>
     </Menu>
