@@ -7,7 +7,6 @@ pages:
   - number: 1
     size: 128
     constants:
-
       aseTaperTime:
         type: scalar
         size: U08
@@ -294,6 +293,17 @@ pages:
         units: '%'
 
 
+  - number: 4
+    size: 128
+    constants:
+      TrigPattern:
+        type: bits
+        size: U08
+        offset: 5
+        address: '[3:7]'
+        values: [Missing Tooth, Basic Distributor, Dual Wheel, GM 7X, 4G63 / Miata / 3000GT, GM 24X, Jeep 2000, Audi 135, Honda D17, Miata 99-05, Mazda AU, Non-360 Dual, Nissan 360, Subaru 6/7, Daihatsu +1, Harley EVO, 36-2-2-2, 36-2-1, DSM 420a, Weber-Marelli, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+
+
 dialogs:
   - name: engineConstants
     title: Engine Constants
@@ -393,6 +403,21 @@ dialogs:
         fields:
           - name: injOpen
             title: Injector Open Time
+            help: |
+              Injector dead time.
+              The net time current is provided to the injector but is not injecting fuel due to opening and closing
+
+  - name: triggerSettings
+    title: Trigger Settings
+    help:
+      link: https://wiki.speeduino.com/en/decoders
+    groups:
+      - name: triggerSettings
+        title: Trigger Settings
+        fields:
+          - name: TrigPattern
+            title: Trigger Pattern
+            help: The type of input trigger decoder to be used
 
 menus:
   - name: settings
@@ -402,8 +427,8 @@ menus:
         title: Engine Constants
       - name: injectorCharacteristics
         title: Injector Characteristics
-      - name: triggerSetup
-        title: Trigger Setup
+      - name: triggerSettings
+        title: Trigger Settings
       - name: airDensity
         title: IAT Density
       - name: barometricCorrection
