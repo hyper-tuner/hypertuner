@@ -6,7 +6,7 @@ signature: speeduino 202009-dev
 constants:
   reqFuel:
     type: scalar
-    unit: ms
+    units: ms
   algorithm:
     type: bits
     values: [MAP, TPS, IMAP/EMAP]
@@ -32,7 +32,7 @@ constants:
     values: [Even fire, Odd fire]
   stoich:
     type: scalar
-    unit: :1
+    units: :1
     # TODO: add this to the rest
     max: 14.7
     min: 9
@@ -47,13 +47,20 @@ constants:
     values: [Instantaneous, Cycle Average, Cycle Minimum, Event Average]
   oddfire2:
     type: scalar
-    unit: deg
+    units: deg
   oddfire3:
     type: scalar
-    unit: deg
+    units: deg
   oddfire4:
     type: scalar
-    unit: deg
+    units: deg
+
+  dutyLim:
+    type: scalar
+    units: '%'
+  injOpen:
+    type: scalar
+    units: ms
 
 dialogs:
   - name: engineConstants
@@ -138,6 +145,22 @@ dialogs:
               The ATDC angle of channel 4 for oddfire engines.
               This is relative to the TDC angle of channel 1 (NOT channel 3)
             condition: tune.engineType == 1 && tune.nCylinders >= 4
+
+  - name: injectorCharacteristics
+    title: Injector Characteristics
+    help:
+      link: https://wiki.speeduino.com/en/configuration/Injector_Characteristics
+    groups:
+      - name: injectorCharacteristics
+        title: Injector Characteristics
+        fields:
+          - name: dutyLim
+            title: Injector Duty Limit
+      - name: injectorOpeningTime
+        title: Injector opening time
+        fields:
+          - name: injOpen
+            title: Injector Open Time
 
 menus:
   - name: settings

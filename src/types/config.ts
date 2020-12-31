@@ -27,7 +27,7 @@ interface Menu extends Entity {
 
 interface Constant {
   type: string,
-  unit: string,
+  units: string,
   values: string[],
   min: number,
   max: number,

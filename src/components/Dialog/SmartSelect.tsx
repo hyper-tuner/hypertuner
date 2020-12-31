@@ -5,14 +5,12 @@ import {
 import { Constant } from '../../types/config';
 
 const SmartSelect = ({
-  fieldName,
   constant,
-  value,
+  defaultValue,
   disabled,
 }: {
-  fieldName: string,
   constant: Constant,
-  value: string | number,
+  defaultValue: string | number,
   disabled: boolean,
 }) => {
   const values = constant.values.filter((val: string) => val !== 'INVALID');
@@ -29,8 +27,7 @@ const SmartSelect = ({
 
   return (
     <Select
-      key={fieldName}
-      value={value}
+      defaultValue={defaultValue}
       showSearch
       disabled={disabled}
     >

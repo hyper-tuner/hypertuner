@@ -56,15 +56,17 @@ const Dialog = ({
     );
   }
 
-  const groups = dialogConfig.groups.map((group: GroupType) => (
-      <Col key={group.name} span={24} xl={12}>
+  const dialogGroups = dialogConfig.groups || [];
+
+  const groups = dialogGroups.map((group: GroupType) => (
+      <Col key={group.name} span={24} xl={dialogGroups.length === 1 ? 24 : 12}>
         <Divider>{group.title}</Divider>
-        {group.fields.map((field: FieldType) => {
+        {(group.fields || []).map((field: FieldType) => {
           const constant = config.constants[field.name];
           const tuneField = tune.constants[field.name];
           let input;
 
-          if (!tuneField) {
+          if (!tuneField || !constant) {
             return null;
           }
 
@@ -80,23 +82,21 @@ const Dialog = ({
             case 'bits':
             case 'array':
               input = <SmartSelect
-                        fieldName={field.name}
+                        defaultValue={tuneField.value}
                         constant={constant}
-                        value={tuneField.value}
                         disabled={!enabled}
                       />;
               break;
 
             case 'scalar':
               input = <InputNumber
-                        key={field.name}
-                        value={tuneField.value}
+                        defaultValue={tuneField.value}
                         precision={tuneField.digits}
                         min={constant.min}
                         max={constant.max}
                         disabled={!enabled}
-                        formatter={(value) => `${value}${tuneField.units}`}
-                        parser={(value) => value ? value.replace(tuneField.units, '') : ''}
+                        formatter={(value) => `${value}${constant.units || ''}`}
+                        parser={(value) => value ? value.replace(constant.units || '', '') : ''}
                       />;
               break;
 
@@ -127,24 +127,26 @@ const Dialog = ({
 
   return (
     <div style={containerStyle}>
-      <Popover
-        content={
-          <a
-            href={`${dialogConfig.help.link}`}
-            target="__blank"
-            rel="noopener noreferrer"
-          >
-            {dialogConfig.help.link}
-          </a>
-        }
-        placement="right"
-      >
-        <QuestionCircleOutlined style={{ position: 'sticky', top: 15 }} />
-      </Popover>
+      {dialogConfig.help &&
+        <Popover
+          content={
+            <a
+              href={`${dialogConfig.help.link}`}
+              target="__blank"
+              rel="noopener noreferrer"
+            >
+              {dialogConfig.help.link}
+            </a>
+          }
+          placement="right"
+        >
+          <QuestionCircleOutlined style={{ position: 'sticky', top: 15 }} />
+        </Popover>
+      }
       <Form
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 10 }}
-        onFinish={(values: any) => console.log(values)}
+        // onFinish={(values: any) => console.log(values)}
       >
         <Row gutter={20}>
           {groups}
