@@ -25,8 +25,13 @@ interface Menu extends Entity {
   subMenus: SubMenu[];
 }
 
+interface ArrayShape {
+  columns: number,
+  rows: number,
+}
+
 interface Constant {
-  type: string,
+  type: 'scalar' | 'bits' | 'array',
   size: 'U08' | 'S08' | 'U16' | 'S16'
   offset: number,
   units: string,
@@ -34,6 +39,8 @@ interface Constant {
   transform: number,
   min: number,
   max: number,
+  address: string, // TODO: make an object
+  shape: ArrayShape,
   values: string[],
 }
 
@@ -61,6 +68,7 @@ export type {
   Dialog,
   SubMenu,
   Menu,
+  ArrayShape,
   Constant,
   Constants,
   Page,
