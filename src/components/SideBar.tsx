@@ -56,11 +56,11 @@ const SideBar = ({ config }: { config: Config }) => {
     <Sider {...siderProps} className="app-sidebar">
       <PerfectScrollbar>
         <Menu
-          defaultSelectedKeys={['menu-settings']}
+          defaultSelectedKeys={['sub-menu-engineConstants']}
           defaultOpenKeys={[
-            // 'menu-settings',
-            'menu-tuning',
-            'menu-spark',
+            'menu-settings',
+            // 'menu-tuning',
+            // 'menu-spark',
           ]}
           mode="inline"
           style={{ height: '100%' }}
