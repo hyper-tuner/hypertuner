@@ -29,7 +29,9 @@ const containerStyle = {
   padding: 20,
 };
 
-const skeleton = <div style={containerStyle}><Skeleton /></div>;
+const skeleton = (<div style={containerStyle}>
+  <Skeleton /><Skeleton />
+</div>);
 
 const Dialog = ({
   config,
