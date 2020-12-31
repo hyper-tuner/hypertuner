@@ -30,6 +30,11 @@ interface ArrayShape {
   rows: number,
 }
 
+interface BitsAddress {
+  from: number,
+  to: number,
+}
+
 interface Constant {
   type: 'scalar' | 'bits' | 'array',
   size: 'U08' | 'S08' | 'U16' | 'S16'
@@ -39,7 +44,7 @@ interface Constant {
   transform: number,
   min: number,
   max: number,
-  address: string, // TODO: make an object
+  address: BitsAddress,
   shape: ArrayShape,
   values: string[],
 }
@@ -69,6 +74,7 @@ export type {
   SubMenu,
   Menu,
   ArrayShape,
+  BitsAddress,
   Constant,
   Constants,
   Page,

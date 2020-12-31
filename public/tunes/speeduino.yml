@@ -12,127 +12,119 @@ pages:
         type: scalar
         size: U08
         offset: 0
-        units: 'S'
+        units: S
         scale: 0.1
         max: 25.5
-      aeColdPct:
+      aeColdPct: # AE cold adjustment %
         type: scalar
         size: U08
         offset: 1
         units: '%'
-        scale: 1.0
         transform: 0
         min: 100
         max: 255
-      aeColdTaperMin:
+      aeColdTaperMin: # AE cold adjustment, taper start clt (full adjustment)
         type: scalar
         size: U08
         offset: 2
-        units: 'C'
-        scale: 1.0
+        units: C
         transform: -40
         min: -40
         max: 215
-
-        aeMode:
-          type: bits
-          size: U08
-          offset: 3
-          address: '[0:1]'
-          values: ['TPS', 'MAP', 'INVALID', 'INVALID']
-        battVCorMode:
-          type: bits
-          size: U08
-          offset: 3
-          address: '[2:2]'
-          values: ['Whole PW', 'Open Time only']
-        SoftLimitMode:
-          type: bits
-          size: U08
-          offset: 3
-          address: '[3:3]'
-          values: ['Fixed', 'Relative ']
-        unused1-3c:
-          type: bits
-          size: U08
-          offset: 3
-          address: '[4:4]'
-          values: ['MAP', 'TPS']
-        aeApplyMode:
-          type: bits
-          size: U08
-          offset: 3
-          address: '[5:5]'
-          values: ['PW Multiplier', 'PW Adder']
-        multiplyMAP:
-          type: bits
-          size: U08
-          offset: 3
-          address: '[6:7]'
-          values: ['Off', 'Baro', 'Fixed', 'INVALID']
-        wueRates:
-          type: array
-          size:  U08
-          offset: 4
-          shape:
-            columns: 10
-          units: '%'
-          scale: 1.0
-          max: 255
-        crankingPct:
-          type: scalar
-          size: U08
-          offset: 14
-          units: '%'
-          scale: 1.0
-          max: 255
-        pinLayout:
-          type: bits
-          size: U08
-          offset: 15
-          address: '[0:7]'
-          values: ['Speeduino v0.1', 'Speeduino v0.2', 'Speeduino v0.3', 'Speeduino v0.4', 'INVALID', 'INVALID', '01-05 MX5 PNP', 'INVALID', '96-97 MX5 PNP', 'NA6 MX5 PNP', 'Turtana PCB', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'Plazomat I/O 0.1', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'Daz V6 Shield 0.1', 'BMW PnP', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'NO2C', 'UA4C', 'INVALID', 'INVALID', 'INVALID', 'DIY-EFI CORE4 v1.0', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'dvjcodec Teensy RevA', 'dvjcodec Teensy RevB', 'INVALID', 'INVALID', 'INVALID', 'Drop Bear', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'Black STM32F407VET6 V0.1', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID']
-        tachoPin:
-          type: bits
-          size: U08
-          offset: 16
-          address: '[0:5]'
-          values: ['Board Default', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID', 'INVALID']
-        tachoDiv:
-          type: bits
-          size: U08
-          offset: 16
-          address: '[6:7]'
-          values: ['Normal', 'Half', 'INVALID', 'INVALID']
-        tachoDuration:
-          type: scalar
-          size: U08
-          offset: 17
-          units: 'ms'
-          scale: 1.0
-          min: 1.0
-          max: 6.0
-        maeThresh:
-          type: scalar
-          size: U08
-          offset: 18
-          units: 'kPa/s'
-          scale: 1.0
-          max: 255
-        taeThresh:
-          type: scalar
-          size: U08
-          offset: 19
-          units: '%/s'
-          scale: 1.0
-          max: 255
-        aeTime:
-          type: scalar
-          size: U08
-          offset: 20
-          units: 'ms'
-          scale: 10
-          max: 2550
+      aeMode:
+        type: bits
+        size: U08
+        offset: 3
+        address: '[0:1]'
+        values: [TPS, MAP, INVALID, INVALID]
+      battVCorMode:
+        type: bits
+        size: U08
+        offset: 3
+        address: '[2:2]'
+        values: [Whole PW, Open Time only]
+      SoftLimitMode:
+        type: bits
+        size: U08
+        offset: 3
+        address: '[3:3]'
+        values: [Fixed, Relative ]
+      unused1-3c:
+        type: bits
+        size: U08
+        offset: 3
+        address: '[4:4]'
+        values: [MAP, TPS]
+      aeApplyMode:
+        type: bits
+        size: U08
+        offset: 3
+        address: '[5:5]'
+        values: [PW Multiplier, PW Adder]
+      multiplyMAP:
+        type: bits
+        size: U08
+        offset: 3
+        address: '[6:7]'
+        values: [Off, Baro, Fixed, INVALID]
+      wueRates:
+        type: array
+        size:  U08
+        offset: 4
+        shape:
+          columns: 10
+        units: '%'
+        max: 255
+      crankingPct:
+        type: scalar
+        size: U08
+        offset: 14
+        units: '%'
+        max: 255
+      pinLayout:
+        type: bits
+        size: U08
+        offset: 15
+        address: '[0:7]'
+        values: [Speeduino v0.1, Speeduino v0.2, Speeduino v0.3, Speeduino v0.4, INVALID, INVALID, 01-05 MX5 PNP, INVALID, 96-97 MX5 PNP, NA6 MX5 PNP, Turtana PCB, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, Plazomat I/O 0.1, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, Daz V6 Shield 0.1, BMW PnP, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, NO2C, UA4C, INVALID, INVALID, INVALID, DIY-EFI CORE4 v1.0, INVALID, INVALID, INVALID, INVALID, dvjcodec Teensy RevA, dvjcodec Teensy RevB, INVALID, INVALID, INVALID, Drop Bear, INVALID, INVALID, INVALID, INVALID, Black STM32F407VET6 V0.1, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+      tachoPin:
+        type: bits
+        size: U08
+        offset: 16
+        address: '[0:5]'
+        values: [Board Default, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+      tachoDiv:
+        type: bits
+        size: U08
+        offset: 16
+        address: '[6:7]'
+        values: [Normal, Half, INVALID, INVALID]
+      tachoDuration:
+        type: scalar
+        size: U08
+        offset: 17
+        units: ms
+        min: 1.0
+        max: 6.0
+      maeThresh: # MAP threshold for triggering AE
+        type: scalar
+        size: U08
+        offset: 18
+        units: kPa/s
+        max: 255
+      taeThresh: # TPS threshold for triggering AE
+        type: scalar
+        size: U08
+        offset: 19
+        units: '%/s'
+        max: 255
+      aeTime:
+        type: scalar
+        size: U08
+        offset: 20
+        units: ms
+        scale: 10
+        max: 2550
       reqFuel:
         type: scalar
         size: U08
@@ -140,45 +132,154 @@ pages:
         units: ms
         scale: 0.1
         max: 25.5
-
-      algorithm:
-        type: bits
-        values: [MAP, TPS, IMAP/EMAP]
-      divider:
-        type: scalar
+      # divider:
       alternate:
         type: bits
+        size: U08
+        offset: 26
+        address: '[0:0]'
         values: [Simultaneous, Alternating]
+      multiplyMAP1:
+        type: bits
+        size: U08
+        offset: 26
+        address: '[1:1]'
+        values: [No, Yes]
+      includeAFR:
+        type: bits
+        size: U08
+        offset: 26
+        address: '[2:2]'
+        values: [No, Yes]
+      hardCutType:
+        type: bits
+        size: U08
+        offset: 26
+        address: '[3:3]'
+        values: [Full, Rolling]
+      ignAlgorithm:
+        type: bits
+        size: U08
+        offset: 26
+        address: '[4:6]'
+        values: [MAP, TPS, IMAP/EMAP]
+      indInjAng:
+        type: bits
+        size: U08
+        offset: 26
+        address: '[7:7]'
+        values: [Disabled, Enabled]
+      injOpen:
+        type: scalar
+        size: U08
+        offset: 27
+        units: ms
+        scale: 0.1
+        min: 0.1
+        max: 25.5
+      injAng:
+        type: array
+        size: U16
+        offset: 28
+        shape:
+          columns: 4
+        units: deg
+        max: 720
+
+      # Config1
+      mapSample:
+        type: bits
+        size: U08
+        offset: 36
+        address: '[0:1]'
+        values: [Instantaneous, Cycle Average, Cycle Minimum, Event Average]
       twoStroke:
         type: bits
+        size: U08
+        offset: 36
+        address: '[2:2]'
         values: [Four-stroke, Two-stroke]
-      nCylinders:
-        type: bits
-        values: [INVALID, 1, 2, 3, 4, 5, 6, INVALID, 8, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
       injType:
         type: bits
+        size: U08
+        offset: 36
+        address: '[3:3]'
         values: [Port, Throttle Body]
+      nCylinders:
+        type: bits
+        size: U08
+        offset: 36
+        address: '[4:7]'
+        values: [INVALID, 1, 2, 3, 4, 5, 6, INVALID, 8, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+
+      # Config2
+      algorithm: # (TS) Has to be called algorithm for the req fuel calculator to work :(
+        type: bits
+        values: [MAP, TPS, IMAP/EMAP]
+      fixAngEnable:
+        type: bits
+        size: U08
+        offset: 37
+        address: '[3:3]'
+        values: [Off, On]
       nInjectors:
         type: bits
+        size: U08
+        offset: 37
+        address: '[4:7]'
         values: [INVALID, 1, 2, 3, 4, 5, 6, INVALID, 8, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
+
+      # Config3
       engineType:
         type: bits
+        size: U08
+        offset: 38
+        address: '[0:0]'
         values: [Even fire, Odd fire]
+      flexEnabled:
+        type: bits
+        size: U08
+        offset: 38
+        address: '[1:1]'
+        values: [Off, On]
+      legacyMAP:
+        type: bits
+        size: U08
+        offset: 38
+        address: '[2:2]'
+        values: [No, Yes] # Whether to use the older legacy MAP reading that had the pullup enabled
+      baroCorr:
+        type: bits
+        size: U08
+        offset: 38
+        address: '[3:3]'
+        values: [Off, On]
+      injLayout:
+        type: bits
+        size: U08
+        offset: 38
+        address: '[4:5]'
+        values: [Paired, Semi-Sequential, INVALID, Sequential]
+      perToothIgn:
+        type: bits
+        size: U08
+        offset: 38
+        address: '[6:6]'
+        values: [No, Yes]
+      dfcoEnabled:
+        type: bits
+        size: U08
+        offset: 38
+        address: '[7:7]'
+        values: [Off, On]
+
+
       stoich:
         type: scalar
         units: :1
         # TODO: add this to the rest
         max: 14.7
         min: 9
-      injLayout:
-        type: bits
-        values: [Paired, Semi-Sequential, INVALID, Sequential]
-      pinLayout:
-        type: bits
-        values: [Speeduino v0.1, Speeduino v0.2, Speeduino v0.3, Speeduino v0.4, INVALID, INVALID, 01-05 MX5 PNP, INVALID, 96-97 MX5 PNP, NA6 MX5 PNP, Turtana PCB, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, Plazomat I/O 0.1, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, Daz V6 Shield 0.1, BMW PnP, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, NO2C, UA4C, INVALID, INVALID, INVALID, DIY-EFI CORE4 v1.0, INVALID, INVALID, INVALID, INVALID, dvjcodec Teensy RevA, dvjcodec Teensy RevB, INVALID, INVALID, INVALID, Drop Bear, INVALID, INVALID, INVALID, INVALID, Black STM32F407VET6 V0.1, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID, INVALID]
-      mapSample:
-        type: bits
-        values: [Instantaneous, Cycle Average, Cycle Minimum, Event Average]
       oddfire2:
         type: scalar
         units: deg
@@ -192,9 +293,7 @@ pages:
       dutyLim:
         type: scalar
         units: '%'
-      injOpen:
-        type: scalar
-        units: ms
+
 
 dialogs:
   - name: engineConstants
