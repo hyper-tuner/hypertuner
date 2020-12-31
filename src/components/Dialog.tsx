@@ -52,7 +52,7 @@ const Dialog = ({
 
   if (!dialogConfig) {
     return (
-      <Result status="warning" title="Not found" style={{ marginTop: 50 }} />
+      <Result status="warning" title="Not found 👀" style={{ marginTop: 50 }} />
     );
   }
 
