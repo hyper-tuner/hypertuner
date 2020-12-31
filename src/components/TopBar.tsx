@@ -19,6 +19,7 @@ import {
   LoginOutlined,
   UserAddOutlined,
 } from '@ant-design/icons';
+import { useEffect, useRef } from 'react';
 import { isMac } from '../lib/env';
 
 const { Header } = Layout;
@@ -60,13 +61,36 @@ const TopBar = () => {
     </Menu>
   );
 
+  const searchInput = useRef({} as any);
+
+  useEffect(() => {
+    document.onkeydown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+
+        if (searchInput) {
+          e.preventDefault();
+          searchInput.current.focus();
+        }
+      }
+    };
+
+    return () => {
+      document.onkeyup = null;
+    };
+  });
+
   return (
     <Header className="app-top-bar">
       <Row>
         <Col span={0} sm={8} />
         <Col span={0} sm={8} style={{ textAlign: 'center' }}>
-          <Tooltip title={isMac() ? '⌘+SHIFT+P' : 'CTRL+SHIFT+P'}>
-            <Input placeholder="Search anything" className="electron-not-draggable" />
+          <Tooltip title="⌘ / CTRL + P">
+            <Input
+              ref={searchInput}
+              onKeyUp={(e) => e.key === 'Escape' && e.currentTarget.blur()}
+              placeholder="Search"
+              className="electron-not-draggable"
+            />
           </Tooltip>
         </Col>
         <Col span={24} sm={8} style={{ textAlign: 'right' }}>
