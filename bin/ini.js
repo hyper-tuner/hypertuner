@@ -15,30 +15,27 @@ class Parser {
     this.BITS_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
     this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
+    this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
+
     this.lines = buffer.toString().split('\n');
-    this.pages = [];
+    this.currentPage = 1;
+
+    this.result = {
+      constants: {
+        pages: [],
+      },
+    };
   }
 
   parse() {
-    try {
-      this.parsePages();
-    } catch (error) {
-      if (error.message !== 'EOP') {
-        throw error;
-      }
-    }
+    // this.parsePages();
+    this.parseSections();
 
-    return this.pages;
+    return this.result;
   }
 
-  parsePages() {
-    const constants = {};
-
-    this.pages[0] = {
-      number: 1,
-      size: 128,
-      constants: {},
-    };
+  parseSections() {
+    let section;
 
     this.lines.forEach((line) => {
       const trimmed = line.trim();
@@ -46,58 +43,83 @@ class Parser {
         return;
       }
 
-      if (trimmed === '[EventTriggers]') {
-        throw new Error('EOP');
+      const matches = line.match(this.SECTION_HEADER_PATTERN);
+
+      if (matches) {
+        section = matches.groups.section;
+      } else if (section) {
+        this.parseLine(section, line);
       }
-
-      const pair = trimmed.split('=').map((part) => part.trim());
-      const [name, rest] = pair;
-
-      // 'key = value' pair but probably not a constant
-      if (!rest) {
-        return;
-      }
-
-      const match = rest.match(this.FIRST_PATTERN);
-      if (!match) {
-        return;
-      }
-
-      // not an actual constant
-      if (name === 'divider') {
-        return;
-      }
-
-      // TODO: handle this somehow
-      // key already exists - IF ELSE most likely
-      if (name in constants) {
-        return;
-      }
-
-      switch (match.groups.type) {
-        case 'scalar':
-          constants[name] = this.parseScalar(rest);
-          break;
-        case 'array':
-          constants[name] = this.parseArray(rest);
-          break;
-        case 'bits':
-          // TODO: handle this case
-          if (name === 'unused_fan_bits') {
-            return;
-          }
-          constants[name] = this.parseBits(rest);
-          break;
-
-        default:
-          throw new Error(`Unsupported type: ${match.groups.type}`);
-      }
-
-      this.pages[0].constants = {
-        ...this.pages[0].constants,
-        constants,
-      };
     });
+  }
+
+  parseLine(name, line) {
+    switch (name) {
+      case 'Constants':
+        this.parseConstants(line);
+        break;
+      default:
+        break;
+    }
+  }
+
+  parseConstants(line) {
+    let constant;
+
+    const pageMatch = line.match(/^page\s*=\s*(?<page>\d+)/);
+    if (pageMatch) {
+      this.currentPage = Number(pageMatch.groups.page);
+      this.result.constants.pages[this.currentPage] = {
+        number: this.currentPage,
+        size: 111,
+        data: {},
+      };
+    }
+
+    const [name, rest] = line.split('=').map((part) => part.trim());
+
+    // not a constant - TODO: #if else
+    if (!rest) {
+      return;
+    }
+
+    const match = rest.match(this.FIRST_PATTERN);
+    if (!match) {
+      return;
+    }
+
+    // TODO: handle this
+    // not an actual constant
+    if (name === 'divider') {
+      return;
+    }
+
+    // TODO: handle this somehow
+    // key already exists - IF ELSE most likely
+    if (name in this.result.constants.pages[this.currentPage].data) {
+      return;
+    }
+
+    switch (match.groups.type) {
+      case 'scalar':
+        constant = this.parseScalar(rest);
+        break;
+      case 'array':
+        constant = this.parseArray(rest);
+        break;
+      case 'bits':
+        // TODO: handle this case
+        if (name === 'unused_fan_bits') {
+          return;
+        }
+        constant = this.parseBits(rest);
+        break;
+
+      default:
+        throw new Error(`Unsupported type: ${match.groups.type}`);
+    }
+
+    this.result.constants.pages[this.currentPage].data[name] = constant;
   }
 
   parseScalar(input) {
@@ -174,6 +196,6 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/constants.ini'))
 ).parse();
 
-console.dir(result[0].constants, { maxArrayLength: 10, depth: null });
+console.dir(result.constants.pages[1], { maxArrayLength: 1000, depth: null });
 
 console.log('------- end --------');
