@@ -19,7 +19,6 @@ pages:
         size: U08
         offset: 1
         units: '%'
-        transform: 0
         min: 100
         max: 255
       aeColdTaperMin: # AE cold adjustment, taper start clt (full adjustment)
