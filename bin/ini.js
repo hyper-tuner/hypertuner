@@ -76,7 +76,7 @@ class Parser {
           break;
 
         default:
-          // throw new Error(`Unsupported type: ${first.type}`);
+          throw new Error(`Unsupported type: ${match.groups.type}`);
       }
     });
 
@@ -86,7 +86,7 @@ class Parser {
   parseScalar(name, input) {
     const match = input.match(this.SCALAR_PATTERN);
     if (!match) {
-      return;
+      throw new Error(`Unable to parse [${name}]: ${input}`);
     }
 
     this.page.constants[name] = {
@@ -103,12 +103,12 @@ class Parser {
   parseArray(name, input) {
     const match = input.match(this.ARRAY_PATTERN);
     if (!match) {
-      return;
+      throw new Error(`Unable to parse [${name}]: ${input}`);
     }
 
     this.page.constants[name] = {
       ...this.page.constants[name],
-      shape: match.groups.shape,
+      shape: match.groups.shape, // TODO: shape
       units: match.groups.units,
       scale: Number(match.groups.scale),
       transform: Number(match.groups.transform),
@@ -121,7 +121,7 @@ class Parser {
   parseBits(name, input) {
     const match = input.match(this.BITS_PATTERN);
     if (!match) {
-      return;
+      throw new Error(`Unable to parse [${name}]: ${input}`);
     }
 
     this.page.constants[name] = {
@@ -139,6 +139,6 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/constants.ini'))
 ).parse();
 
-console.log(result.constants);
+console.dir(result.constants, { maxArrayLength: 10 });
 
 console.log('------- end --------');
