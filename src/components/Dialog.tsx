@@ -15,7 +15,7 @@ import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
 import {
   Dialog as DialogType,
-  Group as GroupType,
+  Panel as PanelType,
   Config as ConfigType,
   Field as FieldType,
   Page as PageType,
@@ -50,7 +50,7 @@ const Dialog = ({
     return skeleton;
   }
 
-  const dialogConfig = config.dialogs.find((dialog: DialogType) => dialog.name === name);
+  const dialogConfig = config.dialogs[name];
 
   if (!dialogConfig) {
     return (
@@ -58,7 +58,7 @@ const Dialog = ({
     );
   }
 
-  const dialogGroups = dialogConfig.groups || [];
+  const dialogGroups = dialogConfig.fields || [];
 
   const calculateSpan = (dialogsCount: number) => {
     let xxl = 24;

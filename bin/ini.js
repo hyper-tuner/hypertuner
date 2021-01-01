@@ -20,16 +20,18 @@ class Parser {
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
+    this.currentDialog = {};
+    this.currentPanel = {};
 
     this.result = {
       constants: {
         pages: [],
       },
+      dialogs: {},
     };
   }
 
   parse() {
-    // this.parsePages();
     this.parseSections();
 
     return this.result;
@@ -44,23 +46,66 @@ class Parser {
         return;
       }
 
-      const matches = line.match(this.SECTION_HEADER_PATTERN);
+      const matches = trimmed.match(this.SECTION_HEADER_PATTERN);
 
       if (matches) {
         section = matches.groups.section;
       } else if (section) {
-        this.parseLine(section, line);
+        this.parseLine(section, trimmed);
       }
     });
   }
 
-  parseLine(name, line) {
-    switch (name) {
-      case 'Constants':
-        this.parseConstants(line);
+  parseLine(section, line) {
+    switch (section) {
+      // case 'Constants':
+      //   this.parseConstants(line);
+      //   break;
+      case 'UserDefined':
+        this.parseUserDefined(line);
         break;
       default:
         break;
+    }
+  }
+
+  parseUserDefined(line) {
+    const matchDialog = line.match(/^dialog\s*=\s*(?<name>\w+),\s*"(?<title>.*)",*\s*(?<layout>xAxis|yAxis|border)*/);
+    if (matchDialog) {
+      this.currentDialog = matchDialog.groups.name;
+      this.result.dialogs[this.currentDialog] = {
+        name: this.currentDialog,
+        title: matchDialog.groups.title,
+        layout: matchDialog.groups.layout || '',
+        panels: {},
+        fields: [],
+      };
+
+      return;
+    }
+
+    const matchPanel = line.match(/^panel\s*=\s*(?<name>\w+),\s*(?<layout>\w+|{})*,*\s*({(?<condition>.+)})*/);
+    if (matchPanel) {
+      this.currentPanel = matchPanel.groups.name;
+      this.result.dialogs[this.currentDialog].panels[this.currentPanel] = {
+        name: this.currentPanel,
+        layout: matchPanel.groups.layout || '',
+        condition: (matchPanel.groups.condition || '').trim(),
+      };
+
+      return;
+    }
+
+    const matchField = line.match(/^field\s*=\s*(?<field>.+)/);
+    if (matchField) {
+      const [title, name, condition] = matchField.groups.field.split(',');
+
+      this.result.dialogs[this.currentDialog].fields.push({
+        name: name ? name.trim() : 'divider',
+        // TODO: remove this: "Low (E0) "'
+        title: title.trim(),
+        condition: (condition || '').trim().replace(/^{\s*|\s*}$/g, ''),
+      });
     }
   }
 
@@ -198,9 +243,12 @@ const result = new Parser(
 ).parse();
 
 // console.dir(result.constants.pages[1], { maxArrayLength: 1000, depth: null });
+// console.dir(result.dialogs, { maxArrayLength: 10, depth: null });
 // console.dir(yaml.dump(result), { maxArrayLength: 1000, depth: null });
 // console.dir(yaml.dump({ asd: 123, 'sd-asd': 22 }), { maxArrayLength: 1000, depth: null });
 
 fs.writeFileSync(path.join(__dirname, '/generated.yml'), yaml.dump(result));
+
+// console.log(yaml.safeDump(result.dialogs));
 
 console.log('------- end --------');

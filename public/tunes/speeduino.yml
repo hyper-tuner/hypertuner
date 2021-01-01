@@ -7996,122 +7996,120 @@ constants:
           digits: 0
           comments: ''
 
+# dialogs:
+#   - name: engineConstants
+#     title: Engine Constants
+#     help:
+#       link: https://wiki.speeduino.com/en/configuration/Engine_Constants
+#     groups:
+#       - name: engineConstants
+#         title: Engine Constants
+#         fields:
+#           - name: reqFuel
+#             title: Required Fuel
+#           - name: algorithm
+#             title: Control Algorithm
+#             help: Fueling calculation algorithm
+#           - name: divider
+#             title: Squirts Per Engine Cycle
+#           - name: alternate
+#             title: Injector Staging
+#             help: |
+#               Whether or not the injectors should be fired at the same time.
+#               This setting is ignored when Sequential is selected below, however it will still affect req_fuel value.
+#           - name: twoStroke
+#             title: Engine Stroke
+#             help: Four-stroke (most engines) / Two-stroke
+#           - name: nCylinders
+#             title: Number of Cylinders
+#             help: Cylinder count
+#           - name: injType
+#             title: Injector Port Type
+#             help: Port Injection (one injector for each cylinder) or Throttle Body (injectors shared by cylinders)
+#           - name: nInjectors
+#             title: Number of Injectors
+#             help: Number of primary injectors
+#           - name: engineType
+#             title: Engine Type
+#             help: |
+#               Engines with an equal number of degrees between all firings (This is most engines) should select Even fire.
+#               Some 2 and 6 cylinder engines are Odd fire however
+#       - name: board
+#         title: Board
+#         fields:
+#           - name: stoich
+#             title: Stoichiometric ratio
+#             help: |
+#               The stoichiometric ration of the fuel being used.
+#               For flex fuel, choose the primary fuel.
+#           - name: injLayout
+#             title: Injector Layout
+#             help: |
+#               The injector layout and timing to be used. Options are:
+#               1. Paired - 2 injectors per output. Outputs active is equal to half the number of cylinders. Outputs are timed over 1 crank revolution.
+#               2. Semi-sequential: Same as paired except that injector channels are mirrored (1&4, 2&3) meaning the number of outputs used are equal to the number of cylinders. Only valid for 4 cylinders or less.
+#               3. Banked: 2 outputs only used.
+#               4. Sequential: 1 injector per output and outputs used equals the number of cylinders. Injection is timed over full cycle.
+#           - name: pinLayout
+#             title: Board Layout
+#           - name: mapSample
+#             title: Map Sample method
+#             help: |
+#               The method used for calculating the MAP reading.
+#               - For 1-2 Cylinder engines, Cycle Minimum is recommended.
+#               - For more than 2 cylinders Cycle Average is recommended.
+#       - name: oddFireAngles
+#         title: Odd Fire Angles
+#         fields:
+#           - name: oddfire2
+#             title: Channel 2 angle
+#             help: |
+#               The ATDC angle of channel 2 for oddfire engines.
+#               This is relative to the TDC angle of channel 1
+#             condition: tune.engineType == 1
+#           - name: oddfire3
+#             title: Channel 3 angle
+#             help: |
+#               The ATDC angle of channel 3 for oddfire engines.
+#               This is relative to the TDC angle of channel 1 (NOT channel 2)
+#             condition: tune.engineType == 1 && tune.nCylinders >= 3
+#           - name: oddfire4
+#             title: Channel 4 angle
+#             help: |
+#               The ATDC angle of channel 4 for oddfire engines.
+#               This is relative to the TDC angle of channel 1 (NOT channel 3)
+#             condition: tune.engineType == 1 && tune.nCylinders >= 4
 
-dialogs:
-  - name: engineConstants
-    title: Engine Constants
-    help:
-      link: https://wiki.speeduino.com/en/configuration/Engine_Constants
-    groups:
-      - name: engineConstants
-        title: Engine Constants
-        fields:
-          - name: reqFuel
-            title: Required Fuel
-          - name: algorithm
-            title: Control Algorithm
-            help: Fueling calculation algorithm
-          - name: divider
-            title: Squirts Per Engine Cycle
-          - name: alternate
-            title: Injector Staging
-            help: |
-              Whether or not the injectors should be fired at the same time.
-              This setting is ignored when Sequential is selected below, however it will still affect req_fuel value.
-          - name: twoStroke
-            title: Engine Stroke
-            help: Four-stroke (most engines) / Two-stroke
-          - name: nCylinders
-            title: Number of Cylinders
-            help: Cylinder count
-          - name: injType
-            title: Injector Port Type
-            help: Port Injection (one injector for each cylinder) or Throttle Body (injectors shared by cylinders)
-          - name: nInjectors
-            title: Number of Injectors
-            help: Number of primary injectors
-          - name: engineType
-            title: Engine Type
-            help: |
-              Engines with an equal number of degrees between all firings (This is most engines) should select Even fire.
-              Some 2 and 6 cylinder engines are Odd fire however
-      - name: board
-        title: Board
-        fields:
-          - name: stoich
-            title: Stoichiometric ratio
-            help: |
-              The stoichiometric ration of the fuel being used.
-              For flex fuel, choose the primary fuel.
-          - name: injLayout
-            title: Injector Layout
-            help: |
-              The injector layout and timing to be used. Options are:
-              1. Paired - 2 injectors per output. Outputs active is equal to half the number of cylinders. Outputs are timed over 1 crank revolution.
-              2. Semi-sequential: Same as paired except that injector channels are mirrored (1&4, 2&3) meaning the number of outputs used are equal to the number of cylinders. Only valid for 4 cylinders or less.
-              3. Banked: 2 outputs only used.
-              4. Sequential: 1 injector per output and outputs used equals the number of cylinders. Injection is timed over full cycle.
-          - name: pinLayout
-            title: Board Layout
-          - name: mapSample
-            title: Map Sample method
-            help: |
-              The method used for calculating the MAP reading.
-              - For 1-2 Cylinder engines, Cycle Minimum is recommended.
-              - For more than 2 cylinders Cycle Average is recommended.
-      - name: oddFireAngles
-        title: Odd Fire Angles
-        fields:
-          - name: oddfire2
-            title: Channel 2 angle
-            help: |
-              The ATDC angle of channel 2 for oddfire engines.
-              This is relative to the TDC angle of channel 1
-            condition: tune.engineType == 1
-          - name: oddfire3
-            title: Channel 3 angle
-            help: |
-              The ATDC angle of channel 3 for oddfire engines.
-              This is relative to the TDC angle of channel 1 (NOT channel 2)
-            condition: tune.engineType == 1 && tune.nCylinders >= 3
-          - name: oddfire4
-            title: Channel 4 angle
-            help: |
-              The ATDC angle of channel 4 for oddfire engines.
-              This is relative to the TDC angle of channel 1 (NOT channel 3)
-            condition: tune.engineType == 1 && tune.nCylinders >= 4
+#   - name: injectorCharacteristics
+#     title: Injector Characteristics
+#     help:
+#       link: https://wiki.speeduino.com/en/configuration/Injector_Characteristics
+#     groups:
+#       - name: injectorCharacteristics
+#         title: Injector Characteristics
+#         fields:
+#           - name: dutyLim
+#             title: Injector Duty Limit
+#       - name: injectorOpeningTime
+#         title: Injector opening time
+#         fields:
+#           - name: injOpen
+#             title: Injector Open Time
+#             help: |
+#               Injector dead time.
+#               The net time current is provided to the injector but is not injecting fuel due to opening and closing
 
-  - name: injectorCharacteristics
-    title: Injector Characteristics
-    help:
-      link: https://wiki.speeduino.com/en/configuration/Injector_Characteristics
-    groups:
-      - name: injectorCharacteristics
-        title: Injector Characteristics
-        fields:
-          - name: dutyLim
-            title: Injector Duty Limit
-      - name: injectorOpeningTime
-        title: Injector opening time
-        fields:
-          - name: injOpen
-            title: Injector Open Time
-            help: |
-              Injector dead time.
-              The net time current is provided to the injector but is not injecting fuel due to opening and closing
-
-  - name: triggerSettings
-    title: Trigger Settings
-    help:
-      link: https://wiki.speeduino.com/en/decoders
-    groups:
-      - name: triggerSettings
-        title: Trigger Settings
-        fields:
-          - name: TrigPattern
-            title: Trigger Pattern
-            help: The type of input trigger decoder to be used
-
+#   - name: triggerSettings
+#     title: Trigger Settings
+#     help:
+#       link: https://wiki.speeduino.com/en/decoders
+#     groups:
+#       - name: triggerSettings
+#         title: Trigger Settings
+#         fields:
+#           - name: TrigPattern
+#             title: Trigger Pattern
+#             help: The type of input trigger decoder to be used
 menus:
   - name: settings
     title: Settings
@@ -8186,3 +8184,4300 @@ menus:
       - name: rotaryIgnition
         title: Rotary Ignition
         condition: sparkMode == 4
+
+dialogs:
+  engine_constants_southwest:
+    name: engine_constants_southwest
+    title: Speeduino Board
+    layout: ''
+    panels: {}
+    fields:
+      - name: stoich
+        title: '"Stoichiometric ratio"'
+        condition: ''
+      - name: injLayout
+        title: '"Injector Layout"'
+        condition: ''
+      - name: pinLayout
+        title: '"Board Layout"'
+        condition: ''
+      - name: mapSample
+        title: '"MAP Sample method"'
+        condition: ''
+  engine_constants_west:
+    name: engine_constants_west
+    title: ''
+    layout: ''
+    panels:
+      std_injection:
+        name: std_injection
+        layout: North
+        condition: ''
+    fields: []
+  engine_constants_northeast:
+    name: engine_constants_northeast
+    title: Oddfire Angles
+    layout: ''
+    panels: {}
+    fields:
+      - name: oddfire2
+        title: '"Channel 2 angle"'
+        condition: engineType == 1
+      - name: oddfire3
+        title: '"Channel 3 angle"'
+        condition: engineType == 1 && nCylinders >= 3
+      - name: oddfire4
+        title: '"Channel 4 angle"'
+        condition: engineType == 1 && nCylinders >= 4
+  engine_constants_east:
+    name: engine_constants_east
+    title: ''
+    layout: ''
+    panels:
+      engine_constants_northeast:
+        name: engine_constants_northeast
+        layout: North
+        condition: ''
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+  engine_constants_warning:
+    name: engine_constants_warning
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: '{}'
+        title: >-
+          "!Warning: The board you have selected may not have enough channels
+          for sequential fuel!"
+        condition: ''
+  engine_constants:
+    name: engine_constants
+    title: ''
+    layout: border
+    panels:
+      engine_constants_warning:
+        name: engine_constants_warning
+        layout: North
+        condition: ''
+      engine_constants_west:
+        name: engine_constants_west
+        layout: West
+        condition: ''
+      engine_constants_east:
+        name: engine_constants_east
+        layout: East
+        condition: ''
+    fields: []
+  flexFuelSettings:
+    name: flexFuelSettings
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: flexEnabled
+        title: '"Flex Fuel Sensor "'
+        condition: ''
+      - name: flexFreqLow
+        title: '"Low (E0) "'
+        condition: flexEnabled
+      - name: flexFreqHigh
+        title: '"High (E100) "'
+        condition: flexEnabled
+  flexFuelWest:
+    name: flexFuelWest
+    title: ''
+    layout: ''
+    panels:
+      flex_fuel_curve:
+        name: flex_fuel_curve
+        layout: ''
+        condition: flexEnabled
+      flex_adv_curve:
+        name: flex_adv_curve
+        layout: ''
+        condition: flexEnabled
+    fields: []
+  flexFuelEast:
+    name: flexFuelEast
+    title: ''
+    layout: ''
+    panels:
+      flex_boost_curve:
+        name: flex_boost_curve
+        layout: ''
+        condition: flexEnabled && boostEnabled
+    fields: []
+  flexCurves:
+    name: flexCurves
+    title: ''
+    layout: xAxis
+    panels:
+      flexFuelWest:
+        name: flexFuelWest
+        layout: West
+        condition: ''
+      flexFuelEast:
+        name: flexFuelEast
+        layout: East
+        condition: ''
+    fields: []
+  flexFueling:
+    name: flexFueling
+    title: Fuel Sensor Settings
+    layout: border
+    panels:
+      flexFuelSettings:
+        name: flexFuelSettings
+        layout: North
+        condition: ''
+      flexCurves:
+        name: flexCurves
+        layout: South
+        condition: ''
+    fields: []
+  knock_windows:
+    name: knock_windows
+    title: Knock Windows
+    layout: xAxis
+    panels:
+      knock_window_angle_curve:
+        name: knock_window_angle_curve
+        layout: West
+        condition: knock_mode
+      knock_window_duration_curve:
+        name: knock_window_duration_curve
+        layout: East
+        condition: knock_mode
+    fields: []
+  knock_settings_west:
+    name: knock_settings_west
+    title: Settings
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: knock_mode
+        title: '"Knock Mode"'
+        condition: ''
+      - name: knock_pin
+        title: '"Knock Pin"'
+        condition: knock_mode
+      - name: knock_trigger
+        title: '"Knock active when pin is"'
+        condition: knock_mode == 1
+      - name: knock_pullup
+        title: '"Use pullup"'
+        condition: knock_mode == 1
+  knock_settings_east:
+    name: knock_settings_east
+    title: Detection and Response
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"#Detection"'
+        condition: ''
+      - name: knock_count
+        title: '"Knock count required"'
+        condition: knock_mode == 1
+      - name: knock_threshold
+        title: '"Knock threshold required"'
+        condition: knock_mode == 2
+      - name: knock_maxMAP
+        title: '"Maximum MAP"'
+        condition: knock_mode
+      - name: knock_maxRPM
+        title: '"Maximum RPM"'
+        condition: knock_mode
+      - name: divider
+        title: '"#Retard"'
+        condition: ''
+      - name: knock_maxRetard
+        title: '"Total retard"'
+        condition: knock_mode
+      - name: knock_firstStep
+        title: '"First step size"'
+        condition: knock_mode
+      - name: knock_stepSize
+        title: '"Other step size"'
+        condition: knock_mode
+      - name: knock_stepTime
+        title: '"Step time"'
+        condition: knock_mode
+      - name: divider
+        title: '"#Recovery"'
+        condition: ''
+      - name: knock_duration
+        title: '"Retard duration"'
+        condition: 'knock_mode } ;Time before retard starts ending'
+      - name: knock_recoveryStepTime
+        title: '"Recovery step time"'
+        condition: 'knock_mode } ;Time between each recovery step'
+      - name: knock_recoveryStep
+        title: '"Recovery step size"'
+        condition: knock_mode
+  knock_settings_top:
+    name: knock_settings_top
+    title: ''
+    layout: xAxis
+    panels:
+      knock_settings_west:
+        name: knock_settings_west
+        layout: West
+        condition: ''
+      knock_settings_east:
+        name: knock_settings_east
+        layout: East
+        condition: ''
+    fields: []
+  knockSettings:
+    name: knockSettings
+    title: ''
+    layout: border
+    panels:
+      knock_settings_top:
+        name: knock_settings_top
+        layout: North
+        condition: ''
+      knock_windows:
+        name: knock_windows
+        layout: South
+        condition: ''
+    fields: []
+  vss_gear_1:
+    name: vss_gear_1
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: vssRatio1
+        title: '"Speed ratio 1"'
+        condition: ''
+  vss_gear_2:
+    name: vss_gear_2
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: vssRatio2
+        title: '"Speed ratio 2"'
+        condition: ''
+  vss_gear_3:
+    name: vss_gear_3
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: vssRatio3
+        title: '"Speed ratio 3"'
+        condition: ''
+  vss_gear_4:
+    name: vss_gear_4
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: vssRatio4
+        title: '"Speed ratio 4"'
+        condition: ''
+  vss_gear_5:
+    name: vss_gear_5
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: vssRatio5
+        title: '"Speed ratio 5"'
+        condition: ''
+  vss_gear_6:
+    name: vss_gear_6
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: vssRatio6
+        title: '"Speed ratio 6"'
+        condition: ''
+  vss_gear_detection:
+    name: vss_gear_detection
+    title: Gear Detection
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"After setting ''Pulses per km/mile'' above"'
+        condition: ''
+      - name: divider
+        title: '"Drive in each gear (any speed) and press appropriate button"'
+        condition: ''
+  vss_calibration:
+    name: vss_calibration
+    title: VSS Calibration
+    layout: ''
+    panels: {}
+    fields:
+      - name: vssPulsesPerKm
+        title: '"Pulses Per KM"'
+        condition: vssMode > 1
+      - name: vssSmoothing
+        title: '"Smoothing Factor"'
+        condition: vssMode > 1
+  vssSettings:
+    name: vssSettings
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: vssMode
+        title: '"VSS Input Mode"'
+        condition: ''
+      - name: vssPin
+        title: '"VSS Pin"'
+        condition: vssMode > 1
+  tacho:
+    name: tacho
+    title: Tacho
+    layout: ''
+    panels: {}
+    fields:
+      - name: tachoPin
+        title: '"Output pin"'
+        condition: ''
+      - name: tachoDiv
+        title: '"Output speed"'
+        condition: ''
+      - name: tachoDuration
+        title: '"Pulse duration"'
+        condition: ''
+  accelEnrichments_aeSettings:
+    name: accelEnrichments_aeSettings
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: aeMode
+        title: '"Enrichment mode"'
+        condition: ''
+      - name: aeApplyMode
+        title: '"Enrichment method"'
+        condition: ''
+      - name: taeThresh
+        title: '"TPSdot Threshold"'
+        condition: aeMode == 0
+      - name: maeThresh
+        title: '"MAPdot Threshold"'
+        condition: aeMode == 1
+      - name: aeTime
+        title: '"Accel Time"'
+        condition: ''
+      - name: aeTaperMin
+        title: '"Taper Start RPM"'
+        condition: ''
+      - name: aeTaperMax
+        title: '"Taper End RPM"'
+        condition: ''
+  accelEnrichments_coldAdj:
+    name: accelEnrichments_coldAdj
+    title: Acceleration Enrichment cold adjustment
+    layout: ''
+    panels: {}
+    fields:
+      - name: aeColdPct
+        title: '"Cold adjustment"'
+        condition: ''
+      - name: aeColdTaperMin
+        title: '"Cold adjustment taper start temperature"'
+        condition: ''
+      - name: aeColdTaperMax
+        title: '"Cold adjustment taper end temperature"'
+        condition: ''
+  accelEnrichments_south:
+    name: accelEnrichments_south
+    title: Decelleration Fuel Cutoff (DFCO)
+    layout: ''
+    panels: {}
+    fields:
+      - name: dfcoEnabled
+        title: '"Enabled"'
+        condition: ''
+      - name: dfcoTPSThresh
+        title: '"TPS Threshold"'
+        condition: dfcoEnabled
+      - name: dfcoMinCLT
+        title: '"Minimum engine temperature"'
+        condition: dfcoEnabled
+      - name: dfcoDelay
+        title: '"Cutoff delay"'
+        condition: dfcoEnabled
+      - name: dfcoRPM
+        title: '"Cutoff RPM"'
+        condition: dfcoEnabled
+      - name: dfcoHyster
+        title: '"RPM Hysteresis"'
+        condition: dfcoEnabled
+  accelEnrichments_north_south:
+    name: accelEnrichments_north_south
+    title: ''
+    layout: ''
+    panels: {}
+    fields: []
+  accelEnrichments_north:
+    name: accelEnrichments_north
+    title: ''
+    layout: xAxis
+    panels:
+      time_accel_tpsdot_curve:
+        name: time_accel_tpsdot_curve
+        layout: ''
+        condition: aeMode == 0
+      time_accel_mapdot_curve:
+        name: time_accel_mapdot_curve
+        layout: ''
+        condition: aeMode == 1
+    fields: []
+  accelEnrichments_center:
+    name: accelEnrichments_center
+    title: Acceleration Enrichment
+    layout: xAxis
+    panels: {}
+    fields: []
+  accelEnrichments:
+    name: accelEnrichments
+    title: Acceleration Enrichment
+    layout: ''
+    panels:
+      accelEnrichments_north:
+        name: accelEnrichments_north
+        layout: North
+        condition: ''
+      accelEnrichments_north_south:
+        name: accelEnrichments_north_south
+        layout: Center
+        condition: ''
+      accelEnrichments_center:
+        name: accelEnrichments_center
+        layout: Center
+        condition: ''
+      accelEnrichments_south:
+        name: accelEnrichments_south
+        layout: South
+        condition: ''
+    fields: []
+  veTableDialog_north:
+    name: veTableDialog_north
+    title: ''
+    layout: ''
+    panels: {}
+    fields: []
+  veTableDialog_south:
+    name: veTableDialog_south
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: multiplyMAP
+        title: '"Multiply VE value by MAP ratio"'
+        condition: ''
+      - name: includeAFR
+        title: '"Multiply by ratio of AFR to Target AFR"'
+        condition: egoType == 2 && !incorporateAFR  || (incorporateAFR==includeAFR)
+      - name: incorporateAFR
+        title: '"Multiply by ratio of stoich AFR/target AFR (incorporate AFR)"'
+        condition: '!includeAFR || (incorporateAFR==includeAFR)'
+  veTableDialog:
+    name: veTableDialog
+    title: VE Table
+    layout: ''
+    panels:
+      veTableDialog_north:
+        name: veTableDialog_north
+        layout: North
+        condition: ''
+      veTableDialog_south:
+        name: veTableDialog_south
+        layout: South
+        condition: ''
+    fields: []
+  fuelTable2Dialog_switch:
+    name: fuelTable2Dialog_switch
+    title: Switch Conditions
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: fuel2SwitchVariable
+        title: '"Use secondary table when:"'
+        condition: ''
+      - name: fuel2SwitchValue
+        title: '"is greater than:"'
+        condition: ''
+  fuelTable2Dialog_input:
+    name: fuelTable2Dialog_input
+    title: Input Options
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: fuel2InputPin
+        title: '"Use secondary table when pin"'
+        condition: ''
+      - name: fuel2InputPolarity
+        title: '"Is"'
+        condition: ''
+      - name: fuel2InputPullup
+        title: '"Use internal pullup on pin"'
+        condition: fuel2InputPolarity == 0
+  fuelTable2Dialog_north:
+    name: fuelTable2Dialog_north
+    title: ''
+    layout: ''
+    panels:
+      fuelTable2Dialog_switch:
+        name: fuelTable2Dialog_switch
+        layout: ''
+        condition: fuel2Mode == 3
+      fuelTable2Dialog_input:
+        name: fuelTable2Dialog_input
+        layout: ''
+        condition: fuel2Mode == 4
+    fields:
+      - name: fuel2Mode
+        title: '"Secondary fuel table mode"'
+        condition: ''
+      - name: fuel2Algorithm
+        title: '"Load source"'
+        condition: fuel2Mode
+  fuelTable2Dialog_south:
+    name: fuelTable2Dialog_south
+    title: ''
+    layout: ''
+    panels: {}
+    fields: []
+  fuelTable2Dialog:
+    name: fuelTable2Dialog
+    title: Fuel Table 2
+    layout: ''
+    panels:
+      fuelTable2Dialog_north:
+        name: fuelTable2Dialog_north
+        layout: North
+        condition: ''
+      fuelTable2Dialog_south:
+        name: fuelTable2Dialog_south
+        layout: South
+        condition: fuel2Mode
+    fields: []
+  sparkTable2Dialog_switch:
+    name: sparkTable2Dialog_switch
+    title: Switch Conditions
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: spark2SwitchVariable
+        title: '"Use secondary table when:"'
+        condition: ''
+      - name: spark2SwitchValue
+        title: '"is greater than:"'
+        condition: ''
+  sparkTable2Dialog_input:
+    name: sparkTable2Dialog_input
+    title: Input Options
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: spark2InputPin
+        title: '"Use secondary table when pin"'
+        condition: ''
+      - name: spark2InputPolarity
+        title: '"Is"'
+        condition: ''
+      - name: spark2InputPullup
+        title: '"Use internal pullup on pin"'
+        condition: spark2InputPolarity == 0
+  sparkTable2Dialog_north:
+    name: sparkTable2Dialog_north
+    title: ''
+    layout: ''
+    panels:
+      sparkTable2Dialog_switch:
+        name: sparkTable2Dialog_switch
+        layout: ''
+        condition: spark2Mode == 3
+      sparkTable2Dialog_input:
+        name: sparkTable2Dialog_input
+        layout: ''
+        condition: spark2Mode == 4
+    fields:
+      - name: spark2Mode
+        title: '"Secondary advance table mode"'
+        condition: ''
+      - name: spark2Algorithm
+        title: '"Load source"'
+        condition: spark2Mode
+  sparkTable2Dialog_south:
+    name: sparkTable2Dialog_south
+    title: ''
+    layout: ''
+    panels: {}
+    fields: []
+  sparkTable2Dialog:
+    name: sparkTable2Dialog
+    title: Spark Table 2
+    layout: ''
+    panels:
+      sparkTable2Dialog_north:
+        name: sparkTable2Dialog_north
+        layout: North
+        condition: ''
+      sparkTable2Dialog_south:
+        name: sparkTable2Dialog_south
+        layout: South
+        condition: spark2Mode
+    fields: []
+  injAngleDialog:
+    name: injAngleDialog
+    title: Injector close angles
+    layout: ''
+    panels: {}
+    fields: []
+  injOpenTimeDialog:
+    name: injOpenTimeDialog
+    title: Injector opening time
+    layout: ''
+    panels: {}
+    fields:
+      - name: injOpen
+        title: '"Injector Open Time"'
+        condition: ''
+      - name: battVCorMode
+        title: '"Battery Voltage Correction Mode"'
+        condition: ''
+  injChars:
+    name: injChars
+    title: Injector Characteristics
+    layout: ''
+    panels: {}
+    fields:
+      - name: dutyLim
+        title: '"Injector Duty Limit"'
+        condition: ''
+  egoControl:
+    name: egoControl
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: egoType
+        title: '"Sensor Type"'
+        condition: ''
+      - name: '{ egoType }'
+        title: '"#Please ensure you calibrate your O2 sensor in the Tools menu"'
+        condition: ''
+      - name: egoAlgorithm
+        title: '"Algorithm"'
+        condition: egoType
+      - name: egoCount
+        title: '"Ignition Events per Step"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: egoLimit
+        title: '"Controller Auth +/-"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: ego_min
+        title: '"Only correct above:"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: ego_max
+        title: '"and correct below:"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: egoTemp
+        title: '"Active Above Coolant"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: egoRPM
+        title: '"Active Above RPM"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: egoTPSMax
+        title: '"Active Below TPS"'
+        condition: egoType && (egoAlgorithm < 3)
+      - name: ego_sdelay
+        title: '"EGO delay after start"'
+        condition: (egoAlgorithm < 3)
+      - name: egoKP
+        title: '"PID Proportional Gain"'
+        condition: egoType && (egoAlgorithm == 2)
+      - name: egoKI
+        title: '"PID Integral"'
+        condition: egoType && (egoAlgorithm == 2)
+      - name: egoKD
+        title: '"PID Derivative"'
+        condition: egoType && (egoAlgorithm == 2)
+  fanSettings:
+    name: fanSettings
+    title: Fan Settings
+    layout: ''
+    panels: {}
+    fields:
+      - name: fanEnable
+        title: '"Fan Mode"'
+        condition: ''
+      - name: fanWhenOff
+        title: '"Allow fan when off"'
+        condition: fanEnable
+      - name: fanWhenCranking
+        title: '"Allow fan when cranking"'
+        condition: fanEnable
+      - name: fanPin
+        title: '"Fan output pin"'
+        condition: fanEnable
+      - name: fanInv
+        title: '"Fan Output Inverted"'
+        condition: fanEnable
+      - name: fanSP
+        title: '"Fan switching temperature"'
+        condition: fanEnable
+      - name: fanHyster
+        title: '"Fan hysteresis"'
+        condition: fanEnable
+  stepper_idle:
+    name: stepper_idle
+    title: Stepper Idle
+    layout: ''
+    panels: {}
+    fields:
+      - name: iacStepTime
+        title: '"Step time (ms)"'
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+      - name: iacCoolTime
+        title: '"Cool time (ms)"'
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+      - name: iacStepHome
+        title: '"Home steps"'
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+      - name: iacStepHyster
+        title: '"Minimum Steps"'
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+      - name: iacMaxSteps
+        title: '"Don''t exceed"'
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+      - name: iacStepperInv
+        title: '"Stepper Inverted"'
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+  pwm_idle:
+    name: pwm_idle
+    title: PWM Idle
+    layout: ''
+    panels: {}
+    fields:
+      - name: iacChannels
+        title: '"Number of outputs"'
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3
+      - name: idleFreq
+        title: '"Idle valve frequency"'
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3
+      - name: iacPWMdir
+        title: '"Idle valve direction"'
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3
+  closedloop_idle:
+    name: closedloop_idle
+    title: Closed loop Idle
+    layout: ''
+    panels: {}
+    fields:
+      - name: idleKP
+        title: '"P"'
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5
+      - name: idleKI
+        title: '"I"'
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5
+      - name: idleKD
+        title: '"D"'
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5
+      - name: iacCLminDuty
+        title: '"Minimum valve duty"'
+        condition: iacAlgorithm == 3
+      - name: iacCLmaxDuty
+        title: '"Maximum valve duty"'
+        condition: iacAlgorithm == 3
+  idleSettings:
+    name: idleSettings
+    title: Idle Settings
+    layout: ''
+    panels: {}
+    fields:
+      - name: iacAlgorithm
+        title: '"Idle control type"'
+        condition: ''
+      - name: idleTaperTime
+        title: '"Crank to run taper"'
+        condition: iacAlgorithm == 2 || iacAlgorithm == 4
+      - name: divider
+        title: '"#Fast Idle"'
+        condition: ''
+      - name: iacFastTemp
+        title: '"Fast idle temp"'
+        condition: iacAlgorithm == 1
+  idleUpSettings:
+    name: idleUpSettings
+    title: Idle Up Settings
+    layout: ''
+    panels: {}
+    fields:
+      - name: idleUpEnabled
+        title: '"Idle Up Enabled"'
+        condition: ''
+      - name: idleUpPin
+        title: '"Idle Up Pin"'
+        condition: idleUpEnabled
+      - name: idleUpPolarity
+        title: '"Idle Up Pin Polarity"'
+        condition: idleUpEnabled
+      - name: idleUpAdder
+        title: '"Idle Up Amount"'
+        condition: idleUpEnabled
+  fuelpump:
+    name: fuelpump
+    title: Fuel pump
+    layout: ''
+    panels: {}
+    fields:
+      - name: fuelPumpPin
+        title: '"Fuel pump pin"'
+        condition: ''
+      - name: fpPrime
+        title: '"Fuel pump prime duration"'
+        condition: ''
+  crankingEnrichDialog:
+    name: crankingEnrichDialog
+    title: Cranking Enrichment
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"#Note"'
+        condition: ''
+      - name: divider
+        title: >-
+          "Values are specified as modifiers to the normal fueling. Eg 100% = No
+          change."
+        condition: ''
+  crankingIgnOptions:
+    name: crankingIgnOptions
+    title: Cranking Timing
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: CrankAng
+        title: '"Cranking advance Angle"'
+        condition: ignCranklock == 0
+      - name: ignBypassEnable
+        title: '"Cranking bypass"'
+        condition: ''
+      - name: 'ignBypassPin               { ignBypassEnable }'
+        title: '"Bypass output pin"'
+        condition: ''
+      - name: ignCranklock
+        title: '"Fix cranking timing with trigger"'
+        condition: >-
+          TrigPattern == 1 || TrigPattern == 4 || TrigPattern == 10 ||
+          TrigPattern == 9
+  crankingOptions:
+    name: crankingOptions
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: crankRPM
+        title: '"Cranking RPM (Max)"'
+        condition: ''
+      - name: tpsflood
+        title: '"Flood Clear level"'
+        condition: ''
+      - name: fpPrime
+        title: '"Fuel pump prime duration"'
+        condition: ''
+      - name: primingDelay
+        title: '"Injectors priming delay"'
+        condition: ''
+      - name: crankingEnrichTaper
+        title: '"Cranking enrichment taper time"'
+        condition: ''
+  primePW:
+    name: primePW
+    title: Priming Pulsewidth
+    layout: ''
+    panels: {}
+    fields: []
+  crankPW:
+    name: crankPW
+    title: Cranking Settings
+    layout: yAxis
+    panels:
+      crankingOptions:
+        name: crankingOptions
+        layout: North
+        condition: ''
+      crankingEnrichDialog:
+        name: crankingEnrichDialog
+        layout: Center
+        condition: ''
+      crankingIgnOptions:
+        name: crankingIgnOptions
+        layout: South
+        condition: ''
+    fields: []
+  ASE_amount:
+    name: ASE_amount
+    title: Enrichment amount (%)
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Defines the fuel enrichment percentage after start."'
+        condition: ''
+      - name: divider
+        title: '"This is needed to keep engine running after start"'
+        condition: ''
+      - name: divider
+        title: '"Common values are 5% when engine is hot to 50% when engine is cold."'
+        condition: ''
+  ASE_time:
+    name: ASE_time
+    title: Duration (s)
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"How long time the After Start Enrichment is applied in seconds."'
+        condition: ''
+      - name: divider
+        title: >-
+          "Usually this is varies from 1-2s when engine is hot up to 20s on a
+          cold engine."
+        condition: ''
+      - name: aseTaperTime
+        title: '"Transition time to disable"'
+        condition: ''
+  ASE:
+    name: ASE
+    title: Afterstart Enrichment(ASE)
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"#Time and duration curves share common coolant values"'
+        condition: ''
+  triggerSettings:
+    name: triggerSettings
+    title: Trigger Settings
+    layout: ''
+    panels: {}
+    fields:
+      - name: TrigPattern
+        title: '"Trigger Pattern"'
+        condition: ''
+      - name: numTeeth
+        title: '"Primary base teeth"'
+        condition: >-
+          TrigPattern == 0 || TrigPattern == 2 || TrigPattern == 11 ||
+          TrigPattern == 18
+      - name: TrigSpeed
+        title: '"Primary trigger speed"'
+        condition: TrigPattern == 0
+      - name: missingTeeth
+        title: '"Missing teeth"'
+        condition: TrigPattern == 0
+      - name: TrigAngMul
+        title: '"Trigger angle multiplier"'
+        condition: TrigPattern == 11
+      - name: TrigAng
+        title: '"Trigger Angle "'
+        condition: ''
+      - name: divider
+        title: '"This number represents the angle ATDC when "'
+        condition: ''
+      - name: divider
+        title: '"tooth #1 passes the primary sensor."'
+        condition: ''
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: SkipCycles
+        title: '"Skip Revolutions"'
+        condition: ''
+      - name: divider
+        title: '"Note: This is the number of revolutions that will be skipped during"'
+        condition: ''
+      - name: divider
+        title: '"cranking before the injectors and coils are fired"'
+        condition: ''
+      - name: 'TrigEdge      { TrigPattern != 4 } ;4G63 uses both edges'
+        title: '"Trigger edge"'
+        condition: ''
+      - name: TrigEdgeSec
+        title: '"Secondary trigger edge"'
+        condition: >-
+          (TrigPattern == 0 && TrigSpeed == 0) || TrigPattern == 2 ||
+          TrigPattern == 9 || TrigPattern == 12 || TrigPattern == 18 } ;Missing
+          tooth
+      - name: '{ (TrigPattern == 0&& TrigSpeed == 0) }'
+        title: '"Missing Tooth Secondary type"    trigPatternSec'
+        condition: ''
+      - name: TrigFilter
+        title: '"Trigger Filter"'
+        condition: TrigPattern != 13
+      - name: useResync
+        title: '"Re-sync every cycle"'
+        condition: >-
+          TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
+          TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
+          TrigPattern == 18 } ;Dual wheel
+  lockSparkSettings:
+    name: lockSparkSettings
+    title: Locked timing
+    layout: ''
+    panels: {}
+    fields:
+      - name: fixAngEnable
+        title: '"Enabled Fixed/Locked timing"'
+        condition: ''
+      - name: FixAng
+        title: '"Fixed Angle"'
+        condition: fixAngEnable
+      - name: divider
+        title: >-
+          "#Note: During cranking the fixed/locked timing angle is overriden by
+          the Cranking advance angle value above"
+        condition: ''
+  newIgnitionMode:
+    name: newIgnitionMode
+    title: New Ignition Mode
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: >-
+          "This option is currently will improve accuracy on most compatible
+          triggers"
+        condition: ''
+      - name: please disable this"
+        title: '"However if timing issues are encountered'
+        condition: ''
+      - name: perToothIgn
+        title: '"Use new ignition mode"'
+        condition: ''
+  sparkSettings:
+    name: sparkSettings
+    title: Spark Settings
+    layout: ''
+    panels:
+      newIgnitionMode:
+        name: newIgnitionMode
+        layout: '{}'
+        condition: >-
+          TrigPattern == 0 || TrigPattern == 1 || TrigPattern == 2 ||
+          TrigPattern == 3 || TrigPattern == 4 || TrigPattern == 9 ||
+          TrigPattern == 12 || TrigPattern == 13 || TrigPattern == 18
+    fields:
+      - name: '{}'
+        title: >-
+          "!Warning: The board you have selected may not have enough channels
+          for sequential ignition!"
+        condition: ''
+      - name: ignAlgorithm
+        title: '"Ignition load source"'
+        condition: ''
+      - name: sparkMode
+        title: '"Spark output mode"'
+        condition: ''
+      - name: CrankAng
+        title: '"Cranking advance Angle"'
+        condition: ''
+      - name: IgInv
+        title: '"Spark Outputs triggers"'
+        condition: ''
+  dwellSettings:
+    name: dwellSettings
+    title: Dwell Settings
+    layout: ''
+    panels: {}
+    fields:
+      - name: dwellcrank
+        title: '"  Cranking dwell"'
+        condition: ''
+      - name: dwellrun
+        title: '"  Running dwell"'
+        condition: ''
+      - name: sparkDur
+        title: '"  Spark duration"'
+        condition: ''
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: divider
+        title: '"#Note"'
+        condition: ''
+      - name: divider
+        title: '"The above times are for 12V. Voltage correction"'
+        condition: ''
+      - name: divider
+        title: '"is applied. At higher voltages the time is reduced"'
+        condition: ''
+      - name: divider
+        title: '"and when low it is increased"'
+        condition: ''
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: divider
+        title: '"Overdwell protection"'
+        condition: ''
+      - name: useDwellLim
+        title: '"Use Overdwell protection"'
+        condition: ''
+      - name: dwellLim
+        title: '"Max dwell time"'
+        condition: useDwellLim
+      - name: divider
+        title: '"Note: Set the maximum dwell time at least 3ms above"'
+        condition: ''
+      - name: divider
+        title: '"your desired dwell time (Including cranking)"'
+        condition: ''
+      - name: idleAdvEnabled
+        title: '"Idle advance mode"'
+        condition: ''
+      - name: idleAdvAlgorithm
+        title: '"Idle detect mode"'
+        condition: idleAdvEnabled >= 1
+      - name: idleAdvDelay
+        title: '"Delay before idle control starts (s)"'
+        condition: idleAdvEnabled >= 1
+      - name: idleAdvRPM
+        title: '"Active Below RPM"'
+        condition: idleAdvEnabled >= 1
+      - name: idleAdvTPS
+        title: '"Active Below TPS"'
+        condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 0
+      - name: CTPSEnabled
+        title: '"Closed Throttle Sensor Enabled"'
+        condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1
+      - name: CTPSPin
+        title: '"Closed Throttle Sensor Pin"'
+        condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
+      - name: CTPSPolarity
+        title: '"Closed Throttle Sensor Pin Polarity"'
+        condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
+  idleAdvanceSettings:
+    name: idleAdvanceSettings
+    title: Idle Advance Settings
+    layout: xAxis
+    panels:
+      idle_advance_curve:
+        name: idle_advance_curve
+        layout: ''
+        condition: idleAdvEnabled >= 1
+      iacClosedLoop_curve:
+        name: iacClosedLoop_curve
+        layout: ''
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5 || idleAdvEnabled >= 1
+    fields: []
+  rotary_ignition:
+    name: rotary_ignition
+    title: Rotary Ignition
+    layout: ''
+    panels: {}
+    fields:
+      - name: rotaryType
+        title: '"Ignition Configuration"'
+        condition: ''
+  boostCut:
+    name: boostCut
+    title: Boost Cut
+    layout: ''
+    panels: {}
+    fields:
+      - name: boostCutEnabled
+        title: '"Enable Boost limit"'
+        condition: ''
+      - name: boostLimit
+        title: '"Boost Limit"'
+        condition: boostCutEnabled
+  boostLoad:
+    name: boostLoad
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: boostType
+        title: '"Mode"'
+        condition: ''
+      - name: the values in this table are duty cycle %"
+        title: '"In open loop mode'
+        condition: ''
+      - name: the values are boost targets in kPa"
+        title: '"In closed loop mode'
+        condition: ''
+  revLimiterDialog:
+    name: revLimiterDialog
+    title: Rev Limiter
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Rev Limiter"'
+        condition: ''
+      - name: '{}'
+        title: '"!Soft limiter only available with ignition cut"'
+        condition: ''
+      - name: SoftRevLim
+        title: '"Soft rev limit"'
+        condition: >-
+          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
+          the protection modes that include ignition.
+      - name: SoftLimitMode
+        title: '"Soft limiter mode"'
+        condition: >-
+          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
+          the protection modes that include ignition.
+      - name: SoftLimRetard
+        title: '"Soft limit timing"'
+        condition: >-
+          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
+          the protection modes that include ignition.
+      - name: SoftLimMax
+        title: '"Soft limit max time"'
+        condition: >-
+          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
+          the protection modes that include ignition.
+      - name: HardRevLim
+        title: '"Hard Rev limit"'
+        condition: ''
+  oilPressureProtection:
+    name: oilPressureProtection
+    title: Oil Pressure
+    layout: ''
+    panels:
+      oil_pressure_prot_curve:
+        name: oil_pressure_prot_curve
+        layout: ''
+        condition: oilPressureEnable && oilPressureProtEnbl
+    fields:
+      - name: oilPressureProtEnbl
+        title: '"Oil Pressure Protection"'
+        condition: oilPressureEnable
+  engineProtectionWest:
+    name: engineProtectionWest
+    title: ''
+    layout: ''
+    panels:
+      protectIndicatorPanel:
+        name: protectIndicatorPanel
+        layout: ''
+        condition: engineProtectType
+    fields:
+      - name: engineProtectType
+        title: '"Protection Cut"'
+        condition: ''
+      - name: engineProtectMaxRPM
+        title: '"Engine Protection RPM min"'
+        condition: engineProtectType
+      - name: hardCutType
+        title: '"Cut method"'
+        condition: >-
+          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
+          the protection modes that include ignition.
+  RevLimiterS:
+    name: RevLimiterS
+    title: Engine Protection and Limiters
+    layout: xAxis
+    panels:
+      revLimiterDialog:
+        name: revLimiterDialog
+        layout: ''
+        condition: engineProtectType
+      boostCut:
+        name: boostCut
+        layout: ''
+        condition: engineProtectType
+      oilPressureProtection:
+        name: oilPressureProtection
+        layout: ''
+        condition: engineProtectType
+    fields: []
+  clutchInput:
+    name: clutchInput
+    title: Clutch input
+    layout: ''
+    panels: {}
+    fields:
+      - name: launchPin
+        title: '"Clutch Input Pin"'
+        condition: launchEnable || flatSEnable
+      - name: launchHiLo
+        title: '"Clutch enabled when signal is"'
+        condition: launchEnable || flatSEnable
+      - name: lnchPullRes
+        title: '"Clutch Pullup Resistor"'
+        condition: launchEnable || flatSEnable
+      - name: flatSArm
+        title: '"Launch / Flat Shift switch RPM"'
+        condition: launchEnable || flatSEnable
+  LaunchControl:
+    name: LaunchControl
+    title: Launch Control / Flat shift
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Launch Control"'
+        condition: ''
+      - name: launchEnable
+        title: '"Enable Launch"'
+        condition: ''
+      - name: lnchCtrlTPS
+        title: '"TPS threshold"'
+        condition: launchEnable
+      - name: lnchSoftLim
+        title: '"Soft rev limit"'
+        condition: launchEnable
+      - name: lnchRetard
+        title: '"Soft limit absolute timing"'
+        condition: launchEnable
+      - name: lnchHardLim
+        title: '"Hard rev limit"'
+        condition: launchEnable
+      - name: lnchFuelAdd
+        title: '"Fuel adder during launch"'
+        condition: launchEnable
+      - name: divider
+        title: '"Flat Shift"'
+        condition: ''
+      - name: flatSEnable
+        title: '"Enable flat shift"'
+        condition: ''
+      - name: flatSSoftWin
+        title: '"Soft rev window"'
+        condition: flatSEnable
+      - name: flatSRetard
+        title: '"Soft limit absolute timing"'
+        condition: flatSEnable
+  NitrousStage1:
+    name: NitrousStage1
+    title: Stage 1
+    layout: ''
+    panels: {}
+    fields:
+      - name: n2o_stage1_pin
+        title: '"Nitrous Output Pin"'
+        condition: ''
+      - name: n2o_stage1_minRPM
+        title: '"Minimum Engage RPM"'
+        condition: ''
+      - name: n2o_stage1_maxRPM
+        title: '"Maximum Engage RPM"'
+        condition: ''
+      - name: n2o_stage1_adderMin
+        title: '"Fuel adder @ Min RPM"'
+        condition: ''
+      - name: n2o_stage1_adderMax
+        title: '"Fuel adder @ Max RPM"'
+        condition: ''
+      - name: n2o_stage1_retard
+        title: '"Ignition retard when active"'
+        condition: ''
+  NitrousStage2:
+    name: NitrousStage2
+    title: Stage 2
+    layout: ''
+    panels: {}
+    fields:
+      - name: n2o_stage2_pin
+        title: '"Nitrous Output Pin"'
+        condition: ''
+      - name: n2o_stage2_minRPM
+        title: '"Minimum Engage RPM"'
+        condition: ''
+      - name: n2o_stage2_maxRPM
+        title: '"Maximum Engage RPM"'
+        condition: ''
+      - name: n2o_stage2_adderMin
+        title: '"Fuel adder @ Min RPM"'
+        condition: ''
+      - name: n2o_stage2_adderMax
+        title: '"Fuel adder @ Max RPM"'
+        condition: ''
+      - name: n2o_stage2_retard
+        title: '"Ignition retard when active"'
+        condition: ''
+  NitrousMain:
+    name: NitrousMain
+    title: Settings
+    layout: ''
+    panels: {}
+    fields:
+      - name: n2o_enable
+        title: '"Nitrous Mode"'
+        condition: ''
+      - name: n2o_arming_pin
+        title: '"Arming Pin"'
+        condition: n2o_enable > 0
+      - name: n2o_pin_polarity
+        title: '"Nitrous is armed when pin is"'
+        condition: n2o_enable > 0
+      - name: n2o_minCLT
+        title: '"Minimum CLT"'
+        condition: n2o_enable > 0
+      - name: n2o_minTPS
+        title: '"Minimum TPS"'
+        condition: n2o_enable > 0
+      - name: n2o_maxMAP
+        title: '"Maximum MAP"'
+        condition: n2o_enable > 0
+      - name: n2o_maxAFR
+        title: '"Leanest AFR"'
+        condition: n2o_enable > 0
+  NitrousControl:
+    name: NitrousControl
+    title: Nitrous
+    layout: ''
+    panels:
+      NitrousMain:
+        name: NitrousMain
+        layout: North
+        condition: ''
+      NitrousStage1:
+        name: NitrousStage1
+        layout: West
+        condition: n2o_enable > 0
+      NitrousStage2:
+        name: NitrousStage2
+        layout: East
+        condition: n2o_enable > 1
+    fields: []
+  OLED:
+    name: OLED
+    title: OLED Display
+    layout: ''
+    panels: {}
+    fields:
+      - name: display
+        title: '"Display Type"'
+        condition: ''
+      - name: divider
+        title: '"#Note"'
+        condition: ''
+      - name: divider
+        title: '"ECU must be rebooted after changing above value"'
+        condition: ''
+      - name: display1
+        title: '"Field 1"'
+        condition: display
+      - name: display2
+        title: '"Field 2"'
+        condition: display
+      - name: display3
+        title: '"Field 3"'
+        condition: display
+      - name: display4
+        title: '"Field 4"'
+        condition: display
+  batCal:
+    name: batCal
+    title: Calibrate voltage reading
+    layout: ''
+    panels: {}
+    fields: []
+  mapCal:
+    name: mapCal
+    title: Calibrate MAP
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"#MAP Sensor"'
+        condition: ''
+      - name: mapMin
+        title: '"kPa At 0.0 Volts"'
+        condition: ''
+      - name: mapMax
+        title: '"kPa At 5.0 Volts"'
+        condition: ''
+      - name: legacyMAP
+        title: '"Use legacy MAP reading"'
+        condition: ''
+      - name: divider
+        title: '"#Baro Sensor"'
+        condition: ''
+      - name: useExtBaro
+        title: '"Use external Baro sensor"'
+        condition: ''
+      - name: baroPin
+        title: '"Analog pin to use for ext. Baro sensor"'
+        condition: useExtBaro
+      - name: baroMin
+        title: '"kPa At 0.0 Volts"'
+        condition: useExtBaro
+      - name: baroMax
+        title: '"kPa At 5.0 Volts"'
+        condition: useExtBaro
+      - name: divider
+        title: '"#EMAP Sensor"'
+        condition: ''
+      - name: useEMAP
+        title: '"Use EMAP sensor"'
+        condition: ''
+      - name: EMAPPin
+        title: '"Analog pin to use for ext. Baro sensor"'
+        condition: useEMAP
+      - name: EMAPMin
+        title: '"kPa At 0.0 Volts"'
+        condition: useEMAP
+      - name: EMAPMax
+        title: '"kPa At 5.0 Volts"'
+        condition: useEMAP
+  sensorFilters:
+    name: sensorFilters
+    title: Analog sensor filters
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: >-
+          "The values here set the amount of filtering to apply to each analog
+          input"
+        condition: ''
+      - name: but slower response times for readings"
+        title: '"Higher values result in stronger filtering'
+        condition: ''
+      - name: divider
+        title: '"#Most setups will NOT require changes to the default filter values"'
+        condition: ''
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: fuelPressureEnable
+        title: '"Enabled"'
+        condition: ''
+      - name: fuelPressurePin
+        title: '"Pin"'
+        condition: fuelPressureEnable
+      - name: fuelPressureMin
+        title: '"Pressure at 0v"'
+        condition: fuelPressureEnable
+      - name: fuelPressureMax
+        title: '"Pressure at 5v"'
+        condition: fuelPressureEnable
+  fuelPressureDialog:
+    name: fuelPressureDialog
+    title: Fuel Pressure
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: oilPressureEnable
+        title: '"Enabled"'
+        condition: ''
+      - name: oilPressurePin
+        title: '"Pin"'
+        condition: oilPressureEnable
+      - name: oilPressureMin
+        title: '"Pressure at 0v"'
+        condition: oilPressureEnable
+      - name: oilPressureMax
+        title: '"Pressure at 5v"'
+        condition: oilPressureEnable
+  oilPressureDialog:
+    name: oilPressureDialog
+    title: Oil Pressure
+    layout: xAxis
+    panels: {}
+    fields: []
+  pressureSensors:
+    name: pressureSensors
+    title: Pressure Transducers
+    layout: ''
+    panels: {}
+    fields: []
+  boostSettings:
+    name: boostSettings
+    title: Boost Control
+    layout: ''
+    panels: {}
+    fields:
+      - name: boostEnabled
+        title: '"Boost Control Enabled"'
+        condition: ''
+      - name: boostType
+        title: '"Boost control type"'
+        condition: boostEnabled
+      - name: boostPin
+        title: '"Boost output pin"'
+        condition: boostEnabled
+      - name: boostFreq
+        title: '"Boost solenoid freq."'
+        condition: boostEnabled
+      - name: boostMinDuty
+        title: '"Valve minimum duty cycle"'
+        condition: boostEnabled && boostType == 1
+      - name: boostMaxDuty
+        title: '"Valve maximum duty cycle"'
+        condition: boostEnabled && boostType == 1
+      - name: divider
+        title: '"Closed Loop settings"'
+        condition: ''
+      - name: boostMode
+        title: '"Control mode"'
+        condition: boostEnabled && boostType == 1
+      - name: boostIntv
+        title: '"Control interval"'
+        condition: boostEnabled && boostType == 1
+      - name: boostKP
+        title: '"P"'
+        condition: boostEnabled && boostMode && boostType == 1
+      - name: boostKI
+        title: '"I"'
+        condition: boostEnabled && boostMode && boostType == 1
+      - name: boostKD
+        title: '"D"'
+        condition: boostEnabled && boostMode && boostType == 1
+  vvtClosedLoop:
+    name: vvtClosedLoop
+    title: Closed loop
+    layout: ''
+    panels: {}
+    fields:
+      - name: vvtCLUseHold
+        title: '"Hold duty used"'
+        condition: ''
+      - name: vvtCLholdDuty
+        title: '"Hold duty"'
+        condition: vvtCLUseHold
+      - name: vvtCLAlterFuelTiming
+        title: '"Adjust fuel timing"'
+        condition: ''
+      - name: vvtCLMinAng
+        title: '"Cam angle @ 0% duty"'
+        condition: ''
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: vvtCLKP
+        title: '"Proportional Gain"'
+        condition: ''
+      - name: vvtCLKI
+        title: '"Integral Gain"'
+        condition: ''
+      - name: vvtCLKD
+        title: '"Differential Gain"'
+        condition: ''
+      - name: vvtCLminDuty
+        title: '"Minimum valve duty"'
+        condition: vvtEnabled && vvtMode == 2
+      - name: vvtCLmaxDuty
+        title: '"Maximum valve duty"'
+        condition: vvtEnabled && vvtMode == 2
+  vvtSettings:
+    name: vvtSettings
+    title: VVT Control
+    layout: ''
+    panels:
+      vvtClosedLoop:
+        name: vvtClosedLoop
+        layout: ''
+        condition: vvtEnabled && vvtMode == 2
+    fields:
+      - name: vvtEnabled
+        title: '"VVT Control Enabled"'
+        condition: ''
+      - name: vvtMode
+        title: '"VVT Mode"'
+        condition: vvtEnabled
+      - name: divider
+        title: >-
+          "#Please note that close loop is currently experimental for Miata
+          patterns ONLY"
+        condition: ''
+      - name: vvtLoadSource
+        title: '"Load source"'
+        condition: vvtEnabled
+      - name: VVTasOnOff
+        title: '"Use VVT map as On / Off only"'
+        condition: vvtEnabled && vvtMode != 2
+      - name: vvt1Pin
+        title: '"VVT output pin"'
+        condition: vvtEnabled
+      - name: vvtFreq
+        title: '"VVT solenoid freq."'
+        condition: vvtEnabled
+      - name: vvtPWMdir
+        title: '"Increased duty direction"'
+        condition: vvtEnabled
+  wmiSettings:
+    name: wmiSettings
+    title: WMI Control
+    layout: ''
+    panels:
+      wmi_adv_curve:
+        name: wmi_adv_curve
+        layout: ''
+        condition: wmiEnabled && wmiAdvEnabled
+    fields:
+      - name: divider
+        title: '"#Experimental!"'
+        condition: ''
+      - name: wmiEnabled
+        title: '"WMI Control Enabled"'
+        condition: ''
+      - name: wmiMode
+        title: '"WMI Mode"'
+        condition: wmiEnabled
+      - name: wmiTPS
+        title: '"WMI min TPS"'
+        condition: wmiEnabled
+      - name: wmiRPM
+        title: '"WMI min RPM"'
+        condition: wmiEnabled
+      - name: wmiMAP
+        title: '"WMI min MAP"'
+        condition: wmiEnabled
+      - name: wmiMAP2
+        title: '"WMI max MAP"'
+        condition: wmiEnabled && wmiMode == 1
+      - name: wmiIAT
+        title: '"WMI min IAT"'
+        condition: wmiEnabled
+      - name: wmiOffset
+        title: '"WMI offset"'
+        condition: wmiEnabled && wmiMode == 3
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: vvt1Pin
+        title: '"WMI PWM output pin"'
+        condition: wmiEnabled
+      - name: vvtFreq
+        title: '"WMI PWM freq."'
+        condition: wmiEnabled
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: wmiEnabledPin
+        title: '"WMI enabled output pin"'
+        condition: wmiEnabled
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: wmiEmptyEnabled
+        title: '"WMI tank empty input"'
+        condition: wmiEnabled
+      - name: wmiEmptyPin
+        title: '"WMI tank empty pin"'
+        condition: wmiEnabled
+      - name: wmiEmptyPolarity
+        title: '"WMI tank empty polarity"'
+        condition: wmiEnabled
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: wmiIndicatorEnabled
+        title: '"WMI tank indicator output"'
+        condition: wmiEnabled
+      - name: wmiIndicatorPin
+        title: '"WMI tank indicator pin"'
+        condition: wmiEnabled
+      - name: wmiIndicatorPolarity
+        title: '"WMI tank indicator polarity"'
+        condition: wmiEnabled
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: wmiAdvEnabled
+        title: '"Iginition advance correction"'
+        condition: wmiEnabled
+  warmup:
+    name: warmup
+    title: Warmup Enrichment (WUE) - Percent Multiplier
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Final enrichment value must be 100%."'
+        condition: ''
+      - name: divider
+        title: '""'
+        condition: ''
+  inj_trim1TblTitle:
+    name: inj_trim1TblTitle
+    title: 'Channel #1'
+    layout: ''
+    panels:
+      fuelTrimTable1Tbl:
+        name: fuelTrimTable1Tbl
+        layout: ''
+        condition: fuelTrimEnabled
+    fields: []
+  inj_trim2TblTitle:
+    name: inj_trim2TblTitle
+    title: 'Channel #2'
+    layout: ''
+    panels:
+      fuelTrimTable2Tbl:
+        name: fuelTrimTable2Tbl
+        layout: ''
+        condition: fuelTrimEnabled
+    fields: []
+  inj_trim3TblTitle:
+    name: inj_trim3TblTitle
+    title: 'Channel #3'
+    layout: ''
+    panels:
+      fuelTrimTable3Tbl:
+        name: fuelTrimTable3Tbl
+        layout: ''
+        condition: fuelTrimEnabled
+    fields: []
+  inj_trim4TblTitle:
+    name: inj_trim4TblTitle
+    title: 'Channel #4'
+    layout: ''
+    panels:
+      fuelTrimTable4Tbl:
+        name: fuelTrimTable4Tbl
+        layout: ''
+        condition: fuelTrimEnabled
+    fields: []
+  inj_trimadt:
+    name: inj_trimadt
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields: []
+  inj_trimadb:
+    name: inj_trimadb
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields: []
+  inj_trim_enable:
+    name: inj_trim_enable
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: fuelTrimEnabled
+        title: '"Individual fuel trim enabled"'
+        condition: injLayout == 3 && nCylinders <= 4
+  inj_trimad:
+    name: inj_trimad
+    title: Injector Cyl 1-4 Trims
+    layout: yAxis
+    panels:
+      inj_trim_enable:
+        name: inj_trim_enable
+        layout: North
+        condition: ''
+      inj_trimadt:
+        name: inj_trimadt
+        layout: Center
+        condition: ''
+      inj_trimadb:
+        name: inj_trimadb
+        layout: South
+        condition: ''
+    fields: []
+  stagingTableDialog_north:
+    name: stagingTableDialog_north
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: stagingEnabled
+        title: '"Staging enabled"'
+        condition: ''
+      - name: stagingMode
+        title: '"Staging mode"'
+        condition: ''
+      - name: stagedInjSizePri
+        title: '"Size of primary injectors"'
+        condition: stagingEnabled
+      - name: stagedInjSizeSec
+        title: '"Size of secondary injectors"'
+        condition: stagingEnabled
+  stagingTableDialog_south:
+    name: stagingTableDialog_south
+    title: ''
+    layout: ''
+    panels:
+      stagingTbl:
+        name: stagingTbl
+        layout: ''
+        condition: stagingMode == 0
+    fields: []
+  stagingTableDialog:
+    name: stagingTableDialog
+    title: Staged injection
+    layout: ''
+    panels:
+      stagingTableDialog_north:
+        name: stagingTableDialog_north
+        layout: North
+        condition: ''
+      stagingTableDialog_south:
+        name: stagingTableDialog_south
+        layout: South
+        condition: ''
+    fields: []
+  outputtest_warningmessage:
+    name: outputtest_warningmessage
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: >-
+          "WARNING! USE AT YOUR OWN RISK. INCORRECT USE WILL DAMAGE YOUR
+          HARDWARE!"
+        condition: ''
+      - name: divider
+        title: '"Do not attempt to use this page whilst your engine is running!"'
+        condition: ''
+      - name: divider
+        title: >-
+          "Forcing the Injector or Spark outputs could cause flooding of your
+          engine or permanent damage to ignition coils!"
+        condition: ''
+  enableoutputtestbuttons:
+    name: enableoutputtestbuttons
+    title: Enable Test Controls
+    layout: xAxis
+    panels: {}
+    fields: []
+  outputtestinj1:
+    name: outputtestinj1
+    title: Injector CH1
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj2:
+    name: outputtestinj2
+    title: Injector CH2
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj3:
+    name: outputtestinj3
+    title: Injector CH3
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj4:
+    name: outputtestinj4
+    title: Injector CH4
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj5:
+    name: outputtestinj5
+    title: Injector CH5
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj6:
+    name: outputtestinj6
+    title: Injector CH6
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj7:
+    name: outputtestinj7
+    title: Injector CH7
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestinj8:
+    name: outputtestinj8
+    title: Injector CH8
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtest_injectors:
+    name: outputtest_injectors
+    title: Injector Driver Output Test
+    layout: xAxis
+    panels: {}
+    fields: []
+  outputtestspk1:
+    name: outputtestspk1
+    title: 'Spark CH1 '
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk2:
+    name: outputtestspk2
+    title: Spark CH2
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk3:
+    name: outputtestspk3
+    title: Spark CH3
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk4:
+    name: outputtestspk4
+    title: Spark CH4
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk5:
+    name: outputtestspk5
+    title: Spark CH5
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk6:
+    name: outputtestspk6
+    title: Spark CH6
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk7:
+    name: outputtestspk7
+    title: Spark CH7
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtestspk8:
+    name: outputtestspk8
+    title: Spark CH8
+    layout: yAxis
+    panels: {}
+    fields: []
+  outputtest_spark:
+    name: outputtest_spark
+    title: Spark Driver Output Test
+    layout: xAxis
+    panels: {}
+    fields: []
+  outputtest1:
+    name: outputtest1
+    title: Test Output Hardware
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: >-
+          "   If Secondary Serial or Internal CANBUS is DISABLED then any input
+          channel assigned to that external source will NOT function"
+        condition: ''
+  canAuxinput_alias:
+    name: canAuxinput_alias
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Input Alias"'
+        condition: ''
+      - name: AUXin00Alias
+        title: '""'
+        condition: >-
+          (caninput_sel0a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel0b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin01Alias
+        title: '""'
+        condition: >-
+          (caninput_sel1a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel1b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin02Alias
+        title: '""'
+        condition: >-
+          (caninput_sel2a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel2b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin03Alias
+        title: '""'
+        condition: >-
+          (caninput_sel3a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel3b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin04Alias
+        title: '""'
+        condition: >-
+          (caninput_sel4a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel4b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin05Alias
+        title: '""'
+        condition: >-
+          (caninput_sel5a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel5b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin06Alias
+        title: '""'
+        condition: >-
+          (caninput_sel6a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel6b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin07Alias
+        title: '""'
+        condition: >-
+          (caninput_sel7a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel7b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin08Alias
+        title: '""'
+        condition: >-
+          (caninput_sel8a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel8b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin09Alias
+        title: '""'
+        condition: >-
+          (caninput_sel9a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel9b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin10Alias
+        title: '""'
+        condition: >-
+          (caninput_sel10a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel10b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin11Alias
+        title: '""'
+        condition: >-
+          (caninput_sel11a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel11b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin12Alias
+        title: '""'
+        condition: >-
+          (caninput_sel12a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel12b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin13Alias
+        title: '""'
+        condition: >-
+          (caninput_sel13a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel13b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin14Alias
+        title: '""'
+        condition: >-
+          (caninput_sel14a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel14b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin15Alias
+        title: '""'
+        condition: >-
+          (caninput_sel15a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+  caninput_sel:
+    name: caninput_sel
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"               CAN Input Channel on/off"'
+        condition: ''
+      - name: caninput_sel0a
+        title: '"CAN Input 0"'
+        condition: ''
+      - name: caninput_sel0b
+        title: '"CAN Input 0"'
+        condition: ''
+      - name: caninput_sel1a
+        title: '"CAN Input 1"'
+        condition: ''
+      - name: caninput_sel1b
+        title: '"CAN Input 1"'
+        condition: ''
+      - name: caninput_sel2a
+        title: '"CAN Input 2"'
+        condition: ''
+      - name: caninput_sel2b
+        title: '"CAN Input 2"'
+        condition: ''
+      - name: caninput_sel3a
+        title: '"CAN Input 3"'
+        condition: ''
+      - name: caninput_sel3b
+        title: '"CAN Input 3"'
+        condition: ''
+      - name: caninput_sel4a
+        title: '"CAN Input 4"'
+        condition: ''
+      - name: caninput_sel4b
+        title: '"CAN Input 4"'
+        condition: ''
+      - name: caninput_sel5a
+        title: '"CAN Input 5"'
+        condition: ''
+      - name: caninput_sel5b
+        title: '"CAN Input 5"'
+        condition: ''
+      - name: caninput_sel6a
+        title: '"CAN Input 6"'
+        condition: ''
+      - name: caninput_sel6b
+        title: '"CAN Input 6"'
+        condition: ''
+      - name: caninput_sel7a
+        title: '"CAN Input 7"'
+        condition: ''
+      - name: caninput_sel7b
+        title: '"CAN Input 7"'
+        condition: ''
+      - name: caninput_sel8a
+        title: '"CAN Input 8"'
+        condition: ''
+      - name: caninput_sel8b
+        title: '"CAN Input 8"'
+        condition: ''
+      - name: caninput_sel9a
+        title: '"CAN Input 9"'
+        condition: ''
+      - name: caninput_sel9b
+        title: '"CAN Input 9"'
+        condition: ''
+      - name: caninput_sel10a
+        title: '"CAN Input 10"'
+        condition: ''
+      - name: caninput_sel10b
+        title: '"CAN Input 10"'
+        condition: ''
+      - name: caninput_sel11a
+        title: '"CAN Input 11"'
+        condition: ''
+      - name: caninput_sel11b
+        title: '"CAN Input 11"'
+        condition: ''
+      - name: caninput_sel12a
+        title: '"CAN Input 12"'
+        condition: ''
+      - name: caninput_sel12b
+        title: '"CAN Input 12"'
+        condition: ''
+      - name: caninput_sel13a
+        title: '"CAN Input 13"'
+        condition: ''
+      - name: caninput_sel13b
+        title: '"CAN Input 13"'
+        condition: ''
+      - name: caninput_sel14a
+        title: '"CAN Input 14"'
+        condition: ''
+      - name: caninput_sel14b
+        title: '"CAN Input 14"'
+        condition: ''
+      - name: caninput_sel15a
+        title: '"CAN Input 15"'
+        condition: ''
+      - name: caninput_sel15b
+        title: '"CAN Input 15"'
+        condition: ''
+  caninput_parameter_group:
+    name: caninput_parameter_group
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"             Source CAN Address"'
+        condition: ''
+      - name: caninput_source_can_address0
+        title: '""'
+        condition: >-
+          (caninput_sel0a == 1 || caninput_sel0b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address1
+        title: '""'
+        condition: >-
+          (caninput_sel1a == 1 || caninput_sel1b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address2
+        title: '""'
+        condition: >-
+          (caninput_sel2a == 1 || caninput_sel2b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address3
+        title: '""'
+        condition: >-
+          (caninput_sel3a == 1 || caninput_sel3b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address4
+        title: '""'
+        condition: >-
+          (caninput_sel4a == 1 || caninput_sel4b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address5
+        title: '""'
+        condition: >-
+          (caninput_sel5a == 1 || caninput_sel5b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address6
+        title: '""'
+        condition: >-
+          (caninput_sel6a == 1 || caninput_sel6b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address7
+        title: '""'
+        condition: >-
+          (caninput_sel7a == 1 || caninput_sel7b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address8
+        title: '""'
+        condition: >-
+          (caninput_sel8a == 1 || caninput_sel8b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address9
+        title: '""'
+        condition: >-
+          (caninput_sel9a == 1 || caninput_sel9b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address10
+        title: '""'
+        condition: >-
+          (caninput_sel10a == 1 || caninput_sel10b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address11
+        title: '""'
+        condition: >-
+          (caninput_sel11a == 1 || caninput_sel11b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address12
+        title: '""'
+        condition: >-
+          (caninput_sel12a == 1 || caninput_sel12b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address13
+        title: '""'
+        condition: >-
+          (caninput_sel13a == 1 || caninput_sel13b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address14
+        title: '""'
+        condition: >-
+          (caninput_sel14a == 1 || caninput_sel14b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_can_address15
+        title: '""'
+        condition: >-
+          (caninput_sel15a == 1 || caninput_sel15b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+  caninput_parameter_start_byte:
+    name: caninput_parameter_start_byte
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"        source data start byte"'
+        condition: ''
+      - name: caninput_source_start_byte0
+        title: '""'
+        condition: >-
+          (caninput_sel0a == 1 || caninput_sel0b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte1
+        title: '""'
+        condition: >-
+          (caninput_sel1a == 1 || caninput_sel1b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte2
+        title: '""'
+        condition: >-
+          (caninput_sel2a == 1 || caninput_sel2b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte3
+        title: '""'
+        condition: >-
+          (caninput_sel3a == 1 || caninput_sel3b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte4
+        title: '""'
+        condition: >-
+          (caninput_sel4a == 1 || caninput_sel4b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte5
+        title: '""'
+        condition: >-
+          (caninput_sel5a == 1 || caninput_sel5b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte6
+        title: '""'
+        condition: >-
+          (caninput_sel6a == 1 || caninput_sel6b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte7
+        title: '""'
+        condition: >-
+          (caninput_sel7a == 1 || caninput_sel7b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte8
+        title: '""'
+        condition: >-
+          (caninput_sel8a == 1 || caninput_sel8b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte9
+        title: '""'
+        condition: >-
+          (caninput_sel9a == 1 || caninput_sel9b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte10
+        title: '""'
+        condition: >-
+          (caninput_sel10a == 1 || caninput_sel10b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte11
+        title: '""'
+        condition: >-
+          (caninput_sel11a == 1 || caninput_sel11b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte12
+        title: '""'
+        condition: >-
+          (caninput_sel12a == 1 || caninput_sel12b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte13
+        title: '""'
+        condition: >-
+          (caninput_sel13a == 1 || caninput_sel13b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte14
+        title: '""'
+        condition: >-
+          (caninput_sel14a == 1 || caninput_sel14b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_start_byte15
+        title: '""'
+        condition: >-
+          (caninput_sel15a == 1 || caninput_sel15b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+  caninput_parameter_num_byte:
+    name: caninput_parameter_num_byte
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Input Parameter Number of Bytes"'
+        condition: ''
+      - name: caninput_source_num_bytes0
+        title: '""'
+        condition: >-
+          (caninput_sel0a == 1 || caninput_sel0b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes1
+        title: '""'
+        condition: >-
+          (caninput_sel1a == 1 || caninput_sel1b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes2
+        title: '""'
+        condition: >-
+          (caninput_sel2a == 1 || caninput_sel2b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes3
+        title: '""'
+        condition: >-
+          (caninput_sel3a == 1 || caninput_sel3b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes4
+        title: '""'
+        condition: >-
+          (caninput_sel4a == 1 || caninput_sel4b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes5
+        title: '""'
+        condition: >-
+          (caninput_sel5a == 1 || caninput_sel5b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes6
+        title: '""'
+        condition: >-
+          (caninput_sel6a == 1 || caninput_sel6b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes7
+        title: '""'
+        condition: >-
+          (caninput_sel7a == 1 || caninput_sel7b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes8
+        title: '""'
+        condition: >-
+          (caninput_sel8a == 1 || caninput_sel8b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes9
+        title: '""'
+        condition: >-
+          (caninput_sel9a == 1 || caninput_sel9b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes10
+        title: '""'
+        condition: >-
+          (caninput_sel10a == 1 || caninput_sel10b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes11
+        title: '""'
+        condition: >-
+          (caninput_sel11a == 1 || caninput_sel11b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes12
+        title: '""'
+        condition: >-
+          (caninput_sel12a == 1 || caninput_sel12b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes13
+        title: '""'
+        condition: >-
+          (caninput_sel13a == 1 || caninput_sel13b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes14
+        title: '""'
+        condition: >-
+          (caninput_sel14a == 1 || caninput_sel14b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+      - name: caninput_source_num_bytes15
+        title: '""'
+        condition: >-
+          (caninput_sel15a == 1 || caninput_sel15b == 1) &&
+          (enable_secondarySerial || (enable_intcan && intcan_available))
+  caninput_serial_can:
+    name: caninput_serial_can
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Serial/CAN"'
+        condition: ''
+      - name: caninput_sel0extsourcea
+        title: '""'
+        condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
+      - name: caninput_sel0extsourceb
+        title: '""'
+        condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
+      - name: caninput_sel0extsourcec
+        title: '""'
+        condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
+      - name: caninput_sel1extsourcea
+        title: '""'
+        condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
+      - name: caninput_sel1extsourceb
+        title: '""'
+        condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
+      - name: caninput_sel1extsourcec
+        title: '""'
+        condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
+      - name: caninput_sel2extsourcea
+        title: '""'
+        condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
+      - name: caninput_sel2extsourceb
+        title: '""'
+        condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
+      - name: caninput_sel2extsourcec
+        title: '""'
+        condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
+      - name: caninput_sel3extsourcea
+        title: '""'
+        condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
+      - name: caninput_sel3extsourceb
+        title: '""'
+        condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
+      - name: caninput_sel3extsourcec
+        title: '""'
+        condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
+      - name: caninput_sel4extsourcea
+        title: '""'
+        condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
+      - name: caninput_sel4extsourceb
+        title: '""'
+        condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
+      - name: caninput_sel4extsourcec
+        title: '""'
+        condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
+      - name: caninput_sel5extsourcea
+        title: '""'
+        condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
+      - name: caninput_sel5extsourceb
+        title: '""'
+        condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
+      - name: caninput_sel5extsourcec
+        title: '""'
+        condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
+      - name: caninput_sel6extsourcea
+        title: '""'
+        condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
+      - name: caninput_sel6extsourceb
+        title: '""'
+        condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
+      - name: caninput_sel6extsourcec
+        title: '""'
+        condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
+      - name: caninput_sel7extsourcea
+        title: '""'
+        condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
+      - name: caninput_sel7extsourceb
+        title: '""'
+        condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
+      - name: caninput_sel7extsourcec
+        title: '""'
+        condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
+      - name: caninput_sel8extsourcea
+        title: '""'
+        condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
+      - name: caninput_sel8extsourceb
+        title: '""'
+        condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
+      - name: caninput_sel8extsourcec
+        title: '""'
+        condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
+      - name: caninput_sel9extsourcea
+        title: '""'
+        condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
+      - name: caninput_sel9extsourceb
+        title: '""'
+        condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
+      - name: caninput_sel9extsourcec
+        title: '""'
+        condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
+      - name: caninput_sel10extsourcea
+        title: '""'
+        condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
+      - name: caninput_sel10extsourceb
+        title: '""'
+        condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
+      - name: caninput_sel10extsourcec
+        title: '""'
+        condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
+      - name: caninput_sel11extsourcea
+        title: '""'
+        condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
+      - name: caninput_sel11extsourceb
+        title: '""'
+        condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
+      - name: caninput_sel11extsourcec
+        title: '""'
+        condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
+      - name: caninput_sel12extsourcea
+        title: '""'
+        condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
+      - name: caninput_sel12extsourceb
+        title: '""'
+        condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
+      - name: caninput_sel12extsourcec
+        title: '""'
+        condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
+      - name: caninput_sel13extsourcea
+        title: '""'
+        condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
+      - name: caninput_sel13extsourceb
+        title: '""'
+        condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
+      - name: caninput_sel13extsourcec
+        title: '""'
+        condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
+      - name: caninput_sel14extsourcea
+        title: '""'
+        condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
+      - name: caninput_sel14extsourceb
+        title: '""'
+        condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
+      - name: caninput_sel14extsourcec
+        title: '""'
+        condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
+      - name: caninput_sel15extsourcea
+        title: '""'
+        condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
+      - name: caninput_sel15extsourceb
+        title: '""'
+        condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
+      - name: caninput_sel15extsourcec
+        title: '""'
+        condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
+  caninconfig_blank1:
+    name: caninconfig_blank1
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+  Canin_config1:
+    name: Canin_config1
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields: []
+  Canin_config:
+    name: Canin_config
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields: []
+  canAuxoutput_alias:
+    name: canAuxoutput_alias
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Input Alias"'
+        condition: ''
+      - name: AUXin00Alias
+        title: '""'
+        condition: canoutput_sel0
+      - name: AUXin01Alias
+        title: '""'
+        condition: canoutput_sel1
+      - name: AUXin02Alias
+        title: '""'
+        condition: canoutput_sel2
+      - name: AUXin03Alias
+        title: '""'
+        condition: canoutput_sel3
+      - name: AUXin04Alias
+        title: '""'
+        condition: canoutput_sel4
+      - name: AUXin05Alias
+        title: '""'
+        condition: canoutput_sel5
+      - name: AUXin06Alias
+        title: '""'
+        condition: canoutput_sel6
+      - name: AUXin07Alias
+        title: '""'
+        condition: canoutput_sel7
+  canoutput_sel:
+    name: canoutput_sel
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"CAN Output Channel on/off"'
+        condition: ''
+      - name: canoutput_sel0
+        title: '"CAN Output 0"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel1
+        title: '"CAN Output 1"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel2
+        title: '"CAN Output 2"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel3
+        title: '"CAN Output 3"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel4
+        title: '"CAN Output 4"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel5
+        title: '"CAN Output 5"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel6
+        title: '"CAN Output 6"'
+        condition: enable_intcandata_out
+      - name: canoutput_sel7
+        title: '"CAN Output 7"'
+        condition: enable_intcandata_out
+  canoutput_parameter_group:
+    name: canoutput_parameter_group
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Output Parameter Group"'
+        condition: ''
+      - name: 'canoutput_param_group[0]'
+        title: '""'
+        condition: canoutput_sel0 && enable_intcandata_out
+      - name: 'canoutput_param_group[1]'
+        title: '""'
+        condition: canoutput_sel1 && enable_intcandata_out
+      - name: 'canoutput_param_group[2]'
+        title: '""'
+        condition: canoutput_sel3 && enable_intcandata_out
+      - name: 'canoutput_param_group[3]'
+        title: '""'
+        condition: canoutput_sel3 && enable_intcandata_out
+      - name: 'canoutput_param_group[4]'
+        title: '""'
+        condition: canoutput_sel4 && enable_intcandata_out
+      - name: 'canoutput_param_group[5]'
+        title: '""'
+        condition: canoutput_sel5 && enable_intcandata_out
+      - name: 'canoutput_param_group[6]'
+        title: '""'
+        condition: canoutput_sel6 && enable_intcandata_out
+      - name: 'canoutput_param_group[7]'
+        title: '""'
+        condition: canoutput_sel7 && enable_intcandata_out
+  canoutput_parameter_start_byte:
+    name: canoutput_parameter_start_byte
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Output Parameter Start Byte"'
+        condition: ''
+      - name: canoutput_param_start_byte0
+        title: '""'
+        condition: canoutput_sel0 && enable_intcandata_out
+      - name: canoutput_param_start_byte1
+        title: '""'
+        condition: canoutput_sel1 && enable_intcandata_out
+      - name: canoutput_param_start_byte2
+        title: '""'
+        condition: canoutput_sel2 && enable_intcandata_out
+      - name: canoutput_param_start_byte3
+        title: '""'
+        condition: canoutput_sel3 && enable_intcandata_out
+      - name: canoutput_param_start_byte4
+        title: '""'
+        condition: canoutput_sel4 && enable_intcandata_out
+      - name: canoutput_param_start_byte5
+        title: '""'
+        condition: canoutput_sel5 && enable_intcandata_out
+      - name: canoutput_param_start_byte6
+        title: '""'
+        condition: canoutput_sel6 && enable_intcandata_out
+      - name: canoutput_param_start_byte7
+        title: '""'
+        condition: canoutput_sel7 && enable_intcandata_out
+  canoutput_parameter_num_byte:
+    name: canoutput_parameter_num_byte
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Output Parameter Number of Bytes"'
+        condition: ''
+      - name: canoutput_param_num_bytes0
+        title: '""'
+        condition: canoutput_sel0 && enable_intcandata_out
+      - name: canoutput_param_num_bytes1
+        title: '""'
+        condition: canoutput_sel1 && enable_intcandata_out
+      - name: canoutput_param_num_bytes2
+        title: '""'
+        condition: canoutput_sel2 && enable_intcandata_out
+      - name: canoutput_param_num_bytes3
+        title: '""'
+        condition: canoutput_sel3 && enable_intcandata_out
+      - name: canoutput_param_num_bytes4
+        title: '""'
+        condition: canoutput_sel4 && enable_intcandata_out
+      - name: canoutput_param_num_bytes5
+        title: '""'
+        condition: canoutput_sel5 && enable_intcandata_out
+      - name: canoutput_param_num_bytes6
+        title: '""'
+        condition: canoutput_sel6 && enable_intcandata_out
+      - name: canoutput_param_num_bytes7
+        title: '""'
+        condition: canoutput_sel7 && enable_intcandata_out
+  canoutconfig_blank1:
+    name: canoutconfig_blank1
+    title: ''
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+  Canout_config1:
+    name: Canout_config1
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields: []
+  Canout_config2:
+    name: Canout_config2
+    title: CAN Data Out
+    layout: ''
+    panels: {}
+    fields:
+      - name: enable_intcandata_out
+        title: '"Enable CanBus data Output"'
+        condition: ''
+  Canout_config:
+    name: Canout_config
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields: []
+  can_serial3IO:
+    name: can_serial3IO
+    title: CanBus/Secondary Serial IO interface
+    layout: ''
+    panels: {}
+    fields:
+      - name: enable_secondarySerial
+        title: '"Enable Second Serial"'
+        condition: ''
+      - name: enable_intcan
+        title: '"Enable Internal Canbus"'
+        condition: ''
+      - name: 'true_address {enable_secondarySerial||enable_intcan}'
+        title: '"True Canbus Address"'
+        condition: ''
+      - name: divider
+        title: >-
+          "NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
+          the True Address as they are reserved for future expansion"
+        condition: ''
+      - name: 'realtime_base_address {enable_secondarySerial||enable_intcan}'
+        title: '"Realtime Data Base Can Address"'
+        condition: ''
+      - name: obd_address
+        title: '"Speeduino OBD address"'
+        condition: ''
+  serial3IO:
+    name: serial3IO
+    title: Secondary Serial IO interface
+    layout: ''
+    panels: {}
+    fields:
+      - name: enable_secondarySerial
+        title: '"Enable Second Serial"'
+        condition: ''
+      - name: enable_intcan
+        title: '"Enable Internal Canbus"'
+        condition: ''
+      - name: 'true_address {enable_secondarySerial||enable_intcan}'
+        title: '"True Canbus Address"'
+        condition: ''
+      - name: divider
+        title: >-
+          "NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
+          the True Address as they are reserved for future expansion"
+        condition: ''
+      - name: 'realtime_base_address {enable_secondarySerial||enable_intcan}'
+        title: '"Realtime Data Base Can Address"'
+        condition: ''
+      - name: obd_address
+        title: '"Speeduino OBD address"'
+        condition: ''
+  reset_control:
+    name: reset_control
+    title: Reset Control
+    layout: ''
+    panels: {}
+    fields:
+      - name: resetControl
+        title: '"Control Type"'
+        condition: ''
+      - name: resetControlPin
+        title: '"Control Pin"'
+        condition: ''
+  Auxinput_pin_selection:
+    name: Auxinput_pin_selection
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"             Source"'
+        condition: ''
+      - name: Auxin0pina
+        title: '"Local Analog Source 0                 Pin No:"'
+        condition: ''
+      - name: Auxin0pinb
+        title: '"Local Digital Source 0                  Pin No:"'
+        condition: ''
+      - name: Auxin1pina
+        title: '"Local Analog Source 1                 Pin No:"'
+        condition: ''
+      - name: Auxin1pinb
+        title: '"Local Digital Source 1                  Pin No:"'
+        condition: ''
+      - name: Auxin2pina
+        title: '"Local Analog Source 2                 Pin No:"'
+        condition: ''
+      - name: Auxin2pinb
+        title: '"Local Digital Source 2                  Pin No:"'
+        condition: ''
+      - name: Auxin3pina
+        title: '"Local Analog Source 3                 Pin No:"'
+        condition: ''
+      - name: Auxin3pinb
+        title: '"Local Digital Source 3                  Pin No:"'
+        condition: ''
+      - name: Auxin4pina
+        title: '"Local Analog Source 4                 Pin No:"'
+        condition: ''
+      - name: Auxin4pinb
+        title: '"Local Digital Source 4                  Pin No:"'
+        condition: ''
+      - name: Auxin5pina
+        title: '"Local Analog Source 5                 Pin No:"'
+        condition: ''
+      - name: Auxin5pinb
+        title: '"Local Digital Source 5                  Pin No:"'
+        condition: ''
+      - name: Auxin6pina
+        title: '"Local Analog Source 6                 Pin No:"'
+        condition: ''
+      - name: Auxin6pinb
+        title: '"Local Digital Source 6                  Pin No:"'
+        condition: ''
+      - name: Auxin7pina
+        title: '"Local Analog Source 7                 Pin No:"'
+        condition: ''
+      - name: Auxin7pinb
+        title: '"Local Digital Source 7                  Pin No:"'
+        condition: ''
+      - name: Auxin8pina
+        title: '"Local Analog Source 8                 Pin No:"'
+        condition: ''
+      - name: Auxin8pinb
+        title: '"Local Digital Source 8                  Pin No:"'
+        condition: ''
+      - name: Auxin9pina
+        title: '"Local Analog Source 9                 Pin No:"'
+        condition: ''
+      - name: Auxin9pinb
+        title: '"Local Digital Source 9                  Pin No:"'
+        condition: ''
+      - name: Auxin10pina
+        title: '"Local Analog Source 10                 Pin No:"'
+        condition: ''
+      - name: Auxin10pinb
+        title: '"Local Digital Source 10                  Pin No:"'
+        condition: ''
+      - name: Auxin11pina
+        title: '"Local Analog Source 11                 Pin No:"'
+        condition: ''
+      - name: Auxin11pinb
+        title: '"Local Digital Source 11                  Pin No:"'
+        condition: ''
+      - name: Auxin12pina
+        title: '"Local Analog Source 12                 Pin No:"'
+        condition: ''
+      - name: Auxin12pinb
+        title: '"Local Digital Source 12                  Pin No:"'
+        condition: ''
+      - name: Auxin13pina
+        title: '"Local Analog Source 13                 Pin No:"'
+        condition: ''
+      - name: Auxin13pinb
+        title: '"Local Digital Source 13                  Pin No:"'
+        condition: ''
+      - name: Auxin14pina
+        title: '"Local Analog Source 14                 Pin No:"'
+        condition: ''
+      - name: Auxin14pinb
+        title: '"Local Digital Source 14                  Pin No:"'
+        condition: ''
+      - name: Auxin15pina
+        title: '"Local Analog Source 15                 Pin No:"'
+        condition: ''
+      - name: Auxin15pinb
+        title: '"Local Digital Source 15                  Pin No:"'
+        condition: ''
+  Auxinput_alias:
+    name: Auxinput_alias
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Input Alias"'
+        condition: ''
+      - name: AUXin00Alias
+        title: '""'
+        condition: >-
+          (caninput_sel0a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel0b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin01Alias
+        title: '""'
+        condition: >-
+          (caninput_sel1a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel1b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin02Alias
+        title: '""'
+        condition: >-
+          (caninput_sel2a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel2b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin03Alias
+        title: '""'
+        condition: >-
+          (caninput_sel3a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel3b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin04Alias
+        title: '""'
+        condition: >-
+          (caninput_sel4a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel4b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin05Alias
+        title: '""'
+        condition: >-
+          (caninput_sel5a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel5b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin06Alias
+        title: '""'
+        condition: >-
+          (caninput_sel6a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel6b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin07Alias
+        title: '""'
+        condition: >-
+          (caninput_sel7a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel7b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin08Alias
+        title: '""'
+        condition: >-
+          (caninput_sel8a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel8b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin09Alias
+        title: '""'
+        condition: >-
+          (caninput_sel9a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel9b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin10Alias
+        title: '""'
+        condition: >-
+          (caninput_sel10a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel10b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin11Alias
+        title: '""'
+        condition: >-
+          (caninput_sel11a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel11b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin12Alias
+        title: '""'
+        condition: >-
+          (caninput_sel12a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel12b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin13Alias
+        title: '""'
+        condition: >-
+          (caninput_sel13a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel13b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin14Alias
+        title: '""'
+        condition: >-
+          (caninput_sel14a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel14b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+      - name: AUXin15Alias
+        title: '""'
+        condition: >-
+          (caninput_sel15a && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
+          (enable_secondarySerial || (enable_intcan && intcan_available)))
+  Auxinput_channelenable:
+    name: Auxinput_channelenable
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"               Aux Input Channel Enable"'
+        condition: ''
+      - name: 'caninput_sel0a {}'
+        title: '"AUX Input 0"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel0b {}'
+        title: '"AUX Input 0"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel1a {}'
+        title: '"AUX Input 1"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel1b {}'
+        title: '"AUX Input 1"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel2a {}'
+        title: '"AUX Input 2"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel2b {}'
+        title: '"AUX Input 2"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel3a {}'
+        title: '"AUX Input 3"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel3b {}'
+        title: '"AUX Input 3"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel4a {}'
+        title: '"AUX Input 4"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel4b {}'
+        title: '"AUX Input 4"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel5a {}'
+        title: '"AUX Input 5"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel5b {}'
+        title: '"AUX Input 5"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel6a {}'
+        title: '"AUX Input 6"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel6b {}'
+        title: '"AUX Input 6"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel7a {}'
+        title: '"AUX Input 7"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel7b {}'
+        title: '"AUX Input 7"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel8a {}'
+        title: '"AUX Input 8"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel8b {}'
+        title: '"AUX Input 8"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel9a {}'
+        title: '"AUX Input 9"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel9b {}'
+        title: '"AUX Input 9"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel10a {}'
+        title: '"AUX Input 10"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel10b {}'
+        title: '"AUX Input 10"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel11a {}'
+        title: '"AUX Input 11"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel11b {}'
+        title: '"AUX Input 11"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel12a {}'
+        title: '"AUX Input 12"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel12b {}'
+        title: '"AUX Input 12"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel13a {}'
+        title: '"AUX Input 13"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel13b {}'
+        title: '"AUX Input 13"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel14a {}'
+        title: '"AUX Input 14"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel14b {}'
+        title: '"AUX Input 14"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+      - name: 'caninput_sel15a {}'
+        title: '"AUX Input 15"'
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
+      - name: 'caninput_sel15b {}'
+        title: '"AUX Input 15"'
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
+  Auxin_south:
+    name: Auxin_south
+    title: Auxillary Input Configuration
+    layout: xAxis
+    panels: {}
+    fields: []
+  Auxin_config:
+    name: Auxin_config
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields: []
+  gaugeLimits:
+    name: gaugeLimits
+    title: Gauge Limits
+    layout: ''
+    panels: {}
+    fields:
+      - name: divider
+        title: '"#RPM"'
+        condition: ''
+      - name: rpmwarn
+        title: '"Warning"'
+        condition: ''
+      - name: rpmdang
+        title: '"Danger"'
+        condition: ''
+      - name: rpmhigh
+        title: '"High"'
+        condition: ''
+      - name: divider
+        title: '"#MAP"'
+        condition: ''
+      - name: mapwarn
+        title: '"Warning"'
+        condition: ''
+      - name: mapdang
+        title: '"Danger"'
+        condition: ''
+      - name: maphigh
+        title: '"High"'
+        condition: ''
+      - name: divider
+        title: '!"Reload project to update gauges"'
+        condition: ''
+  io_summary:
+    name: io_summary
+    title: I/O Summary
+    layout: ''
+    panels: {}
+    fields: []
+  prgm_out_pin_selection_1:
+    name: prgm_out_pin_selection_1
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: outputInverted0
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: outputInverted1
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: outputInverted2
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: outputInverted3
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: outputInverted4
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: outputInverted5
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: outputInverted6
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: outputInverted7
+        title: '""'
+        condition: 'outputPin[7]'
+  prgm_out_pin_selection_2:
+    name: prgm_out_pin_selection_2
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: firstDataIn0
+        title: '"if("'
+        condition: 'outputPin[0]'
+      - name: firstDataIn1
+        title: '"if("'
+        condition: 'outputPin[1]'
+      - name: firstDataIn2
+        title: '"if("'
+        condition: 'outputPin[2]'
+      - name: firstDataIn3
+        title: '"if("'
+        condition: 'outputPin[3]'
+      - name: firstDataIn4
+        title: '"if("'
+        condition: 'outputPin[4]'
+      - name: firstDataIn5
+        title: '"if("'
+        condition: 'outputPin[5]'
+      - name: firstDataIn6
+        title: '"if("'
+        condition: 'outputPin[6]'
+      - name: firstDataIn7
+        title: '"if("'
+        condition: 'outputPin[7]'
+  prgm_out_pin_selection_3:
+    name: prgm_out_pin_selection_3
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: firstCompType0
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: firstCompType1
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: firstCompType2
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: firstCompType3
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: firstCompType4
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: firstCompType5
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: firstCompType6
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: firstCompType7
+        title: '""'
+        condition: 'outputPin[7]'
+  prgm_out_pin_selection_4:
+    name: prgm_out_pin_selection_4
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: 'firstTarget[0]'
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: 'firstTarget[1]'
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: 'firstTarget[2]'
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: 'firstTarget[3]'
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: 'firstTarget[4]'
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: 'firstTarget[5]'
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: 'firstTarget[6]'
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: 'firstTarget[7]'
+        title: '""'
+        condition: 'outputPin[7]'
+  prgm_out_pin_selection_5:
+    name: prgm_out_pin_selection_5
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: bitwise0
+        title: '")"'
+        condition: 'outputPin[0]'
+      - name: bitwise1
+        title: '")"'
+        condition: 'outputPin[1]'
+      - name: bitwise2
+        title: '")"'
+        condition: 'outputPin[2]'
+      - name: bitwise3
+        title: '")"'
+        condition: 'outputPin[3]'
+      - name: bitwise4
+        title: '")"'
+        condition: 'outputPin[4]'
+      - name: bitwise5
+        title: '")"'
+        condition: 'outputPin[6]'
+      - name: bitwise6
+        title: '")"'
+        condition: 'outputPin[6]'
+      - name: bitwise7
+        title: '")"'
+        condition: 'outputPin[7]'
+  prgm_out_pin_selection_6:
+    name: prgm_out_pin_selection_6
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: secondDataIn0
+        title: '""'
+        condition: 'outputPin[0] && bitwise0'
+      - name: secondDataIn1
+        title: '""'
+        condition: 'outputPin[1] && bitwise1'
+      - name: secondDataIn2
+        title: '""'
+        condition: 'outputPin[2] && bitwise2'
+      - name: secondDataIn3
+        title: '""'
+        condition: 'outputPin[3] && bitwise3'
+      - name: secondDataIn4
+        title: '""'
+        condition: 'outputPin[4] && bitwise4'
+      - name: secondDataIn5
+        title: '""'
+        condition: 'outputPin[5] && bitwise5'
+      - name: secondDataIn6
+        title: '""'
+        condition: 'outputPin[6] && bitwise6'
+      - name: secondDataIn7
+        title: '""'
+        condition: 'outputPin[7] && bitwise7'
+  prgm_out_pin_selection_:
+    name: prgm_out_pin_selection_
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: 'firstTarget[0]'
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: 'firstTarget[1]'
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: 'firstTarget[2]'
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: 'firstTarget[3]'
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: 'firstTarget[4]'
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: 'firstTarget[5]'
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: 'firstTarget[6]'
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: 'firstTarget[7]'
+        title: '""'
+        condition: 'outputPin[7]'
+  prgm_out_pin_selection_7:
+    name: prgm_out_pin_selection_7
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: secondCompType0
+        title: '""'
+        condition: 'outputPin[0] && bitwise0'
+      - name: secondCompType1
+        title: '""'
+        condition: 'outputPin[1] && bitwise1'
+      - name: secondCompType2
+        title: '""'
+        condition: 'outputPin[2] && bitwise2'
+      - name: secondCompType3
+        title: '""'
+        condition: 'outputPin[3] && bitwise3'
+      - name: secondCompType4
+        title: '""'
+        condition: 'outputPin[4] && bitwise4'
+      - name: secondCompType5
+        title: '""'
+        condition: 'outputPin[5] && bitwise5'
+      - name: secondCompType6
+        title: '""'
+        condition: 'outputPin[6] && bitwise6'
+      - name: secondCompType6
+        title: '""'
+        condition: 'outputPin[7] && bitwise7'
+  prgm_out_pin_selection_8:
+    name: prgm_out_pin_selection_8
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: 'secondTarget[0]'
+        title: '""'
+        condition: 'outputPin[0] && bitwise0'
+      - name: 'secondTarget[1]'
+        title: '""'
+        condition: 'outputPin[1] && bitwise1'
+      - name: 'secondTarget[2]'
+        title: '""'
+        condition: 'outputPin[2] && bitwise2'
+      - name: 'secondTarget[3]'
+        title: '""'
+        condition: 'outputPin[3] && bitwise3'
+      - name: 'secondTarget[4]'
+        title: '""'
+        condition: 'outputPin[4] && bitwise4'
+      - name: 'secondTarget[5]'
+        title: '""'
+        condition: 'outputPin[5] && bitwise5'
+      - name: 'secondTarget[6]'
+        title: '""'
+        condition: 'outputPin[6] && bitwise6'
+      - name: 'secondTarget[7]'
+        title: '""'
+        condition: 'outputPin[7] && bitwise7'
+  prgm_out_pin_selection_9:
+    name: prgm_out_pin_selection_9
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '""'
+        condition: ''
+      - name: 'outputDelay[0]'
+        title: '"during"'
+        condition: 'outputPin[0]'
+      - name: 'outputDelay[1]'
+        title: '"during"'
+        condition: 'outputPin[1]'
+      - name: 'outputDelay[2]'
+        title: '"during"'
+        condition: 'outputPin[2]'
+      - name: 'outputDelay[3]'
+        title: '"during"'
+        condition: 'outputPin[3]'
+      - name: 'outputDelay[4]'
+        title: '"during"'
+        condition: 'outputPin[4]'
+      - name: 'outputDelay[5]'
+        title: '"during"'
+        condition: 'outputPin[5]'
+      - name: 'outputDelay[6]'
+        title: '"during"'
+        condition: 'outputPin[6]'
+      - name: 'outputDelay[7]'
+        title: '"during"'
+        condition: 'outputPin[7]'
+  prgm_out_alias:
+    name: prgm_out_alias
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"   Input Alias"'
+        condition: ''
+      - name: prgm_out00Alias
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: prgm_out01Alias
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: prgm_out02Alias
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: prgm_out03Alias
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: prgm_out04Alias
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: prgm_out05Alias
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: prgm_out06Alias
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: prgm_out07Alias
+        title: '""'
+        condition: 'outputPin[7]'
+  prgm_out_channelenable:
+    name: prgm_out_channelenable
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: divider
+        title: '"Pin No:"'
+        condition: ''
+      - name: outputPin0
+        title: '""'
+        condition: ''
+      - name: outputPin1
+        title: '""'
+        condition: ''
+      - name: outputPin2
+        title: '""'
+        condition: ''
+      - name: outputPin3
+        title: '""'
+        condition: ''
+      - name: outputPin4
+        title: '""'
+        condition: ''
+      - name: outputPin5
+        title: '""'
+        condition: ''
+      - name: outputPin6
+        title: '""'
+        condition: ''
+      - name: outputPin7
+        title: '""'
+        condition: ''
+  prgm_out_unique:
+    name: prgm_out_unique
+    title: ''
+    layout: xAxis
+    panels: {}
+    fields: []
+  prgm_out_rules_1_condition_1:
+    name: prgm_out_rules_1_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn0
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: firstCompType0
+        title: '""'
+        condition: 'outputPin[0]'
+      - name: 'firstTarget[0]'
+        title: '""'
+        condition: 'outputPin[0]'
+  prgm_out_rules_1_condition_2:
+    name: prgm_out_rules_1_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn0
+        title: '""'
+        condition: 'outputPin[0] && bitwise0'
+      - name: secondCompType0
+        title: '""'
+        condition: 'outputPin[0] && bitwise0'
+      - name: 'secondTarget[0]'
+        title: '""'
+        condition: 'outputPin[0] && bitwise0'
+  prgm_out_rules_2_condition_1:
+    name: prgm_out_rules_2_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn1
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: firstCompType1
+        title: '""'
+        condition: 'outputPin[1]'
+      - name: 'firstTarget[1]'
+        title: '""'
+        condition: 'outputPin[1]'
+  prgm_out_rules_2_condition_2:
+    name: prgm_out_rules_2_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn1
+        title: '""'
+        condition: 'outputPin[1] && bitwise1'
+      - name: secondCompType1
+        title: '""'
+        condition: 'outputPin[1] && bitwise1'
+      - name: 'secondTarget[1]'
+        title: '""'
+        condition: 'outputPin[1] && bitwise1'
+  prgm_out_rules_3_condition_1:
+    name: prgm_out_rules_3_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn2
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: firstCompType2
+        title: '""'
+        condition: 'outputPin[2]'
+      - name: 'firstTarget[2]'
+        title: '""'
+        condition: 'outputPin[2]'
+  prgm_out_rules_3_condition_2:
+    name: prgm_out_rules_3_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn2
+        title: '""'
+        condition: 'outputPin[2] && bitwise2'
+      - name: secondCompType2
+        title: '""'
+        condition: 'outputPin[2] && bitwise2'
+      - name: 'secondTarget[2]'
+        title: '""'
+        condition: 'outputPin[2] && bitwise2'
+  prgm_out_rules_4_condition_1:
+    name: prgm_out_rules_4_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn3
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: firstCompType3
+        title: '""'
+        condition: 'outputPin[3]'
+      - name: 'firstTarget[3]'
+        title: '""'
+        condition: 'outputPin[3]'
+  prgm_out_rules_4_condition_2:
+    name: prgm_out_rules_4_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn3
+        title: '""'
+        condition: 'outputPin[3] && bitwise3'
+      - name: secondCompType3
+        title: '""'
+        condition: 'outputPin[3] && bitwise3'
+      - name: 'secondTarget[3]'
+        title: '""'
+        condition: 'outputPin[3] && bitwise3'
+  prgm_out_rules_5_condition_1:
+    name: prgm_out_rules_5_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn4
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: firstCompType4
+        title: '""'
+        condition: 'outputPin[4]'
+      - name: 'firstTarget[4]'
+        title: '""'
+        condition: 'outputPin[4]'
+  prgm_out_rules_5_condition_2:
+    name: prgm_out_rules_5_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn4
+        title: '""'
+        condition: 'outputPin[4] && bitwise4'
+      - name: secondCompType4
+        title: '""'
+        condition: 'outputPin[4] && bitwise4'
+      - name: 'secondTarget[4]'
+        title: '""'
+        condition: 'outputPin[4] && bitwise4'
+  prgm_out_rules_6_condition_1:
+    name: prgm_out_rules_6_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn5
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: firstCompType5
+        title: '""'
+        condition: 'outputPin[5]'
+      - name: 'firstTarget[5]'
+        title: '""'
+        condition: 'outputPin[5]'
+  prgm_out_rules_6_condition_2:
+    name: prgm_out_rules_6_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn5
+        title: '""'
+        condition: 'outputPin[5] && bitwise5'
+      - name: secondCompType5
+        title: '""'
+        condition: 'outputPin[5] && bitwise5'
+      - name: 'secondTarget[5]'
+        title: '""'
+        condition: 'outputPin[5] && bitwise5'
+  prgm_out_rules_7_condition_1:
+    name: prgm_out_rules_7_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn6
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: firstCompType6
+        title: '""'
+        condition: 'outputPin[6]'
+      - name: 'firstTarget[6]'
+        title: '""'
+        condition: 'outputPin[6]'
+  prgm_out_rules_7_condition_2:
+    name: prgm_out_rules_7_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn6
+        title: '""'
+        condition: 'outputPin[6] && bitwise6'
+      - name: secondCompType6
+        title: '""'
+        condition: 'outputPin[6] && bitwise6'
+      - name: 'secondTarget[6]'
+        title: '""'
+        condition: 'outputPin[6] && bitwise6'
+  prgm_out_rules_8_condition_1:
+    name: prgm_out_rules_8_condition_1
+    title: Condition 1
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: firstDataIn7
+        title: '""'
+        condition: 'outputPin[7]'
+      - name: firstCompType7
+        title: '""'
+        condition: 'outputPin[7]'
+      - name: 'firstTarget[7]'
+        title: '""'
+        condition: 'outputPin[7]'
+  prgm_out_rules_8_condition_2:
+    name: prgm_out_rules_8_condition_2
+    title: Condition 2
+    layout: xAxis
+    panels: {}
+    fields:
+      - name: secondDataIn7
+        title: '""'
+        condition: 'outputPin[7] && bitwise7'
+      - name: secondCompType7
+        title: '""'
+        condition: 'outputPin[7] && bitwise7'
+      - name: 'secondTarget[7]'
+        title: '""'
+        condition: 'outputPin[7] && bitwise7'
+  prgm_out_rules_1:
+    name: prgm_out_rules_1
+    title: Rule 1
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin0
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out00Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[0]'
+      - name: outputInverted0
+        title: '"Output Polarity"'
+        condition: 'outputPin[0]'
+      - name: 'outputDelay[0]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[0]'
+      - name: bitwise0
+        title: '"2nd Condition"'
+        condition: 'outputPin[0]'
+  prgm_out_rules_2:
+    name: prgm_out_rules_2
+    title: Rule 2
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin1
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out01Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[1]'
+      - name: outputInverted1
+        title: '"Output Polarity"'
+        condition: 'outputPin[1]'
+      - name: 'outputDelay[1]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[1]'
+      - name: bitwise1
+        title: '"2nd Condition"'
+        condition: 'outputPin[1]'
+  prgm_out_rules_3:
+    name: prgm_out_rules_3
+    title: Rule 3
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin2
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out02Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[2]'
+      - name: outputInverted2
+        title: '"Output Polarity"'
+        condition: 'outputPin[2]'
+      - name: 'outputDelay[2]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[2]'
+      - name: bitwise2
+        title: '"2nd Condition"'
+        condition: 'outputPin[2]'
+  prgm_out_rules_4:
+    name: prgm_out_rules_4
+    title: Rule 4
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin3
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out03Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[3]'
+      - name: outputInverted3
+        title: '"Output Polarity"'
+        condition: 'outputPin[3]'
+      - name: 'outputDelay[3]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[3]'
+      - name: bitwise3
+        title: '"2nd Condition"'
+        condition: 'outputPin[3]'
+  prgm_out_rules_5:
+    name: prgm_out_rules_5
+    title: Rule 5
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin4
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out04Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[4]'
+      - name: outputInverted4
+        title: '"Output Polarity"'
+        condition: 'outputPin[4]'
+      - name: 'outputDelay[4]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[4]'
+      - name: bitwise4
+        title: '"2nd Condition"'
+        condition: 'outputPin[4]'
+  prgm_out_rules_6:
+    name: prgm_out_rules_6
+    title: Rule 6
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin5
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out05Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[5]'
+      - name: outputInverted5
+        title: '"Output Polarity"'
+        condition: 'outputPin[5]'
+      - name: 'outputDelay[5]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[5]'
+      - name: bitwise5
+        title: '"2nd Condition"'
+        condition: 'outputPin[5]'
+  prgm_out_rules_7:
+    name: prgm_out_rules_7
+    title: Rule 7
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin6
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out06Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[6]'
+      - name: outputInverted6
+        title: '"Output Polarity"'
+        condition: 'outputPin[6]'
+      - name: 'outputDelay[6]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[6]'
+      - name: bitwise6
+        title: '"2nd Condition"'
+        condition: 'outputPin[6]'
+  prgm_out_rules_8:
+    name: prgm_out_rules_8
+    title: Rule 8
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: outputPin7
+        title: '"Output Pin Num"'
+        condition: ''
+      - name: prgm_out07Alias
+        title: '"Rule Alias"'
+        condition: 'outputPin[7]'
+      - name: outputInverted7
+        title: '"Output Polarity"'
+        condition: 'outputPin[7]'
+      - name: 'outputDelay[7]'
+        title: '"Activation Delay"'
+        condition: 'outputPin[7]'
+      - name: bitwise7
+        title: '"2nd Condition"'
+        condition: 'outputPin[7]'
+  prgm_out_rules_master:
+    name: prgm_out_rules_master
+    title: ''
+    layout: ''
+    panels:
+      prgm_out_rules_1:
+        name: prgm_out_rules_1
+        layout: Center
+        condition: prgm_out_selection == 0
+      prgm_out_rules_2:
+        name: prgm_out_rules_2
+        layout: Center
+        condition: prgm_out_selection == 1
+      prgm_out_rules_3:
+        name: prgm_out_rules_3
+        layout: Center
+        condition: prgm_out_selection == 2
+      prgm_out_rules_4:
+        name: prgm_out_rules_4
+        layout: Center
+        condition: prgm_out_selection == 3
+      prgm_out_rules_5:
+        name: prgm_out_rules_5
+        layout: Center
+        condition: prgm_out_selection == 4
+      prgm_out_rules_6:
+        name: prgm_out_rules_6
+        layout: Center
+        condition: prgm_out_selection == 5
+      prgm_out_rules_7:
+        name: prgm_out_rules_7
+        layout: Center
+        condition: prgm_out_selection == 6
+      prgm_out_rules_8:
+        name: prgm_out_rules_8
+        layout: Center
+        condition: prgm_out_selection == 7
+    fields: []
+  prgm_out_config:
+    name: prgm_out_config
+    title: ''
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: prgm_out_selection
+        title: '"Select Rule Number"'
+        condition: ''

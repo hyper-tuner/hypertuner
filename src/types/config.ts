@@ -8,15 +8,21 @@ interface Field extends Entity {
   condition: string,
 }
 
-interface Group extends Entity {
-  fields: Field[],
+interface Panel {
+  name: string,
+  layout: string,
+  condition: string,
 }
 
 interface Dialog extends Entity {
+  layout: string,
   help: {
     link: string,
   },
-  groups: Group[],
+  panels: {
+    [name: string]: Panel,
+  },
+  fields: Field,
 }
 
 interface SubMenu extends Entity {}
@@ -66,13 +72,15 @@ interface Config {
   constants: {
     pages: Page[],
   },
-  dialogs: Dialog[],
+  dialogs: {
+    [name: string]: Dialog,
+  },
   menus: Menu[],
 }
 
 export type {
   Field,
-  Group,
+  Panel,
   Dialog,
   SubMenu,
   Menu,
