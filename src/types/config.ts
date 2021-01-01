@@ -39,12 +39,13 @@ interface Constant {
   type: 'scalar' | 'bits' | 'array',
   size: 'U08' | 'S08' | 'U16' | 'S16'
   offset: number,
+  address: BitsAddress,
   units: string,
   scale: number,
   transform: number,
   min: number,
   max: number,
-  address: BitsAddress,
+  digits: number,
   shape: ArrayShape,
   values: string[],
 }

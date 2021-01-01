@@ -125,12 +125,18 @@ class Parser {
     if (!match) {
       throw new Error(`Unable to parse line: ${input}`);
     }
+    const [columns, rows] = match.groups.shape
+      .split('x')
+      .map((val) => val.trim());
 
     return {
       type: match.groups.type,
       size: match.groups.size,
       offset: Number(match.groups.offset),
-      shape: match.groups.shape, // TODO: shape
+      shape: {
+        columns: Number(columns),
+        rows: Number(rows || 0),
+      },
       units: match.groups.units,
       scale: Number(match.groups.scale),
       transform: Number(match.groups.transform),
