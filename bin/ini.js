@@ -6,30 +6,17 @@ const path = require('path');
 console.log('------- start --------');
 
 class Parser {
-
-  // const args = process.argv.slice(2);
-
-  // const showUsage = () => {
-  //   process.exit(1);
-  // };
-
   constructor(buffer) {
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.BASE_PATTERN = '^(?<type>scalar|bits|array),\\s*(?<size>[A-Z\\d]+),\\s*(?<offset>\\d+)';
-    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),\\s*(?<min>[\\-\\d.]+),\\s*(?<max>[\\-\\d.]+),\\s*(?<unknown>[\\d.]+)`;
-
+    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),\\s*(?<min>[\\-\\d.]+),\\s*(?<max>[\\-\\d.]+),\\s*(?<digits>[\\d.]+)`;
     this.FIRST_PATTERN  = new RegExp(`${this.BASE_PATTERN}.+`);
-
     this.SCALAR_PATTERN = new RegExp(`${this.BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
     this.BITS_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
-    this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*(?<shape>.+),*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.lines = buffer.toString().split('\n');
-    this.page = {
-      number: 1,
-      size: 128,
-      constants: {},
-    };
+    this.pages = [];
   }
 
   parse() {
@@ -41,10 +28,18 @@ class Parser {
       }
     }
 
-    return this.page;
+    return this.pages;
   }
 
   parsePages() {
+    const constants = {};
+
+    this.pages[0] = {
+      number: 1,
+      size: 128,
+      constants: {},
+    };
+
     this.lines.forEach((line) => {
       const trimmed = line.trim();
       if (trimmed === '' || trimmed.startsWith(';')) {
@@ -73,86 +68,90 @@ class Parser {
         return;
       }
 
-      // TODO: handle this somehow?
+      // TODO: handle this somehow
       // key already exists - IF ELSE most likely
-      if (name in this.page.constants) {
+      if (name in constants) {
         return;
       }
 
-      this.page.constants[name] = {
-        type: match.groups.type,
-        size: match.groups.size,
-        offset: Number(match.groups.offset),
-      };
-
       switch (match.groups.type) {
         case 'scalar':
-          this.parseScalar(name, rest);
+          constants[name] = this.parseScalar(rest);
           break;
         case 'array':
-          this.parseArray(name, rest);
+          constants[name] = this.parseArray(rest);
           break;
         case 'bits':
-          this.parseBits(name, rest);
+          // TODO: handle this case
+          if (name === 'unused_fan_bits') {
+            return;
+          }
+          constants[name] = this.parseBits(rest);
           break;
 
         default:
           throw new Error(`Unsupported type: ${match.groups.type}`);
       }
+
+      this.pages[0].constants = {
+        ...this.pages[0].constants,
+        constants,
+      };
     });
   }
 
-  parseScalar(name, input) {
+  parseScalar(input) {
     const match = input.match(this.SCALAR_PATTERN);
     if (!match) {
-      throw new Error(`Unable to parse [${name}]: ${input}`);
+      throw new Error(`Unable to parse line: ${input}`);
     }
 
-    this.page.constants[name] = {
-      ...this.page.constants[name],
+    return {
+      type: match.groups.type,
+      size: match.groups.size,
+      offset: Number(match.groups.offset),
       units: match.groups.units,
       scale: Number(match.groups.scale),
       transform: Number(match.groups.transform),
       min: Number(match.groups.min),
       max: Number(match.groups.max),
-      unknown: Number(match.groups.unknown),
+      digits: Number(match.groups.digits),
       comments: Parser.sanitizeComments(match.groups.comments),
     };
   }
 
-  parseArray(name, input) {
+  parseArray(input) {
     const match = input.match(this.ARRAY_PATTERN);
     if (!match) {
-      throw new Error(`Unable to parse [${name}]: ${input}`);
+      throw new Error(`Unable to parse line: ${input}`);
     }
 
-    this.page.constants[name] = {
-      ...this.page.constants[name],
+    return {
+      type: match.groups.type,
+      size: match.groups.size,
+      offset: Number(match.groups.offset),
       shape: match.groups.shape, // TODO: shape
       units: match.groups.units,
       scale: Number(match.groups.scale),
       transform: Number(match.groups.transform),
       min: Number(match.groups.min),
       max: Number(match.groups.max),
-      unknown: Number(match.groups.unknown),
+      digits: Number(match.groups.digits),
       comments: Parser.sanitizeComments(match.groups.comments),
     };
   }
 
-  parseBits(name, input) {
+  parseBits(input) {
     const match = input.match(this.BITS_PATTERN);
 
-    // TODO: handle this case
-    if (name === 'unused_fan_bits') {
-      return;
-    }
-
     if (!match) {
-      throw new Error(`Unable to parse [${name}]: ${input}`);
+      throw new Error(`Unable to parse line: ${input}`);
     }
 
-    this.page.constants[name] = {
-      ...this.page.constants[name],
+    return {
+      type: match.groups.type,
+      size: match.groups.size,
+      offset: Number(match.groups.offset),
       address: {
         from: Number(match.groups.from),
         to: Number(match.groups.to),
@@ -169,6 +168,6 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/constants.ini'))
 ).parse();
 
-console.dir(result.constants, { maxArrayLength: 10 });
+console.dir(result[0].constants, { maxArrayLength: 10, depth: null });
 
 console.log('------- end --------');
