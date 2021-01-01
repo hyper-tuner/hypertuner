@@ -81,9 +81,10 @@ const Dialog = ({
         <Divider>{group.title}</Divider>
         {(group.fields || []).map((field: FieldType) => {
           const pageFound = config
+            .constants
             .pages
-            .find((page: PageType) => field.name in page.constants) || { constants: {} } as PageType;
-          const constant = pageFound.constants[field.name];
+            .find((page: PageType) => field.name in page.data) || { data: {} } as PageType;
+          const constant = pageFound.data[field.name];
           const tuneField = tune.constants[field.name];
           let input;
 

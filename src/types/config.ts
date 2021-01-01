@@ -57,13 +57,15 @@ interface Constants {
 interface Page {
   number: number,
   size: number,
-  constants: Constants,
+  data: Constants,
 }
 
 interface Config {
   apiVersion: string,
   signature: string,
-  pages: Page[],
+  constants: {
+    pages: Page[],
+  },
   dialogs: Dialog[],
   menus: Menu[],
 }

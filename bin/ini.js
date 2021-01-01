@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
 console.log('------- start --------');
 
@@ -69,7 +70,7 @@ class Parser {
     const pageMatch = line.match(/^page\s*=\s*(?<page>\d+)/);
     if (pageMatch) {
       this.currentPage = Number(pageMatch.groups.page);
-      this.result.constants.pages[this.currentPage] = {
+      this.result.constants.pages[this.currentPage - 1] = {
         number: this.currentPage,
         size: 111,
         data: {},
@@ -96,7 +97,7 @@ class Parser {
 
     // TODO: handle this somehow
     // key already exists - IF ELSE most likely
-    if (name in this.result.constants.pages[this.currentPage].data) {
+    if (name in this.result.constants.pages[this.currentPage - 1].data) {
       return;
     }
 
@@ -119,7 +120,7 @@ class Parser {
         throw new Error(`Unsupported type: ${match.groups.type}`);
     }
 
-    this.result.constants.pages[this.currentPage].data[name] = constant;
+    this.result.constants.pages[this.currentPage - 1].data[name] = constant;
   }
 
   parseScalar(input) {
@@ -193,9 +194,13 @@ class Parser {
 }
 
 const result = new Parser(
-  fs.readFileSync(path.join(__dirname, '/constants.ini'))
+  fs.readFileSync(path.join(__dirname, '/constants.ini'), 'utf8')
 ).parse();
 
-console.dir(result.constants.pages[1], { maxArrayLength: 1000, depth: null });
+// console.dir(result.constants.pages[1], { maxArrayLength: 1000, depth: null });
+// console.dir(yaml.dump(result), { maxArrayLength: 1000, depth: null });
+// console.dir(yaml.dump({ asd: 123, 'sd-asd': 22 }), { maxArrayLength: 1000, depth: null });
+
+fs.writeFileSync(path.join(__dirname, '/generated.yml'), yaml.dump(result));
 
 console.log('------- end --------');
