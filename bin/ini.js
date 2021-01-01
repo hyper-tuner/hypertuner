@@ -14,18 +14,15 @@ class Parser {
   // };
 
   constructor(buffer) {
+    this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.BASE_PATTERN = '^(?<type>scalar|bits|array),\\s*(?<size>[A-Z\\d]+),\\s*(?<offset>\\d+)';
-    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.+)",\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),\\s*(?<min>[\\-\\d.]+),\\s*(?<max>[\\-\\d.]+),\\s*(?<unknown>[\\d.]+)`;
+    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.+)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),\\s*(?<min>[\\-\\d.]+),\\s*(?<max>[\\-\\d.]+),\\s*(?<unknown>[\\d.]+)`;
+
     this.FIRST_PATTERN  = new RegExp(`${this.BASE_PATTERN}.+`);
-    this.SCALAR_PATTERN = new RegExp(
-      `${this.BASE_PATTERN},${this.SCALAR_BASE_PATTERN}$`
-    );
-    this.BITS_PATTERN = new RegExp(
-      `${this.BASE_PATTERN},\\s*\\[(?<from>\\d):(?<to>\\d)\\],\\s*(?<values>.+)`
-    );
-    this.ARRAY_PATTERN = new RegExp(
-      `${this.BASE_PATTERN},\\s*(?<shape>.+),${this.SCALAR_BASE_PATTERN}$`
-    );
+
+    this.SCALAR_PATTERN = new RegExp(`${this.BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.BITS_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<from>\\d):(?<to>\\d)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
+    this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*(?<shape>.+),${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.lines = buffer.toString().split('\n');
     this.page = {
@@ -49,6 +46,11 @@ class Parser {
 
       const match = rest.match(this.FIRST_PATTERN);
       if (!match) {
+        return;
+      }
+
+      // not an actual constant
+      if (name === 'divider') {
         return;
       }
 
@@ -97,6 +99,7 @@ class Parser {
       min: Number(match.groups.min),
       max: Number(match.groups.max),
       unknown: Number(match.groups.unknown),
+      comments: match.groups.comments,
     };
   }
 
@@ -115,11 +118,18 @@ class Parser {
       min: Number(match.groups.min),
       max: Number(match.groups.max),
       unknown: Number(match.groups.unknown),
+      comments: match.groups.comments,
     };
   }
 
   parseBits(name, input) {
     const match = input.match(this.BITS_PATTERN);
+
+    // TODO: handle this case
+    if (name === 'unused_fan_bits') {
+      return;
+    }
+
     if (!match) {
       throw new Error(`Unable to parse [${name}]: ${input}`);
     }
@@ -131,6 +141,7 @@ class Parser {
         to: Number(match.groups.to),
       },
       values: match.groups.values.split(',').map((val) => val.replace(/"/g, '').trim()),
+      comments: match.groups.comments,
     };
   }
 }
