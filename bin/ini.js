@@ -8,6 +8,11 @@ console.log('------- start --------');
 
 class Parser {
   constructor(buffer) {
+    this.DIALOG_PATTERN = /^dialog\s*=\s*(?<name>\w+),\s*"(?<title>.*)",*\s*(?<layout>xAxis|yAxis|border)*/;
+    this.PANEL_PATTERN = /^panel\s*=\s*(?<name>\w+),\s*(?<layout>\w+|{})*,*\s*({(?<condition>.+)})*/;
+    this.FIELD_PATTERN = /^field\s*=\s*(?<field>.+)/;
+    this.PAGE_PATTERN = /^page\s*=\s*(?<page>\d+)/;
+
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.BASE_PATTERN = '^(?<type>scalar|bits|array),\\s*(?<size>[A-Z\\d]+),\\s*(?<offset>\\d+)';
     this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),\\s*(?<min>[\\-\\d.]+),\\s*(?<max>[\\-\\d.]+),\\s*(?<digits>[\\d.]+)`;
@@ -70,7 +75,7 @@ class Parser {
   }
 
   parseUserDefined(line) {
-    const matchDialog = line.match(/^dialog\s*=\s*(?<name>\w+),\s*"(?<title>.*)",*\s*(?<layout>xAxis|yAxis|border)*/);
+    const matchDialog = line.match(this.DIALOG_PATTERN);
     if (matchDialog) {
       this.currentDialog = matchDialog.groups.name;
       this.result.dialogs[this.currentDialog] = {
@@ -84,7 +89,7 @@ class Parser {
       return;
     }
 
-    const matchPanel = line.match(/^panel\s*=\s*(?<name>\w+),\s*(?<layout>\w+|{})*,*\s*({(?<condition>.+)})*/);
+    const matchPanel = line.match(this.PANEL_PATTERN);
     if (matchPanel) {
       this.currentPanel = matchPanel.groups.name;
       this.result.dialogs[this.currentDialog].panels[this.currentPanel] = {
@@ -96,7 +101,7 @@ class Parser {
       return;
     }
 
-    const matchField = line.match(/^field\s*=\s*(?<field>.+)/);
+    const matchField = line.match(this.FIELD_PATTERN);
     if (matchField) {
       const [title, name, condition] = matchField.groups.field.split(',');
 
@@ -111,7 +116,7 @@ class Parser {
   parseConstants(line) {
     let constant;
 
-    const pageMatch = line.match(/^page\s*=\s*(?<page>\d+)/);
+    const pageMatch = line.match(this.PAGE_PATTERN);
     if (pageMatch) {
       this.currentPage = Number(pageMatch.groups.page);
       this.result.constants.pages[this.currentPage - 1] = {
