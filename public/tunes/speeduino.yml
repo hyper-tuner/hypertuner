@@ -8193,16 +8193,16 @@ dialogs:
     panels: {}
     fields:
       - name: stoich
-        title: '"Stoichiometric ratio"'
+        title: Stoichiometric ratio
         condition: ''
       - name: injLayout
-        title: '"Injector Layout"'
+        title: Injector Layout
         condition: ''
       - name: pinLayout
-        title: '"Board Layout"'
+        title: Board Layout
         condition: ''
       - name: mapSample
-        title: '"MAP Sample method"'
+        title: MAP Sample method
         condition: ''
   engine_constants_west:
     name: engine_constants_west
@@ -8221,13 +8221,13 @@ dialogs:
     panels: {}
     fields:
       - name: oddfire2
-        title: '"Channel 2 angle"'
+        title: Channel 2 angle
         condition: engineType == 1
       - name: oddfire3
-        title: '"Channel 3 angle"'
+        title: Channel 3 angle
         condition: engineType == 1 && nCylinders >= 3
       - name: oddfire4
-        title: '"Channel 4 angle"'
+        title: Channel 4 angle
         condition: engineType == 1 && nCylinders >= 4
   engine_constants_east:
     name: engine_constants_east
@@ -8240,7 +8240,7 @@ dialogs:
         condition: ''
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
   engine_constants_warning:
     name: engine_constants_warning
@@ -8250,8 +8250,8 @@ dialogs:
     fields:
       - name: '{}'
         title: >-
-          "!Warning: The board you have selected may not have enough channels
-          for sequential fuel!"
+          !Warning: The board you have selected may not have enough channels for
+          sequential fuel!
         condition: ''
   engine_constants:
     name: engine_constants
@@ -8278,13 +8278,13 @@ dialogs:
     panels: {}
     fields:
       - name: flexEnabled
-        title: '"Flex Fuel Sensor "'
+        title: Flex Fuel Sensor
         condition: ''
       - name: flexFreqLow
-        title: '"Low (E0) "'
+        title: Low (E0)
         condition: flexEnabled
       - name: flexFreqHigh
-        title: '"High (E100) "'
+        title: High (E100)
         condition: flexEnabled
   flexFuelWest:
     name: flexFuelWest
@@ -8359,16 +8359,16 @@ dialogs:
     panels: {}
     fields:
       - name: knock_mode
-        title: '"Knock Mode"'
+        title: Knock Mode
         condition: ''
       - name: knock_pin
-        title: '"Knock Pin"'
+        title: Knock Pin
         condition: knock_mode
       - name: knock_trigger
-        title: '"Knock active when pin is"'
+        title: Knock active when pin is
         condition: knock_mode == 1
       - name: knock_pullup
-        title: '"Use pullup"'
+        title: Use pullup
         condition: knock_mode == 1
   knock_settings_east:
     name: knock_settings_east
@@ -8377,46 +8377,46 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"#Detection"'
+        title: '#Detection'
         condition: ''
       - name: knock_count
-        title: '"Knock count required"'
+        title: Knock count required
         condition: knock_mode == 1
       - name: knock_threshold
-        title: '"Knock threshold required"'
+        title: Knock threshold required
         condition: knock_mode == 2
       - name: knock_maxMAP
-        title: '"Maximum MAP"'
+        title: Maximum MAP
         condition: knock_mode
       - name: knock_maxRPM
-        title: '"Maximum RPM"'
+        title: Maximum RPM
         condition: knock_mode
       - name: divider
-        title: '"#Retard"'
+        title: '#Retard'
         condition: ''
       - name: knock_maxRetard
-        title: '"Total retard"'
+        title: Total retard
         condition: knock_mode
       - name: knock_firstStep
-        title: '"First step size"'
+        title: First step size
         condition: knock_mode
       - name: knock_stepSize
-        title: '"Other step size"'
+        title: Other step size
         condition: knock_mode
       - name: knock_stepTime
-        title: '"Step time"'
+        title: Step time
         condition: knock_mode
       - name: divider
-        title: '"#Recovery"'
+        title: '#Recovery'
         condition: ''
       - name: knock_duration
-        title: '"Retard duration"'
+        title: Retard duration
         condition: 'knock_mode } ;Time before retard starts ending'
       - name: knock_recoveryStepTime
-        title: '"Recovery step time"'
+        title: Recovery step time
         condition: 'knock_mode } ;Time between each recovery step'
       - name: knock_recoveryStep
-        title: '"Recovery step size"'
+        title: Recovery step size
         condition: knock_mode
   knock_settings_top:
     name: knock_settings_top
@@ -8453,7 +8453,7 @@ dialogs:
     panels: {}
     fields:
       - name: vssRatio1
-        title: '"Speed ratio 1"'
+        title: Speed ratio 1
         condition: ''
   vss_gear_2:
     name: vss_gear_2
@@ -8462,7 +8462,7 @@ dialogs:
     panels: {}
     fields:
       - name: vssRatio2
-        title: '"Speed ratio 2"'
+        title: Speed ratio 2
         condition: ''
   vss_gear_3:
     name: vss_gear_3
@@ -8471,7 +8471,7 @@ dialogs:
     panels: {}
     fields:
       - name: vssRatio3
-        title: '"Speed ratio 3"'
+        title: Speed ratio 3
         condition: ''
   vss_gear_4:
     name: vss_gear_4
@@ -8480,7 +8480,7 @@ dialogs:
     panels: {}
     fields:
       - name: vssRatio4
-        title: '"Speed ratio 4"'
+        title: Speed ratio 4
         condition: ''
   vss_gear_5:
     name: vss_gear_5
@@ -8489,7 +8489,7 @@ dialogs:
     panels: {}
     fields:
       - name: vssRatio5
-        title: '"Speed ratio 5"'
+        title: Speed ratio 5
         condition: ''
   vss_gear_6:
     name: vss_gear_6
@@ -8498,7 +8498,7 @@ dialogs:
     panels: {}
     fields:
       - name: vssRatio6
-        title: '"Speed ratio 6"'
+        title: Speed ratio 6
         condition: ''
   vss_gear_detection:
     name: vss_gear_detection
@@ -8507,10 +8507,10 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"After setting ''Pulses per km/mile'' above"'
+        title: After setting 'Pulses per km/mile' above
         condition: ''
       - name: divider
-        title: '"Drive in each gear (any speed) and press appropriate button"'
+        title: Drive in each gear (any speed) and press appropriate button
         condition: ''
   vss_calibration:
     name: vss_calibration
@@ -8519,10 +8519,10 @@ dialogs:
     panels: {}
     fields:
       - name: vssPulsesPerKm
-        title: '"Pulses Per KM"'
+        title: Pulses Per KM
         condition: vssMode > 1
       - name: vssSmoothing
-        title: '"Smoothing Factor"'
+        title: Smoothing Factor
         condition: vssMode > 1
   vssSettings:
     name: vssSettings
@@ -8531,10 +8531,10 @@ dialogs:
     panels: {}
     fields:
       - name: vssMode
-        title: '"VSS Input Mode"'
+        title: VSS Input Mode
         condition: ''
       - name: vssPin
-        title: '"VSS Pin"'
+        title: VSS Pin
         condition: vssMode > 1
   tacho:
     name: tacho
@@ -8543,13 +8543,13 @@ dialogs:
     panels: {}
     fields:
       - name: tachoPin
-        title: '"Output pin"'
+        title: Output pin
         condition: ''
       - name: tachoDiv
-        title: '"Output speed"'
+        title: Output speed
         condition: ''
       - name: tachoDuration
-        title: '"Pulse duration"'
+        title: Pulse duration
         condition: ''
   accelEnrichments_aeSettings:
     name: accelEnrichments_aeSettings
@@ -8558,25 +8558,25 @@ dialogs:
     panels: {}
     fields:
       - name: aeMode
-        title: '"Enrichment mode"'
+        title: Enrichment mode
         condition: ''
       - name: aeApplyMode
-        title: '"Enrichment method"'
+        title: Enrichment method
         condition: ''
       - name: taeThresh
-        title: '"TPSdot Threshold"'
+        title: TPSdot Threshold
         condition: aeMode == 0
       - name: maeThresh
-        title: '"MAPdot Threshold"'
+        title: MAPdot Threshold
         condition: aeMode == 1
       - name: aeTime
-        title: '"Accel Time"'
+        title: Accel Time
         condition: ''
       - name: aeTaperMin
-        title: '"Taper Start RPM"'
+        title: Taper Start RPM
         condition: ''
       - name: aeTaperMax
-        title: '"Taper End RPM"'
+        title: Taper End RPM
         condition: ''
   accelEnrichments_coldAdj:
     name: accelEnrichments_coldAdj
@@ -8585,13 +8585,13 @@ dialogs:
     panels: {}
     fields:
       - name: aeColdPct
-        title: '"Cold adjustment"'
+        title: Cold adjustment
         condition: ''
       - name: aeColdTaperMin
-        title: '"Cold adjustment taper start temperature"'
+        title: Cold adjustment taper start temperature
         condition: ''
       - name: aeColdTaperMax
-        title: '"Cold adjustment taper end temperature"'
+        title: Cold adjustment taper end temperature
         condition: ''
   accelEnrichments_south:
     name: accelEnrichments_south
@@ -8600,22 +8600,22 @@ dialogs:
     panels: {}
     fields:
       - name: dfcoEnabled
-        title: '"Enabled"'
+        title: Enabled
         condition: ''
       - name: dfcoTPSThresh
-        title: '"TPS Threshold"'
+        title: TPS Threshold
         condition: dfcoEnabled
       - name: dfcoMinCLT
-        title: '"Minimum engine temperature"'
+        title: Minimum engine temperature
         condition: dfcoEnabled
       - name: dfcoDelay
-        title: '"Cutoff delay"'
+        title: Cutoff delay
         condition: dfcoEnabled
       - name: dfcoRPM
-        title: '"Cutoff RPM"'
+        title: Cutoff RPM
         condition: dfcoEnabled
       - name: dfcoHyster
-        title: '"RPM Hysteresis"'
+        title: RPM Hysteresis
         condition: dfcoEnabled
   accelEnrichments_north_south:
     name: accelEnrichments_north_south
@@ -8678,13 +8678,13 @@ dialogs:
     panels: {}
     fields:
       - name: multiplyMAP
-        title: '"Multiply VE value by MAP ratio"'
+        title: Multiply VE value by MAP ratio
         condition: ''
       - name: includeAFR
-        title: '"Multiply by ratio of AFR to Target AFR"'
+        title: Multiply by ratio of AFR to Target AFR
         condition: egoType == 2 && !incorporateAFR  || (incorporateAFR==includeAFR)
       - name: incorporateAFR
-        title: '"Multiply by ratio of stoich AFR/target AFR (incorporate AFR)"'
+        title: Multiply by ratio of stoich AFR/target AFR (incorporate AFR)
         condition: '!includeAFR || (incorporateAFR==includeAFR)'
   veTableDialog:
     name: veTableDialog
@@ -8707,10 +8707,10 @@ dialogs:
     panels: {}
     fields:
       - name: fuel2SwitchVariable
-        title: '"Use secondary table when:"'
+        title: 'Use secondary table when:'
         condition: ''
       - name: fuel2SwitchValue
-        title: '"is greater than:"'
+        title: 'is greater than:'
         condition: ''
   fuelTable2Dialog_input:
     name: fuelTable2Dialog_input
@@ -8719,13 +8719,13 @@ dialogs:
     panels: {}
     fields:
       - name: fuel2InputPin
-        title: '"Use secondary table when pin"'
+        title: Use secondary table when pin
         condition: ''
       - name: fuel2InputPolarity
-        title: '"Is"'
+        title: Is
         condition: ''
       - name: fuel2InputPullup
-        title: '"Use internal pullup on pin"'
+        title: Use internal pullup on pin
         condition: fuel2InputPolarity == 0
   fuelTable2Dialog_north:
     name: fuelTable2Dialog_north
@@ -8742,10 +8742,10 @@ dialogs:
         condition: fuel2Mode == 4
     fields:
       - name: fuel2Mode
-        title: '"Secondary fuel table mode"'
+        title: Secondary fuel table mode
         condition: ''
       - name: fuel2Algorithm
-        title: '"Load source"'
+        title: Load source
         condition: fuel2Mode
   fuelTable2Dialog_south:
     name: fuelTable2Dialog_south
@@ -8774,10 +8774,10 @@ dialogs:
     panels: {}
     fields:
       - name: spark2SwitchVariable
-        title: '"Use secondary table when:"'
+        title: 'Use secondary table when:'
         condition: ''
       - name: spark2SwitchValue
-        title: '"is greater than:"'
+        title: 'is greater than:'
         condition: ''
   sparkTable2Dialog_input:
     name: sparkTable2Dialog_input
@@ -8786,13 +8786,13 @@ dialogs:
     panels: {}
     fields:
       - name: spark2InputPin
-        title: '"Use secondary table when pin"'
+        title: Use secondary table when pin
         condition: ''
       - name: spark2InputPolarity
-        title: '"Is"'
+        title: Is
         condition: ''
       - name: spark2InputPullup
-        title: '"Use internal pullup on pin"'
+        title: Use internal pullup on pin
         condition: spark2InputPolarity == 0
   sparkTable2Dialog_north:
     name: sparkTable2Dialog_north
@@ -8809,10 +8809,10 @@ dialogs:
         condition: spark2Mode == 4
     fields:
       - name: spark2Mode
-        title: '"Secondary advance table mode"'
+        title: Secondary advance table mode
         condition: ''
       - name: spark2Algorithm
-        title: '"Load source"'
+        title: Load source
         condition: spark2Mode
   sparkTable2Dialog_south:
     name: sparkTable2Dialog_south
@@ -8847,10 +8847,10 @@ dialogs:
     panels: {}
     fields:
       - name: injOpen
-        title: '"Injector Open Time"'
+        title: Injector Open Time
         condition: ''
       - name: battVCorMode
-        title: '"Battery Voltage Correction Mode"'
+        title: Battery Voltage Correction Mode
         condition: ''
   injChars:
     name: injChars
@@ -8859,7 +8859,7 @@ dialogs:
     panels: {}
     fields:
       - name: dutyLim
-        title: '"Injector Duty Limit"'
+        title: Injector Duty Limit
         condition: ''
   egoControl:
     name: egoControl
@@ -8868,46 +8868,46 @@ dialogs:
     panels: {}
     fields:
       - name: egoType
-        title: '"Sensor Type"'
+        title: Sensor Type
         condition: ''
       - name: '{ egoType }'
-        title: '"#Please ensure you calibrate your O2 sensor in the Tools menu"'
+        title: '#Please ensure you calibrate your O2 sensor in the Tools menu'
         condition: ''
       - name: egoAlgorithm
-        title: '"Algorithm"'
+        title: Algorithm
         condition: egoType
       - name: egoCount
-        title: '"Ignition Events per Step"'
+        title: Ignition Events per Step
         condition: egoType && (egoAlgorithm < 3)
       - name: egoLimit
-        title: '"Controller Auth +/-"'
+        title: Controller Auth +/-
         condition: egoType && (egoAlgorithm < 3)
       - name: ego_min
-        title: '"Only correct above:"'
+        title: 'Only correct above:'
         condition: egoType && (egoAlgorithm < 3)
       - name: ego_max
-        title: '"and correct below:"'
+        title: 'and correct below:'
         condition: egoType && (egoAlgorithm < 3)
       - name: egoTemp
-        title: '"Active Above Coolant"'
+        title: Active Above Coolant
         condition: egoType && (egoAlgorithm < 3)
       - name: egoRPM
-        title: '"Active Above RPM"'
+        title: Active Above RPM
         condition: egoType && (egoAlgorithm < 3)
       - name: egoTPSMax
-        title: '"Active Below TPS"'
+        title: Active Below TPS
         condition: egoType && (egoAlgorithm < 3)
       - name: ego_sdelay
-        title: '"EGO delay after start"'
+        title: EGO delay after start
         condition: (egoAlgorithm < 3)
       - name: egoKP
-        title: '"PID Proportional Gain"'
+        title: PID Proportional Gain
         condition: egoType && (egoAlgorithm == 2)
       - name: egoKI
-        title: '"PID Integral"'
+        title: PID Integral
         condition: egoType && (egoAlgorithm == 2)
       - name: egoKD
-        title: '"PID Derivative"'
+        title: PID Derivative
         condition: egoType && (egoAlgorithm == 2)
   fanSettings:
     name: fanSettings
@@ -8916,25 +8916,25 @@ dialogs:
     panels: {}
     fields:
       - name: fanEnable
-        title: '"Fan Mode"'
+        title: Fan Mode
         condition: ''
       - name: fanWhenOff
-        title: '"Allow fan when off"'
+        title: Allow fan when off
         condition: fanEnable
       - name: fanWhenCranking
-        title: '"Allow fan when cranking"'
+        title: Allow fan when cranking
         condition: fanEnable
       - name: fanPin
-        title: '"Fan output pin"'
+        title: Fan output pin
         condition: fanEnable
       - name: fanInv
-        title: '"Fan Output Inverted"'
+        title: Fan Output Inverted
         condition: fanEnable
       - name: fanSP
-        title: '"Fan switching temperature"'
+        title: Fan switching temperature
         condition: fanEnable
       - name: fanHyster
-        title: '"Fan hysteresis"'
+        title: Fan hysteresis
         condition: fanEnable
   stepper_idle:
     name: stepper_idle
@@ -8943,22 +8943,22 @@ dialogs:
     panels: {}
     fields:
       - name: iacStepTime
-        title: '"Step time (ms)"'
+        title: Step time (ms)
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
       - name: iacCoolTime
-        title: '"Cool time (ms)"'
+        title: Cool time (ms)
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
       - name: iacStepHome
-        title: '"Home steps"'
+        title: Home steps
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
       - name: iacStepHyster
-        title: '"Minimum Steps"'
+        title: Minimum Steps
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
       - name: iacMaxSteps
-        title: '"Don''t exceed"'
+        title: Don't exceed
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
       - name: iacStepperInv
-        title: '"Stepper Inverted"'
+        title: Stepper Inverted
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
   pwm_idle:
     name: pwm_idle
@@ -8967,13 +8967,13 @@ dialogs:
     panels: {}
     fields:
       - name: iacChannels
-        title: '"Number of outputs"'
+        title: Number of outputs
         condition: iacAlgorithm == 2 || iacAlgorithm == 3
       - name: idleFreq
-        title: '"Idle valve frequency"'
+        title: Idle valve frequency
         condition: iacAlgorithm == 2 || iacAlgorithm == 3
       - name: iacPWMdir
-        title: '"Idle valve direction"'
+        title: Idle valve direction
         condition: iacAlgorithm == 2 || iacAlgorithm == 3
   closedloop_idle:
     name: closedloop_idle
@@ -8982,19 +8982,19 @@ dialogs:
     panels: {}
     fields:
       - name: idleKP
-        title: '"P"'
+        title: P
         condition: iacAlgorithm == 3 || iacAlgorithm == 5
       - name: idleKI
-        title: '"I"'
+        title: I
         condition: iacAlgorithm == 3 || iacAlgorithm == 5
       - name: idleKD
-        title: '"D"'
+        title: D
         condition: iacAlgorithm == 3 || iacAlgorithm == 5
       - name: iacCLminDuty
-        title: '"Minimum valve duty"'
+        title: Minimum valve duty
         condition: iacAlgorithm == 3
       - name: iacCLmaxDuty
-        title: '"Maximum valve duty"'
+        title: Maximum valve duty
         condition: iacAlgorithm == 3
   idleSettings:
     name: idleSettings
@@ -9003,16 +9003,16 @@ dialogs:
     panels: {}
     fields:
       - name: iacAlgorithm
-        title: '"Idle control type"'
+        title: Idle control type
         condition: ''
       - name: idleTaperTime
-        title: '"Crank to run taper"'
+        title: Crank to run taper
         condition: iacAlgorithm == 2 || iacAlgorithm == 4
       - name: divider
-        title: '"#Fast Idle"'
+        title: '#Fast Idle'
         condition: ''
       - name: iacFastTemp
-        title: '"Fast idle temp"'
+        title: Fast idle temp
         condition: iacAlgorithm == 1
   idleUpSettings:
     name: idleUpSettings
@@ -9021,16 +9021,16 @@ dialogs:
     panels: {}
     fields:
       - name: idleUpEnabled
-        title: '"Idle Up Enabled"'
+        title: Idle Up Enabled
         condition: ''
       - name: idleUpPin
-        title: '"Idle Up Pin"'
+        title: Idle Up Pin
         condition: idleUpEnabled
       - name: idleUpPolarity
-        title: '"Idle Up Pin Polarity"'
+        title: Idle Up Pin Polarity
         condition: idleUpEnabled
       - name: idleUpAdder
-        title: '"Idle Up Amount"'
+        title: Idle Up Amount
         condition: idleUpEnabled
   fuelpump:
     name: fuelpump
@@ -9039,10 +9039,10 @@ dialogs:
     panels: {}
     fields:
       - name: fuelPumpPin
-        title: '"Fuel pump pin"'
+        title: Fuel pump pin
         condition: ''
       - name: fpPrime
-        title: '"Fuel pump prime duration"'
+        title: Fuel pump prime duration
         condition: ''
   crankingEnrichDialog:
     name: crankingEnrichDialog
@@ -9051,12 +9051,12 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"#Note"'
+        title: '#Note'
         condition: ''
       - name: divider
         title: >-
-          "Values are specified as modifiers to the normal fueling. Eg 100% = No
-          change."
+          Values are specified as modifiers to the normal fueling. Eg 100% = No
+          change.
         condition: ''
   crankingIgnOptions:
     name: crankingIgnOptions
@@ -9065,16 +9065,16 @@ dialogs:
     panels: {}
     fields:
       - name: CrankAng
-        title: '"Cranking advance Angle"'
+        title: Cranking advance Angle
         condition: ignCranklock == 0
       - name: ignBypassEnable
-        title: '"Cranking bypass"'
+        title: Cranking bypass
         condition: ''
       - name: 'ignBypassPin               { ignBypassEnable }'
-        title: '"Bypass output pin"'
+        title: Bypass output pin
         condition: ''
       - name: ignCranklock
-        title: '"Fix cranking timing with trigger"'
+        title: Fix cranking timing with trigger
         condition: >-
           TrigPattern == 1 || TrigPattern == 4 || TrigPattern == 10 ||
           TrigPattern == 9
@@ -9085,19 +9085,19 @@ dialogs:
     panels: {}
     fields:
       - name: crankRPM
-        title: '"Cranking RPM (Max)"'
+        title: Cranking RPM (Max)
         condition: ''
       - name: tpsflood
-        title: '"Flood Clear level"'
+        title: Flood Clear level
         condition: ''
       - name: fpPrime
-        title: '"Fuel pump prime duration"'
+        title: Fuel pump prime duration
         condition: ''
       - name: primingDelay
-        title: '"Injectors priming delay"'
+        title: Injectors priming delay
         condition: ''
       - name: crankingEnrichTaper
-        title: '"Cranking enrichment taper time"'
+        title: Cranking enrichment taper time
         condition: ''
   primePW:
     name: primePW
@@ -9130,13 +9130,13 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Defines the fuel enrichment percentage after start."'
+        title: Defines the fuel enrichment percentage after start.
         condition: ''
       - name: divider
-        title: '"This is needed to keep engine running after start"'
+        title: This is needed to keep engine running after start
         condition: ''
       - name: divider
-        title: '"Common values are 5% when engine is hot to 50% when engine is cold."'
+        title: Common values are 5% when engine is hot to 50% when engine is cold.
         condition: ''
   ASE_time:
     name: ASE_time
@@ -9145,15 +9145,15 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"How long time the After Start Enrichment is applied in seconds."'
+        title: How long time the After Start Enrichment is applied in seconds.
         condition: ''
       - name: divider
         title: >-
-          "Usually this is varies from 1-2s when engine is hot up to 20s on a
-          cold engine."
+          Usually this is varies from 1-2s when engine is hot up to 20s on a
+          cold engine.
         condition: ''
       - name: aseTaperTime
-        title: '"Transition time to disable"'
+        title: Transition time to disable
         condition: ''
   ASE:
     name: ASE
@@ -9162,7 +9162,7 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"#Time and duration curves share common coolant values"'
+        title: '#Time and duration curves share common coolant values'
         condition: ''
   triggerSettings:
     name: triggerSettings
@@ -9171,60 +9171,60 @@ dialogs:
     panels: {}
     fields:
       - name: TrigPattern
-        title: '"Trigger Pattern"'
+        title: Trigger Pattern
         condition: ''
       - name: numTeeth
-        title: '"Primary base teeth"'
+        title: Primary base teeth
         condition: >-
           TrigPattern == 0 || TrigPattern == 2 || TrigPattern == 11 ||
           TrigPattern == 18
       - name: TrigSpeed
-        title: '"Primary trigger speed"'
+        title: Primary trigger speed
         condition: TrigPattern == 0
       - name: missingTeeth
-        title: '"Missing teeth"'
+        title: Missing teeth
         condition: TrigPattern == 0
       - name: TrigAngMul
-        title: '"Trigger angle multiplier"'
+        title: Trigger angle multiplier
         condition: TrigPattern == 11
       - name: TrigAng
-        title: '"Trigger Angle "'
+        title: Trigger Angle
         condition: ''
       - name: divider
-        title: '"This number represents the angle ATDC when "'
+        title: This number represents the angle ATDC when
         condition: ''
       - name: divider
-        title: '"tooth #1 passes the primary sensor."'
+        title: 'tooth #1 passes the primary sensor.'
         condition: ''
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: SkipCycles
-        title: '"Skip Revolutions"'
+        title: Skip Revolutions
         condition: ''
       - name: divider
-        title: '"Note: This is the number of revolutions that will be skipped during"'
+        title: 'Note: This is the number of revolutions that will be skipped during'
         condition: ''
       - name: divider
-        title: '"cranking before the injectors and coils are fired"'
+        title: cranking before the injectors and coils are fired
         condition: ''
       - name: 'TrigEdge      { TrigPattern != 4 } ;4G63 uses both edges'
-        title: '"Trigger edge"'
+        title: Trigger edge
         condition: ''
       - name: TrigEdgeSec
-        title: '"Secondary trigger edge"'
+        title: Secondary trigger edge
         condition: >-
           (TrigPattern == 0 && TrigSpeed == 0) || TrigPattern == 2 ||
           TrigPattern == 9 || TrigPattern == 12 || TrigPattern == 18 } ;Missing
           tooth
       - name: '{ (TrigPattern == 0&& TrigSpeed == 0) }'
-        title: '"Missing Tooth Secondary type"    trigPatternSec'
+        title: Missing Tooth Secondary type    trigPatternSec
         condition: ''
       - name: TrigFilter
-        title: '"Trigger Filter"'
+        title: Trigger Filter
         condition: TrigPattern != 13
       - name: useResync
-        title: '"Re-sync every cycle"'
+        title: Re-sync every cycle
         condition: >-
           TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
@@ -9236,15 +9236,15 @@ dialogs:
     panels: {}
     fields:
       - name: fixAngEnable
-        title: '"Enabled Fixed/Locked timing"'
+        title: Enabled Fixed/Locked timing
         condition: ''
       - name: FixAng
-        title: '"Fixed Angle"'
+        title: Fixed Angle
         condition: fixAngEnable
       - name: divider
         title: >-
-          "#Note: During cranking the fixed/locked timing angle is overriden by
-          the Cranking advance angle value above"
+          #Note: During cranking the fixed/locked timing angle is overriden by
+          the Cranking advance angle value above
         condition: ''
   newIgnitionMode:
     name: newIgnitionMode
@@ -9254,14 +9254,14 @@ dialogs:
     fields:
       - name: divider
         title: >-
-          "This option is currently will improve accuracy on most compatible
-          triggers"
+          This option is currently will improve accuracy on most compatible
+          triggers
         condition: ''
-      - name: please disable this"
-        title: '"However if timing issues are encountered'
+      - name: please disable this
+        title: However if timing issues are encountered
         condition: ''
       - name: perToothIgn
-        title: '"Use new ignition mode"'
+        title: Use new ignition mode
         condition: ''
   sparkSettings:
     name: sparkSettings
@@ -9278,20 +9278,20 @@ dialogs:
     fields:
       - name: '{}'
         title: >-
-          "!Warning: The board you have selected may not have enough channels
-          for sequential ignition!"
+          !Warning: The board you have selected may not have enough channels for
+          sequential ignition!
         condition: ''
       - name: ignAlgorithm
-        title: '"Ignition load source"'
+        title: Ignition load source
         condition: ''
       - name: sparkMode
-        title: '"Spark output mode"'
+        title: Spark output mode
         condition: ''
       - name: CrankAng
-        title: '"Cranking advance Angle"'
+        title: Cranking advance Angle
         condition: ''
       - name: IgInv
-        title: '"Spark Outputs triggers"'
+        title: Spark Outputs triggers
         condition: ''
   dwellSettings:
     name: dwellSettings
@@ -9300,70 +9300,70 @@ dialogs:
     panels: {}
     fields:
       - name: dwellcrank
-        title: '"  Cranking dwell"'
+        title: Cranking dwell
         condition: ''
       - name: dwellrun
-        title: '"  Running dwell"'
+        title: Running dwell
         condition: ''
       - name: sparkDur
-        title: '"  Spark duration"'
+        title: Spark duration
         condition: ''
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: divider
-        title: '"#Note"'
+        title: '#Note'
         condition: ''
       - name: divider
-        title: '"The above times are for 12V. Voltage correction"'
+        title: The above times are for 12V. Voltage correction
         condition: ''
       - name: divider
-        title: '"is applied. At higher voltages the time is reduced"'
+        title: is applied. At higher voltages the time is reduced
         condition: ''
       - name: divider
-        title: '"and when low it is increased"'
+        title: and when low it is increased
         condition: ''
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: divider
-        title: '"Overdwell protection"'
+        title: Overdwell protection
         condition: ''
       - name: useDwellLim
-        title: '"Use Overdwell protection"'
+        title: Use Overdwell protection
         condition: ''
       - name: dwellLim
-        title: '"Max dwell time"'
+        title: Max dwell time
         condition: useDwellLim
       - name: divider
-        title: '"Note: Set the maximum dwell time at least 3ms above"'
+        title: 'Note: Set the maximum dwell time at least 3ms above'
         condition: ''
       - name: divider
-        title: '"your desired dwell time (Including cranking)"'
+        title: your desired dwell time (Including cranking)
         condition: ''
       - name: idleAdvEnabled
-        title: '"Idle advance mode"'
+        title: Idle advance mode
         condition: ''
       - name: idleAdvAlgorithm
-        title: '"Idle detect mode"'
+        title: Idle detect mode
         condition: idleAdvEnabled >= 1
       - name: idleAdvDelay
-        title: '"Delay before idle control starts (s)"'
+        title: Delay before idle control starts (s)
         condition: idleAdvEnabled >= 1
       - name: idleAdvRPM
-        title: '"Active Below RPM"'
+        title: Active Below RPM
         condition: idleAdvEnabled >= 1
       - name: idleAdvTPS
-        title: '"Active Below TPS"'
+        title: Active Below TPS
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 0
       - name: CTPSEnabled
-        title: '"Closed Throttle Sensor Enabled"'
+        title: Closed Throttle Sensor Enabled
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1
       - name: CTPSPin
-        title: '"Closed Throttle Sensor Pin"'
+        title: Closed Throttle Sensor Pin
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
       - name: CTPSPolarity
-        title: '"Closed Throttle Sensor Pin Polarity"'
+        title: Closed Throttle Sensor Pin Polarity
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
   idleAdvanceSettings:
     name: idleAdvanceSettings
@@ -9386,7 +9386,7 @@ dialogs:
     panels: {}
     fields:
       - name: rotaryType
-        title: '"Ignition Configuration"'
+        title: Ignition Configuration
         condition: ''
   boostCut:
     name: boostCut
@@ -9395,10 +9395,10 @@ dialogs:
     panels: {}
     fields:
       - name: boostCutEnabled
-        title: '"Enable Boost limit"'
+        title: Enable Boost limit
         condition: ''
       - name: boostLimit
-        title: '"Boost Limit"'
+        title: Boost Limit
         condition: boostCutEnabled
   boostLoad:
     name: boostLoad
@@ -9407,13 +9407,13 @@ dialogs:
     panels: {}
     fields:
       - name: boostType
-        title: '"Mode"'
+        title: Mode
         condition: ''
-      - name: the values in this table are duty cycle %"
-        title: '"In open loop mode'
+      - name: the values in this table are duty cycle %
+        title: In open loop mode
         condition: ''
-      - name: the values are boost targets in kPa"
-        title: '"In closed loop mode'
+      - name: the values are boost targets in kPa
+        title: In closed loop mode
         condition: ''
   revLimiterDialog:
     name: revLimiterDialog
@@ -9422,33 +9422,33 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Rev Limiter"'
+        title: Rev Limiter
         condition: ''
       - name: '{}'
-        title: '"!Soft limiter only available with ignition cut"'
+        title: '!Soft limiter only available with ignition cut'
         condition: ''
       - name: SoftRevLim
-        title: '"Soft rev limit"'
+        title: Soft rev limit
         condition: >-
           engineProtectType == 1 || engineProtectType == 3 } ;Only available for
           the protection modes that include ignition.
       - name: SoftLimitMode
-        title: '"Soft limiter mode"'
+        title: Soft limiter mode
         condition: >-
           engineProtectType == 1 || engineProtectType == 3 } ;Only available for
           the protection modes that include ignition.
       - name: SoftLimRetard
-        title: '"Soft limit timing"'
+        title: Soft limit timing
         condition: >-
           engineProtectType == 1 || engineProtectType == 3 } ;Only available for
           the protection modes that include ignition.
       - name: SoftLimMax
-        title: '"Soft limit max time"'
+        title: Soft limit max time
         condition: >-
           engineProtectType == 1 || engineProtectType == 3 } ;Only available for
           the protection modes that include ignition.
       - name: HardRevLim
-        title: '"Hard Rev limit"'
+        title: Hard Rev limit
         condition: ''
   oilPressureProtection:
     name: oilPressureProtection
@@ -9461,7 +9461,7 @@ dialogs:
         condition: oilPressureEnable && oilPressureProtEnbl
     fields:
       - name: oilPressureProtEnbl
-        title: '"Oil Pressure Protection"'
+        title: Oil Pressure Protection
         condition: oilPressureEnable
   engineProtectionWest:
     name: engineProtectionWest
@@ -9474,13 +9474,13 @@ dialogs:
         condition: engineProtectType
     fields:
       - name: engineProtectType
-        title: '"Protection Cut"'
+        title: Protection Cut
         condition: ''
       - name: engineProtectMaxRPM
-        title: '"Engine Protection RPM min"'
+        title: Engine Protection RPM min
         condition: engineProtectType
       - name: hardCutType
-        title: '"Cut method"'
+        title: Cut method
         condition: >-
           engineProtectType == 1 || engineProtectType == 3 } ;Only available for
           the protection modes that include ignition.
@@ -9509,16 +9509,16 @@ dialogs:
     panels: {}
     fields:
       - name: launchPin
-        title: '"Clutch Input Pin"'
+        title: Clutch Input Pin
         condition: launchEnable || flatSEnable
       - name: launchHiLo
-        title: '"Clutch enabled when signal is"'
+        title: Clutch enabled when signal is
         condition: launchEnable || flatSEnable
       - name: lnchPullRes
-        title: '"Clutch Pullup Resistor"'
+        title: Clutch Pullup Resistor
         condition: launchEnable || flatSEnable
       - name: flatSArm
-        title: '"Launch / Flat Shift switch RPM"'
+        title: Launch / Flat Shift switch RPM
         condition: launchEnable || flatSEnable
   LaunchControl:
     name: LaunchControl
@@ -9527,37 +9527,37 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Launch Control"'
+        title: Launch Control
         condition: ''
       - name: launchEnable
-        title: '"Enable Launch"'
+        title: Enable Launch
         condition: ''
       - name: lnchCtrlTPS
-        title: '"TPS threshold"'
+        title: TPS threshold
         condition: launchEnable
       - name: lnchSoftLim
-        title: '"Soft rev limit"'
+        title: Soft rev limit
         condition: launchEnable
       - name: lnchRetard
-        title: '"Soft limit absolute timing"'
+        title: Soft limit absolute timing
         condition: launchEnable
       - name: lnchHardLim
-        title: '"Hard rev limit"'
+        title: Hard rev limit
         condition: launchEnable
       - name: lnchFuelAdd
-        title: '"Fuel adder during launch"'
+        title: Fuel adder during launch
         condition: launchEnable
       - name: divider
-        title: '"Flat Shift"'
+        title: Flat Shift
         condition: ''
       - name: flatSEnable
-        title: '"Enable flat shift"'
+        title: Enable flat shift
         condition: ''
       - name: flatSSoftWin
-        title: '"Soft rev window"'
+        title: Soft rev window
         condition: flatSEnable
       - name: flatSRetard
-        title: '"Soft limit absolute timing"'
+        title: Soft limit absolute timing
         condition: flatSEnable
   NitrousStage1:
     name: NitrousStage1
@@ -9566,22 +9566,22 @@ dialogs:
     panels: {}
     fields:
       - name: n2o_stage1_pin
-        title: '"Nitrous Output Pin"'
+        title: Nitrous Output Pin
         condition: ''
       - name: n2o_stage1_minRPM
-        title: '"Minimum Engage RPM"'
+        title: Minimum Engage RPM
         condition: ''
       - name: n2o_stage1_maxRPM
-        title: '"Maximum Engage RPM"'
+        title: Maximum Engage RPM
         condition: ''
       - name: n2o_stage1_adderMin
-        title: '"Fuel adder @ Min RPM"'
+        title: Fuel adder @ Min RPM
         condition: ''
       - name: n2o_stage1_adderMax
-        title: '"Fuel adder @ Max RPM"'
+        title: Fuel adder @ Max RPM
         condition: ''
       - name: n2o_stage1_retard
-        title: '"Ignition retard when active"'
+        title: Ignition retard when active
         condition: ''
   NitrousStage2:
     name: NitrousStage2
@@ -9590,22 +9590,22 @@ dialogs:
     panels: {}
     fields:
       - name: n2o_stage2_pin
-        title: '"Nitrous Output Pin"'
+        title: Nitrous Output Pin
         condition: ''
       - name: n2o_stage2_minRPM
-        title: '"Minimum Engage RPM"'
+        title: Minimum Engage RPM
         condition: ''
       - name: n2o_stage2_maxRPM
-        title: '"Maximum Engage RPM"'
+        title: Maximum Engage RPM
         condition: ''
       - name: n2o_stage2_adderMin
-        title: '"Fuel adder @ Min RPM"'
+        title: Fuel adder @ Min RPM
         condition: ''
       - name: n2o_stage2_adderMax
-        title: '"Fuel adder @ Max RPM"'
+        title: Fuel adder @ Max RPM
         condition: ''
       - name: n2o_stage2_retard
-        title: '"Ignition retard when active"'
+        title: Ignition retard when active
         condition: ''
   NitrousMain:
     name: NitrousMain
@@ -9614,25 +9614,25 @@ dialogs:
     panels: {}
     fields:
       - name: n2o_enable
-        title: '"Nitrous Mode"'
+        title: Nitrous Mode
         condition: ''
       - name: n2o_arming_pin
-        title: '"Arming Pin"'
+        title: Arming Pin
         condition: n2o_enable > 0
       - name: n2o_pin_polarity
-        title: '"Nitrous is armed when pin is"'
+        title: Nitrous is armed when pin is
         condition: n2o_enable > 0
       - name: n2o_minCLT
-        title: '"Minimum CLT"'
+        title: Minimum CLT
         condition: n2o_enable > 0
       - name: n2o_minTPS
-        title: '"Minimum TPS"'
+        title: Minimum TPS
         condition: n2o_enable > 0
       - name: n2o_maxMAP
-        title: '"Maximum MAP"'
+        title: Maximum MAP
         condition: n2o_enable > 0
       - name: n2o_maxAFR
-        title: '"Leanest AFR"'
+        title: Leanest AFR
         condition: n2o_enable > 0
   NitrousControl:
     name: NitrousControl
@@ -9659,25 +9659,25 @@ dialogs:
     panels: {}
     fields:
       - name: display
-        title: '"Display Type"'
+        title: Display Type
         condition: ''
       - name: divider
-        title: '"#Note"'
+        title: '#Note'
         condition: ''
       - name: divider
-        title: '"ECU must be rebooted after changing above value"'
+        title: ECU must be rebooted after changing above value
         condition: ''
       - name: display1
-        title: '"Field 1"'
+        title: Field 1
         condition: display
       - name: display2
-        title: '"Field 2"'
+        title: Field 2
         condition: display
       - name: display3
-        title: '"Field 3"'
+        title: Field 3
         condition: display
       - name: display4
-        title: '"Field 4"'
+        title: Field 4
         condition: display
   batCal:
     name: batCal
@@ -9692,46 +9692,46 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"#MAP Sensor"'
+        title: '#MAP Sensor'
         condition: ''
       - name: mapMin
-        title: '"kPa At 0.0 Volts"'
+        title: kPa At 0.0 Volts
         condition: ''
       - name: mapMax
-        title: '"kPa At 5.0 Volts"'
+        title: kPa At 5.0 Volts
         condition: ''
       - name: legacyMAP
-        title: '"Use legacy MAP reading"'
+        title: Use legacy MAP reading
         condition: ''
       - name: divider
-        title: '"#Baro Sensor"'
+        title: '#Baro Sensor'
         condition: ''
       - name: useExtBaro
-        title: '"Use external Baro sensor"'
+        title: Use external Baro sensor
         condition: ''
       - name: baroPin
-        title: '"Analog pin to use for ext. Baro sensor"'
+        title: Analog pin to use for ext. Baro sensor
         condition: useExtBaro
       - name: baroMin
-        title: '"kPa At 0.0 Volts"'
+        title: kPa At 0.0 Volts
         condition: useExtBaro
       - name: baroMax
-        title: '"kPa At 5.0 Volts"'
+        title: kPa At 5.0 Volts
         condition: useExtBaro
       - name: divider
-        title: '"#EMAP Sensor"'
+        title: '#EMAP Sensor'
         condition: ''
       - name: useEMAP
-        title: '"Use EMAP sensor"'
+        title: Use EMAP sensor
         condition: ''
       - name: EMAPPin
-        title: '"Analog pin to use for ext. Baro sensor"'
+        title: Analog pin to use for ext. Baro sensor
         condition: useEMAP
       - name: EMAPMin
-        title: '"kPa At 0.0 Volts"'
+        title: kPa At 0.0 Volts
         condition: useEMAP
       - name: EMAPMax
-        title: '"kPa At 5.0 Volts"'
+        title: kPa At 5.0 Volts
         condition: useEMAP
   sensorFilters:
     name: sensorFilters
@@ -9741,29 +9741,29 @@ dialogs:
     fields:
       - name: divider
         title: >-
-          "The values here set the amount of filtering to apply to each analog
-          input"
+          The values here set the amount of filtering to apply to each analog
+          input
         condition: ''
-      - name: but slower response times for readings"
-        title: '"Higher values result in stronger filtering'
-        condition: ''
-      - name: divider
-        title: '"#Most setups will NOT require changes to the default filter values"'
+      - name: but slower response times for readings
+        title: Higher values result in stronger filtering
         condition: ''
       - name: divider
-        title: '""'
+        title: '#Most setups will NOT require changes to the default filter values'
+        condition: ''
+      - name: divider
+        title: ''
         condition: ''
       - name: fuelPressureEnable
-        title: '"Enabled"'
+        title: Enabled
         condition: ''
       - name: fuelPressurePin
-        title: '"Pin"'
+        title: Pin
         condition: fuelPressureEnable
       - name: fuelPressureMin
-        title: '"Pressure at 0v"'
+        title: Pressure at 0v
         condition: fuelPressureEnable
       - name: fuelPressureMax
-        title: '"Pressure at 5v"'
+        title: Pressure at 5v
         condition: fuelPressureEnable
   fuelPressureDialog:
     name: fuelPressureDialog
@@ -9772,16 +9772,16 @@ dialogs:
     panels: {}
     fields:
       - name: oilPressureEnable
-        title: '"Enabled"'
+        title: Enabled
         condition: ''
       - name: oilPressurePin
-        title: '"Pin"'
+        title: Pin
         condition: oilPressureEnable
       - name: oilPressureMin
-        title: '"Pressure at 0v"'
+        title: Pressure at 0v
         condition: oilPressureEnable
       - name: oilPressureMax
-        title: '"Pressure at 5v"'
+        title: Pressure at 5v
         condition: oilPressureEnable
   oilPressureDialog:
     name: oilPressureDialog
@@ -9802,40 +9802,40 @@ dialogs:
     panels: {}
     fields:
       - name: boostEnabled
-        title: '"Boost Control Enabled"'
+        title: Boost Control Enabled
         condition: ''
       - name: boostType
-        title: '"Boost control type"'
+        title: Boost control type
         condition: boostEnabled
       - name: boostPin
-        title: '"Boost output pin"'
+        title: Boost output pin
         condition: boostEnabled
       - name: boostFreq
-        title: '"Boost solenoid freq."'
+        title: Boost solenoid freq.
         condition: boostEnabled
       - name: boostMinDuty
-        title: '"Valve minimum duty cycle"'
+        title: Valve minimum duty cycle
         condition: boostEnabled && boostType == 1
       - name: boostMaxDuty
-        title: '"Valve maximum duty cycle"'
+        title: Valve maximum duty cycle
         condition: boostEnabled && boostType == 1
       - name: divider
-        title: '"Closed Loop settings"'
+        title: Closed Loop settings
         condition: ''
       - name: boostMode
-        title: '"Control mode"'
+        title: Control mode
         condition: boostEnabled && boostType == 1
       - name: boostIntv
-        title: '"Control interval"'
+        title: Control interval
         condition: boostEnabled && boostType == 1
       - name: boostKP
-        title: '"P"'
+        title: P
         condition: boostEnabled && boostMode && boostType == 1
       - name: boostKI
-        title: '"I"'
+        title: I
         condition: boostEnabled && boostMode && boostType == 1
       - name: boostKD
-        title: '"D"'
+        title: D
         condition: boostEnabled && boostMode && boostType == 1
   vvtClosedLoop:
     name: vvtClosedLoop
@@ -9844,34 +9844,34 @@ dialogs:
     panels: {}
     fields:
       - name: vvtCLUseHold
-        title: '"Hold duty used"'
+        title: Hold duty used
         condition: ''
       - name: vvtCLholdDuty
-        title: '"Hold duty"'
+        title: Hold duty
         condition: vvtCLUseHold
       - name: vvtCLAlterFuelTiming
-        title: '"Adjust fuel timing"'
+        title: Adjust fuel timing
         condition: ''
       - name: vvtCLMinAng
-        title: '"Cam angle @ 0% duty"'
+        title: Cam angle @ 0% duty
         condition: ''
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: vvtCLKP
-        title: '"Proportional Gain"'
+        title: Proportional Gain
         condition: ''
       - name: vvtCLKI
-        title: '"Integral Gain"'
+        title: Integral Gain
         condition: ''
       - name: vvtCLKD
-        title: '"Differential Gain"'
+        title: Differential Gain
         condition: ''
       - name: vvtCLminDuty
-        title: '"Minimum valve duty"'
+        title: Minimum valve duty
         condition: vvtEnabled && vvtMode == 2
       - name: vvtCLmaxDuty
-        title: '"Maximum valve duty"'
+        title: Maximum valve duty
         condition: vvtEnabled && vvtMode == 2
   vvtSettings:
     name: vvtSettings
@@ -9884,30 +9884,30 @@ dialogs:
         condition: vvtEnabled && vvtMode == 2
     fields:
       - name: vvtEnabled
-        title: '"VVT Control Enabled"'
+        title: VVT Control Enabled
         condition: ''
       - name: vvtMode
-        title: '"VVT Mode"'
+        title: VVT Mode
         condition: vvtEnabled
       - name: divider
         title: >-
-          "#Please note that close loop is currently experimental for Miata
-          patterns ONLY"
+          #Please note that close loop is currently experimental for Miata
+          patterns ONLY
         condition: ''
       - name: vvtLoadSource
-        title: '"Load source"'
+        title: Load source
         condition: vvtEnabled
       - name: VVTasOnOff
-        title: '"Use VVT map as On / Off only"'
+        title: Use VVT map as On / Off only
         condition: vvtEnabled && vvtMode != 2
       - name: vvt1Pin
-        title: '"VVT output pin"'
+        title: VVT output pin
         condition: vvtEnabled
       - name: vvtFreq
-        title: '"VVT solenoid freq."'
+        title: VVT solenoid freq.
         condition: vvtEnabled
       - name: vvtPWMdir
-        title: '"Increased duty direction"'
+        title: Increased duty direction
         condition: vvtEnabled
   wmiSettings:
     name: wmiSettings
@@ -9920,76 +9920,76 @@ dialogs:
         condition: wmiEnabled && wmiAdvEnabled
     fields:
       - name: divider
-        title: '"#Experimental!"'
+        title: '#Experimental!'
         condition: ''
       - name: wmiEnabled
-        title: '"WMI Control Enabled"'
+        title: WMI Control Enabled
         condition: ''
       - name: wmiMode
-        title: '"WMI Mode"'
+        title: WMI Mode
         condition: wmiEnabled
       - name: wmiTPS
-        title: '"WMI min TPS"'
+        title: WMI min TPS
         condition: wmiEnabled
       - name: wmiRPM
-        title: '"WMI min RPM"'
+        title: WMI min RPM
         condition: wmiEnabled
       - name: wmiMAP
-        title: '"WMI min MAP"'
+        title: WMI min MAP
         condition: wmiEnabled
       - name: wmiMAP2
-        title: '"WMI max MAP"'
+        title: WMI max MAP
         condition: wmiEnabled && wmiMode == 1
       - name: wmiIAT
-        title: '"WMI min IAT"'
+        title: WMI min IAT
         condition: wmiEnabled
       - name: wmiOffset
-        title: '"WMI offset"'
+        title: WMI offset
         condition: wmiEnabled && wmiMode == 3
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: vvt1Pin
-        title: '"WMI PWM output pin"'
+        title: WMI PWM output pin
         condition: wmiEnabled
       - name: vvtFreq
-        title: '"WMI PWM freq."'
+        title: WMI PWM freq.
         condition: wmiEnabled
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: wmiEnabledPin
-        title: '"WMI enabled output pin"'
+        title: WMI enabled output pin
         condition: wmiEnabled
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: wmiEmptyEnabled
-        title: '"WMI tank empty input"'
+        title: WMI tank empty input
         condition: wmiEnabled
       - name: wmiEmptyPin
-        title: '"WMI tank empty pin"'
+        title: WMI tank empty pin
         condition: wmiEnabled
       - name: wmiEmptyPolarity
-        title: '"WMI tank empty polarity"'
+        title: WMI tank empty polarity
         condition: wmiEnabled
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: wmiIndicatorEnabled
-        title: '"WMI tank indicator output"'
+        title: WMI tank indicator output
         condition: wmiEnabled
       - name: wmiIndicatorPin
-        title: '"WMI tank indicator pin"'
+        title: WMI tank indicator pin
         condition: wmiEnabled
       - name: wmiIndicatorPolarity
-        title: '"WMI tank indicator polarity"'
+        title: WMI tank indicator polarity
         condition: wmiEnabled
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: wmiAdvEnabled
-        title: '"Iginition advance correction"'
+        title: Iginition advance correction
         condition: wmiEnabled
   warmup:
     name: warmup
@@ -9998,10 +9998,10 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Final enrichment value must be 100%."'
+        title: Final enrichment value must be 100%.
         condition: ''
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
   inj_trim1TblTitle:
     name: inj_trim1TblTitle
@@ -10062,7 +10062,7 @@ dialogs:
     panels: {}
     fields:
       - name: fuelTrimEnabled
-        title: '"Individual fuel trim enabled"'
+        title: Individual fuel trim enabled
         condition: injLayout == 3 && nCylinders <= 4
   inj_trimad:
     name: inj_trimad
@@ -10089,16 +10089,16 @@ dialogs:
     panels: {}
     fields:
       - name: stagingEnabled
-        title: '"Staging enabled"'
+        title: Staging enabled
         condition: ''
       - name: stagingMode
-        title: '"Staging mode"'
+        title: Staging mode
         condition: ''
       - name: stagedInjSizePri
-        title: '"Size of primary injectors"'
+        title: Size of primary injectors
         condition: stagingEnabled
       - name: stagedInjSizeSec
-        title: '"Size of secondary injectors"'
+        title: Size of secondary injectors
         condition: stagingEnabled
   stagingTableDialog_south:
     name: stagingTableDialog_south
@@ -10132,16 +10132,16 @@ dialogs:
     fields:
       - name: divider
         title: >-
-          "WARNING! USE AT YOUR OWN RISK. INCORRECT USE WILL DAMAGE YOUR
-          HARDWARE!"
+          WARNING! USE AT YOUR OWN RISK. INCORRECT USE WILL DAMAGE YOUR
+          HARDWARE!
         condition: ''
       - name: divider
-        title: '"Do not attempt to use this page whilst your engine is running!"'
+        title: Do not attempt to use this page whilst your engine is running!
         condition: ''
       - name: divider
         title: >-
-          "Forcing the Injector or Spark outputs could cause flooding of your
-          engine or permanent damage to ignition coils!"
+          Forcing the Injector or Spark outputs could cause flooding of your
+          engine or permanent damage to ignition coils!
         condition: ''
   enableoutputtestbuttons:
     name: enableoutputtestbuttons
@@ -10265,8 +10265,8 @@ dialogs:
     fields:
       - name: divider
         title: >-
-          "   If Secondary Serial or Internal CANBUS is DISABLED then any input
-          channel assigned to that external source will NOT function"
+          If Secondary Serial or Internal CANBUS is DISABLED then any input
+          channel assigned to that external source will NOT function
         condition: ''
   canAuxinput_alias:
     name: canAuxinput_alias
@@ -10275,100 +10275,100 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Input Alias"'
+        title: Input Alias
         condition: ''
       - name: AUXin00Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel0a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel0b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin01Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel1a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel1b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin02Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel2a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel2b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin03Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel3a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel3b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin04Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel4a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel4b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin05Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel5a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel5b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin06Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel6a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel6b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin07Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel7a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel7b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin08Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel8a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel8b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin09Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel9a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel9b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin10Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel10a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel10b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin11Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel11a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel11b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin12Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel12a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel12b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin13Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel13a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel13b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin14Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel14a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel14b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin15Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel15a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
@@ -10380,103 +10380,103 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"               CAN Input Channel on/off"'
+        title: CAN Input Channel on/off
         condition: ''
       - name: caninput_sel0a
-        title: '"CAN Input 0"'
+        title: CAN Input 0
         condition: ''
       - name: caninput_sel0b
-        title: '"CAN Input 0"'
+        title: CAN Input 0
         condition: ''
       - name: caninput_sel1a
-        title: '"CAN Input 1"'
+        title: CAN Input 1
         condition: ''
       - name: caninput_sel1b
-        title: '"CAN Input 1"'
+        title: CAN Input 1
         condition: ''
       - name: caninput_sel2a
-        title: '"CAN Input 2"'
+        title: CAN Input 2
         condition: ''
       - name: caninput_sel2b
-        title: '"CAN Input 2"'
+        title: CAN Input 2
         condition: ''
       - name: caninput_sel3a
-        title: '"CAN Input 3"'
+        title: CAN Input 3
         condition: ''
       - name: caninput_sel3b
-        title: '"CAN Input 3"'
+        title: CAN Input 3
         condition: ''
       - name: caninput_sel4a
-        title: '"CAN Input 4"'
+        title: CAN Input 4
         condition: ''
       - name: caninput_sel4b
-        title: '"CAN Input 4"'
+        title: CAN Input 4
         condition: ''
       - name: caninput_sel5a
-        title: '"CAN Input 5"'
+        title: CAN Input 5
         condition: ''
       - name: caninput_sel5b
-        title: '"CAN Input 5"'
+        title: CAN Input 5
         condition: ''
       - name: caninput_sel6a
-        title: '"CAN Input 6"'
+        title: CAN Input 6
         condition: ''
       - name: caninput_sel6b
-        title: '"CAN Input 6"'
+        title: CAN Input 6
         condition: ''
       - name: caninput_sel7a
-        title: '"CAN Input 7"'
+        title: CAN Input 7
         condition: ''
       - name: caninput_sel7b
-        title: '"CAN Input 7"'
+        title: CAN Input 7
         condition: ''
       - name: caninput_sel8a
-        title: '"CAN Input 8"'
+        title: CAN Input 8
         condition: ''
       - name: caninput_sel8b
-        title: '"CAN Input 8"'
+        title: CAN Input 8
         condition: ''
       - name: caninput_sel9a
-        title: '"CAN Input 9"'
+        title: CAN Input 9
         condition: ''
       - name: caninput_sel9b
-        title: '"CAN Input 9"'
+        title: CAN Input 9
         condition: ''
       - name: caninput_sel10a
-        title: '"CAN Input 10"'
+        title: CAN Input 10
         condition: ''
       - name: caninput_sel10b
-        title: '"CAN Input 10"'
+        title: CAN Input 10
         condition: ''
       - name: caninput_sel11a
-        title: '"CAN Input 11"'
+        title: CAN Input 11
         condition: ''
       - name: caninput_sel11b
-        title: '"CAN Input 11"'
+        title: CAN Input 11
         condition: ''
       - name: caninput_sel12a
-        title: '"CAN Input 12"'
+        title: CAN Input 12
         condition: ''
       - name: caninput_sel12b
-        title: '"CAN Input 12"'
+        title: CAN Input 12
         condition: ''
       - name: caninput_sel13a
-        title: '"CAN Input 13"'
+        title: CAN Input 13
         condition: ''
       - name: caninput_sel13b
-        title: '"CAN Input 13"'
+        title: CAN Input 13
         condition: ''
       - name: caninput_sel14a
-        title: '"CAN Input 14"'
+        title: CAN Input 14
         condition: ''
       - name: caninput_sel14b
-        title: '"CAN Input 14"'
+        title: CAN Input 14
         condition: ''
       - name: caninput_sel15a
-        title: '"CAN Input 15"'
+        title: CAN Input 15
         condition: ''
       - name: caninput_sel15b
-        title: '"CAN Input 15"'
+        title: CAN Input 15
         condition: ''
   caninput_parameter_group:
     name: caninput_parameter_group
@@ -10485,85 +10485,85 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"             Source CAN Address"'
+        title: Source CAN Address
         condition: ''
       - name: caninput_source_can_address0
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel0a == 1 || caninput_sel0b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address1
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel1a == 1 || caninput_sel1b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address2
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel2a == 1 || caninput_sel2b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address3
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel3a == 1 || caninput_sel3b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address4
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel4a == 1 || caninput_sel4b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address5
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel5a == 1 || caninput_sel5b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address6
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel6a == 1 || caninput_sel6b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address7
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel7a == 1 || caninput_sel7b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address8
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel8a == 1 || caninput_sel8b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address9
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel9a == 1 || caninput_sel9b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address10
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel10a == 1 || caninput_sel10b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address11
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel11a == 1 || caninput_sel11b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address12
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel12a == 1 || caninput_sel12b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address13
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel13a == 1 || caninput_sel13b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address14
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel14a == 1 || caninput_sel14b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_can_address15
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
@@ -10574,85 +10574,85 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"        source data start byte"'
+        title: source data start byte
         condition: ''
       - name: caninput_source_start_byte0
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel0a == 1 || caninput_sel0b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte1
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel1a == 1 || caninput_sel1b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte2
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel2a == 1 || caninput_sel2b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte3
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel3a == 1 || caninput_sel3b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte4
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel4a == 1 || caninput_sel4b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte5
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel5a == 1 || caninput_sel5b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte6
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel6a == 1 || caninput_sel6b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte7
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel7a == 1 || caninput_sel7b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte8
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel8a == 1 || caninput_sel8b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte9
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel9a == 1 || caninput_sel9b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte10
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel10a == 1 || caninput_sel10b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte11
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel11a == 1 || caninput_sel11b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte12
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel12a == 1 || caninput_sel12b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte13
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel13a == 1 || caninput_sel13b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte14
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel14a == 1 || caninput_sel14b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_start_byte15
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
@@ -10663,85 +10663,85 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Input Parameter Number of Bytes"'
+        title: Input Parameter Number of Bytes
         condition: ''
       - name: caninput_source_num_bytes0
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel0a == 1 || caninput_sel0b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes1
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel1a == 1 || caninput_sel1b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes2
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel2a == 1 || caninput_sel2b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes3
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel3a == 1 || caninput_sel3b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes4
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel4a == 1 || caninput_sel4b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes5
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel5a == 1 || caninput_sel5b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes6
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel6a == 1 || caninput_sel6b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes7
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel7a == 1 || caninput_sel7b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes8
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel8a == 1 || caninput_sel8b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes9
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel9a == 1 || caninput_sel9b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes10
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel10a == 1 || caninput_sel10b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes11
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel11a == 1 || caninput_sel11b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes12
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel12a == 1 || caninput_sel12b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes13
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel13a == 1 || caninput_sel13b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes14
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel14a == 1 || caninput_sel14b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
       - name: caninput_source_num_bytes15
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
@@ -10752,151 +10752,151 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Serial/CAN"'
+        title: Serial/CAN
         condition: ''
       - name: caninput_sel0extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
       - name: caninput_sel0extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
       - name: caninput_sel0extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
       - name: caninput_sel1extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
       - name: caninput_sel1extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
       - name: caninput_sel1extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
       - name: caninput_sel2extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
       - name: caninput_sel2extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
       - name: caninput_sel2extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
       - name: caninput_sel3extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
       - name: caninput_sel3extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
       - name: caninput_sel3extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
       - name: caninput_sel4extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
       - name: caninput_sel4extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
       - name: caninput_sel4extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
       - name: caninput_sel5extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
       - name: caninput_sel5extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
       - name: caninput_sel5extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
       - name: caninput_sel6extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
       - name: caninput_sel6extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
       - name: caninput_sel6extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
       - name: caninput_sel7extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
       - name: caninput_sel7extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
       - name: caninput_sel7extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
       - name: caninput_sel8extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
       - name: caninput_sel8extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
       - name: caninput_sel8extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
       - name: caninput_sel9extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
       - name: caninput_sel9extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
       - name: caninput_sel9extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
       - name: caninput_sel10extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
       - name: caninput_sel10extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
       - name: caninput_sel10extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
       - name: caninput_sel11extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
       - name: caninput_sel11extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
       - name: caninput_sel11extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
       - name: caninput_sel12extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
       - name: caninput_sel12extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
       - name: caninput_sel12extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
       - name: caninput_sel13extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
       - name: caninput_sel13extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
       - name: caninput_sel13extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
       - name: caninput_sel14extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
       - name: caninput_sel14extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
       - name: caninput_sel14extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
       - name: caninput_sel15extsourcea
-        title: '""'
+        title: ''
         condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
       - name: caninput_sel15extsourceb
-        title: '""'
+        title: ''
         condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
       - name: caninput_sel15extsourcec
-        title: '""'
+        title: ''
         condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
   caninconfig_blank1:
     name: caninconfig_blank1
@@ -10905,7 +10905,7 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
   Canin_config1:
     name: Canin_config1
@@ -10926,31 +10926,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Input Alias"'
+        title: Input Alias
         condition: ''
       - name: AUXin00Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel0
       - name: AUXin01Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel1
       - name: AUXin02Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel2
       - name: AUXin03Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel3
       - name: AUXin04Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel4
       - name: AUXin05Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel5
       - name: AUXin06Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel6
       - name: AUXin07Alias
-        title: '""'
+        title: ''
         condition: canoutput_sel7
   canoutput_sel:
     name: canoutput_sel
@@ -10959,31 +10959,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"CAN Output Channel on/off"'
+        title: CAN Output Channel on/off
         condition: ''
       - name: canoutput_sel0
-        title: '"CAN Output 0"'
+        title: CAN Output 0
         condition: enable_intcandata_out
       - name: canoutput_sel1
-        title: '"CAN Output 1"'
+        title: CAN Output 1
         condition: enable_intcandata_out
       - name: canoutput_sel2
-        title: '"CAN Output 2"'
+        title: CAN Output 2
         condition: enable_intcandata_out
       - name: canoutput_sel3
-        title: '"CAN Output 3"'
+        title: CAN Output 3
         condition: enable_intcandata_out
       - name: canoutput_sel4
-        title: '"CAN Output 4"'
+        title: CAN Output 4
         condition: enable_intcandata_out
       - name: canoutput_sel5
-        title: '"CAN Output 5"'
+        title: CAN Output 5
         condition: enable_intcandata_out
       - name: canoutput_sel6
-        title: '"CAN Output 6"'
+        title: CAN Output 6
         condition: enable_intcandata_out
       - name: canoutput_sel7
-        title: '"CAN Output 7"'
+        title: CAN Output 7
         condition: enable_intcandata_out
   canoutput_parameter_group:
     name: canoutput_parameter_group
@@ -10992,31 +10992,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Output Parameter Group"'
+        title: Output Parameter Group
         condition: ''
       - name: 'canoutput_param_group[0]'
-        title: '""'
+        title: ''
         condition: canoutput_sel0 && enable_intcandata_out
       - name: 'canoutput_param_group[1]'
-        title: '""'
+        title: ''
         condition: canoutput_sel1 && enable_intcandata_out
       - name: 'canoutput_param_group[2]'
-        title: '""'
+        title: ''
         condition: canoutput_sel3 && enable_intcandata_out
       - name: 'canoutput_param_group[3]'
-        title: '""'
+        title: ''
         condition: canoutput_sel3 && enable_intcandata_out
       - name: 'canoutput_param_group[4]'
-        title: '""'
+        title: ''
         condition: canoutput_sel4 && enable_intcandata_out
       - name: 'canoutput_param_group[5]'
-        title: '""'
+        title: ''
         condition: canoutput_sel5 && enable_intcandata_out
       - name: 'canoutput_param_group[6]'
-        title: '""'
+        title: ''
         condition: canoutput_sel6 && enable_intcandata_out
       - name: 'canoutput_param_group[7]'
-        title: '""'
+        title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutput_parameter_start_byte:
     name: canoutput_parameter_start_byte
@@ -11025,31 +11025,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Output Parameter Start Byte"'
+        title: Output Parameter Start Byte
         condition: ''
       - name: canoutput_param_start_byte0
-        title: '""'
+        title: ''
         condition: canoutput_sel0 && enable_intcandata_out
       - name: canoutput_param_start_byte1
-        title: '""'
+        title: ''
         condition: canoutput_sel1 && enable_intcandata_out
       - name: canoutput_param_start_byte2
-        title: '""'
+        title: ''
         condition: canoutput_sel2 && enable_intcandata_out
       - name: canoutput_param_start_byte3
-        title: '""'
+        title: ''
         condition: canoutput_sel3 && enable_intcandata_out
       - name: canoutput_param_start_byte4
-        title: '""'
+        title: ''
         condition: canoutput_sel4 && enable_intcandata_out
       - name: canoutput_param_start_byte5
-        title: '""'
+        title: ''
         condition: canoutput_sel5 && enable_intcandata_out
       - name: canoutput_param_start_byte6
-        title: '""'
+        title: ''
         condition: canoutput_sel6 && enable_intcandata_out
       - name: canoutput_param_start_byte7
-        title: '""'
+        title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutput_parameter_num_byte:
     name: canoutput_parameter_num_byte
@@ -11058,31 +11058,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Output Parameter Number of Bytes"'
+        title: Output Parameter Number of Bytes
         condition: ''
       - name: canoutput_param_num_bytes0
-        title: '""'
+        title: ''
         condition: canoutput_sel0 && enable_intcandata_out
       - name: canoutput_param_num_bytes1
-        title: '""'
+        title: ''
         condition: canoutput_sel1 && enable_intcandata_out
       - name: canoutput_param_num_bytes2
-        title: '""'
+        title: ''
         condition: canoutput_sel2 && enable_intcandata_out
       - name: canoutput_param_num_bytes3
-        title: '""'
+        title: ''
         condition: canoutput_sel3 && enable_intcandata_out
       - name: canoutput_param_num_bytes4
-        title: '""'
+        title: ''
         condition: canoutput_sel4 && enable_intcandata_out
       - name: canoutput_param_num_bytes5
-        title: '""'
+        title: ''
         condition: canoutput_sel5 && enable_intcandata_out
       - name: canoutput_param_num_bytes6
-        title: '""'
+        title: ''
         condition: canoutput_sel6 && enable_intcandata_out
       - name: canoutput_param_num_bytes7
-        title: '""'
+        title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutconfig_blank1:
     name: canoutconfig_blank1
@@ -11091,7 +11091,7 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
   Canout_config1:
     name: Canout_config1
@@ -11106,7 +11106,7 @@ dialogs:
     panels: {}
     fields:
       - name: enable_intcandata_out
-        title: '"Enable CanBus data Output"'
+        title: Enable CanBus data Output
         condition: ''
   Canout_config:
     name: Canout_config
@@ -11121,24 +11121,24 @@ dialogs:
     panels: {}
     fields:
       - name: enable_secondarySerial
-        title: '"Enable Second Serial"'
+        title: Enable Second Serial
         condition: ''
       - name: enable_intcan
-        title: '"Enable Internal Canbus"'
+        title: Enable Internal Canbus
         condition: ''
       - name: 'true_address {enable_secondarySerial||enable_intcan}'
-        title: '"True Canbus Address"'
+        title: True Canbus Address
         condition: ''
       - name: divider
         title: >-
-          "NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
-          the True Address as they are reserved for future expansion"
+          NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
+          the True Address as they are reserved for future expansion
         condition: ''
       - name: 'realtime_base_address {enable_secondarySerial||enable_intcan}'
-        title: '"Realtime Data Base Can Address"'
+        title: Realtime Data Base Can Address
         condition: ''
       - name: obd_address
-        title: '"Speeduino OBD address"'
+        title: Speeduino OBD address
         condition: ''
   serial3IO:
     name: serial3IO
@@ -11147,24 +11147,24 @@ dialogs:
     panels: {}
     fields:
       - name: enable_secondarySerial
-        title: '"Enable Second Serial"'
+        title: Enable Second Serial
         condition: ''
       - name: enable_intcan
-        title: '"Enable Internal Canbus"'
+        title: Enable Internal Canbus
         condition: ''
       - name: 'true_address {enable_secondarySerial||enable_intcan}'
-        title: '"True Canbus Address"'
+        title: True Canbus Address
         condition: ''
       - name: divider
         title: >-
-          "NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
-          the True Address as they are reserved for future expansion"
+          NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
+          the True Address as they are reserved for future expansion
         condition: ''
       - name: 'realtime_base_address {enable_secondarySerial||enable_intcan}'
-        title: '"Realtime Data Base Can Address"'
+        title: Realtime Data Base Can Address
         condition: ''
       - name: obd_address
-        title: '"Speeduino OBD address"'
+        title: Speeduino OBD address
         condition: ''
   reset_control:
     name: reset_control
@@ -11173,10 +11173,10 @@ dialogs:
     panels: {}
     fields:
       - name: resetControl
-        title: '"Control Type"'
+        title: Control Type
         condition: ''
       - name: resetControlPin
-        title: '"Control Pin"'
+        title: Control Pin
         condition: ''
   Auxinput_pin_selection:
     name: Auxinput_pin_selection
@@ -11185,103 +11185,103 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"             Source"'
+        title: Source
         condition: ''
       - name: Auxin0pina
-        title: '"Local Analog Source 0                 Pin No:"'
+        title: 'Local Analog Source 0                 Pin No:'
         condition: ''
       - name: Auxin0pinb
-        title: '"Local Digital Source 0                  Pin No:"'
+        title: 'Local Digital Source 0                  Pin No:'
         condition: ''
       - name: Auxin1pina
-        title: '"Local Analog Source 1                 Pin No:"'
+        title: 'Local Analog Source 1                 Pin No:'
         condition: ''
       - name: Auxin1pinb
-        title: '"Local Digital Source 1                  Pin No:"'
+        title: 'Local Digital Source 1                  Pin No:'
         condition: ''
       - name: Auxin2pina
-        title: '"Local Analog Source 2                 Pin No:"'
+        title: 'Local Analog Source 2                 Pin No:'
         condition: ''
       - name: Auxin2pinb
-        title: '"Local Digital Source 2                  Pin No:"'
+        title: 'Local Digital Source 2                  Pin No:'
         condition: ''
       - name: Auxin3pina
-        title: '"Local Analog Source 3                 Pin No:"'
+        title: 'Local Analog Source 3                 Pin No:'
         condition: ''
       - name: Auxin3pinb
-        title: '"Local Digital Source 3                  Pin No:"'
+        title: 'Local Digital Source 3                  Pin No:'
         condition: ''
       - name: Auxin4pina
-        title: '"Local Analog Source 4                 Pin No:"'
+        title: 'Local Analog Source 4                 Pin No:'
         condition: ''
       - name: Auxin4pinb
-        title: '"Local Digital Source 4                  Pin No:"'
+        title: 'Local Digital Source 4                  Pin No:'
         condition: ''
       - name: Auxin5pina
-        title: '"Local Analog Source 5                 Pin No:"'
+        title: 'Local Analog Source 5                 Pin No:'
         condition: ''
       - name: Auxin5pinb
-        title: '"Local Digital Source 5                  Pin No:"'
+        title: 'Local Digital Source 5                  Pin No:'
         condition: ''
       - name: Auxin6pina
-        title: '"Local Analog Source 6                 Pin No:"'
+        title: 'Local Analog Source 6                 Pin No:'
         condition: ''
       - name: Auxin6pinb
-        title: '"Local Digital Source 6                  Pin No:"'
+        title: 'Local Digital Source 6                  Pin No:'
         condition: ''
       - name: Auxin7pina
-        title: '"Local Analog Source 7                 Pin No:"'
+        title: 'Local Analog Source 7                 Pin No:'
         condition: ''
       - name: Auxin7pinb
-        title: '"Local Digital Source 7                  Pin No:"'
+        title: 'Local Digital Source 7                  Pin No:'
         condition: ''
       - name: Auxin8pina
-        title: '"Local Analog Source 8                 Pin No:"'
+        title: 'Local Analog Source 8                 Pin No:'
         condition: ''
       - name: Auxin8pinb
-        title: '"Local Digital Source 8                  Pin No:"'
+        title: 'Local Digital Source 8                  Pin No:'
         condition: ''
       - name: Auxin9pina
-        title: '"Local Analog Source 9                 Pin No:"'
+        title: 'Local Analog Source 9                 Pin No:'
         condition: ''
       - name: Auxin9pinb
-        title: '"Local Digital Source 9                  Pin No:"'
+        title: 'Local Digital Source 9                  Pin No:'
         condition: ''
       - name: Auxin10pina
-        title: '"Local Analog Source 10                 Pin No:"'
+        title: 'Local Analog Source 10                 Pin No:'
         condition: ''
       - name: Auxin10pinb
-        title: '"Local Digital Source 10                  Pin No:"'
+        title: 'Local Digital Source 10                  Pin No:'
         condition: ''
       - name: Auxin11pina
-        title: '"Local Analog Source 11                 Pin No:"'
+        title: 'Local Analog Source 11                 Pin No:'
         condition: ''
       - name: Auxin11pinb
-        title: '"Local Digital Source 11                  Pin No:"'
+        title: 'Local Digital Source 11                  Pin No:'
         condition: ''
       - name: Auxin12pina
-        title: '"Local Analog Source 12                 Pin No:"'
+        title: 'Local Analog Source 12                 Pin No:'
         condition: ''
       - name: Auxin12pinb
-        title: '"Local Digital Source 12                  Pin No:"'
+        title: 'Local Digital Source 12                  Pin No:'
         condition: ''
       - name: Auxin13pina
-        title: '"Local Analog Source 13                 Pin No:"'
+        title: 'Local Analog Source 13                 Pin No:'
         condition: ''
       - name: Auxin13pinb
-        title: '"Local Digital Source 13                  Pin No:"'
+        title: 'Local Digital Source 13                  Pin No:'
         condition: ''
       - name: Auxin14pina
-        title: '"Local Analog Source 14                 Pin No:"'
+        title: 'Local Analog Source 14                 Pin No:'
         condition: ''
       - name: Auxin14pinb
-        title: '"Local Digital Source 14                  Pin No:"'
+        title: 'Local Digital Source 14                  Pin No:'
         condition: ''
       - name: Auxin15pina
-        title: '"Local Analog Source 15                 Pin No:"'
+        title: 'Local Analog Source 15                 Pin No:'
         condition: ''
       - name: Auxin15pinb
-        title: '"Local Digital Source 15                  Pin No:"'
+        title: 'Local Digital Source 15                  Pin No:'
         condition: ''
   Auxinput_alias:
     name: Auxinput_alias
@@ -11290,100 +11290,100 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Input Alias"'
+        title: Input Alias
         condition: ''
       - name: AUXin00Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel0a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel0b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin01Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel1a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel1b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin02Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel2a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel2b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin03Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel3a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel3b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin04Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel4a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel4b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin05Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel5a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel5b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin06Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel6a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel6b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin07Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel7a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel7b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin08Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel8a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel8b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin09Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel9a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel9b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin10Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel10a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel10b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin11Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel11a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel11b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin12Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel12a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel12b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin13Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel13a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel13b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin14Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel14a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel14b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
       - name: AUXin15Alias
-        title: '""'
+        title: ''
         condition: >-
           (caninput_sel15a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
@@ -11395,180 +11395,180 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"               Aux Input Channel Enable"'
+        title: Aux Input Channel Enable
         condition: ''
       - name: 'caninput_sel0a {}'
-        title: '"AUX Input 0"'
+        title: AUX Input 0
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel0b {}'
-        title: '"AUX Input 0"'
+        title: AUX Input 0
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel1a {}'
-        title: '"AUX Input 1"'
+        title: AUX Input 1
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel1b {}'
-        title: '"AUX Input 1"'
+        title: AUX Input 1
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel2a {}'
-        title: '"AUX Input 2"'
+        title: AUX Input 2
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel2b {}'
-        title: '"AUX Input 2"'
+        title: AUX Input 2
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel3a {}'
-        title: '"AUX Input 3"'
+        title: AUX Input 3
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel3b {}'
-        title: '"AUX Input 3"'
+        title: AUX Input 3
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel4a {}'
-        title: '"AUX Input 4"'
+        title: AUX Input 4
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel4b {}'
-        title: '"AUX Input 4"'
+        title: AUX Input 4
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel5a {}'
-        title: '"AUX Input 5"'
+        title: AUX Input 5
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel5b {}'
-        title: '"AUX Input 5"'
+        title: AUX Input 5
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel6a {}'
-        title: '"AUX Input 6"'
+        title: AUX Input 6
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel6b {}'
-        title: '"AUX Input 6"'
+        title: AUX Input 6
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel7a {}'
-        title: '"AUX Input 7"'
+        title: AUX Input 7
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel7b {}'
-        title: '"AUX Input 7"'
+        title: AUX Input 7
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel8a {}'
-        title: '"AUX Input 8"'
+        title: AUX Input 8
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel8b {}'
-        title: '"AUX Input 8"'
+        title: AUX Input 8
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel9a {}'
-        title: '"AUX Input 9"'
+        title: AUX Input 9
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel9b {}'
-        title: '"AUX Input 9"'
+        title: AUX Input 9
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel10a {}'
-        title: '"AUX Input 10"'
+        title: AUX Input 10
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel10b {}'
-        title: '"AUX Input 10"'
+        title: AUX Input 10
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel11a {}'
-        title: '"AUX Input 11"'
+        title: AUX Input 11
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel11b {}'
-        title: '"AUX Input 11"'
+        title: AUX Input 11
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel12a {}'
-        title: '"AUX Input 12"'
+        title: AUX Input 12
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel12b {}'
-        title: '"AUX Input 12"'
+        title: AUX Input 12
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel13a {}'
-        title: '"AUX Input 13"'
+        title: AUX Input 13
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel13b {}'
-        title: '"AUX Input 13"'
+        title: AUX Input 13
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel14a {}'
-        title: '"AUX Input 14"'
+        title: AUX Input 14
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel14b {}'
-        title: '"AUX Input 14"'
+        title: AUX Input 14
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
       - name: 'caninput_sel15a {}'
-        title: '"AUX Input 15"'
+        title: AUX Input 15
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
       - name: 'caninput_sel15b {}'
-        title: '"AUX Input 15"'
+        title: AUX Input 15
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
@@ -11592,31 +11592,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"#RPM"'
+        title: '#RPM'
         condition: ''
       - name: rpmwarn
-        title: '"Warning"'
+        title: Warning
         condition: ''
       - name: rpmdang
-        title: '"Danger"'
+        title: Danger
         condition: ''
       - name: rpmhigh
-        title: '"High"'
+        title: High
         condition: ''
       - name: divider
-        title: '"#MAP"'
+        title: '#MAP'
         condition: ''
       - name: mapwarn
-        title: '"Warning"'
+        title: Warning
         condition: ''
       - name: mapdang
-        title: '"Danger"'
+        title: Danger
         condition: ''
       - name: maphigh
-        title: '"High"'
+        title: High
         condition: ''
       - name: divider
-        title: '!"Reload project to update gauges"'
+        title: '!Reload project to update gauges'
         condition: ''
   io_summary:
     name: io_summary
@@ -11631,31 +11631,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: outputInverted0
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: outputInverted1
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: outputInverted2
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: outputInverted3
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: outputInverted4
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: outputInverted5
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: outputInverted6
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: outputInverted7
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_2:
     name: prgm_out_pin_selection_2
@@ -11664,31 +11664,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: firstDataIn0
-        title: '"if("'
+        title: if(
         condition: 'outputPin[0]'
       - name: firstDataIn1
-        title: '"if("'
+        title: if(
         condition: 'outputPin[1]'
       - name: firstDataIn2
-        title: '"if("'
+        title: if(
         condition: 'outputPin[2]'
       - name: firstDataIn3
-        title: '"if("'
+        title: if(
         condition: 'outputPin[3]'
       - name: firstDataIn4
-        title: '"if("'
+        title: if(
         condition: 'outputPin[4]'
       - name: firstDataIn5
-        title: '"if("'
+        title: if(
         condition: 'outputPin[5]'
       - name: firstDataIn6
-        title: '"if("'
+        title: if(
         condition: 'outputPin[6]'
       - name: firstDataIn7
-        title: '"if("'
+        title: if(
         condition: 'outputPin[7]'
   prgm_out_pin_selection_3:
     name: prgm_out_pin_selection_3
@@ -11697,31 +11697,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: firstCompType0
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: firstCompType1
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: firstCompType2
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: firstCompType3
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: firstCompType4
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: firstCompType5
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: firstCompType6
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: firstCompType7
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_4:
     name: prgm_out_pin_selection_4
@@ -11730,31 +11730,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: 'firstTarget[0]'
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: 'firstTarget[1]'
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: 'firstTarget[2]'
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: 'firstTarget[3]'
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: 'firstTarget[4]'
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: 'firstTarget[5]'
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: 'firstTarget[6]'
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: 'firstTarget[7]'
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_5:
     name: prgm_out_pin_selection_5
@@ -11763,31 +11763,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: bitwise0
-        title: '")"'
+        title: )
         condition: 'outputPin[0]'
       - name: bitwise1
-        title: '")"'
+        title: )
         condition: 'outputPin[1]'
       - name: bitwise2
-        title: '")"'
+        title: )
         condition: 'outputPin[2]'
       - name: bitwise3
-        title: '")"'
+        title: )
         condition: 'outputPin[3]'
       - name: bitwise4
-        title: '")"'
+        title: )
         condition: 'outputPin[4]'
       - name: bitwise5
-        title: '")"'
+        title: )
         condition: 'outputPin[6]'
       - name: bitwise6
-        title: '")"'
+        title: )
         condition: 'outputPin[6]'
       - name: bitwise7
-        title: '")"'
+        title: )
         condition: 'outputPin[7]'
   prgm_out_pin_selection_6:
     name: prgm_out_pin_selection_6
@@ -11796,31 +11796,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: secondDataIn0
-        title: '""'
+        title: ''
         condition: 'outputPin[0] && bitwise0'
       - name: secondDataIn1
-        title: '""'
+        title: ''
         condition: 'outputPin[1] && bitwise1'
       - name: secondDataIn2
-        title: '""'
+        title: ''
         condition: 'outputPin[2] && bitwise2'
       - name: secondDataIn3
-        title: '""'
+        title: ''
         condition: 'outputPin[3] && bitwise3'
       - name: secondDataIn4
-        title: '""'
+        title: ''
         condition: 'outputPin[4] && bitwise4'
       - name: secondDataIn5
-        title: '""'
+        title: ''
         condition: 'outputPin[5] && bitwise5'
       - name: secondDataIn6
-        title: '""'
+        title: ''
         condition: 'outputPin[6] && bitwise6'
       - name: secondDataIn7
-        title: '""'
+        title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_pin_selection_:
     name: prgm_out_pin_selection_
@@ -11829,31 +11829,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: 'firstTarget[0]'
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: 'firstTarget[1]'
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: 'firstTarget[2]'
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: 'firstTarget[3]'
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: 'firstTarget[4]'
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: 'firstTarget[5]'
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: 'firstTarget[6]'
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: 'firstTarget[7]'
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_7:
     name: prgm_out_pin_selection_7
@@ -11862,31 +11862,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: secondCompType0
-        title: '""'
+        title: ''
         condition: 'outputPin[0] && bitwise0'
       - name: secondCompType1
-        title: '""'
+        title: ''
         condition: 'outputPin[1] && bitwise1'
       - name: secondCompType2
-        title: '""'
+        title: ''
         condition: 'outputPin[2] && bitwise2'
       - name: secondCompType3
-        title: '""'
+        title: ''
         condition: 'outputPin[3] && bitwise3'
       - name: secondCompType4
-        title: '""'
+        title: ''
         condition: 'outputPin[4] && bitwise4'
       - name: secondCompType5
-        title: '""'
+        title: ''
         condition: 'outputPin[5] && bitwise5'
       - name: secondCompType6
-        title: '""'
+        title: ''
         condition: 'outputPin[6] && bitwise6'
       - name: secondCompType6
-        title: '""'
+        title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_pin_selection_8:
     name: prgm_out_pin_selection_8
@@ -11895,31 +11895,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: 'secondTarget[0]'
-        title: '""'
+        title: ''
         condition: 'outputPin[0] && bitwise0'
       - name: 'secondTarget[1]'
-        title: '""'
+        title: ''
         condition: 'outputPin[1] && bitwise1'
       - name: 'secondTarget[2]'
-        title: '""'
+        title: ''
         condition: 'outputPin[2] && bitwise2'
       - name: 'secondTarget[3]'
-        title: '""'
+        title: ''
         condition: 'outputPin[3] && bitwise3'
       - name: 'secondTarget[4]'
-        title: '""'
+        title: ''
         condition: 'outputPin[4] && bitwise4'
       - name: 'secondTarget[5]'
-        title: '""'
+        title: ''
         condition: 'outputPin[5] && bitwise5'
       - name: 'secondTarget[6]'
-        title: '""'
+        title: ''
         condition: 'outputPin[6] && bitwise6'
       - name: 'secondTarget[7]'
-        title: '""'
+        title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_pin_selection_9:
     name: prgm_out_pin_selection_9
@@ -11928,31 +11928,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '""'
+        title: ''
         condition: ''
       - name: 'outputDelay[0]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[0]'
       - name: 'outputDelay[1]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[1]'
       - name: 'outputDelay[2]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[2]'
       - name: 'outputDelay[3]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[3]'
       - name: 'outputDelay[4]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[4]'
       - name: 'outputDelay[5]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[5]'
       - name: 'outputDelay[6]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[6]'
       - name: 'outputDelay[7]'
-        title: '"during"'
+        title: during
         condition: 'outputPin[7]'
   prgm_out_alias:
     name: prgm_out_alias
@@ -11961,31 +11961,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"   Input Alias"'
+        title: Input Alias
         condition: ''
       - name: prgm_out00Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: prgm_out01Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: prgm_out02Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: prgm_out03Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: prgm_out04Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: prgm_out05Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: prgm_out06Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: prgm_out07Alias
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
   prgm_out_channelenable:
     name: prgm_out_channelenable
@@ -11994,31 +11994,31 @@ dialogs:
     panels: {}
     fields:
       - name: divider
-        title: '"Pin No:"'
+        title: 'Pin No:'
         condition: ''
       - name: outputPin0
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin1
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin2
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin3
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin4
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin5
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin6
-        title: '""'
+        title: ''
         condition: ''
       - name: outputPin7
-        title: '""'
+        title: ''
         condition: ''
   prgm_out_unique:
     name: prgm_out_unique
@@ -12033,13 +12033,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn0
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: firstCompType0
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
       - name: 'firstTarget[0]'
-        title: '""'
+        title: ''
         condition: 'outputPin[0]'
   prgm_out_rules_1_condition_2:
     name: prgm_out_rules_1_condition_2
@@ -12048,13 +12048,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn0
-        title: '""'
+        title: ''
         condition: 'outputPin[0] && bitwise0'
       - name: secondCompType0
-        title: '""'
+        title: ''
         condition: 'outputPin[0] && bitwise0'
       - name: 'secondTarget[0]'
-        title: '""'
+        title: ''
         condition: 'outputPin[0] && bitwise0'
   prgm_out_rules_2_condition_1:
     name: prgm_out_rules_2_condition_1
@@ -12063,13 +12063,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn1
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: firstCompType1
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
       - name: 'firstTarget[1]'
-        title: '""'
+        title: ''
         condition: 'outputPin[1]'
   prgm_out_rules_2_condition_2:
     name: prgm_out_rules_2_condition_2
@@ -12078,13 +12078,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn1
-        title: '""'
+        title: ''
         condition: 'outputPin[1] && bitwise1'
       - name: secondCompType1
-        title: '""'
+        title: ''
         condition: 'outputPin[1] && bitwise1'
       - name: 'secondTarget[1]'
-        title: '""'
+        title: ''
         condition: 'outputPin[1] && bitwise1'
   prgm_out_rules_3_condition_1:
     name: prgm_out_rules_3_condition_1
@@ -12093,13 +12093,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn2
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: firstCompType2
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
       - name: 'firstTarget[2]'
-        title: '""'
+        title: ''
         condition: 'outputPin[2]'
   prgm_out_rules_3_condition_2:
     name: prgm_out_rules_3_condition_2
@@ -12108,13 +12108,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn2
-        title: '""'
+        title: ''
         condition: 'outputPin[2] && bitwise2'
       - name: secondCompType2
-        title: '""'
+        title: ''
         condition: 'outputPin[2] && bitwise2'
       - name: 'secondTarget[2]'
-        title: '""'
+        title: ''
         condition: 'outputPin[2] && bitwise2'
   prgm_out_rules_4_condition_1:
     name: prgm_out_rules_4_condition_1
@@ -12123,13 +12123,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn3
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: firstCompType3
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
       - name: 'firstTarget[3]'
-        title: '""'
+        title: ''
         condition: 'outputPin[3]'
   prgm_out_rules_4_condition_2:
     name: prgm_out_rules_4_condition_2
@@ -12138,13 +12138,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn3
-        title: '""'
+        title: ''
         condition: 'outputPin[3] && bitwise3'
       - name: secondCompType3
-        title: '""'
+        title: ''
         condition: 'outputPin[3] && bitwise3'
       - name: 'secondTarget[3]'
-        title: '""'
+        title: ''
         condition: 'outputPin[3] && bitwise3'
   prgm_out_rules_5_condition_1:
     name: prgm_out_rules_5_condition_1
@@ -12153,13 +12153,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn4
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: firstCompType4
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
       - name: 'firstTarget[4]'
-        title: '""'
+        title: ''
         condition: 'outputPin[4]'
   prgm_out_rules_5_condition_2:
     name: prgm_out_rules_5_condition_2
@@ -12168,13 +12168,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn4
-        title: '""'
+        title: ''
         condition: 'outputPin[4] && bitwise4'
       - name: secondCompType4
-        title: '""'
+        title: ''
         condition: 'outputPin[4] && bitwise4'
       - name: 'secondTarget[4]'
-        title: '""'
+        title: ''
         condition: 'outputPin[4] && bitwise4'
   prgm_out_rules_6_condition_1:
     name: prgm_out_rules_6_condition_1
@@ -12183,13 +12183,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn5
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: firstCompType5
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
       - name: 'firstTarget[5]'
-        title: '""'
+        title: ''
         condition: 'outputPin[5]'
   prgm_out_rules_6_condition_2:
     name: prgm_out_rules_6_condition_2
@@ -12198,13 +12198,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn5
-        title: '""'
+        title: ''
         condition: 'outputPin[5] && bitwise5'
       - name: secondCompType5
-        title: '""'
+        title: ''
         condition: 'outputPin[5] && bitwise5'
       - name: 'secondTarget[5]'
-        title: '""'
+        title: ''
         condition: 'outputPin[5] && bitwise5'
   prgm_out_rules_7_condition_1:
     name: prgm_out_rules_7_condition_1
@@ -12213,13 +12213,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn6
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: firstCompType6
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
       - name: 'firstTarget[6]'
-        title: '""'
+        title: ''
         condition: 'outputPin[6]'
   prgm_out_rules_7_condition_2:
     name: prgm_out_rules_7_condition_2
@@ -12228,13 +12228,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn6
-        title: '""'
+        title: ''
         condition: 'outputPin[6] && bitwise6'
       - name: secondCompType6
-        title: '""'
+        title: ''
         condition: 'outputPin[6] && bitwise6'
       - name: 'secondTarget[6]'
-        title: '""'
+        title: ''
         condition: 'outputPin[6] && bitwise6'
   prgm_out_rules_8_condition_1:
     name: prgm_out_rules_8_condition_1
@@ -12243,13 +12243,13 @@ dialogs:
     panels: {}
     fields:
       - name: firstDataIn7
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
       - name: firstCompType7
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
       - name: 'firstTarget[7]'
-        title: '""'
+        title: ''
         condition: 'outputPin[7]'
   prgm_out_rules_8_condition_2:
     name: prgm_out_rules_8_condition_2
@@ -12258,13 +12258,13 @@ dialogs:
     panels: {}
     fields:
       - name: secondDataIn7
-        title: '""'
+        title: ''
         condition: 'outputPin[7] && bitwise7'
       - name: secondCompType7
-        title: '""'
+        title: ''
         condition: 'outputPin[7] && bitwise7'
       - name: 'secondTarget[7]'
-        title: '""'
+        title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_rules_1:
     name: prgm_out_rules_1
@@ -12273,19 +12273,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin0
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out00Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[0]'
       - name: outputInverted0
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[0]'
       - name: 'outputDelay[0]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[0]'
       - name: bitwise0
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[0]'
   prgm_out_rules_2:
     name: prgm_out_rules_2
@@ -12294,19 +12294,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin1
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out01Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[1]'
       - name: outputInverted1
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[1]'
       - name: 'outputDelay[1]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[1]'
       - name: bitwise1
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[1]'
   prgm_out_rules_3:
     name: prgm_out_rules_3
@@ -12315,19 +12315,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin2
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out02Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[2]'
       - name: outputInverted2
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[2]'
       - name: 'outputDelay[2]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[2]'
       - name: bitwise2
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[2]'
   prgm_out_rules_4:
     name: prgm_out_rules_4
@@ -12336,19 +12336,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin3
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out03Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[3]'
       - name: outputInverted3
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[3]'
       - name: 'outputDelay[3]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[3]'
       - name: bitwise3
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[3]'
   prgm_out_rules_5:
     name: prgm_out_rules_5
@@ -12357,19 +12357,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin4
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out04Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[4]'
       - name: outputInverted4
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[4]'
       - name: 'outputDelay[4]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[4]'
       - name: bitwise4
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[4]'
   prgm_out_rules_6:
     name: prgm_out_rules_6
@@ -12378,19 +12378,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin5
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out05Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[5]'
       - name: outputInverted5
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[5]'
       - name: 'outputDelay[5]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[5]'
       - name: bitwise5
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[5]'
   prgm_out_rules_7:
     name: prgm_out_rules_7
@@ -12399,19 +12399,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin6
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out06Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[6]'
       - name: outputInverted6
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[6]'
       - name: 'outputDelay[6]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[6]'
       - name: bitwise6
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[6]'
   prgm_out_rules_8:
     name: prgm_out_rules_8
@@ -12420,19 +12420,19 @@ dialogs:
     panels: {}
     fields:
       - name: outputPin7
-        title: '"Output Pin Num"'
+        title: Output Pin Num
         condition: ''
       - name: prgm_out07Alias
-        title: '"Rule Alias"'
+        title: Rule Alias
         condition: 'outputPin[7]'
       - name: outputInverted7
-        title: '"Output Polarity"'
+        title: Output Polarity
         condition: 'outputPin[7]'
       - name: 'outputDelay[7]'
-        title: '"Activation Delay"'
+        title: Activation Delay
         condition: 'outputPin[7]'
       - name: bitwise7
-        title: '"2nd Condition"'
+        title: 2nd Condition
         condition: 'outputPin[7]'
   prgm_out_rules_master:
     name: prgm_out_rules_master
@@ -12479,5 +12479,5 @@ dialogs:
     panels: {}
     fields:
       - name: prgm_out_selection
-        title: '"Select Rule Number"'
+        title: Select Rule Number
         condition: ''

@@ -101,9 +101,8 @@ class Parser {
       const [title, name, condition] = matchField.groups.field.split(',');
 
       this.result.dialogs[this.currentDialog].fields.push({
-        name: name ? name.trim() : 'divider',
-        // TODO: remove this: "Low (E0) "'
-        title: title.trim(),
+        name: name ? Parser.sanitizeString(name) : 'divider',
+        title: Parser.sanitizeString(title),
         condition: (condition || '').trim().replace(/^{\s*|\s*}$/g, ''),
       });
     }
@@ -236,6 +235,8 @@ class Parser {
   }
 
   static sanitizeComments = (val) => (val || '').replace(';', '').trim();
+
+  static sanitizeString = (val) => val.replace(/"/g, '').trim();
 }
 
 const result = new Parser(
