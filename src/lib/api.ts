@@ -1,6 +1,7 @@
 import store from '../store';
 import {
   Config as ConfigType,
+  Constant as ConstantType,
 } from '../types/config';
 import stdDialogs from './standardDialogs';
 
@@ -48,10 +49,26 @@ export const loadAll = () => {
           });
 
           const config = yaml.safeLoad(yamlContent) as ConfigType;
+
+          // override / merge standard dialogs
           config.dialogs = {
             ...config.dialogs,
             ...stdDialogs,
           };
+
+          // override / merge constants
+          config.constants.pages[0].data.divider = {
+            name: 'divider',
+            type: 'scalar',
+            size: 'U08',
+            offset: 25,
+            units: '',
+            scale: 1,
+            transform: 0,
+            min: 1,
+            max: 8,
+            digits: 0,
+          } as ConstantType;
 
           store.dispatch({ type: 'config/load', payload: config });
           store.dispatch({ type: 'tune/load', payload: { constants } });

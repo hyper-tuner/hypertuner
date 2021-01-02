@@ -178,8 +178,6 @@ const Dialog = ({
             }
           }
 
-          const precision = constant.units === '%' ? 0 : 1;
-
           switch (constant.type) {
             case 'bits':
             case 'array':
@@ -194,13 +192,13 @@ const Dialog = ({
             case 'scalar':
               input = <InputNumber
                         defaultValue={Number(tuneField.value)}
-                        precision={precision}
+                        precision={constant.digits}
                         min={constant.min || 0}
                         max={constant.max}
-                        step={10**-precision}
+                        step={10**-constant.digits}
                         disabled={!enabled}
                         style={{ minWidth: 150 }}
-                        formatter={(val) => `${val} ${constant.units}`}
+                        formatter={(val) => constant.units ? `${val} ${constant.units}` : `${val}`}
                         parser={(val) => `${val}`.replace(/[^\d.]/g, '')}
                       />;
               break;

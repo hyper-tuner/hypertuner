@@ -3178,7 +3178,17 @@ constants:
           max: 25.5
           digits: 1
           comments: ''
-        divider: {}
+        divider:
+          type: scalar
+          size: U08
+          offset: 25
+          units: ''
+          scale: 1
+          transform: 0
+          min: 0
+          max: 0
+          digits: 0
+          comments: ''
         alternate:
           type: bits
           size: U08
@@ -10921,7 +10931,6 @@ constants:
         mapBins2: {}
 dialogs:
   engine_constants_southwest:
-    name: engine_constants_southwest
     title: Speeduino Board
     layout: ''
     panels: {}
@@ -10939,17 +10948,14 @@ dialogs:
         title: MAP Sample method
         condition: ''
   engine_constants_west:
-    name: engine_constants_west
     title: ''
     layout: ''
     panels:
       std_injection:
-        name: std_injection
         layout: North
         condition: ''
     fields: []
   engine_constants_northeast:
-    name: engine_constants_northeast
     title: Oddfire Angles
     layout: ''
     panels: {}
@@ -10964,12 +10970,10 @@ dialogs:
         title: Channel 4 angle
         condition: engineType == 1 && nCylinders >= 4
   engine_constants_east:
-    name: engine_constants_east
     title: ''
     layout: ''
     panels:
       engine_constants_northeast:
-        name: engine_constants_northeast
         layout: North
         condition: ''
     fields:
@@ -10977,7 +10981,6 @@ dialogs:
         title: ''
         condition: ''
   engine_constants_warning:
-    name: engine_constants_warning
     title: ''
     layout: ''
     panels: {}
@@ -10988,25 +10991,20 @@ dialogs:
           sequential fuel!
         condition: ''
   engine_constants:
-    name: engine_constants
     title: ''
     layout: border
     panels:
       engine_constants_warning:
-        name: engine_constants_warning
         layout: North
         condition: ''
       engine_constants_west:
-        name: engine_constants_west
         layout: West
         condition: ''
       engine_constants_east:
-        name: engine_constants_east
         layout: East
         condition: ''
     fields: []
   flexFuelSettings:
-    name: flexFuelSettings
     title: ''
     layout: yAxis
     panels: {}
@@ -11021,73 +11019,58 @@ dialogs:
         title: High (E100)
         condition: flexEnabled
   flexFuelWest:
-    name: flexFuelWest
     title: ''
     layout: ''
     panels:
       flex_fuel_curve:
-        name: flex_fuel_curve
         layout: ''
         condition: flexEnabled
       flex_adv_curve:
-        name: flex_adv_curve
         layout: ''
         condition: flexEnabled
     fields: []
   flexFuelEast:
-    name: flexFuelEast
     title: ''
     layout: ''
     panels:
       flex_boost_curve:
-        name: flex_boost_curve
         layout: ''
         condition: flexEnabled && boostEnabled
     fields: []
   flexCurves:
-    name: flexCurves
     title: ''
     layout: xAxis
     panels:
       flexFuelWest:
-        name: flexFuelWest
         layout: West
         condition: ''
       flexFuelEast:
-        name: flexFuelEast
         layout: East
         condition: ''
     fields: []
   flexFueling:
-    name: flexFueling
     title: Fuel Sensor Settings
     layout: border
     panels:
       flexFuelSettings:
-        name: flexFuelSettings
         layout: North
         condition: ''
       flexCurves:
-        name: flexCurves
         layout: South
         condition: ''
     fields: []
   knock_windows:
-    name: knock_windows
     title: Knock Windows
     layout: xAxis
     panels:
       knock_window_angle_curve:
-        name: knock_window_angle_curve
         layout: West
         condition: knock_mode
       knock_window_duration_curve:
-        name: knock_window_duration_curve
         layout: East
         condition: knock_mode
     fields: []
   knock_settings_west:
-    name: knock_settings_west
     title: Settings
     layout: yAxis
     panels: {}
@@ -11105,7 +11088,6 @@ dialogs:
         title: Use pullup
         condition: knock_mode == 1
   knock_settings_east:
-    name: knock_settings_east
     title: Detection and Response
     layout: ''
     panels: {}
@@ -11153,35 +11135,28 @@ dialogs:
         title: Recovery step size
         condition: knock_mode
   knock_settings_top:
-    name: knock_settings_top
     title: ''
     layout: xAxis
     panels:
       knock_settings_west:
-        name: knock_settings_west
         layout: West
         condition: ''
       knock_settings_east:
-        name: knock_settings_east
         layout: East
         condition: ''
     fields: []
   knockSettings:
-    name: knockSettings
     title: ''
     layout: border
     panels:
       knock_settings_top:
-        name: knock_settings_top
         layout: North
         condition: ''
       knock_windows:
-        name: knock_windows
         layout: South
         condition: ''
     fields: []
   vss_gear_1:
-    name: vss_gear_1
     title: ''
     layout: xAxis
     panels: {}
@@ -11190,7 +11165,6 @@ dialogs:
         title: Speed ratio 1
         condition: ''
   vss_gear_2:
-    name: vss_gear_2
     title: ''
     layout: xAxis
     panels: {}
@@ -11199,7 +11173,6 @@ dialogs:
         title: Speed ratio 2
         condition: ''
   vss_gear_3:
-    name: vss_gear_3
     title: ''
     layout: xAxis
     panels: {}
@@ -11208,7 +11181,6 @@ dialogs:
         title: Speed ratio 3
         condition: ''
   vss_gear_4:
-    name: vss_gear_4
     title: ''
     layout: xAxis
     panels: {}
@@ -11217,7 +11189,6 @@ dialogs:
         title: Speed ratio 4
         condition: ''
   vss_gear_5:
-    name: vss_gear_5
     title: ''
     layout: xAxis
     panels: {}
@@ -11226,7 +11197,6 @@ dialogs:
         title: Speed ratio 5
         condition: ''
   vss_gear_6:
-    name: vss_gear_6
     title: ''
     layout: xAxis
     panels: {}
@@ -11235,7 +11205,6 @@ dialogs:
         title: Speed ratio 6
         condition: ''
   vss_gear_detection:
-    name: vss_gear_detection
     title: Gear Detection
     layout: yAxis
     panels: {}
@@ -11247,7 +11216,6 @@ dialogs:
         title: Drive in each gear (any speed) and press appropriate button
         condition: ''
   vss_calibration:
-    name: vss_calibration
     title: VSS Calibration
     layout: ''
     panels: {}
@@ -11259,7 +11227,6 @@ dialogs:
         title: Smoothing Factor
         condition: vssMode > 1
   vssSettings:
-    name: vssSettings
     title: ''
     layout: yAxis
     panels: {}
@@ -11271,7 +11238,6 @@ dialogs:
         title: VSS Pin
         condition: vssMode > 1
   tacho:
-    name: tacho
     title: Tacho
     layout: ''
     panels: {}
@@ -11292,7 +11258,6 @@ dialogs:
         title: Tacho sweep Max RPM
         condition: useTachoSweep
   accelEnrichments_aeSettings:
-    name: accelEnrichments_aeSettings
     title: ''
     layout: ''
     panels: {}
@@ -11319,7 +11284,6 @@ dialogs:
         title: Taper End RPM
         condition: ''
   accelEnrichments_coldAdj:
-    name: accelEnrichments_coldAdj
     title: Acceleration Enrichment cold adjustment
     layout: ''
     panels: {}
@@ -11334,7 +11298,6 @@ dialogs:
         title: Cold adjustment taper end temperature
         condition: ''
   accelEnrichments_south:
-    name: accelEnrichments_south
     title: Decelleration Fuel Cutoff (DFCO)
     layout: ''
     panels: {}
@@ -11358,61 +11321,49 @@ dialogs:
         title: RPM Hysteresis
         condition: dfcoEnabled
   accelEnrichments_north_south:
-    name: accelEnrichments_north_south
     title: ''
     layout: ''
     panels: {}
     fields: []
   accelEnrichments_north:
-    name: accelEnrichments_north
     title: ''
     layout: xAxis
     panels:
       time_accel_tpsdot_curve:
-        name: time_accel_tpsdot_curve
         layout: ''
         condition: aeMode == 0
       time_accel_mapdot_curve:
-        name: time_accel_mapdot_curve
         layout: ''
         condition: aeMode == 1
     fields: []
   accelEnrichments_center:
-    name: accelEnrichments_center
     title: Acceleration Enrichment
     layout: xAxis
     panels: {}
     fields: []
   accelEnrichments:
-    name: accelEnrichments
     title: Acceleration Enrichment
     layout: ''
     panels:
       accelEnrichments_north:
-        name: accelEnrichments_north
         layout: North
         condition: ''
       accelEnrichments_north_south:
-        name: accelEnrichments_north_south
         layout: Center
         condition: ''
       accelEnrichments_center:
-        name: accelEnrichments_center
         layout: Center
         condition: ''
       accelEnrichments_south:
-        name: accelEnrichments_south
         layout: South
         condition: ''
     fields: []
   veTableDialog_north:
-    name: veTableDialog_north
     title: ''
     layout: ''
     panels: {}
     fields: []
   veTableDialog_south:
-    name: veTableDialog_south
     title: ''
     layout: ''
     panels: {}
@@ -11427,21 +11378,17 @@ dialogs:
         title: Multiply by ratio of stoich AFR/target AFR (incorporate AFR)
         condition: '!includeAFR || (incorporateAFR==includeAFR)'
   veTableDialog:
-    name: veTableDialog
     title: VE Table
     layout: ''
     panels:
       veTableDialog_north:
-        name: veTableDialog_north
         layout: North
         condition: ''
       veTableDialog_south:
-        name: veTableDialog_south
         layout: South
         condition: ''
     fields: []
   fuelTable2Dialog_switch:
-    name: fuelTable2Dialog_switch
     title: Switch Conditions
     layout: xAxis
     panels: {}
@@ -11453,7 +11400,6 @@ dialogs:
         title: 'is greater than:'
         condition: ''
   fuelTable2Dialog_input:
-    name: fuelTable2Dialog_input
     title: Input Options
     layout: yAxis
     panels: {}
@@ -11468,16 +11414,13 @@ dialogs:
         title: Use internal pullup on pin
         condition: fuel2InputPolarity == 0
   fuelTable2Dialog_north:
-    name: fuelTable2Dialog_north
     title: ''
     layout: ''
     panels:
       fuelTable2Dialog_switch:
-        name: fuelTable2Dialog_switch
         layout: ''
         condition: fuel2Mode == 3
       fuelTable2Dialog_input:
-        name: fuelTable2Dialog_input
         layout: ''
         condition: fuel2Mode == 4
     fields:
@@ -11488,27 +11431,22 @@ dialogs:
         title: Load source
         condition: fuel2Mode
   fuelTable2Dialog_south:
-    name: fuelTable2Dialog_south
     title: ''
     layout: ''
     panels: {}
     fields: []
   fuelTable2Dialog:
-    name: fuelTable2Dialog
     title: Fuel Table 2
     layout: ''
     panels:
       fuelTable2Dialog_north:
-        name: fuelTable2Dialog_north
         layout: North
         condition: ''
       fuelTable2Dialog_south:
-        name: fuelTable2Dialog_south
         layout: South
         condition: fuel2Mode
     fields: []
   sparkTable2Dialog_switch:
-    name: sparkTable2Dialog_switch
     title: Switch Conditions
     layout: xAxis
     panels: {}
@@ -11520,7 +11458,6 @@ dialogs:
         title: 'is greater than:'
         condition: ''
   sparkTable2Dialog_input:
-    name: sparkTable2Dialog_input
     title: Input Options
     layout: yAxis
     panels: {}
@@ -11535,16 +11472,13 @@ dialogs:
         title: Use internal pullup on pin
         condition: spark2InputPolarity == 0
   sparkTable2Dialog_north:
-    name: sparkTable2Dialog_north
     title: ''
     layout: ''
     panels:
       sparkTable2Dialog_switch:
-        name: sparkTable2Dialog_switch
         layout: ''
         condition: spark2Mode == 3
       sparkTable2Dialog_input:
-        name: sparkTable2Dialog_input
         layout: ''
         condition: spark2Mode == 4
     fields:
@@ -11555,33 +11489,27 @@ dialogs:
         title: Load source
         condition: spark2Mode
   sparkTable2Dialog_south:
-    name: sparkTable2Dialog_south
     title: ''
     layout: ''
     panels: {}
     fields: []
   sparkTable2Dialog:
-    name: sparkTable2Dialog
     title: Spark Table 2
     layout: ''
     panels:
       sparkTable2Dialog_north:
-        name: sparkTable2Dialog_north
         layout: North
         condition: ''
       sparkTable2Dialog_south:
-        name: sparkTable2Dialog_south
         layout: South
         condition: spark2Mode
     fields: []
   injAngleDialog:
-    name: injAngleDialog
     title: Injector close angles
     layout: ''
     panels: {}
     fields: []
   injOpenTimeDialog:
-    name: injOpenTimeDialog
     title: Injector opening time
     layout: ''
     panels: {}
@@ -11593,7 +11521,6 @@ dialogs:
         title: Battery Voltage Correction Mode
         condition: ''
   injChars:
-    name: injChars
     title: Injector Characteristics
     layout: ''
     panels: {}
@@ -11602,7 +11529,6 @@ dialogs:
         title: Injector Duty Limit
         condition: ''
   egoControl:
-    name: egoControl
     title: ''
     layout: ''
     panels: {}
@@ -11650,7 +11576,6 @@ dialogs:
         title: PID Derivative
         condition: egoType && (egoAlgorithm == 2)
   fanSettings:
-    name: fanSettings
     title: Fan Settings
     layout: ''
     panels: {}
@@ -11677,7 +11602,6 @@ dialogs:
         title: Fan hysteresis
         condition: fanEnable
   stepper_idle:
-    name: stepper_idle
     title: Stepper Idle
     layout: ''
     panels: {}
@@ -11701,7 +11625,6 @@ dialogs:
         title: Stepper Inverted
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
   pwm_idle:
-    name: pwm_idle
     title: PWM Idle
     layout: ''
     panels: {}
@@ -11716,7 +11639,6 @@ dialogs:
         title: Idle valve direction
         condition: iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 6
   closedloop_idle:
-    name: closedloop_idle
     title: Closed loop Idle
     layout: ''
     panels: {}
@@ -11743,7 +11665,6 @@ dialogs:
         title: Integeral reset RPM Hysteresis
         condition: ''
   idleSettings:
-    name: idleSettings
     title: Idle Settings
     layout: ''
     panels: {}
@@ -11761,7 +11682,6 @@ dialogs:
         title: Fast idle temp
         condition: iacAlgorithm == 1
   idleUpInputSettingsPanel:
-    name: idleUpInputSettingsPanel
     title: Idle Up Input Settings
     layout: yAxis
     panels: {}
@@ -11779,7 +11699,6 @@ dialogs:
         title: Idle Up Amount
         condition: idleUpEnabled
   idleUpOutputSettingsPanel:
-    name: idleUpOutputSettingsPanel
     title: Idle Up Output Settings
     layout: yAxis
     panels: {}
@@ -11794,13 +11713,11 @@ dialogs:
         title: Idle Up Output Pin
         condition: idleUpEnabled && idleUpOutputEnabled
   idleUpSettings:
-    name: idleUpSettings
     title: Idle Up Settings
     layout: ''
     panels: {}
     fields: []
   fuelpump:
-    name: fuelpump
     title: Fuel pump
     layout: ''
     panels: {}
@@ -11812,7 +11729,6 @@ dialogs:
         title: Fuel pump prime duration
         condition: ''
   crankingEnrichDialog:
-    name: crankingEnrichDialog
     title: Cranking Enrichment
     layout: yAxis
     panels: {}
@@ -11826,7 +11742,6 @@ dialogs:
           change.
         condition: ''
   crankingIgnOptions:
-    name: crankingIgnOptions
     title: Cranking Timing
     layout: yAxis
     panels: {}
@@ -11846,7 +11761,6 @@ dialogs:
           TrigPattern == 1 || TrigPattern == 4 || TrigPattern == 10 ||
           TrigPattern == 9
   crankingOptions:
-    name: crankingOptions
     title: ''
     layout: yAxis
     panels: {}
@@ -11867,31 +11781,25 @@ dialogs:
         title: Cranking enrichment taper time
         condition: ''
   primePW:
-    name: primePW
     title: Priming Pulsewidth
     layout: ''
     panels: {}
     fields: []
   crankPW:
-    name: crankPW
     title: Cranking Settings
     layout: yAxis
     panels:
       crankingOptions:
-        name: crankingOptions
         layout: North
         condition: ''
       crankingEnrichDialog:
-        name: crankingEnrichDialog
         layout: Center
         condition: ''
       crankingIgnOptions:
-        name: crankingIgnOptions
         layout: South
         condition: ''
     fields: []
   ASE_amount:
-    name: ASE_amount
     title: Enrichment amount (%)
     layout: yAxis
     panels: {}
@@ -11906,7 +11814,6 @@ dialogs:
         title: Common values are 5% when engine is hot to 50% when engine is cold.
         condition: ''
   ASE_time:
-    name: ASE_time
     title: Duration (s)
     layout: yAxis
     panels: {}
@@ -11923,7 +11830,6 @@ dialogs:
         title: Transition time to disable
         condition: ''
   ASE:
-    name: ASE
     title: Afterstart Enrichment(ASE)
     layout: yAxis
     panels: {}
@@ -11932,7 +11838,6 @@ dialogs:
         title: '#Time and duration curves share common coolant values'
         condition: ''
   triggerSettings:
-    name: triggerSettings
     title: Trigger Settings
     layout: ''
     panels: {}
@@ -11997,7 +11902,6 @@ dialogs:
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
           TrigPattern == 18 || TrigPattern == 19 } ;Dual wheel
   lockSparkSettings:
-    name: lockSparkSettings
     title: Locked timing
     layout: ''
     panels: {}
@@ -12014,7 +11918,6 @@ dialogs:
           the Cranking advance angle value above
         condition: ''
   newIgnitionMode:
-    name: newIgnitionMode
     title: New Ignition Mode
     layout: ''
     panels: {}
@@ -12031,12 +11934,10 @@ dialogs:
         title: Use new ignition mode
         condition: ''
   sparkSettings:
-    name: sparkSettings
     title: Spark Settings
     layout: ''
     panels:
       newIgnitionMode:
-        name: newIgnitionMode
         layout: '{}'
         condition: >-
           TrigPattern == 0 || TrigPattern == 1 || TrigPattern == 2 ||
@@ -12062,7 +11963,6 @@ dialogs:
         title: Spark Outputs triggers
         condition: ''
   dwellSettings:
-    name: dwellSettings
     title: Dwell Settings
     layout: ''
     panels: {}
@@ -12134,23 +12034,19 @@ dialogs:
         title: Closed Throttle Sensor Pin Polarity
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
   idleAdvanceSettings:
-    name: idleAdvanceSettings
     title: Idle Advance Settings
     layout: xAxis
     panels:
       idle_advance_curve:
-        name: idle_advance_curve
         layout: ''
         condition: idleAdvEnabled >= 1
       iacClosedLoop_curve:
-        name: iacClosedLoop_curve
         layout: ''
         condition: >-
           iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6 ||
           idleAdvEnabled >= 1
     fields: []
   rotary_ignition:
-    name: rotary_ignition
     title: Rotary Ignition
     layout: ''
     panels: {}
@@ -12159,7 +12055,6 @@ dialogs:
         title: Ignition Configuration
         condition: ''
   boostCut:
-    name: boostCut
     title: Boost Cut
     layout: ''
     panels: {}
@@ -12171,7 +12066,6 @@ dialogs:
         title: Boost Limit
         condition: boostCutEnabled
   boostLoad:
-    name: boostLoad
     title: ''
     layout: ''
     panels: {}
@@ -12186,7 +12080,6 @@ dialogs:
         title: In closed loop mode
         condition: ''
   revLimiterDialog:
-    name: revLimiterDialog
     title: Rev Limiter
     layout: ''
     panels: {}
@@ -12221,12 +12114,10 @@ dialogs:
         title: Hard Rev limit
         condition: ''
   oilPressureProtection:
-    name: oilPressureProtection
     title: Oil Pressure
     layout: ''
     panels:
       oil_pressure_prot_curve:
-        name: oil_pressure_prot_curve
         layout: ''
         condition: oilPressureEnable && oilPressureProtEnbl
     fields:
@@ -12234,12 +12125,10 @@ dialogs:
         title: Oil Pressure Protection
         condition: oilPressureEnable
   engineProtectionWest:
-    name: engineProtectionWest
     title: ''
     layout: ''
     panels:
       protectIndicatorPanel:
-        name: protectIndicatorPanel
         layout: ''
         condition: engineProtectType
     fields:
@@ -12255,25 +12144,20 @@ dialogs:
           engineProtectType == 1 || engineProtectType == 3 } ;Only available for
           the protection modes that include ignition.
   RevLimiterS:
-    name: RevLimiterS
     title: Engine Protection and Limiters
     layout: xAxis
     panels:
       revLimiterDialog:
-        name: revLimiterDialog
         layout: ''
         condition: engineProtectType
       boostCut:
-        name: boostCut
         layout: ''
         condition: engineProtectType
       oilPressureProtection:
-        name: oilPressureProtection
         layout: ''
         condition: engineProtectType
     fields: []
   clutchInput:
-    name: clutchInput
     title: Clutch input
     layout: ''
     panels: {}
@@ -12291,7 +12175,6 @@ dialogs:
         title: Launch / Flat Shift switch RPM
         condition: launchEnable || flatSEnable
   LaunchControl:
-    name: LaunchControl
     title: Launch Control / Flat shift
     layout: ''
     panels: {}
@@ -12330,7 +12213,6 @@ dialogs:
         title: Soft limit absolute timing
         condition: flatSEnable
   NitrousStage1:
-    name: NitrousStage1
     title: Stage 1
     layout: ''
     panels: {}
@@ -12354,7 +12236,6 @@ dialogs:
         title: Ignition retard when active
         condition: ''
   NitrousStage2:
-    name: NitrousStage2
     title: Stage 2
     layout: ''
     panels: {}
@@ -12378,7 +12259,6 @@ dialogs:
         title: Ignition retard when active
         condition: ''
   NitrousMain:
-    name: NitrousMain
     title: Settings
     layout: ''
     panels: {}
@@ -12405,25 +12285,20 @@ dialogs:
         title: Leanest AFR
         condition: n2o_enable > 0
   NitrousControl:
-    name: NitrousControl
     title: Nitrous
     layout: ''
     panels:
       NitrousMain:
-        name: NitrousMain
         layout: North
         condition: ''
       NitrousStage1:
-        name: NitrousStage1
         layout: West
         condition: n2o_enable > 0
       NitrousStage2:
-        name: NitrousStage2
         layout: East
         condition: n2o_enable > 1
     fields: []
   OLED:
-    name: OLED
     title: OLED Display
     layout: ''
     panels: {}
@@ -12450,13 +12325,11 @@ dialogs:
         title: Field 4
         condition: display
   batCal:
-    name: batCal
     title: Calibrate voltage reading
     layout: ''
     panels: {}
     fields: []
   mapCal:
-    name: mapCal
     title: Calibrate MAP
     layout: ''
     panels: {}
@@ -12504,7 +12377,6 @@ dialogs:
         title: kPa At 5.0 Volts
         condition: useEMAP
   sensorFilters:
-    name: sensorFilters
     title: Analog sensor filters
     layout: ''
     panels: {}
@@ -12536,7 +12408,6 @@ dialogs:
         title: Pressure at 5v
         condition: fuelPressureEnable
   fuelPressureDialog:
-    name: fuelPressureDialog
     title: Fuel Pressure
     layout: xAxis
     panels: {}
@@ -12554,19 +12425,16 @@ dialogs:
         title: Pressure at 5v
         condition: oilPressureEnable
   oilPressureDialog:
-    name: oilPressureDialog
     title: Oil Pressure
     layout: xAxis
     panels: {}
     fields: []
   pressureSensors:
-    name: pressureSensors
     title: Pressure Transducers
     layout: ''
     panels: {}
     fields: []
   boostSettings:
-    name: boostSettings
     title: Boost Control
     layout: ''
     panels: {}
@@ -12608,7 +12476,6 @@ dialogs:
         title: D
         condition: boostEnabled && boostMode && boostType == 1
   vvtClosedLoop:
-    name: vvtClosedLoop
     title: Closed loop
     layout: ''
     panels: {}
@@ -12644,12 +12511,10 @@ dialogs:
         title: Maximum valve duty
         condition: vvtEnabled && vvtMode == 2
   vvtSettings:
-    name: vvtSettings
     title: VVT Control
     layout: ''
     panels:
       vvtClosedLoop:
-        name: vvtClosedLoop
         layout: ''
         condition: vvtEnabled && vvtMode == 2
     fields:
@@ -12680,12 +12545,10 @@ dialogs:
         title: Increased duty direction
         condition: vvtEnabled
   wmiSettings:
-    name: wmiSettings
     title: WMI Control
     layout: ''
     panels:
       wmi_adv_curve:
-        name: wmi_adv_curve
         layout: ''
         condition: wmiEnabled && wmiAdvEnabled
     fields:
@@ -12762,7 +12625,6 @@ dialogs:
         title: Iginition advance correction
         condition: wmiEnabled
   warmup:
-    name: warmup
     title: Warmup Enrichment (WUE) - Percent Multiplier
     layout: ''
     panels: {}
@@ -12774,59 +12636,48 @@ dialogs:
         title: ''
         condition: ''
   inj_trim1TblTitle:
-    name: inj_trim1TblTitle
     title: 'Channel #1'
     layout: ''
     panels:
       fuelTrimTable1Tbl:
-        name: fuelTrimTable1Tbl
         layout: ''
         condition: fuelTrimEnabled
     fields: []
   inj_trim2TblTitle:
-    name: inj_trim2TblTitle
     title: 'Channel #2'
     layout: ''
     panels:
       fuelTrimTable2Tbl:
-        name: fuelTrimTable2Tbl
         layout: ''
         condition: fuelTrimEnabled
     fields: []
   inj_trim3TblTitle:
-    name: inj_trim3TblTitle
     title: 'Channel #3'
     layout: ''
     panels:
       fuelTrimTable3Tbl:
-        name: fuelTrimTable3Tbl
         layout: ''
         condition: fuelTrimEnabled
     fields: []
   inj_trim4TblTitle:
-    name: inj_trim4TblTitle
     title: 'Channel #4'
     layout: ''
     panels:
       fuelTrimTable4Tbl:
-        name: fuelTrimTable4Tbl
         layout: ''
         condition: fuelTrimEnabled
     fields: []
   inj_trimadt:
-    name: inj_trimadt
     title: ''
     layout: xAxis
     panels: {}
     fields: []
   inj_trimadb:
-    name: inj_trimadb
     title: ''
     layout: xAxis
     panels: {}
     fields: []
   inj_trim_enable:
-    name: inj_trim_enable
     title: ''
     layout: ''
     panels: {}
@@ -12835,25 +12686,20 @@ dialogs:
         title: Individual fuel trim enabled
         condition: injLayout == 3 && nCylinders <= 4
   inj_trimad:
-    name: inj_trimad
     title: Injector Cyl 1-4 Trims
     layout: yAxis
     panels:
       inj_trim_enable:
-        name: inj_trim_enable
         layout: North
         condition: ''
       inj_trimadt:
-        name: inj_trimadt
         layout: Center
         condition: ''
       inj_trimadb:
-        name: inj_trimadb
         layout: South
         condition: ''
     fields: []
   stagingTableDialog_north:
-    name: stagingTableDialog_north
     title: ''
     layout: ''
     panels: {}
@@ -12871,31 +12717,25 @@ dialogs:
         title: Size of secondary injectors
         condition: stagingEnabled
   stagingTableDialog_south:
-    name: stagingTableDialog_south
     title: ''
     layout: ''
     panels:
       stagingTbl:
-        name: stagingTbl
         layout: ''
         condition: stagingMode == 0
     fields: []
   stagingTableDialog:
-    name: stagingTableDialog
     title: Staged injection
     layout: ''
     panels:
       stagingTableDialog_north:
-        name: stagingTableDialog_north
         layout: North
         condition: ''
       stagingTableDialog_south:
-        name: stagingTableDialog_south
         layout: South
         condition: ''
     fields: []
   outputtest_warningmessage:
-    name: outputtest_warningmessage
     title: ''
     layout: ''
     panels: {}
@@ -12914,127 +12754,106 @@ dialogs:
           engine or permanent damage to ignition coils!
         condition: ''
   enableoutputtestbuttons:
-    name: enableoutputtestbuttons
     title: Enable Test Controls
     layout: xAxis
     panels: {}
     fields: []
   outputtestinj1:
-    name: outputtestinj1
     title: Injector CH1
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj2:
-    name: outputtestinj2
     title: Injector CH2
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj3:
-    name: outputtestinj3
     title: Injector CH3
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj4:
-    name: outputtestinj4
     title: Injector CH4
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj5:
-    name: outputtestinj5
     title: Injector CH5
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj6:
-    name: outputtestinj6
     title: Injector CH6
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj7:
-    name: outputtestinj7
     title: Injector CH7
     layout: yAxis
     panels: {}
     fields: []
   outputtestinj8:
-    name: outputtestinj8
     title: Injector CH8
     layout: yAxis
     panels: {}
     fields: []
   outputtest_injectors:
-    name: outputtest_injectors
     title: Injector Driver Output Test
     layout: xAxis
     panels: {}
     fields: []
   outputtestspk1:
-    name: outputtestspk1
     title: 'Spark CH1 '
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk2:
-    name: outputtestspk2
     title: Spark CH2
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk3:
-    name: outputtestspk3
     title: Spark CH3
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk4:
-    name: outputtestspk4
     title: Spark CH4
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk5:
-    name: outputtestspk5
     title: Spark CH5
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk6:
-    name: outputtestspk6
     title: Spark CH6
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk7:
-    name: outputtestspk7
     title: Spark CH7
     layout: yAxis
     panels: {}
     fields: []
   outputtestspk8:
-    name: outputtestspk8
     title: Spark CH8
     layout: yAxis
     panels: {}
     fields: []
   outputtest_spark:
-    name: outputtest_spark
     title: Spark Driver Output Test
     layout: xAxis
     panels: {}
     fields: []
   outputtest1:
-    name: outputtest1
     title: Test Output Hardware
     layout: ''
     panels: {}
     fields: []
   stm32cmd:
-    name: stm32cmd
     title: STM32 Commands
     layout: yAxis
     panels: {}
@@ -13045,7 +12864,6 @@ dialogs:
           channel assigned to that external source will NOT function
         condition: ''
   canAuxinput_alias:
-    name: canAuxinput_alias
     title: ''
     layout: yAxis
     panels: {}
@@ -13150,7 +12968,6 @@ dialogs:
           (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
   caninput_sel:
-    name: caninput_sel
     title: ''
     layout: ''
     panels: {}
@@ -13255,7 +13072,6 @@ dialogs:
         title: CAN Input 15
         condition: ''
   caninput_parameter_group:
-    name: caninput_parameter_group
     title: ''
     layout: yAxis
     panels: {}
@@ -13344,7 +13160,6 @@ dialogs:
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
   caninput_parameter_start_byte:
-    name: caninput_parameter_start_byte
     title: ''
     layout: yAxis
     panels: {}
@@ -13433,7 +13248,6 @@ dialogs:
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
   caninput_parameter_num_byte:
-    name: caninput_parameter_num_byte
     title: ''
     layout: yAxis
     panels: {}
@@ -13522,7 +13336,6 @@ dialogs:
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
   caninput_serial_can:
-    name: caninput_serial_can
     title: ''
     layout: yAxis
     panels: {}
@@ -13675,7 +13488,6 @@ dialogs:
         title: ''
         condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
   caninconfig_blank1:
-    name: caninconfig_blank1
     title: ''
     layout: ''
     panels: {}
@@ -13684,19 +13496,16 @@ dialogs:
         title: ''
         condition: ''
   Canin_config1:
-    name: Canin_config1
     title: ''
     layout: xAxis
     panels: {}
     fields: []
   Canin_config:
-    name: Canin_config
     title: ''
     layout: yAxis
     panels: {}
     fields: []
   canAuxoutput_alias:
-    name: canAuxoutput_alias
     title: ''
     layout: yAxis
     panels: {}
@@ -13729,7 +13538,6 @@ dialogs:
         title: ''
         condition: canoutput_sel7
   canoutput_sel:
-    name: canoutput_sel
     title: ''
     layout: yAxis
     panels: {}
@@ -13762,7 +13570,6 @@ dialogs:
         title: CAN Output 7
         condition: enable_intcandata_out
   canoutput_parameter_group:
-    name: canoutput_parameter_group
     title: ''
     layout: yAxis
     panels: {}
@@ -13795,7 +13602,6 @@ dialogs:
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutput_parameter_start_byte:
-    name: canoutput_parameter_start_byte
     title: ''
     layout: yAxis
     panels: {}
@@ -13828,7 +13634,6 @@ dialogs:
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutput_parameter_num_byte:
-    name: canoutput_parameter_num_byte
     title: ''
     layout: yAxis
     panels: {}
@@ -13861,7 +13666,6 @@ dialogs:
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutconfig_blank1:
-    name: canoutconfig_blank1
     title: ''
     layout: ''
     panels: {}
@@ -13870,13 +13674,11 @@ dialogs:
         title: ''
         condition: ''
   Canout_config1:
-    name: Canout_config1
     title: ''
     layout: xAxis
     panels: {}
     fields: []
   Canout_config2:
-    name: Canout_config2
     title: CAN Data Out
     layout: ''
     panels: {}
@@ -13885,13 +13687,11 @@ dialogs:
         title: Enable CanBus data Output
         condition: ''
   Canout_config:
-    name: Canout_config
     title: ''
     layout: yAxis
     panels: {}
     fields: []
   can_serial3IO:
-    name: can_serial3IO
     title: CanBus/Secondary Serial IO interface
     layout: ''
     panels: {}
@@ -13917,7 +13717,6 @@ dialogs:
         title: Speeduino OBD address
         condition: ''
   serial3IO:
-    name: serial3IO
     title: Secondary Serial IO interface
     layout: ''
     panels: {}
@@ -13943,7 +13742,6 @@ dialogs:
         title: Speeduino OBD address
         condition: ''
   reset_control:
-    name: reset_control
     title: Reset Control
     layout: ''
     panels: {}
@@ -13955,7 +13753,6 @@ dialogs:
         title: Control Pin
         condition: ''
   Auxinput_pin_selection:
-    name: Auxinput_pin_selection
     title: ''
     layout: yAxis
     panels: {}
@@ -14060,7 +13857,6 @@ dialogs:
         title: 'Local Digital Source 15                  Pin No:'
         condition: ''
   Auxinput_alias:
-    name: Auxinput_alias
     title: ''
     layout: yAxis
     panels: {}
@@ -14165,7 +13961,6 @@ dialogs:
           (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
   Auxinput_channelenable:
-    name: Auxinput_channelenable
     title: ''
     layout: yAxis
     panels: {}
@@ -14350,19 +14145,16 @@ dialogs:
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
   Auxin_south:
-    name: Auxin_south
     title: Auxillary Input Configuration
     layout: xAxis
     panels: {}
     fields: []
   Auxin_config:
-    name: Auxin_config
     title: ''
     layout: yAxis
     panels: {}
     fields: []
   gaugeLimits:
-    name: gaugeLimits
     title: Gauge Limits
     layout: ''
     panels: {}
@@ -14395,13 +14187,11 @@ dialogs:
         title: '!Reload project to update gauges'
         condition: ''
   io_summary:
-    name: io_summary
     title: I/O Summary
     layout: ''
     panels: {}
     fields: []
   prgm_out_pin_selection_1:
-    name: prgm_out_pin_selection_1
     title: ''
     layout: yAxis
     panels: {}
@@ -14434,7 +14224,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_2:
-    name: prgm_out_pin_selection_2
     title: ''
     layout: yAxis
     panels: {}
@@ -14467,7 +14256,6 @@ dialogs:
         title: if(
         condition: 'outputPin[7]'
   prgm_out_pin_selection_3:
-    name: prgm_out_pin_selection_3
     title: ''
     layout: yAxis
     panels: {}
@@ -14500,7 +14288,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_4:
-    name: prgm_out_pin_selection_4
     title: ''
     layout: yAxis
     panels: {}
@@ -14533,7 +14320,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_5:
-    name: prgm_out_pin_selection_5
     title: ''
     layout: yAxis
     panels: {}
@@ -14566,7 +14352,6 @@ dialogs:
         title: )
         condition: 'outputPin[7]'
   prgm_out_pin_selection_6:
-    name: prgm_out_pin_selection_6
     title: ''
     layout: yAxis
     panels: {}
@@ -14599,7 +14384,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_pin_selection_:
-    name: prgm_out_pin_selection_
     title: ''
     layout: yAxis
     panels: {}
@@ -14632,7 +14416,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7]'
   prgm_out_pin_selection_7:
-    name: prgm_out_pin_selection_7
     title: ''
     layout: yAxis
     panels: {}
@@ -14665,7 +14448,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_pin_selection_8:
-    name: prgm_out_pin_selection_8
     title: ''
     layout: yAxis
     panels: {}
@@ -14698,7 +14480,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_pin_selection_9:
-    name: prgm_out_pin_selection_9
     title: ''
     layout: yAxis
     panels: {}
@@ -14731,7 +14512,6 @@ dialogs:
         title: during
         condition: 'outputPin[7]'
   prgm_out_alias:
-    name: prgm_out_alias
     title: ''
     layout: yAxis
     panels: {}
@@ -14764,7 +14544,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7]'
   prgm_out_channelenable:
-    name: prgm_out_channelenable
     title: ''
     layout: yAxis
     panels: {}
@@ -14797,13 +14576,11 @@ dialogs:
         title: ''
         condition: ''
   prgm_out_unique:
-    name: prgm_out_unique
     title: ''
     layout: xAxis
     panels: {}
     fields: []
   prgm_out_rules_1_condition_1:
-    name: prgm_out_rules_1_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14818,7 +14595,6 @@ dialogs:
         title: ''
         condition: 'outputPin[0]'
   prgm_out_rules_1_condition_2:
-    name: prgm_out_rules_1_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -14833,7 +14609,6 @@ dialogs:
         title: ''
         condition: 'outputPin[0] && bitwise0'
   prgm_out_rules_2_condition_1:
-    name: prgm_out_rules_2_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14848,7 +14623,6 @@ dialogs:
         title: ''
         condition: 'outputPin[1]'
   prgm_out_rules_2_condition_2:
-    name: prgm_out_rules_2_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -14863,7 +14637,6 @@ dialogs:
         title: ''
         condition: 'outputPin[1] && bitwise1'
   prgm_out_rules_3_condition_1:
-    name: prgm_out_rules_3_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14878,7 +14651,6 @@ dialogs:
         title: ''
         condition: 'outputPin[2]'
   prgm_out_rules_3_condition_2:
-    name: prgm_out_rules_3_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -14893,7 +14665,6 @@ dialogs:
         title: ''
         condition: 'outputPin[2] && bitwise2'
   prgm_out_rules_4_condition_1:
-    name: prgm_out_rules_4_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14908,7 +14679,6 @@ dialogs:
         title: ''
         condition: 'outputPin[3]'
   prgm_out_rules_4_condition_2:
-    name: prgm_out_rules_4_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -14923,7 +14693,6 @@ dialogs:
         title: ''
         condition: 'outputPin[3] && bitwise3'
   prgm_out_rules_5_condition_1:
-    name: prgm_out_rules_5_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14938,7 +14707,6 @@ dialogs:
         title: ''
         condition: 'outputPin[4]'
   prgm_out_rules_5_condition_2:
-    name: prgm_out_rules_5_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -14953,7 +14721,6 @@ dialogs:
         title: ''
         condition: 'outputPin[4] && bitwise4'
   prgm_out_rules_6_condition_1:
-    name: prgm_out_rules_6_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14968,7 +14735,6 @@ dialogs:
         title: ''
         condition: 'outputPin[5]'
   prgm_out_rules_6_condition_2:
-    name: prgm_out_rules_6_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -14983,7 +14749,6 @@ dialogs:
         title: ''
         condition: 'outputPin[5] && bitwise5'
   prgm_out_rules_7_condition_1:
-    name: prgm_out_rules_7_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -14998,7 +14763,6 @@ dialogs:
         title: ''
         condition: 'outputPin[6]'
   prgm_out_rules_7_condition_2:
-    name: prgm_out_rules_7_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -15013,7 +14777,6 @@ dialogs:
         title: ''
         condition: 'outputPin[6] && bitwise6'
   prgm_out_rules_8_condition_1:
-    name: prgm_out_rules_8_condition_1
     title: Condition 1
     layout: xAxis
     panels: {}
@@ -15028,7 +14791,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7]'
   prgm_out_rules_8_condition_2:
-    name: prgm_out_rules_8_condition_2
     title: Condition 2
     layout: xAxis
     panels: {}
@@ -15043,7 +14805,6 @@ dialogs:
         title: ''
         condition: 'outputPin[7] && bitwise7'
   prgm_out_rules_1:
-    name: prgm_out_rules_1
     title: Rule 1
     layout: yAxis
     panels: {}
@@ -15064,7 +14825,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[0]'
   prgm_out_rules_2:
-    name: prgm_out_rules_2
     title: Rule 2
     layout: yAxis
     panels: {}
@@ -15085,7 +14845,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[1]'
   prgm_out_rules_3:
-    name: prgm_out_rules_3
     title: Rule 3
     layout: yAxis
     panels: {}
@@ -15106,7 +14865,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[2]'
   prgm_out_rules_4:
-    name: prgm_out_rules_4
     title: Rule 4
     layout: yAxis
     panels: {}
@@ -15127,7 +14885,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[3]'
   prgm_out_rules_5:
-    name: prgm_out_rules_5
     title: Rule 5
     layout: yAxis
     panels: {}
@@ -15148,7 +14905,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[4]'
   prgm_out_rules_6:
-    name: prgm_out_rules_6
     title: Rule 6
     layout: yAxis
     panels: {}
@@ -15169,7 +14925,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[5]'
   prgm_out_rules_7:
-    name: prgm_out_rules_7
     title: Rule 7
     layout: yAxis
     panels: {}
@@ -15190,7 +14945,6 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[6]'
   prgm_out_rules_8:
-    name: prgm_out_rules_8
     title: Rule 8
     layout: yAxis
     panels: {}
@@ -15211,45 +14965,35 @@ dialogs:
         title: 2nd Condition
         condition: 'outputPin[7]'
   prgm_out_rules_master:
-    name: prgm_out_rules_master
     title: ''
     layout: ''
     panels:
       prgm_out_rules_1:
-        name: prgm_out_rules_1
         layout: Center
         condition: prgm_out_selection == 0
       prgm_out_rules_2:
-        name: prgm_out_rules_2
         layout: Center
         condition: prgm_out_selection == 1
       prgm_out_rules_3:
-        name: prgm_out_rules_3
         layout: Center
         condition: prgm_out_selection == 2
       prgm_out_rules_4:
-        name: prgm_out_rules_4
         layout: Center
         condition: prgm_out_selection == 3
       prgm_out_rules_5:
-        name: prgm_out_rules_5
         layout: Center
         condition: prgm_out_selection == 4
       prgm_out_rules_6:
-        name: prgm_out_rules_6
         layout: Center
         condition: prgm_out_selection == 5
       prgm_out_rules_7:
-        name: prgm_out_rules_7
         layout: Center
         condition: prgm_out_selection == 6
       prgm_out_rules_8:
-        name: prgm_out_rules_8
         layout: Center
         condition: prgm_out_selection == 7
     fields: []
   prgm_out_config:
-    name: prgm_out_config
     title: ''
     layout: yAxis
     panels: {}
@@ -15257,7 +15001,6 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
-
 
 menus:
   - name: settings
