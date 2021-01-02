@@ -22,6 +22,8 @@ class Parser {
     this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
+    this.DEFINE_PATTERN = /^#\s*define\s(?<define>.+)/;
+    this.KEY_VALUE_PATTERN = /^(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
@@ -29,6 +31,7 @@ class Parser {
     this.currentPanel = {};
 
     this.result = {
+      megaTune: {},
       constants: {
         pages: [],
       },
@@ -63,15 +66,35 @@ class Parser {
 
   parseLine(section, line) {
     switch (section) {
-      // case 'Constants':
-      //   this.parseConstants(line);
-      //   break;
+      case 'MegaTune':
+      case 'TunerStudio':
+        this.parseKeyValue(section, line);
+        break;
+      case 'Constants':
+        this.parseConstants(line);
+        break;
       case 'UserDefined':
         this.parseUserDefined(line);
         break;
       default:
         break;
     }
+  }
+
+  parseKeyValue(section, line) {
+    const match = line.match(this.KEY_VALUE_PATTERN);
+    if (!match) {
+      return;
+    }
+
+    const sectionName = `${section.charAt(0).toLowerCase()}${section.slice(1)}`;
+    if (!this.result[sectionName]) {
+      this.result[sectionName] = {};
+    }
+
+    this.result[sectionName][match.groups.key] = Number.isNaN(Number(match.groups.value))
+      ? match.groups.value
+      : Number(match.groups.value);
   }
 
   parseUserDefined(line) {
@@ -242,6 +265,8 @@ class Parser {
   static sanitizeComments = (val) => (val || '').replace(';', '').trim();
 
   static sanitizeString = (val) => val.replace(/"/g, '').trim();
+
+  static stripComments = (val) => val.replace(/(\s*;.+$)/, '');
 }
 
 const result = new Parser(

@@ -1,3 +1,8 @@
+megaTune:
+  MTversion: 2.25
+  queryCommand: Q
+  signature: speeduino 202009-dev
+  versionInfo: S
 constants:
   pages:
     - number: 1
@@ -12286,3 +12291,5 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
+tunerStudio:
+  iniSpecVersion: 3.64
