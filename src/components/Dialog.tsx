@@ -199,8 +199,8 @@ const Dialog = ({
                         step={10**-precision}
                         disabled={!enabled}
                         style={{ minWidth: 150 }}
-                        formatter={(value) => `${value}${constant.units || ''}`}
-                        parser={(value) => value ? value.replace(constant.units || '', '') : ''}
+                        formatter={(val) => `${val} ${constant.units}`}
+                        parser={(val) => `${val}`.replace(/[^\d.]/g, '')}
                       />;
               break;
 
