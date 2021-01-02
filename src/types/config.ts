@@ -65,9 +65,15 @@ interface Page {
   data: Constants,
 }
 
+interface Globals {
+  [name: string]: string[],
+}
+
 interface Config {
-  apiVersion: string,
-  signature: string,
+  megaTune: {
+    signature: string,
+  },
+  globals: Globals,
   constants: {
     pages: Page[],
   },
@@ -88,5 +94,6 @@ export type {
   Constant,
   Constants,
   Page,
+  Globals,
   Config,
 };

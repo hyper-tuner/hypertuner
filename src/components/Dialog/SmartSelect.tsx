@@ -2,23 +2,32 @@ import {
   // Radio,
   Select
 } from 'antd';
-import { Constant } from '../../types/config';
+import {  Globals } from '../../types/config';
 
 const SmartSelect = ({
-  constant,
+  values,
   defaultValue,
+  globals,
   disabled,
 }: {
-  constant: Constant,
+  values: string[],
   defaultValue: string | number,
+  globals: Globals
   disabled: boolean,
 }) => {
-  const values = constant.values.filter((val: string) => val !== 'INVALID');
+  let sanitized = values;
 
-  // if (values.length < 3) {
+  // detect usage of global
+  if (sanitized.length === 1 && sanitized[0].startsWith('$')) {
+    sanitized = globals[sanitized[0].slice(1)];
+  }
+
+  sanitized = sanitized.filter((val: string) => val !== 'INVALID');
+
+  // if (sanitized.length < 3) {
   //   return (
   //      <Radio.Group value={value} optionType="button" buttonStyle="solid" onChange={onChange}>
-  //        {values.map((val: string) =>
+  //        {sanitized.map((val: string) =>
   //         <Radio key={val} value={val}>{val}</Radio>
   //        )}
   //      </Radio.Group>
@@ -31,7 +40,7 @@ const SmartSelect = ({
       showSearch
       disabled={disabled}
     >
-      {values.map((val: string) =>
+      {sanitized.map((val: string) =>
         <Select.Option key={val} value={val}>{val}</Select.Option>
       )}
     </Select>

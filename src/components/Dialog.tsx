@@ -50,7 +50,7 @@ const Dialog = ({
   name: string,
   burnButton: any
 }) => {
-  if (!config || !config.signature) {
+  if (!config || !config.constants) {
     return skeleton;
   }
 
@@ -181,7 +181,8 @@ const Dialog = ({
             case 'array':
               input = <SmartSelect
                         defaultValue={tuneField.value}
-                        constant={constant}
+                        values={constant.values}
+                        globals={config.globals}
                         disabled={!enabled}
                       />;
               break;

@@ -28,7 +28,7 @@ const SideBar = ({ config, ui }: { config: Config, ui: UIState }) => {
 
   const { pathname } = useLocation();
 
-  if (!config || !config.signature) {
+  if (!config || !config.constants) {
     return (
       <Sider {...siderProps} className="app-sidebar" >
         <div style={{ paddingLeft: 10 }}>

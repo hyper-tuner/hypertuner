@@ -2,15 +2,16 @@
 import { Layout, Space, Row, Col } from 'antd';
 import { CarOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import { AppState, StatusState } from '../types/state';
+import { AppState, ConfigState, StatusState } from '../types/state';
 
 const { Footer } = Layout;
 
 const mapStateToProps = (state: AppState) => ({
   status: state.status,
+  config: state.config,
 });
 
-const StatusBar = ({ status }: { status: StatusState }) => (
+const StatusBar = ({ status, config }: { status: StatusState, config: ConfigState }) => (
   <Footer className="app-status-bar">
     <Row>
       <Col span={8}>
@@ -20,7 +21,7 @@ const StatusBar = ({ status }: { status: StatusState }) => (
         </Space>
       </Col>
       <Col span={8} style={{ textAlign: 'center' }}>
-        speeduino 202009-dev | mx5.msq | test_log.mlg
+        {config.megaTune && config.megaTune.signature}
       </Col>
       <Col span={8} style={{ textAlign: 'right' }}>
         {status.text}
