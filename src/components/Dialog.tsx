@@ -78,12 +78,15 @@ const Dialog = ({
     };
   };
 
-  const resolvedPanels = {} as any; // TODO: describe
+  const resolvedDialogs = {} as any; // TODO: describe
 
-  const resolvePanels = (source: DialogsType, dialogName: string) => {
+  const resolveDialogs = (source: DialogsType, dialogName: string) => {
     if (!source[dialogName]) {
       return;
     }
+
+    // resolve root dialog
+    resolvedDialogs[dialogName] = source[dialogName];
 
     Object.keys(source[dialogName].panels).forEach((panelName: string) => {
       const currentDialog = source[panelName];
@@ -94,18 +97,18 @@ const Dialog = ({
 
       if (currentDialog.fields.length > 0) {
         // resolve in root scope
-        resolvedPanels[panelName] = config.dialogs[panelName];
+        resolvedDialogs[panelName] = config.dialogs[panelName];
       }
         // NOTE: recursion
-      resolvePanels(config.dialogs, panelName);
+      resolveDialogs(config.dialogs, panelName);
     });
   };
 
-  resolvePanels(config.dialogs, name);
+  resolveDialogs(config.dialogs, name);
 
   // remove dummy dialogs and flatten to array
-  const panels = Object.keys(resolvedPanels).map((dialogName: string) => {
-    const currentDialog: DialogType = resolvedPanels[dialogName];
+  const panels = Object.keys(resolvedDialogs).map((dialogName: string) => {
+    const currentDialog: DialogType = resolvedDialogs[dialogName];
     const fields = currentDialog.fields
       .filter((field) => !['divider', '{}'].includes(field.name));
 
@@ -195,6 +198,7 @@ const Dialog = ({
                         max={constant.max}
                         step={10**-precision}
                         disabled={!enabled}
+                        style={{ minWidth: 150 }}
                         formatter={(value) => `${value}${constant.units || ''}`}
                         parser={(value) => value ? value.replace(constant.units || '', '') : ''}
                       />;
