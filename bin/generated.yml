@@ -3,6 +3,9 @@ megaTune:
   queryCommand: Q
   signature: speeduino 202009-dev
   versionInfo: S
+tunerStudio:
+  iniSpecVersion: 3.64
+globals: {}
 constants:
   pages:
     - number: 1
@@ -12291,5 +12294,3 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
-tunerStudio:
-  iniSpecVersion: 3.64

@@ -32,6 +32,8 @@ class Parser {
 
     this.result = {
       megaTune: {},
+      tunerStudio: {},
+      globals: {},
       constants: {
         pages: [],
       },
@@ -66,10 +68,6 @@ class Parser {
 
   parseLine(section, line) {
     switch (section) {
-      case 'MegaTune':
-      case 'TunerStudio':
-        this.parseKeyValue(section, line);
-        break;
       case 'Constants':
         this.parseConstants(line);
         break;
@@ -77,6 +75,7 @@ class Parser {
         this.parseUserDefined(line);
         break;
       default:
+        this.parseKeyValue(section, line);
         break;
     }
   }
@@ -89,7 +88,8 @@ class Parser {
 
     const sectionName = `${section.charAt(0).toLowerCase()}${section.slice(1)}`;
     if (!this.result[sectionName]) {
-      this.result[sectionName] = {};
+      // do not add section that are not explicitly defined
+      return;
     }
 
     this.result[sectionName][match.groups.key] = Number.isNaN(Number(match.groups.value))
