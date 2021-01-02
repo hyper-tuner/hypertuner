@@ -30,6 +30,7 @@ const SmartSelect = ({
         defaultValue={defaultValue}
         optionType="button"
         buttonStyle="solid"
+        disabled={disabled}
       >
          {sanitized.map((val: string) =>
           <Radio key={val} value={val}>{val}</Radio>
