@@ -110,7 +110,8 @@ const Dialog = ({
   const panels = Object.keys(resolvedDialogs).map((dialogName: string) => {
     const currentDialog: DialogType = resolvedDialogs[dialogName];
     const fields = currentDialog.fields
-      .filter((field) => !['divider', '{}'].includes(field.name));
+      .filter((field) => !['dialogTitle', '{}'].includes(field.name));
+      // TODO: handle dialogTitle
 
     return {
       name: dialogName,

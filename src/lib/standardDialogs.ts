@@ -2,7 +2,7 @@ import {
   Dialogs as DialogsType,
 } from '../types/config';
 
-const stdDialogs: DialogsType = {
+const standardDialogs: DialogsType = {
   std_injection: {
     name: 'engineConstants',
     title: 'Engine Constants',
@@ -68,4 +68,4 @@ const stdDialogs: DialogsType = {
   },
 };
 
-export default stdDialogs;
+export default standardDialogs;

@@ -1,7 +1,7 @@
 megaTune:
   MTversion: 2.25
   queryCommand: Q
-  signature: speeduino 202009-dev
+  signature: speeduino 202012
   versionInfo: S
 tunerStudio:
   iniSpecVersion: 3.64
@@ -234,9 +234,9 @@ globals:
     - A15
     - INVALID
   fullStatus_def_1:
-    - secl
+    - seconds
     - status bits
-    - engine status
+    - Engine status
     - syncLossCounter
     - MAP (Kpa)
     - INVALID
@@ -257,7 +257,7 @@ globals:
     - VE2
     - AFR Target
     - TPS DOT
-    - advance
+    - Advance
     - TPS
     - loopsPerSecond
     - INVALID
@@ -329,9 +329,9 @@ globals:
     - INVALID
     - idle C.L. target
     - MAP DOT
-    - VVT Angle 4
-    - VVT Target
-    - VVT duty
+    - VVT1 Angle
+    - VVT1 Target
+    - VVT1 duty
     - flexBoostCorrection
     - INVALID
     - baro Correction
@@ -344,6 +344,16 @@ globals:
     - Fuel Pressure
     - Oil Pressure
     - INVALID
+    - WMI duty
+    - WMI empty
+    - VVT2 angle
+    - VVT2 target
+    - VVT2 duty
+    - outputs status
+    - Fuel temp
+    - Fuel temp correction
+    - Advance 1
+    - Advance 2
   fullStatus_def:
     - $fullStatus_def_1
     - $fullStatus_def_2
@@ -2698,7 +2708,7 @@ constants:
             - Fixed
             - Relative
           comments: ''
-        unused1-3c:
+        useTachoSweep:
           type: bits
           size: U08
           offset: 3
@@ -2706,8 +2716,8 @@ constants:
             from: 4
             to: 4
           values:
-            - MAP
-            - TPS
+            - 'Off'
+            - 'On'
           comments: ''
         aeApplyMode:
           type: bits
@@ -2766,7 +2776,7 @@ constants:
             from: 0
             to: 7
           values:
-            - Speeduino v0.1
+            - INVALID
             - Speeduino v0.2
             - Speeduino v0.3
             - Speeduino v0.4
@@ -3168,6 +3178,7 @@ constants:
           max: 25.5
           digits: 1
           comments: ''
+        divider: {}
         alternate:
           type: bits
           size: U08
@@ -4241,7 +4252,7 @@ constants:
           scale: 1
           transform: 0
           min: 0
-          max: 120
+          max: 255
           digits: 0
           comments: ''
         vssRatio1:
@@ -4252,7 +4263,7 @@ constants:
           scale: 0.1
           transform: 0
           min: 0
-          max: 299.9
+          max: 99.9
           digits: 1
           comments: ''
         vssRatio2:
@@ -4263,7 +4274,7 @@ constants:
           scale: 0.1
           transform: 0
           min: 0
-          max: 299.9
+          max: 99.9
           digits: 1
           comments: ''
         vssRatio3:
@@ -4274,7 +4285,7 @@ constants:
           scale: 0.1
           transform: 0
           min: 0
-          max: 299.9
+          max: 99.9
           digits: 1
           comments: ''
         vssRatio4:
@@ -4285,7 +4296,7 @@ constants:
           scale: 0.1
           transform: 0
           min: 0
-          max: 299.9
+          max: 99.9
           digits: 1
           comments: ''
         vssRatio5:
@@ -4296,7 +4307,7 @@ constants:
           scale: 0.1
           transform: 0
           min: 0
-          max: 299.9
+          max: 99.9
           digits: 1
           comments: ''
         vssRatio6:
@@ -4307,15 +4318,154 @@ constants:
           scale: 0.1
           transform: 0
           min: 0
-          max: 299.9
+          max: 99.9
           digits: 1
+          comments: ''
+        idleUpOutputEnabled:
+          type: bits
+          size: U08
+          offset: 118
+          address:
+            from: 0
+            to: 0
+          values:
+            - 'Off'
+            - 'On'
+          comments: ''
+        idleUpOutputInv:
+          type: bits
+          size: U08
+          offset: 118
+          address:
+            from: 1
+            to: 1
+          values:
+            - 'No'
+            - 'Yes'
+          comments: ''
+        idleUpOutputPin:
+          type: bits
+          size: U08
+          offset: 118
+          address:
+            from: 2
+            to: 7
+          values:
+            - Board Default
+            - INVALID
+            - INVALID
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+            - '17'
+            - '18'
+            - '19'
+            - '20'
+            - '21'
+            - '22'
+            - '23'
+            - '24'
+            - '25'
+            - '26'
+            - '27'
+            - '28'
+            - '29'
+            - '30'
+            - '31'
+            - '32'
+            - '33'
+            - '34'
+            - '35'
+            - '36'
+            - '37'
+            - '38'
+            - '39'
+            - '40'
+            - '41'
+            - '42'
+            - '43'
+            - '44'
+            - '45'
+            - '46'
+            - '47'
+            - '48'
+            - '49'
+            - '50'
+            - '51'
+            - '52'
+            - '53'
+            - '54'
+            - A8
+            - A9
+            - A10
+            - A11
+            - A12
+            - A13
+            - A14
+            - A15
+            - INVALID
+          comments: ''
+        tachoSweepMaxRPM:
+          type: scalar
+          size: U08
+          offset: 119
+          units: RPM
+          scale: 100
+          transform: 0
+          min: 100
+          max: 10000
+          digits: 0
+          comments: ''
+        primingDelay:
+          type: scalar
+          size: U08
+          offset: 120
+          units: S
+          scale: 0.1
+          transform: 0
+          min: 0
+          max: 25.5
+          digits: 1
+          comments: ''
+        iacTPSlimit:
+          type: scalar
+          size: U08
+          offset: 121
+          units: '%'
+          scale: 1
+          transform: 0
+          min: 0
+          max: 100
+          digits: 0
+          comments: ''
+        iacRPMlimitHysteresis:
+          type: scalar
+          size: U08
+          offset: 122
+          units: RPM
+          scale: 10
+          transform: 0
+          min: 10
+          max: 2500
+          digits: 0
           comments: ''
         unused2-95:
           type: array
           size: U08
-          offset: 118
+          offset: 121
           shape:
-            columns: 9
+            columns: 5
             rows: 0
           units: '%'
           scale: 1
@@ -4323,17 +4473,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
-        primingDelay:
-          type: scalar
-          size: U08
-          offset: 127
-          units: S
-          scale: 0.1
-          transform: 0
-          min: 0
-          max: 25.5
-          digits: 1
           comments: ''
     - number: 2
       size: 111
@@ -4366,6 +4505,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        fuelLoadBins: {}
     - number: 3
       size: 111
       data:
@@ -4397,6 +4537,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        mapBins1: {}
     - number: 4
       size: 111
       data:
@@ -5548,20 +5689,7 @@ constants:
     - number: 5
       size: 111
       data:
-        afrTable:
-          type: array
-          size: U08
-          offset: 0
-          shape:
-            columns: 16
-            rows: 16
-          units: AFR
-          scale: 0.1
-          transform: 0
-          min: 7
-          max: 25.5
-          digits: 1
-          comments: ''
+        afrTable: {}
         rpmBinsAFR:
           type: array
           size: U08
@@ -5576,6 +5704,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        loadBinsAFR: {}
     - number: 6
       size: 111
       data:
@@ -6523,6 +6652,7 @@ constants:
     - number: 7
       size: 111
       data:
+        boostTable: {}
         rpmBinsBoost:
           type: array
           size: U08
@@ -6579,6 +6709,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        loadBinsVVT: {}
         stagingTable:
           type: array
           size: U08
@@ -6607,6 +6738,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        loadBinsStaging: {}
     - number: 8
       size: 111
       data:
@@ -6638,6 +6770,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        fuelTrim1loadBins: {}
         fuelTrim2Table:
           type: array
           size: U08
@@ -6666,6 +6799,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        fuelTrim2loadBins: {}
         fuelTrim3Table:
           type: array
           size: U08
@@ -6694,6 +6828,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        fuelTrim3loadBins: {}
         fuelTrim4Table:
           type: array
           size: U08
@@ -6722,6 +6857,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        fuelTrim4loadBins: {}
     - number: 9
       size: 111
       data:
@@ -7701,6 +7837,166 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
+          comments: ''
+        caninput_source_can_address0:
+          type: bits
+          size: U16
+          offset: 17
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address1:
+          type: bits
+          size: U16
+          offset: 19
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address2:
+          type: bits
+          size: U16
+          offset: 21
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address3:
+          type: bits
+          size: U16
+          offset: 23
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address4:
+          type: bits
+          size: U16
+          offset: 25
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address5:
+          type: bits
+          size: U16
+          offset: 27
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address6:
+          type: bits
+          size: U16
+          offset: 29
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address7:
+          type: bits
+          size: U16
+          offset: 31
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address8:
+          type: bits
+          size: U16
+          offset: 33
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address9:
+          type: bits
+          size: U16
+          offset: 35
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address10:
+          type: bits
+          size: U16
+          offset: 37
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address11:
+          type: bits
+          size: U16
+          offset: 39
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address12:
+          type: bits
+          size: U16
+          offset: 41
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address13:
+          type: bits
+          size: U16
+          offset: 43
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address14:
+          type: bits
+          size: U16
+          offset: 45
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
+          comments: ''
+        caninput_source_can_address15:
+          type: bits
+          size: U16
+          offset: 47
+          address:
+            from: 0
+            to: 10
+          values:
+            - $CAN_ADDRESS_HEX
           comments: ''
         caninput_source_start_byte0:
           type: bits
@@ -8964,6 +9260,7 @@ constants:
           values:
             - ''
           comments: ''
+        iacMaxSteps: {}
         unused10_154:
           type: array
           size: U08
@@ -9048,6 +9345,7 @@ constants:
           max: 40
           digits: 0
           comments: ''
+        rotarySplitBins: {}
         boostSens:
           type: scalar
           size: U16
@@ -9533,6 +9831,7 @@ constants:
             - TPS
             - ETH%
           comments: ''
+        fuel2SwitchValue: {}
         vvtCLholdDuty:
           type: scalar
           size: U08
@@ -10002,7 +10301,7 @@ constants:
         spark2Algorithm:
           type: bits
           size: U08
-          offset: 181
+          offset: 186
           address:
             from: 0
             to: 2
@@ -10012,7 +10311,7 @@ constants:
         spark2Mode:
           type: bits
           size: U08
-          offset: 181
+          offset: 186
           address:
             from: 3
             to: 5
@@ -10029,7 +10328,7 @@ constants:
         spark2SwitchVariable:
           type: bits
           size: U08
-          offset: 181
+          offset: 186
           address:
             from: 6
             to: 7
@@ -10039,10 +10338,11 @@ constants:
             - TPS
             - ETH%
           comments: ''
-        unused11_187_191:
+        spark2SwitchValue: {}
+        unused11_190_191:
           type: array
           size: U08
-          offset: 185
+          offset: 90
           shape:
             columns: 2
             rows: 0
@@ -10084,6 +10384,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        fuelLoad2Bins: {}
     - number: 12
       size: 111
       data:
@@ -10617,6 +10918,7 @@ constants:
           max: 25500
           digits: 0
           comments: ''
+        mapBins2: {}
 dialogs:
   engine_constants_southwest:
     name: engine_constants_southwest
@@ -10671,7 +10973,7 @@ dialogs:
         layout: North
         condition: ''
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
   engine_constants_warning:
@@ -10808,7 +11110,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: '#Detection'
         condition: ''
       - name: knock_count
@@ -10823,7 +11125,7 @@ dialogs:
       - name: knock_maxRPM
         title: Maximum RPM
         condition: knock_mode
-      - name: divider
+      - name: dialogTitle
         title: '#Retard'
         condition: ''
       - name: knock_maxRetard
@@ -10838,7 +11140,7 @@ dialogs:
       - name: knock_stepTime
         title: Step time
         condition: knock_mode
-      - name: divider
+      - name: dialogTitle
         title: '#Recovery'
         condition: ''
       - name: knock_duration
@@ -10938,10 +11240,10 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: After setting 'Pulses per km/mile' above
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: Drive in each gear (any speed) and press appropriate button
         condition: ''
   vss_calibration:
@@ -10983,6 +11285,12 @@ dialogs:
       - name: tachoDuration
         title: Pulse duration
         condition: ''
+      - name: useTachoSweep
+        title: Tacho sweep on boot
+        condition: ''
+      - name: tachoSweepMaxRPM
+        title: Tacho sweep Max RPM
+        condition: useTachoSweep
   accelEnrichments_aeSettings:
     name: accelEnrichments_aeSettings
     title: ''
@@ -11400,13 +11708,13 @@ dialogs:
     fields:
       - name: iacChannels
         title: Number of outputs
-        condition: iacAlgorithm == 2 || iacAlgorithm == 3
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 6
       - name: idleFreq
         title: Idle valve frequency
-        condition: iacAlgorithm == 2 || iacAlgorithm == 3
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 6
       - name: iacPWMdir
         title: Idle valve direction
-        condition: iacAlgorithm == 2 || iacAlgorithm == 3
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 6
   closedloop_idle:
     name: closedloop_idle
     title: Closed loop Idle
@@ -11415,19 +11723,25 @@ dialogs:
     fields:
       - name: idleKP
         title: P
-        condition: iacAlgorithm == 3 || iacAlgorithm == 5
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6
       - name: idleKI
         title: I
-        condition: iacAlgorithm == 3 || iacAlgorithm == 5
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6
       - name: idleKD
         title: D
-        condition: iacAlgorithm == 3 || iacAlgorithm == 5
+        condition: iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6
       - name: iacCLminDuty
         title: Minimum valve duty
-        condition: iacAlgorithm == 3
+        condition: iacAlgorithm == 3 || iacAlgorithm == 6
       - name: iacCLmaxDuty
         title: Maximum valve duty
-        condition: iacAlgorithm == 3
+        condition: iacAlgorithm == 3 || iacAlgorithm == 6
+      - name: 'iacTPSlimit    { iacAlgorithm == 6 }'
+        title: Integeral reset above TPS
+        condition: ''
+      - name: 'iacRPMlimitHysteresis { iacAlgorithm == 6 }'
+        title: Integeral reset RPM Hysteresis
+        condition: ''
   idleSettings:
     name: idleSettings
     title: Idle Settings
@@ -11440,16 +11754,16 @@ dialogs:
       - name: idleTaperTime
         title: Crank to run taper
         condition: iacAlgorithm == 2 || iacAlgorithm == 4
-      - name: divider
+      - name: dialogTitle
         title: '#Fast Idle'
         condition: ''
       - name: iacFastTemp
         title: Fast idle temp
         condition: iacAlgorithm == 1
-  idleUpSettings:
-    name: idleUpSettings
-    title: Idle Up Settings
-    layout: ''
+  idleUpInputSettingsPanel:
+    name: idleUpInputSettingsPanel
+    title: Idle Up Input Settings
+    layout: yAxis
     panels: {}
     fields:
       - name: idleUpEnabled
@@ -11464,6 +11778,27 @@ dialogs:
       - name: idleUpAdder
         title: Idle Up Amount
         condition: idleUpEnabled
+  idleUpOutputSettingsPanel:
+    name: idleUpOutputSettingsPanel
+    title: Idle Up Output Settings
+    layout: yAxis
+    panels: {}
+    fields:
+      - name: idleUpOutputEnabled
+        title: Idle Up Output Enabled
+        condition: idleUpEnabled
+      - name: idleUpOutputInv
+        title: Idle Up Output Inverted
+        condition: idleUpEnabled && idleUpOutputEnabled
+      - name: idleUpOutputPin
+        title: Idle Up Output Pin
+        condition: idleUpEnabled && idleUpOutputEnabled
+  idleUpSettings:
+    name: idleUpSettings
+    title: Idle Up Settings
+    layout: ''
+    panels: {}
+    fields: []
   fuelpump:
     name: fuelpump
     title: Fuel pump
@@ -11482,10 +11817,10 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: '#Note'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: >-
           Values are specified as modifiers to the normal fueling. Eg 100% = No
           change.
@@ -11561,13 +11896,13 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Defines the fuel enrichment percentage after start.
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: This is needed to keep engine running after start
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: Common values are 5% when engine is hot to 50% when engine is cold.
         condition: ''
   ASE_time:
@@ -11576,10 +11911,10 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: How long time the After Start Enrichment is applied in seconds.
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: >-
           Usually this is varies from 1-2s when engine is hot up to 20s on a
           cold engine.
@@ -11593,7 +11928,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: '#Time and duration curves share common coolant values'
         condition: ''
   triggerSettings:
@@ -11609,7 +11944,7 @@ dialogs:
         title: Primary base teeth
         condition: >-
           TrigPattern == 0 || TrigPattern == 2 || TrigPattern == 11 ||
-          TrigPattern == 18
+          TrigPattern == 18 || TrigPattern == 19
       - name: TrigSpeed
         title: Primary trigger speed
         condition: TrigPattern == 0
@@ -11622,22 +11957,22 @@ dialogs:
       - name: TrigAng
         title: Trigger Angle
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: This number represents the angle ATDC when
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: 'tooth #1 passes the primary sensor.'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: SkipCycles
         title: Skip Revolutions
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: 'Note: This is the number of revolutions that will be skipped during'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: cranking before the injectors and coils are fired
         condition: ''
       - name: 'TrigEdge      { TrigPattern != 4 } ;4G63 uses both edges'
@@ -11647,8 +11982,8 @@ dialogs:
         title: Secondary trigger edge
         condition: >-
           (TrigPattern == 0 && TrigSpeed == 0) || TrigPattern == 2 ||
-          TrigPattern == 9 || TrigPattern == 12 || TrigPattern == 18 } ;Missing
-          tooth
+          TrigPattern == 9 || TrigPattern == 12 || TrigPattern == 18 ||
+          TrigPattern == 19 } ;Missing tooth
       - name: '{ (TrigPattern == 0&& TrigSpeed == 0) }'
         title: Missing Tooth Secondary type    trigPatternSec
         condition: ''
@@ -11660,7 +11995,7 @@ dialogs:
         condition: >-
           TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
-          TrigPattern == 18 } ;Dual wheel
+          TrigPattern == 18 || TrigPattern == 19 } ;Dual wheel
   lockSparkSettings:
     name: lockSparkSettings
     title: Locked timing
@@ -11673,7 +12008,7 @@ dialogs:
       - name: FixAng
         title: Fixed Angle
         condition: fixAngEnable
-      - name: divider
+      - name: dialogTitle
         title: >-
           #Note: During cranking the fixed/locked timing angle is overriden by
           the Cranking advance angle value above
@@ -11684,7 +12019,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: >-
           This option is currently will improve accuracy on most compatible
           triggers
@@ -11706,7 +12041,8 @@ dialogs:
         condition: >-
           TrigPattern == 0 || TrigPattern == 1 || TrigPattern == 2 ||
           TrigPattern == 3 || TrigPattern == 4 || TrigPattern == 9 ||
-          TrigPattern == 12 || TrigPattern == 13 || TrigPattern == 18
+          TrigPattern == 12 || TrigPattern == 13 || TrigPattern == 18 ||
+          TrigPattern == 19
     fields:
       - name: '{}'
         title: >-
@@ -11740,25 +12076,25 @@ dialogs:
       - name: sparkDur
         title: Spark duration
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: '#Note'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: The above times are for 12V. Voltage correction
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: is applied. At higher voltages the time is reduced
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: and when low it is increased
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: Overdwell protection
         condition: ''
       - name: useDwellLim
@@ -11767,10 +12103,10 @@ dialogs:
       - name: dwellLim
         title: Max dwell time
         condition: useDwellLim
-      - name: divider
+      - name: dialogTitle
         title: 'Note: Set the maximum dwell time at least 3ms above'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: your desired dwell time (Including cranking)
         condition: ''
       - name: idleAdvEnabled
@@ -11809,7 +12145,9 @@ dialogs:
       iacClosedLoop_curve:
         name: iacClosedLoop_curve
         layout: ''
-        condition: iacAlgorithm == 3 || iacAlgorithm == 5 || idleAdvEnabled >= 1
+        condition: >-
+          iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6 ||
+          idleAdvEnabled >= 1
     fields: []
   rotary_ignition:
     name: rotary_ignition
@@ -11853,7 +12191,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Rev Limiter
         condition: ''
       - name: '{}'
@@ -11958,7 +12296,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Launch Control
         condition: ''
       - name: launchEnable
@@ -11979,7 +12317,7 @@ dialogs:
       - name: lnchFuelAdd
         title: Fuel adder during launch
         condition: launchEnable
-      - name: divider
+      - name: dialogTitle
         title: Flat Shift
         condition: ''
       - name: flatSEnable
@@ -12093,10 +12431,10 @@ dialogs:
       - name: display
         title: Display Type
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: '#Note'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ECU must be rebooted after changing above value
         condition: ''
       - name: display1
@@ -12123,7 +12461,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: '#MAP Sensor'
         condition: ''
       - name: mapMin
@@ -12135,7 +12473,7 @@ dialogs:
       - name: legacyMAP
         title: Use legacy MAP reading
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: '#Baro Sensor'
         condition: ''
       - name: useExtBaro
@@ -12150,7 +12488,7 @@ dialogs:
       - name: baroMax
         title: kPa At 5.0 Volts
         condition: useExtBaro
-      - name: divider
+      - name: dialogTitle
         title: '#EMAP Sensor'
         condition: ''
       - name: useEMAP
@@ -12171,7 +12509,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: >-
           The values here set the amount of filtering to apply to each analog
           input
@@ -12179,10 +12517,10 @@ dialogs:
       - name: but slower response times for readings
         title: Higher values result in stronger filtering
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: '#Most setups will NOT require changes to the default filter values'
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: fuelPressureEnable
@@ -12251,7 +12589,7 @@ dialogs:
       - name: boostMaxDuty
         title: Valve maximum duty cycle
         condition: boostEnabled && boostType == 1
-      - name: divider
+      - name: dialogTitle
         title: Closed Loop settings
         condition: ''
       - name: boostMode
@@ -12287,7 +12625,7 @@ dialogs:
       - name: vvtCLMinAng
         title: Cam angle @ 0% duty
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: vvtCLKP
@@ -12321,7 +12659,7 @@ dialogs:
       - name: vvtMode
         title: VVT Mode
         condition: vvtEnabled
-      - name: divider
+      - name: dialogTitle
         title: >-
           #Please note that close loop is currently experimental for Miata
           patterns ONLY
@@ -12351,7 +12689,7 @@ dialogs:
         layout: ''
         condition: wmiEnabled && wmiAdvEnabled
     fields:
-      - name: divider
+      - name: dialogTitle
         title: '#Experimental!'
         condition: ''
       - name: wmiEnabled
@@ -12378,7 +12716,7 @@ dialogs:
       - name: wmiOffset
         title: WMI offset
         condition: wmiEnabled && wmiMode == 3
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: vvt1Pin
@@ -12387,13 +12725,13 @@ dialogs:
       - name: vvtFreq
         title: WMI PWM freq.
         condition: wmiEnabled
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: wmiEnabledPin
         title: WMI enabled output pin
         condition: wmiEnabled
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: wmiEmptyEnabled
@@ -12405,7 +12743,7 @@ dialogs:
       - name: wmiEmptyPolarity
         title: WMI tank empty polarity
         condition: wmiEnabled
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: wmiIndicatorEnabled
@@ -12417,7 +12755,7 @@ dialogs:
       - name: wmiIndicatorPolarity
         title: WMI tank indicator polarity
         condition: wmiEnabled
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: wmiAdvEnabled
@@ -12429,10 +12767,10 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Final enrichment value must be 100%.
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
   inj_trim1TblTitle:
@@ -12562,15 +12900,15 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: >-
           WARNING! USE AT YOUR OWN RISK. INCORRECT USE WILL DAMAGE YOUR
           HARDWARE!
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: Do not attempt to use this page whilst your engine is running!
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: >-
           Forcing the Injector or Spark outputs could cause flooding of your
           engine or permanent damage to ignition coils!
@@ -12694,8 +13032,14 @@ dialogs:
     title: Test Output Hardware
     layout: ''
     panels: {}
+    fields: []
+  stm32cmd:
+    name: stm32cmd
+    title: STM32 Commands
+    layout: yAxis
+    panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: >-
           If Secondary Serial or Internal CANBUS is DISABLED then any input
           channel assigned to that external source will NOT function
@@ -12706,7 +13050,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Input Alias
         condition: ''
       - name: AUXin00Alias
@@ -12811,7 +13155,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: CAN Input Channel on/off
         condition: ''
       - name: caninput_sel0a
@@ -12916,7 +13260,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Source CAN Address
         condition: ''
       - name: caninput_source_can_address0
@@ -13005,7 +13349,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: source data start byte
         condition: ''
       - name: caninput_source_start_byte0
@@ -13094,7 +13438,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Input Parameter Number of Bytes
         condition: ''
       - name: caninput_source_num_bytes0
@@ -13183,7 +13527,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Serial/CAN
         condition: ''
       - name: caninput_sel0extsourcea
@@ -13336,7 +13680,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
   Canin_config1:
@@ -13357,7 +13701,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Input Alias
         condition: ''
       - name: AUXin00Alias
@@ -13390,7 +13734,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: CAN Output Channel on/off
         condition: ''
       - name: canoutput_sel0
@@ -13423,7 +13767,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Output Parameter Group
         condition: ''
       - name: 'canoutput_param_group[0]'
@@ -13456,7 +13800,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Output Parameter Start Byte
         condition: ''
       - name: canoutput_param_start_byte0
@@ -13489,7 +13833,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Output Parameter Number of Bytes
         condition: ''
       - name: canoutput_param_num_bytes0
@@ -13522,7 +13866,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
   Canout_config1:
@@ -13561,7 +13905,7 @@ dialogs:
       - name: 'true_address {enable_secondarySerial||enable_intcan}'
         title: True Canbus Address
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: >-
           NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
           the True Address as they are reserved for future expansion
@@ -13587,7 +13931,7 @@ dialogs:
       - name: 'true_address {enable_secondarySerial||enable_intcan}'
         title: True Canbus Address
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: >-
           NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
           the True Address as they are reserved for future expansion
@@ -13616,7 +13960,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Source
         condition: ''
       - name: Auxin0pina
@@ -13721,7 +14065,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Input Alias
         condition: ''
       - name: AUXin00Alias
@@ -13826,7 +14170,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Aux Input Channel Enable
         condition: ''
       - name: 'caninput_sel0a {}'
@@ -14023,7 +14367,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: '#RPM'
         condition: ''
       - name: rpmwarn
@@ -14035,7 +14379,7 @@ dialogs:
       - name: rpmhigh
         title: High
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: '#MAP'
         condition: ''
       - name: mapwarn
@@ -14047,7 +14391,7 @@ dialogs:
       - name: maphigh
         title: High
         condition: ''
-      - name: divider
+      - name: dialogTitle
         title: '!Reload project to update gauges'
         condition: ''
   io_summary:
@@ -14062,7 +14406,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: outputInverted0
@@ -14095,7 +14439,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: firstDataIn0
@@ -14128,7 +14472,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: firstCompType0
@@ -14161,7 +14505,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: 'firstTarget[0]'
@@ -14194,7 +14538,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: bitwise0
@@ -14227,7 +14571,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: secondDataIn0
@@ -14260,7 +14604,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: 'firstTarget[0]'
@@ -14293,7 +14637,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: secondCompType0
@@ -14326,7 +14670,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: 'secondTarget[0]'
@@ -14359,7 +14703,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: ''
         condition: ''
       - name: 'outputDelay[0]'
@@ -14392,7 +14736,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: Input Alias
         condition: ''
       - name: prgm_out00Alias
@@ -14425,7 +14769,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: divider
+      - name: dialogTitle
         title: 'Pin No:'
         condition: ''
       - name: outputPin0

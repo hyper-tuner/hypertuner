@@ -15,11 +15,13 @@ class Parser {
 
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.BASE_PATTERN = '^(?<type>scalar|bits|array),\\s*(?<size>[A-Z\\d]+),\\s*(?<offset>\\d+)';
-    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),\\s*(?<min>[\\-\\d.]+),\\s*(?<max>[\\-\\d.]+),\\s*(?<digits>[\\d.]+)`;
+    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+),*\\s*(?<max>[\\-\\d.]+),\\s*(?<digits>[\\d.]+)`;
     this.FIRST_PATTERN  = new RegExp(`${this.BASE_PATTERN}.+`);
     this.SCALAR_PATTERN = new RegExp(`${this.BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
     this.BITS_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
     this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+
+    console.log(this.ARRAY_PATTERN);
 
     this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
     this.KEY_VALUE_PATTERN = /^(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
@@ -147,7 +149,7 @@ class Parser {
       const [title, name, condition] = matchField.groups.field.split(',');
 
       this.result.dialogs[this.currentDialog].fields.push({
-        name: name ? Parser.sanitizeString(name) : 'divider',
+        name: name ? Parser.sanitizeString(name) : 'dialogTitle',
         title: Parser.sanitizeString(title),
         condition: (condition || '').trim().replace(/^{\s*|\s*}$/g, ''),
       });
@@ -181,9 +183,10 @@ class Parser {
 
     // TODO: handle this
     // not an actual constant
-    if (name === 'divider') {
-      return;
-    }
+    // squirts per engine cycle!!!
+    // if (name === 'divider') {
+    //   return;
+    // }
 
     // TODO: handle this somehow
     // key already exists - IF ELSE most likely
@@ -216,7 +219,8 @@ class Parser {
   parseScalar(input) {
     const match = input.match(this.SCALAR_PATTERN);
     if (!match) {
-      throw new Error(`Unable to parse line: ${input}`);
+      // throw new Error(`Unable to parse scalar: ${input}`);
+      return {};
     }
 
     return {
@@ -236,7 +240,8 @@ class Parser {
   parseArray(input) {
     const match = input.match(this.ARRAY_PATTERN);
     if (!match) {
-      throw new Error(`Unable to parse line: ${input}`);
+      // throw new Error(`Unable to parse array: ${input}`);
+      return {};
     }
     const [columns, rows] = match.groups.shape
       .split('x')
@@ -264,7 +269,7 @@ class Parser {
     const match = input.match(this.BITS_PATTERN);
 
     if (!match) {
-      throw new Error(`Unable to parse line: ${input}`);
+      throw new Error(`Unable to parse bits: ${input}`);
     }
 
     return {
@@ -288,7 +293,7 @@ class Parser {
 }
 
 const result = new Parser(
-  fs.readFileSync(path.join(__dirname, '/constants.ini'), 'utf8')
+  fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
 // console.dir(result.constants.pages[1], { maxArrayLength: 1000, depth: null });

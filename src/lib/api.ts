@@ -2,7 +2,7 @@ import store from '../store';
 import {
   Config as ConfigType,
 } from '../types/config';
-import stdDialogs from './stdDialogs';
+import stdDialogs from './standardDialogs';
 
 const yaml = require('js-yaml');
 
