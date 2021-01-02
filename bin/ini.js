@@ -22,8 +22,8 @@ class Parser {
     this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
-    this.DEFINE_PATTERN = /^#\s*define\s(?<define>.+)/;
     this.KEY_VALUE_PATTERN = /^(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
+    this.GLOBALS_PATTERN = /^#\s*define\s*(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
@@ -58,15 +58,33 @@ class Parser {
 
       const matches = trimmed.match(this.SECTION_HEADER_PATTERN);
 
+      if (!matches) {
+        if (this.parseGlobals(trimmed)) {
+          return;
+        }
+      }
+
       if (matches) {
         section = matches.groups.section;
       } else if (section) {
-        this.parseLine(section, trimmed);
+        this.parseSectionLine(section, trimmed);
       }
     });
   }
 
-  parseLine(section, line) {
+  parseGlobals(line) {
+    const match = line.match(this.GLOBALS_PATTERN);
+    if (!match) {
+      return false;
+    }
+
+    this.result.globals[match.groups.key] = match.groups.value.split(',')
+      .map((val) => Parser.sanitizeString(val));
+
+    return true;
+  }
+
+  parseSectionLine(section, line) {
     switch (section) {
       case 'Constants':
         this.parseConstants(line);
