@@ -10,7 +10,15 @@ const stdDialogs: DialogsType = {
       link: 'https://wiki.speeduino.com/en/configuration/Engine_Constants'
     },
     layout: '',
-    panels: {},
+    panels: {
+      engine_constants_southwest: {
+        name: 'engine_constants_southwest',
+        title: 'Speeduino Board',
+        layout: '',
+        panels: {},
+        fields: [], // overridden by ini file
+      },
+    },
     fields: [
       {
         name: 'reqFuel',

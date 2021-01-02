@@ -124,7 +124,7 @@ const Dialog = ({
 
           let enabled = true;
           if (field.condition) {
-            console.log('Condition:', field.condition);
+            console.info('Condition:', field.condition);
 
             const constDeclarations = Object.keys(tune.constants)
               .map((constName: string) => {

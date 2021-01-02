@@ -10,7 +10,7 @@ interface Field extends Entity {
 
 interface Dialog extends Entity {
   layout: string,
-  help: {
+  help?: {
     link: string,
   },
   panels: {
