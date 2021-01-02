@@ -18,6 +18,8 @@ import {
   SettingOutlined,
   LoginOutlined,
   UserAddOutlined,
+  LineChartOutlined,
+  SlidersOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
@@ -56,6 +58,21 @@ const TopBar = () => {
       <Menu.Item>
         <a href="/preferences">
           <SettingOutlined /> Preferences
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+
+  const downloadMenu = (
+    <Menu>
+      <Menu.Item>
+        <a href="/download/tune">
+          <SlidersOutlined /> Tune
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href="/download/logs">
+          <LineChartOutlined /> Logs
         </a>
       </Menu.Item>
     </Menu>
@@ -101,9 +118,15 @@ const TopBar = () => {
             <Button icon={<CloudUploadOutlined />}>
               {lg && 'Upload'}
             </Button>
-            <Button icon={<CloudDownloadOutlined />}>
-              {xl && 'Download'}
-            </Button>
+            <Dropdown
+              overlay={downloadMenu}
+              placement="bottomCenter"
+              trigger={['click']}
+            >
+              <Button icon={<CloudDownloadOutlined />}>
+                {xl && 'Download'}
+              </Button>
+            </Dropdown>
             <Button icon={<ShareAltOutlined />}>
               {lg && 'Share'}
             </Button>

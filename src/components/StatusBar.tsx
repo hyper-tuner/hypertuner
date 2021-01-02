@@ -19,7 +19,9 @@ const StatusBar = ({ status }: { status: StatusState }) => (
           default
         </Space>
       </Col>
-      <Col span={8} style={{ textAlign: 'center' }} />
+      <Col span={8} style={{ textAlign: 'center' }}>
+        speeduino 202009-dev | mx5.msq | test_log.mlg
+      </Col>
       <Col span={8} style={{ textAlign: 'right' }}>
         {status.text}
       </Col>
