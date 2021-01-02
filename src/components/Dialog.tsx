@@ -15,6 +15,7 @@ import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
 import {
   Dialogs as DialogsType,
+  Dialog as DialogType,
   Config as ConfigType,
   Field as FieldType,
   Page as PageType,
@@ -22,7 +23,6 @@ import {
 
 import {
   Tune as TuneType,
-  Constant as TuneConstantType,
 } from '../types/tune';
 
 const mapStateToProps = (state: AppState) => ({
@@ -103,11 +103,26 @@ const Dialog = ({
 
   resolvePanels(config.dialogs, name);
 
-  const panelsComponents = Object.keys(resolvedPanels).map((panelName: string) => {
-    const panel = resolvedPanels[panelName];
+  // remove dummy dialogs and flatten to array
+  const panels = Object.keys(resolvedPanels).map((dialogName: string) => {
+    const currentDialog: DialogType = resolvedPanels[dialogName];
+    const fields = currentDialog.fields
+      .filter((field) => !['divider', '{}'].includes(field.name));
+
+    return {
+      name: dialogName,
+      title: currentDialog.title,
+      fields,
+    };
+  });
+
+  const panelsComponents = panels.map((panel: { name: string, title: string, fields: FieldType[] }) => {
+    if (panel.fields.length === 0) {
+      return null;
+    }
 
     return (
-      <Col key={panel.name} {...calculateSpan(Object.keys(resolvedPanels).length)}>
+      <Col key={panel.name} {...calculateSpan(panels.length)}>
         <Divider>{panel.title}</Divider>
         {(panel.fields).map((field: FieldType) => {
           const pageFound = config
