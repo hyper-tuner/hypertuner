@@ -14,12 +14,16 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
 import {
-  Dialog as DialogType,
-  Panel as PanelType,
+  Dialogs as DialogsType,
   Config as ConfigType,
   Field as FieldType,
   Page as PageType,
 } from '../types/config';
+
+import {
+  Tune as TuneType,
+  Constant as TuneConstantType,
+} from '../types/tune';
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -34,7 +38,7 @@ const skeleton = (<div style={containerStyle}>
   <Skeleton /><Skeleton />
 </div>);
 
-// TODO: refactor this! check and get rid of multiple calls, optimize!
+// TODO: refactor this! check and get rid of multiple calls and optimize
 const Dialog = ({
   config,
   tune,
@@ -42,7 +46,7 @@ const Dialog = ({
   burnButton
 }: {
   config: ConfigType,
-  tune: any,
+  tune: TuneType,
   name: string,
   burnButton: any
 }) => {
@@ -57,8 +61,6 @@ const Dialog = ({
       <Result status="warning" title="Not found 👀" style={{ marginTop: 50 }} />
     );
   }
-
-  const dialogGroups = dialogConfig.fields || [];
 
   const calculateSpan = (dialogsCount: number) => {
     let xxl = 24;
@@ -76,10 +78,38 @@ const Dialog = ({
     };
   };
 
-  const groups = dialogGroups.map((group: GroupType) => (
-      <Col key={group.name} {...calculateSpan(dialogConfig.groups.length)}>
-        <Divider>{group.title}</Divider>
-        {(group.fields || []).map((field: FieldType) => {
+  const resolvedPanels = {} as any; // TODO: describe
+
+  const resolvePanels = (source: DialogsType, dialogName: string) => {
+    if (!source[dialogName]) {
+      return;
+    }
+
+    Object.keys(source[dialogName].panels).forEach((panelName: string) => {
+      const currentDialog = source[panelName];
+
+      if (!currentDialog) {
+        return;
+      }
+
+      if (currentDialog.fields.length > 0) {
+        // resolve in root scope
+        resolvedPanels[panelName] = config.dialogs[panelName];
+      }
+        // NOTE: recursion
+      resolvePanels(config.dialogs, panelName);
+    });
+  };
+
+  resolvePanels(config.dialogs, name);
+
+  const panelsComponents = Object.keys(resolvedPanels).map((panelName: string) => {
+    const panel = resolvedPanels[panelName];
+
+    return (
+      <Col key={panel.name} {...calculateSpan(Object.keys(resolvedPanels).length)}>
+        <Divider>{panel.title}</Divider>
+        {(panel.fields).map((field: FieldType) => {
           const pageFound = config
             .constants
             .pages
@@ -94,10 +124,39 @@ const Dialog = ({
 
           let enabled = true;
           if (field.condition) {
-            // TODO: strip eval from `command` etc...!
-            // https://www.electronjs.org/docs/tutorial/security
-            // eslint-disable-next-line no-eval
-            enabled = eval(field.condition);
+            console.log('Condition:', field.condition);
+
+            const constDeclarations = Object.keys(tune.constants)
+              .map((constName: string) => {
+                if (constName.includes('-')) {
+                  return null;
+                }
+
+                let val = tune.constants[constName].value;
+
+                if (typeof val === 'string' && val.includes('\n')) {
+                  return null;
+                }
+
+                if (typeof val === 'string') {
+                  val = `'${val}'`;
+                }
+
+                return `const ${constName} = ${val};`;
+              });
+
+            try {
+              // TODO: strip eval from `command` etc
+              // https://www.electronjs.org/docs/tutorial/security
+              // eslint-disable-next-line no-eval
+              enabled = eval(`
+                'use strict';
+                ${constDeclarations.join('')}
+                ${field.condition};
+              `);
+            } catch (error) {
+              console.log(`! Eval failed with: ${error.message}`);
+            }
           }
 
           const precision = constant.units === '%' ? 0 : 1;
@@ -114,7 +173,7 @@ const Dialog = ({
 
             case 'scalar':
               input = <InputNumber
-                        defaultValue={tuneField.value}
+                        defaultValue={Number(tuneField.value)}
                         precision={precision}
                         min={constant.min || 0}
                         max={constant.max}
@@ -148,7 +207,8 @@ const Dialog = ({
           );
         })}
       </Col>
-    ));
+    );
+  });
 
   return (
     <div style={containerStyle}>
@@ -174,7 +234,7 @@ const Dialog = ({
         // onFinish={(values: any) => console.log(values)}
       >
         <Row gutter={20}>
-          {groups}
+          {panelsComponents}
         </Row>
         <Form.Item>
           {burnButton}

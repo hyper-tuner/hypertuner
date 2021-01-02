@@ -1,4 +1,8 @@
 import store from '../store';
+import {
+  Config as ConfigType,
+} from '../types/config';
+import stdDialogs from './stdDialogs';
 
 const yaml = require('js-yaml');
 
@@ -7,7 +11,7 @@ export const loadAll = () => {
 
   fetch('/tunes/speeduino.yml')
     .then((response) => response.text())
-    .then((config) => {
+    .then((yamlContent) => {
 
       fetch('/tunes/test.msq')
         .then((response) => response.text())
@@ -43,7 +47,13 @@ export const loadAll = () => {
             });
           });
 
-          store.dispatch({ type: 'config/load', payload: yaml.safeLoad(config) });
+          const config = yaml.safeLoad(yamlContent) as ConfigType;
+          config.dialogs = {
+            ...config.dialogs,
+            ...stdDialogs,
+          };
+
+          store.dispatch({ type: 'config/load', payload: config });
           store.dispatch({ type: 'tune/load', payload: { constants } });
 
           store.dispatch({

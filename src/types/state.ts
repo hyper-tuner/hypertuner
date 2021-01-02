@@ -1,12 +1,9 @@
 import { Config } from './config';
+import { Tune } from './tune';
 
 interface ConfigState extends Config {}
 
-interface TuneState {
-  constants: {
-    [name: string]: string | number,
-  },
-}
+interface TuneState extends Tune {}
 
 interface UIState {
   sidebarCollapsed: boolean,

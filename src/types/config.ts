@@ -4,14 +4,8 @@ interface Entity {
 }
 
 interface Field extends Entity {
-  help: string,
-  condition: string,
-}
-
-interface Panel {
-  name: string,
-  layout: string,
-  condition: string,
+  help?: string,
+  condition?: string,
 }
 
 interface Dialog extends Entity {
@@ -20,9 +14,14 @@ interface Dialog extends Entity {
     link: string,
   },
   panels: {
-    [name: string]: Panel,
+    [name: string]: Dialog,
   },
-  fields: Field,
+  fields: Field[],
+  condition?: string,
+}
+
+interface Dialogs {
+  [name: string]: Dialog,
 }
 
 interface SubMenu extends Entity {}
@@ -80,8 +79,8 @@ interface Config {
 
 export type {
   Field,
-  Panel,
   Dialog,
+  Dialogs,
   SubMenu,
   Menu,
   ArrayShape,

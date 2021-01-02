@@ -37,7 +37,7 @@ const rootReducer = createReducer(initialState, (builder) => {
       state.tune = action.payload;
     })
     .addCase(updateTune, (state: Types.AppState, action) => {
-      state.tune.constants[action.payload.name] = action.payload.value;
+      state.tune.constants[action.payload.name].value = action.payload.value;
     })
     .addCase(setSidebarCollapsed, (state: Types.AppState, action) => {
       state.ui.sidebarCollapsed = action.payload;

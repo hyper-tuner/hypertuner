@@ -27,7 +27,8 @@ const App = ({ ui }: { ui: UIState }) => {
   const margin = ui.sidebarCollapsed ? 80 : 250;
 
   const { pathname } = useLocation();
-  const dialogName = snakeToCamelCase(pathname.substr(1)).split('/')[1];
+  // const dialogName = snakeToCamelCase(pathname.substr(1)).split('/')[1];
+  const dialogName = pathname.substr(1).split('/')[1];
 
   useEffect(() => {
     loadAll();
