@@ -168,7 +168,7 @@ const Dialog = ({
             case 'bits':
             case 'array':
               input = <SmartSelect
-                        defaultValue={tuneField.value}
+                        defaultValue={`${tuneField.value}`}
                         values={
                           constant.values.map((val: string) => (
                             val.startsWith('$') ? config.globals[val.slice(1)] : val

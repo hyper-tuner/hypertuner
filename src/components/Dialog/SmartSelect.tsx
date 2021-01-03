@@ -2,6 +2,7 @@ import {
   Radio,
   Select
 } from 'antd';
+import { LabeledValue } from 'antd/lib/select';
 
 const SmartSelect = ({
   values,
@@ -9,20 +10,20 @@ const SmartSelect = ({
   disabled,
 }: {
   values: string[],
-  defaultValue: string | number,
+  defaultValue: string,
   disabled: boolean,
 }) => {
 
   if (values.length < 3) {
     return (
        <Radio.Group
-        defaultValue={defaultValue}
+        defaultValue={values.indexOf(defaultValue)}
         optionType="button"
         buttonStyle="solid"
         disabled={disabled}
       >
-         {values.map((val: string) =>
-          <Radio key={val} value={val}>{val}</Radio>
+         {values.map((val: string, index) =>
+          <Radio key={val} value={index}>{val}</Radio>
          )}
        </Radio.Group>
     );
@@ -30,21 +31,17 @@ const SmartSelect = ({
 
   return (
     <Select
-      defaultValue={defaultValue}
+      defaultValue={values.indexOf(defaultValue)}
       showSearch
-      filterOption={
-        (input: string, option) => `${option?.key}`
-          .toLowerCase()
-          .includes(input.toLowerCase())
-      }
+      optionFilterProp="label"
       disabled={disabled}
       style={{ maxWidth: 250 }}
     >
       {/* we need to preserve indexes here, skip INVALID option */}
-      {values.map((val: string, index: number) =>
+      {values.map((val: string, index) =>
         val === 'INVALID'
           ? null
-          : <Select.Option key={val} value={index}>{val}</Select.Option>
+          : <Select.Option key={val} value={index} label={val}>{val}</Select.Option>
       )}
     </Select>
   );

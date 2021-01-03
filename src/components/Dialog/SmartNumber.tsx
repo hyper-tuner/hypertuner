@@ -22,7 +22,6 @@ const SmartNumber = ({
 
   sliderMarks[min] = `${min}${units}`;
   sliderMarks[0] = `0${units}`;
-  // sliderMarks[100] = `100${units}`;
 
   if (max) {
     sliderMarks[max] = `${max}${units}`;
