@@ -1,8 +1,8 @@
 @import '~antd/dist/antd.less';
+// @import '~antd/dist/antd.compact.less';
 @import './themes/dark.less';
 
 @text-light: #fff;
-@border-accent: #33383e;
 
 @border-radius-base: 5px;
 
@@ -27,7 +27,7 @@
 .app-top-bar {
   .electron-draggable;
   border-bottom-width: 1px;
-  border-bottom-color: @border-accent;
+  border-bottom-color: @border-color-split;
   border-bottom-style: solid;
 }
 
@@ -36,6 +36,13 @@
   position: fixed;
   left: 0;
   user-select: none;
+}
+
+.ant-layout-sider-trigger {
+  bottom: @layout-footer-height;
+  border-right-width: 1px;
+  border-right-color: @border-color-split;
+  border-right-style: solid;
 }
 
 .app-status-bar {
@@ -53,9 +60,3 @@
   height: calc(100vh - @layout-header-height - @layout-footer-height);
 }
 
-.ant-layout-sider-trigger {
-  bottom: @layout-footer-height;
-  border-right-width: 1px;
-  border-right-color: @border-accent;
-  border-right-style: solid;
-}

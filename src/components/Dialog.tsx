@@ -178,6 +178,9 @@ const Dialog = ({
             }
           }
 
+          // TODO: handle this with custom parser
+          const units = constant.units === ':1' ? '' : constant.units;
+
           switch (constant.type) {
             case 'bits':
             case 'array':
@@ -198,7 +201,7 @@ const Dialog = ({
                         step={10**-constant.digits}
                         disabled={!enabled}
                         style={{ minWidth: 150 }}
-                        formatter={(val) => constant.units ? `${val} ${constant.units}` : `${val}`}
+                        formatter={(val) => units ? `${val} ${units}` : `${val}`}
                         parser={(val) => `${val}`.replace(/[^\d.]/g, '')}
                       />;
               break;
