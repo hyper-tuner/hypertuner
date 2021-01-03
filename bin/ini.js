@@ -25,11 +25,11 @@ class Parser {
     // console.log(this.ARRAY_PATTERN);
 
     this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
-    this.KEY_VALUE_PATTERN = /^(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
-    this.GLOBALS_PATTERN = /^#\s*define\s*(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
+    this.KEY_VALUE_PATTERN = new RegExp(`^(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
+    this.GLOBALS_PATTERN = new RegExp(`^#\\s*define\\s*(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
 
-    this.MENU_PATTERN = /^menu\s*=\s*"(?<menu>.+)"\s*(?<comments>;.+)*$/;
-    this.SUB_MENU_PATTERN = /^subMenu\s*=\s*(?<name>\w+),\s+"(?<title>.+)",*\s*(?<page>\d+)*\s*,*\s*(?<condition>{\s*.+\s*})*\s*(?<comments>;.+)*$/;
+    this.MENU_PATTERN = new RegExp(`^menu\\s*=\\s*"(?<menu>.+)"${this.COMMENTS_PATTERN}$`);
+    this.SUB_MENU_PATTERN = new RegExp(`^subMenu\\s*=\\s*(?<name>\\w+),\\s+"(?<title>.+)",*\\s*(?<page>\\d+)*\\s*,*\\s*(?<condition>{\\s*.+\\s*})*${this.COMMENTS_PATTERN}$`);
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
