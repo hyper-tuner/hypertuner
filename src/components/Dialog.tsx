@@ -111,8 +111,8 @@ const Dialog = ({
   const panels = Object.keys(resolvedDialogs).map((dialogName: string) => {
     const currentDialog: DialogType = resolvedDialogs[dialogName];
     const fields = currentDialog.fields
-      .filter((field) => !['dialogTitle', '{}'].includes(field.name));
-      // TODO: handle dialogTitle
+      .filter((field) => field.name !== '_fieldText_' );
+      // TODO: handle _fieldText_
 
     return {
       name: dialogName,
@@ -144,9 +144,9 @@ const Dialog = ({
 
           let enabled = true;
           if (field.condition) {
-            console.info(`Condition for '${field.name}':`, field.condition);
+            console.info(`Evaluating condition for '${field.name}':`, field.condition);
 
-            const constDeclarations = prepareConstDeclarations(tune.constants);
+            const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
             try {
               // TODO: strip eval from `command` etc
               // https://www.electronjs.org/docs/tutorial/security
@@ -157,7 +157,7 @@ const Dialog = ({
                 ${field.condition};
               `);
             } catch (error) {
-              console.error(`! Field condition eval failed with: ${error.message}`);
+              console.error('Field condition evaluation failed with:', error.message);
             }
           }
 
@@ -169,8 +169,11 @@ const Dialog = ({
             case 'array':
               input = <SmartSelect
                         defaultValue={tuneField.value}
-                        values={constant.values}
-                        globals={config.globals}
+                        values={
+                          constant.values.map((val: string) => (
+                            val.startsWith('$') ? config.globals[val.slice(1)] : val
+                          )).flat()
+                        }
                         disabled={!enabled}
                       />;
               break;

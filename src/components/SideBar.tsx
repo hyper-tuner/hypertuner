@@ -49,16 +49,19 @@ const SideBar = ({ config, ui }: { config: ConfigType, ui: UIState }) => {
         icon={<Icon name={menuName} />}
         title={menus[menuName].title}
       >
-        {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => (
-          <Menu.Item
+        {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => {
+          const enabled = true;
+
+          return (<Menu.Item
             key={buildLinkUrl(menuName, subMenuName)}
             icon={<Icon name={subMenuName} />}
+            disabled={!enabled}
           >
             <Link to={buildLinkUrl(menuName, subMenuName)}>
               {menus[menuName].subMenus[subMenuName].title}
             </Link>
-          </Menu.Item>
-        ))}
+          </Menu.Item>);
+        })}
       </SubMenu>
     ))
   );

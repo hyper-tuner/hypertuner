@@ -50,7 +50,6 @@ interface BitsAddress {
 }
 
 interface Constant {
-  name: string,
   type: 'scalar' | 'bits' | 'array',
   size: 'U08' | 'S08' | 'U16' | 'S16'
   offset: number,

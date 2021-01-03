@@ -58,7 +58,6 @@ export const loadAll = () => {
 
           // override / merge constants
           config.constants.pages[0].data.divider = {
-            name: 'divider',
             type: 'scalar',
             size: 'U08',
             offset: 25,
@@ -70,12 +69,14 @@ export const loadAll = () => {
             digits: 0,
           } as ConstantType;
 
+          const loadingTimeInfo = `Tune loaded in ${(new Date().getTime() - started.getTime())}ms`;
+          console.log(loadingTimeInfo);
+
           store.dispatch({ type: 'config/load', payload: config });
           store.dispatch({ type: 'tune/load', payload: { constants } });
-
           store.dispatch({
             type: 'status',
-            payload: `Tune loaded in ${(new Date().getTime() - started.getTime())}ms`,
+            payload: loadingTimeInfo,
           });
         });
     });
