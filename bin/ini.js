@@ -8,12 +8,17 @@ console.log('------- start --------');
 
 class Parser {
   constructor(buffer) {
+    this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
+    this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
+
     this.DIALOG_PATTERN = /^dialog\s*=\s*(?<name>\w+),\s*"(?<title>.*)",*\s*(?<layout>xAxis|yAxis|border)*/;
     this.PANEL_PATTERN = /^panel\s*=\s*(?<name>\w+),\s*(?<layout>\w+|{})*,*\s*({(?<condition>.+)})*/;
-    this.FIELD_PATTERN = /^field\s*=\s*(?<field>.+)/;
+
+    // this.FIELD_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"\\s*,*\\s*(?<name>\\w+)\\s*,*\\s*(?<condition>{.+})*${this.COMMENTS_PATTERN}$`);
+    this.FIELD_PATTERN = /^field\s*=\s*"(?<title>.*)"\s*,*\s*(?<name>[\w[\]]+)*\s*,*\s*(?<condition>{.+?}?)*\s*(?<comments>;.+)*$/;
+    this.FIELD_TEXT_PATTERN = /^field\s*=\s*"(?<title>.*)"$/;
     this.PAGE_PATTERN = /^page\s*=\s*(?<page>\d+)/;
 
-    this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*\\s*(?<offset>\\d+)';
     this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*`;
 
@@ -21,8 +26,6 @@ class Parser {
     this.SCALAR_PATTERN = new RegExp(`${this.BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
     this.BITS_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
     this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
-
-    // console.log(this.ARRAY_PATTERN);
 
     this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
     this.KEY_VALUE_PATTERN = new RegExp(`^(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
@@ -101,7 +104,7 @@ class Parser {
         this.parseMenu(line);
         break;
       case 'UserDefined':
-        this.parseUserDefined(line);
+        this.parseDialogs(line);
         break;
       default:
         this.parseKeyValue(section, line);
@@ -126,7 +129,7 @@ class Parser {
       : Number(match.groups.value);
   }
 
-  parseUserDefined(line) {
+  parseDialogs(line) {
     const matchDialog = line.match(this.DIALOG_PATTERN);
     if (matchDialog) {
       this.currentDialog = matchDialog.groups.name;
@@ -151,14 +154,17 @@ class Parser {
       return;
     }
 
+    // TODO:
+    // {
+    //   name: { egoType },
+    //   ...
+    // }
     const matchField = line.match(this.FIELD_PATTERN);
     if (matchField) {
-      const [title, name, condition] = matchField.groups.field.split(',');
-
       this.result.dialogs[this.currentDialog].fields.push({
-        name: name ? Parser.sanitizeString(name) : 'dialogTitle',
-        title: Parser.sanitizeString(title),
-        condition: (condition || '').trim().replace(/^{\s*|\s*}$/g, ''),
+        name: matchField.groups.name ? Parser.sanitizeString(matchField.groups.name) : '_fieldText_',
+        title: Parser.sanitizeString(matchField.groups.title),
+        condition: Parser.sanitizeCondition(matchField.groups.condition || ''),
       });
     }
   }
@@ -324,20 +330,16 @@ class Parser {
   static sanitizeString = (val) => val.replace(/"/g, '').trim();
 
   static stripComments = (val) => val.replace(/(\s*;.+$)/, '');
+
+  static sanitizeCondition = (val) => val.replace(/^{\s*|\s*}$/g, '').trim();
 }
 
 const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
-// console.dir(result.menus, { maxArrayLength: 1000, depth: null });
-
 // console.dir(result.dialogs, { maxArrayLength: 10, depth: null });
-// console.dir(yaml.dump(result), { maxArrayLength: 1000, depth: null });
-// console.dir(yaml.dump({ asd: 123, 'sd-asd': 22 }), { maxArrayLength: 1000, depth: null });
 
 fs.writeFileSync(path.join(__dirname, '/generated.yml'), yaml.dump(result));
-
-// console.log(yaml.safeDump(result.dialogs));
 
 console.log('------- end --------');

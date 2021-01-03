@@ -11606,7 +11606,7 @@ dialogs:
         layout: North
         condition: ''
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
   engine_constants_warning:
@@ -11614,11 +11614,11 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: '{}'
+      - name: _fieldText_
         title: >-
           !Warning: The board you have selected may not have enough channels for
           sequential fuel!
-        condition: ''
+        condition: injLayout == 3 && !sequentialFuelAvailable
   engine_constants:
     title: ''
     layout: border
@@ -11721,7 +11721,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Detection'
         condition: ''
       - name: knock_count
@@ -11736,7 +11736,7 @@ dialogs:
       - name: knock_maxRPM
         title: Maximum RPM
         condition: knock_mode
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Retard'
         condition: ''
       - name: knock_maxRetard
@@ -11751,15 +11751,15 @@ dialogs:
       - name: knock_stepTime
         title: Step time
         condition: knock_mode
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Recovery'
         condition: ''
       - name: knock_duration
         title: Retard duration
-        condition: 'knock_mode } ;Time before retard starts ending'
+        condition: knock_mode
       - name: knock_recoveryStepTime
         title: Recovery step time
-        condition: 'knock_mode } ;Time between each recovery step'
+        condition: knock_mode
       - name: knock_recoveryStep
         title: Recovery step size
         condition: knock_mode
@@ -11838,10 +11838,10 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: After setting 'Pulses per km/mile' above
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: Drive in each gear (any speed) and press appropriate button
         condition: ''
   vss_calibration:
@@ -12165,9 +12165,9 @@ dialogs:
       - name: egoType
         title: Sensor Type
         condition: ''
-      - name: '{ egoType }'
+      - name: _fieldText_
         title: '#Please ensure you calibrate your O2 sensor in the Tools menu'
-        condition: ''
+        condition: egoType
       - name: egoAlgorithm
         title: Algorithm
         condition: egoType
@@ -12287,12 +12287,12 @@ dialogs:
       - name: iacCLmaxDuty
         title: Maximum valve duty
         condition: iacAlgorithm == 3 || iacAlgorithm == 6
-      - name: 'iacTPSlimit    { iacAlgorithm == 6 }'
+      - name: iacTPSlimit
         title: Integeral reset above TPS
-        condition: ''
-      - name: 'iacRPMlimitHysteresis { iacAlgorithm == 6 }'
+        condition: iacAlgorithm == 6
+      - name: iacRPMlimitHysteresis
         title: Integeral reset RPM Hysteresis
-        condition: ''
+        condition: iacAlgorithm == 6
   idleSettings:
     title: Idle Settings
     layout: ''
@@ -12304,7 +12304,7 @@ dialogs:
       - name: idleTaperTime
         title: Crank to run taper
         condition: iacAlgorithm == 2 || iacAlgorithm == 4
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Fast Idle'
         condition: ''
       - name: iacFastTemp
@@ -12362,10 +12362,10 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Note'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           Values are specified as modifiers to the normal fueling. Eg 100% = No
           change.
@@ -12381,9 +12381,9 @@ dialogs:
       - name: ignBypassEnable
         title: Cranking bypass
         condition: ''
-      - name: 'ignBypassPin               { ignBypassEnable }'
+      - name: ignBypassPin
         title: Bypass output pin
-        condition: ''
+        condition: ignBypassEnable
       - name: ignCranklock
         title: Fix cranking timing with trigger
         condition: >-
@@ -12433,13 +12433,13 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Defines the fuel enrichment percentage after start.
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: This is needed to keep engine running after start
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: Common values are 5% when engine is hot to 50% when engine is cold.
         condition: ''
   ASE_time:
@@ -12447,10 +12447,10 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: How long time the After Start Enrichment is applied in seconds.
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           Usually this is varies from 1-2s when engine is hot up to 20s on a
           cold engine.
@@ -12463,7 +12463,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Time and duration curves share common coolant values'
         condition: ''
   triggerSettings:
@@ -12491,36 +12491,36 @@ dialogs:
       - name: TrigAng
         title: Trigger Angle
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: This number represents the angle ATDC when
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: 'tooth #1 passes the primary sensor.'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: SkipCycles
         title: Skip Revolutions
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: 'Note: This is the number of revolutions that will be skipped during'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: cranking before the injectors and coils are fired
         condition: ''
-      - name: 'TrigEdge      { TrigPattern != 4 } ;4G63 uses both edges'
+      - name: TrigEdge
         title: Trigger edge
-        condition: ''
+        condition: TrigPattern != 4
       - name: TrigEdgeSec
         title: Secondary trigger edge
         condition: >-
           (TrigPattern == 0 && TrigSpeed == 0) || TrigPattern == 2 ||
           TrigPattern == 9 || TrigPattern == 12 || TrigPattern == 18 ||
-          TrigPattern == 19 } ;Missing tooth
-      - name: '{ (TrigPattern == 0&& TrigSpeed == 0) }'
-        title: Missing Tooth Secondary type    trigPatternSec
-        condition: ''
+          TrigPattern == 19
+      - name: trigPatternSec
+        title: Missing Tooth Secondary type
+        condition: (TrigPattern == 0&& TrigSpeed == 0)
       - name: TrigFilter
         title: Trigger Filter
         condition: TrigPattern != 13
@@ -12529,7 +12529,7 @@ dialogs:
         condition: >-
           TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
-          TrigPattern == 18 || TrigPattern == 19 } ;Dual wheel
+          TrigPattern == 18 || TrigPattern == 19
   lockSparkSettings:
     title: Locked timing
     layout: ''
@@ -12541,7 +12541,7 @@ dialogs:
       - name: FixAng
         title: Fixed Angle
         condition: fixAngEnable
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           #Note: During cranking the fixed/locked timing angle is overriden by
           the Cranking advance angle value above
@@ -12551,13 +12551,13 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           This option is currently will improve accuracy on most compatible
           triggers
         condition: ''
-      - name: please disable this
-        title: However if timing issues are encountered
+      - name: _fieldText_
+        title: 'However if timing issues are encountered, please disable this'
         condition: ''
       - name: perToothIgn
         title: Use new ignition mode
@@ -12574,11 +12574,11 @@ dialogs:
           TrigPattern == 12 || TrigPattern == 13 || TrigPattern == 18 ||
           TrigPattern == 19
     fields:
-      - name: '{}'
+      - name: _fieldText_
         title: >-
           !Warning: The board you have selected may not have enough channels for
           sequential ignition!
-        condition: ''
+        condition: sparkMode == 3 && !sequentialIgnitionAvailable
       - name: ignAlgorithm
         title: Ignition load source
         condition: ''
@@ -12605,25 +12605,25 @@ dialogs:
       - name: sparkDur
         title: Spark duration
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Note'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: The above times are for 12V. Voltage correction
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: is applied. At higher voltages the time is reduced
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: and when low it is increased
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: Overdwell protection
         condition: ''
       - name: useDwellLim
@@ -12632,10 +12632,10 @@ dialogs:
       - name: dwellLim
         title: Max dwell time
         condition: useDwellLim
-      - name: dialogTitle
+      - name: _fieldText_
         title: 'Note: Set the maximum dwell time at least 3ms above'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: your desired dwell time (Including cranking)
         condition: ''
       - name: idleAdvEnabled
@@ -12702,43 +12702,35 @@ dialogs:
       - name: boostType
         title: Mode
         condition: ''
-      - name: the values in this table are duty cycle %
-        title: In open loop mode
+      - name: _fieldText_
+        title: 'In open loop mode, the values in this table are duty cycle %'
         condition: ''
-      - name: the values are boost targets in kPa
-        title: In closed loop mode
+      - name: _fieldText_
+        title: 'In closed loop mode, the values are boost targets in kPa'
         condition: ''
   revLimiterDialog:
     title: Rev Limiter
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Rev Limiter
         condition: ''
-      - name: '{}'
+      - name: _fieldText_
         title: '!Soft limiter only available with ignition cut'
-        condition: ''
+        condition: engineProtectType == 2
       - name: SoftRevLim
         title: Soft rev limit
-        condition: >-
-          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
-          the protection modes that include ignition.
+        condition: engineProtectType == 1 || engineProtectType == 3
       - name: SoftLimitMode
         title: Soft limiter mode
-        condition: >-
-          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
-          the protection modes that include ignition.
+        condition: engineProtectType == 1 || engineProtectType == 3
       - name: SoftLimRetard
         title: Soft limit timing
-        condition: >-
-          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
-          the protection modes that include ignition.
+        condition: engineProtectType == 1 || engineProtectType == 3
       - name: SoftLimMax
         title: Soft limit max time
-        condition: >-
-          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
-          the protection modes that include ignition.
+        condition: engineProtectType == 1 || engineProtectType == 3
       - name: HardRevLim
         title: Hard Rev limit
         condition: ''
@@ -12769,9 +12761,7 @@ dialogs:
         condition: engineProtectType
       - name: hardCutType
         title: Cut method
-        condition: >-
-          engineProtectType == 1 || engineProtectType == 3 } ;Only available for
-          the protection modes that include ignition.
+        condition: engineProtectType == 1 || engineProtectType == 3
   RevLimiterS:
     title: Engine Protection and Limiters
     layout: xAxis
@@ -12808,7 +12798,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Launch Control
         condition: ''
       - name: launchEnable
@@ -12829,7 +12819,7 @@ dialogs:
       - name: lnchFuelAdd
         title: Fuel adder during launch
         condition: launchEnable
-      - name: dialogTitle
+      - name: _fieldText_
         title: Flat Shift
         condition: ''
       - name: flatSEnable
@@ -12935,10 +12925,10 @@ dialogs:
       - name: display
         title: Display Type
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Note'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ECU must be rebooted after changing above value
         condition: ''
       - name: display1
@@ -12963,7 +12953,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#MAP Sensor'
         condition: ''
       - name: mapMin
@@ -12975,7 +12965,7 @@ dialogs:
       - name: legacyMAP
         title: Use legacy MAP reading
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Baro Sensor'
         condition: ''
       - name: useExtBaro
@@ -12990,7 +12980,7 @@ dialogs:
       - name: baroMax
         title: kPa At 5.0 Volts
         condition: useExtBaro
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#EMAP Sensor'
         condition: ''
       - name: useEMAP
@@ -13010,18 +13000,20 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           The values here set the amount of filtering to apply to each analog
           input
         condition: ''
-      - name: but slower response times for readings
-        title: Higher values result in stronger filtering
+      - name: _fieldText_
+        title: >-
+          Higher values result in stronger filtering, but slower response times
+          for readings
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Most setups will NOT require changes to the default filter values'
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: fuelPressureEnable
@@ -13086,7 +13078,7 @@ dialogs:
       - name: boostMaxDuty
         title: Valve maximum duty cycle
         condition: boostEnabled && boostType == 1
-      - name: dialogTitle
+      - name: _fieldText_
         title: Closed Loop settings
         condition: ''
       - name: boostMode
@@ -13121,7 +13113,7 @@ dialogs:
       - name: vvtCLMinAng
         title: Cam angle @ 0% duty
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: vvtCLKP
@@ -13153,7 +13145,7 @@ dialogs:
       - name: vvtMode
         title: VVT Mode
         condition: vvtEnabled
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           #Please note that close loop is currently experimental for Miata
           patterns ONLY
@@ -13181,7 +13173,7 @@ dialogs:
         layout: ''
         condition: wmiEnabled && wmiAdvEnabled
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#Experimental!'
         condition: ''
       - name: wmiEnabled
@@ -13208,7 +13200,7 @@ dialogs:
       - name: wmiOffset
         title: WMI offset
         condition: wmiEnabled && wmiMode == 3
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: vvt1Pin
@@ -13217,13 +13209,13 @@ dialogs:
       - name: vvtFreq
         title: WMI PWM freq.
         condition: wmiEnabled
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: wmiEnabledPin
         title: WMI enabled output pin
         condition: wmiEnabled
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: wmiEmptyEnabled
@@ -13235,7 +13227,7 @@ dialogs:
       - name: wmiEmptyPolarity
         title: WMI tank empty polarity
         condition: wmiEnabled
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: wmiIndicatorEnabled
@@ -13247,7 +13239,7 @@ dialogs:
       - name: wmiIndicatorPolarity
         title: WMI tank indicator polarity
         condition: wmiEnabled
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: wmiAdvEnabled
@@ -13258,10 +13250,10 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Final enrichment value must be 100%.
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
   inj_trim1TblTitle:
@@ -13369,15 +13361,15 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           WARNING! USE AT YOUR OWN RISK. INCORRECT USE WILL DAMAGE YOUR
           HARDWARE!
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: Do not attempt to use this page whilst your engine is running!
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           Forcing the Injector or Spark outputs could cause flooding of your
           engine or permanent damage to ignition coils!
@@ -13487,7 +13479,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: >-
           If Secondary Serial or Internal CANBUS is DISABLED then any input
           channel assigned to that external source will NOT function
@@ -13497,7 +13489,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Input Alias
         condition: ''
       - name: AUXin00Alias
@@ -13601,111 +13593,191 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: CAN Input Channel on/off
         condition: ''
       - name: caninput_sel0a
         title: CAN Input 0
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel0b
         title: CAN Input 0
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel1a
         title: CAN Input 1
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel1b
         title: CAN Input 1
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel2a
         title: CAN Input 2
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel2b
         title: CAN Input 2
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel3a
         title: CAN Input 3
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel3b
         title: CAN Input 3
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel4a
         title: CAN Input 4
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel4b
         title: CAN Input 4
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel5a
         title: CAN Input 5
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel5b
         title: CAN Input 5
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel6a
         title: CAN Input 6
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel6b
         title: CAN Input 6
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel7a
         title: CAN Input 7
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel7b
         title: CAN Input 7
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel8a
         title: CAN Input 8
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel8b
         title: CAN Input 8
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel9a
         title: CAN Input 9
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel9b
         title: CAN Input 9
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel10a
         title: CAN Input 10
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel10b
         title: CAN Input 10
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel11a
         title: CAN Input 11
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel11b
         title: CAN Input 11
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel12a
         title: CAN Input 12
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel12b
         title: CAN Input 12
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel13a
         title: CAN Input 13
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel13b
         title: CAN Input 13
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel14a
         title: CAN Input 14
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel14b
         title: CAN Input 14
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
       - name: caninput_sel15a
         title: CAN Input 15
-        condition: ''
+        condition: >-
+          (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          intcan_available == 0)))
       - name: caninput_sel15b
         title: CAN Input 15
-        condition: ''
+        condition: >-
+          (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
+          && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
+          !enable_intcan)
   caninput_parameter_group:
     title: ''
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Source CAN Address
         condition: ''
       - name: caninput_source_can_address0
@@ -13793,7 +13865,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: source data start byte
         condition: ''
       - name: caninput_source_start_byte0
@@ -13881,7 +13953,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Input Parameter Number of Bytes
         condition: ''
       - name: caninput_source_num_bytes0
@@ -13969,159 +14041,191 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Serial/CAN
         condition: ''
       - name: caninput_sel0extsourcea
         title: ''
-        condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel0extsourceb
         title: ''
-        condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel0extsourcec
         title: ''
-        condition: (caninput_sel0a == 1 || caninput_sel0b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel1extsourcea
         title: ''
-        condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel1extsourceb
         title: ''
-        condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel1extsourcec
         title: ''
-        condition: (caninput_sel1a == 1 || caninput_sel1b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel2extsourcea
         title: ''
-        condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel2extsourceb
         title: ''
-        condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel2extsourcec
         title: ''
-        condition: (caninput_sel2a == 1 || caninput_sel2b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel3extsourcea
         title: ''
-        condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel3extsourceb
         title: ''
-        condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel3extsourcec
         title: ''
-        condition: (caninput_sel3a == 1 || caninput_sel3b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel4extsourcea
         title: ''
-        condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel4extsourceb
         title: ''
-        condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel4extsourcec
         title: ''
-        condition: (caninput_sel4a == 1 || caninput_sel4b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel5extsourcea
         title: ''
-        condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel5extsourceb
         title: ''
-        condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel5extsourcec
         title: ''
-        condition: (caninput_sel5a == 1 || caninput_sel5b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel6extsourcea
         title: ''
-        condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel6extsourceb
         title: ''
-        condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel6extsourcec
         title: ''
-        condition: (caninput_sel6a == 1 || caninput_sel6b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel7extsourcea
         title: ''
-        condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel7extsourceb
         title: ''
-        condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel7extsourcec
         title: ''
-        condition: (caninput_sel7a == 1 || caninput_sel7b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel8extsourcea
         title: ''
-        condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel8extsourceb
         title: ''
-        condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel8extsourcec
         title: ''
-        condition: (caninput_sel8a == 1 || caninput_sel8b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel9extsourcea
         title: ''
-        condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel9extsourceb
         title: ''
-        condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel9extsourcec
         title: ''
-        condition: (caninput_sel9a == 1 || caninput_sel9b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel10extsourcea
         title: ''
-        condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel10extsourceb
         title: ''
-        condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel10extsourcec
         title: ''
-        condition: (caninput_sel10a == 1 || caninput_sel10b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel11extsourcea
         title: ''
-        condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))
       - name: caninput_sel11extsourceb
         title: ''
-        condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel11extsourcec
         title: ''
-        condition: (caninput_sel11a == 1 || caninput_sel11b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel12extsourcea
         title: ''
-        condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))}
       - name: caninput_sel12extsourceb
         title: ''
-        condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel12extsourcec
         title: ''
-        condition: (caninput_sel12a == 1 || caninput_sel12b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel13extsourcea
         title: ''
-        condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))}
       - name: caninput_sel13extsourceb
         title: ''
-        condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel13extsourcec
         title: ''
-        condition: (caninput_sel13a == 1 || caninput_sel13b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel14extsourcea
         title: ''
-        condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))}
       - name: caninput_sel14extsourceb
         title: ''
-        condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel14extsourcec
         title: ''
-        condition: (caninput_sel14a == 1 || caninput_sel14b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
       - name: caninput_sel15extsourcea
         title: ''
-        condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
+        condition: >-
+          enable_secondarySerial && (!enable_intcan || (enable_intcan &&
+          !intcan_available))}
       - name: caninput_sel15extsourceb
         title: ''
-        condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
+        condition: enable_secondarySerial && (enable_intcan && intcan_available)
       - name: caninput_sel15extsourcec
         title: ''
-        condition: (caninput_sel15a == 1 || caninput_sel15b == 1)
+        condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
   caninconfig_blank1:
     title: ''
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
   Canin_config1:
@@ -14139,7 +14243,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Input Alias
         condition: ''
       - name: AUXin00Alias
@@ -14171,7 +14275,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: CAN Output Channel on/off
         condition: ''
       - name: canoutput_sel0
@@ -14203,7 +14307,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Output Parameter Group
         condition: ''
       - name: 'canoutput_param_group[0]'
@@ -14235,7 +14339,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Output Parameter Start Byte
         condition: ''
       - name: canoutput_param_start_byte0
@@ -14267,7 +14371,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Output Parameter Number of Bytes
         condition: ''
       - name: canoutput_param_num_bytes0
@@ -14299,7 +14403,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
   Canout_config1:
@@ -14331,17 +14435,17 @@ dialogs:
       - name: enable_intcan
         title: Enable Internal Canbus
         condition: ''
-      - name: 'true_address {enable_secondarySerial||enable_intcan}'
+      - name: true_address
         title: True Canbus Address
-        condition: ''
-      - name: dialogTitle
+        condition: enable_secondarySerial||enable_intcan
+      - name: _fieldText_
         title: >-
           NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
           the True Address as they are reserved for future expansion
         condition: ''
-      - name: 'realtime_base_address {enable_secondarySerial||enable_intcan}'
+      - name: realtime_base_address
         title: Realtime Data Base Can Address
-        condition: ''
+        condition: enable_secondarySerial||enable_intcan
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
@@ -14356,17 +14460,17 @@ dialogs:
       - name: enable_intcan
         title: Enable Internal Canbus
         condition: ''
-      - name: 'true_address {enable_secondarySerial||enable_intcan}'
+      - name: true_address
         title: True Canbus Address
-        condition: ''
-      - name: dialogTitle
+        condition: enable_secondarySerial||enable_intcan
+      - name: _fieldText_
         title: >-
           NOTE! Realtime Data Base Address MUST be at least 0x16 GREATER than
           the True Address as they are reserved for future expansion
         condition: ''
-      - name: 'realtime_base_address {enable_secondarySerial||enable_intcan}'
+      - name: realtime_base_address
         title: Realtime Data Base Can Address
-        condition: ''
+        condition: enable_secondarySerial||enable_intcan
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
@@ -14386,111 +14490,219 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Source
         condition: ''
       - name: Auxin0pina
         title: 'Local Analog Source 0                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel0a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel0b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin0pinb
         title: 'Local Digital Source 0                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel0a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel0b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin1pina
         title: 'Local Analog Source 1                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel1a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel1b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin1pinb
         title: 'Local Digital Source 1                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel1a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel1b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin2pina
         title: 'Local Analog Source 2                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel2a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel2b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin2pinb
         title: 'Local Digital Source 2                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel2a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel2b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin3pina
         title: 'Local Analog Source 3                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel3a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel3b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin3pinb
         title: 'Local Digital Source 3                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel3a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel3b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin4pina
         title: 'Local Analog Source 4                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel4a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel4b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin4pinb
         title: 'Local Digital Source 4                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel4a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel4b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin5pina
         title: 'Local Analog Source 5                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel5a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel5b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin5pinb
         title: 'Local Digital Source 5                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel5a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel5b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin6pina
         title: 'Local Analog Source 6                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel6a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel6b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin6pinb
         title: 'Local Digital Source 6                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel6a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel6b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin7pina
         title: 'Local Analog Source 7                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel7a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel7b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin7pinb
         title: 'Local Digital Source 7                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel7a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel7b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin8pina
         title: 'Local Analog Source 8                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel8a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel8b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin8pinb
         title: 'Local Digital Source 8                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel8a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel8b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin9pina
         title: 'Local Analog Source 9                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel9a == 2 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel9b == 2 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin9pinb
         title: 'Local Digital Source 9                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel9a == 3 && (!enable_secondarySerial && (!enable_intcan ||
+          (enable_intcan && intcan_available == 0)))) || (caninput_sel9b == 3 &&
+          (enable_secondarySerial || (enable_intcan && intcan_available == 1 )))
       - name: Auxin10pina
         title: 'Local Analog Source 10                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel10a == 2 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel10b ==
+          2 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin10pinb
         title: 'Local Digital Source 10                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel10a == 3 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel10b ==
+          3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin11pina
         title: 'Local Analog Source 11                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel11a == 2 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel11b ==
+          2 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin11pinb
         title: 'Local Digital Source 11                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel11a == 3 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel11b ==
+          3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin12pina
         title: 'Local Analog Source 12                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel12a == 2 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel12b ==
+          2 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin12pinb
         title: 'Local Digital Source 12                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel12a == 3 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel12b ==
+          3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin13pina
         title: 'Local Analog Source 13                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel13a == 2 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel13b ==
+          2 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin13pinb
         title: 'Local Digital Source 13                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel13a == 3 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel13b ==
+          3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin14pina
         title: 'Local Analog Source 14                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel14a == 2 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel14b ==
+          2 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin14pinb
         title: 'Local Digital Source 14                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel14a == 3 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel14b ==
+          3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin15pina
         title: 'Local Analog Source 15                 Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel15a == 2 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel15b ==
+          2 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
       - name: Auxin15pinb
         title: 'Local Digital Source 15                  Pin No:'
-        condition: ''
+        condition: >-
+          (caninput_sel15a == 3 && (!enable_secondarySerial && (!enable_intcan
+          || (enable_intcan && intcan_available == 0)))) || (caninput_sel15b ==
+          3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
+          1 )))
   Auxinput_alias:
     title: ''
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Input Alias
         condition: ''
       - name: AUXin00Alias
@@ -14594,180 +14806,180 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Aux Input Channel Enable
         condition: ''
-      - name: 'caninput_sel0a {}'
+      - name: caninput_sel0a
         title: AUX Input 0
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel0b {}'
+      - name: caninput_sel0b
         title: AUX Input 0
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel1a {}'
+      - name: caninput_sel1a
         title: AUX Input 1
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel1b {}'
+      - name: caninput_sel1b
         title: AUX Input 1
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel2a {}'
+      - name: caninput_sel2a
         title: AUX Input 2
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel2b {}'
+      - name: caninput_sel2b
         title: AUX Input 2
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel3a {}'
+      - name: caninput_sel3a
         title: AUX Input 3
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel3b {}'
+      - name: caninput_sel3b
         title: AUX Input 3
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel4a {}'
+      - name: caninput_sel4a
         title: AUX Input 4
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel4b {}'
+      - name: caninput_sel4b
         title: AUX Input 4
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel5a {}'
+      - name: caninput_sel5a
         title: AUX Input 5
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel5b {}'
+      - name: caninput_sel5b
         title: AUX Input 5
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel6a {}'
+      - name: caninput_sel6a
         title: AUX Input 6
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel6b {}'
+      - name: caninput_sel6b
         title: AUX Input 6
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel7a {}'
+      - name: caninput_sel7a
         title: AUX Input 7
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel7b {}'
+      - name: caninput_sel7b
         title: AUX Input 7
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel8a {}'
+      - name: caninput_sel8a
         title: AUX Input 8
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel8b {}'
+      - name: caninput_sel8b
         title: AUX Input 8
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel9a {}'
+      - name: caninput_sel9a
         title: AUX Input 9
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel9b {}'
+      - name: caninput_sel9b
         title: AUX Input 9
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel10a {}'
+      - name: caninput_sel10a
         title: AUX Input 10
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel10b {}'
+      - name: caninput_sel10b
         title: AUX Input 10
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel11a {}'
+      - name: caninput_sel11a
         title: AUX Input 11
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel11b {}'
+      - name: caninput_sel11b
         title: AUX Input 11
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel12a {}'
+      - name: caninput_sel12a
         title: AUX Input 12
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel12b {}'
+      - name: caninput_sel12b
         title: AUX Input 12
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel13a {}'
+      - name: caninput_sel13a
         title: AUX Input 13
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel13b {}'
+      - name: caninput_sel13b
         title: AUX Input 13
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel14a {}'
+      - name: caninput_sel14a
         title: AUX Input 14
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel14b {}'
+      - name: caninput_sel14b
         title: AUX Input 14
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
-      - name: 'caninput_sel15a {}'
+      - name: caninput_sel15a
         title: AUX Input 15
         condition: >-
           (!enable_secondarySerial && (!enable_intcan || (enable_intcan &&
           intcan_available == 0)))
-      - name: 'caninput_sel15b {}'
+      - name: caninput_sel15b
         title: AUX Input 15
         condition: >-
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
@@ -14788,7 +15000,7 @@ dialogs:
     layout: ''
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#RPM'
         condition: ''
       - name: rpmwarn
@@ -14800,7 +15012,7 @@ dialogs:
       - name: rpmhigh
         title: High
         condition: ''
-      - name: dialogTitle
+      - name: _fieldText_
         title: '#MAP'
         condition: ''
       - name: mapwarn
@@ -14812,9 +15024,6 @@ dialogs:
       - name: maphigh
         title: High
         condition: ''
-      - name: dialogTitle
-        title: '!Reload project to update gauges'
-        condition: ''
   io_summary:
     title: I/O Summary
     layout: ''
@@ -14825,7 +15034,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: outputInverted0
@@ -14857,7 +15066,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: firstDataIn0
@@ -14889,7 +15098,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: firstCompType0
@@ -14921,7 +15130,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: 'firstTarget[0]'
@@ -14953,7 +15162,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: bitwise0
@@ -14985,7 +15194,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: secondDataIn0
@@ -15017,7 +15226,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: 'firstTarget[0]'
@@ -15049,7 +15258,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: secondCompType0
@@ -15081,7 +15290,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: 'secondTarget[0]'
@@ -15113,7 +15322,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: ''
         condition: ''
       - name: 'outputDelay[0]'
@@ -15145,7 +15354,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: Input Alias
         condition: ''
       - name: prgm_out00Alias
@@ -15177,7 +15386,7 @@ dialogs:
     layout: yAxis
     panels: {}
     fields:
-      - name: dialogTitle
+      - name: _fieldText_
         title: 'Pin No:'
         condition: ''
       - name: outputPin0

@@ -157,7 +157,7 @@ const Dialog = ({
                 ${field.condition};
               `);
             } catch (error) {
-              console.log(`! Eval failed with: ${error.message}`);
+              console.error(`! Field condition eval failed with: ${error.message}`);
             }
           }
 
