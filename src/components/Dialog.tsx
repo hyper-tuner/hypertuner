@@ -24,6 +24,7 @@ import {
 import {
   Tune as TuneType,
 } from '../types/tune';
+import { prepareConstDeclarations } from '../lib/utils';
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -145,25 +146,7 @@ const Dialog = ({
           if (field.condition) {
             console.info(`Condition for '${field.name}':`, field.condition);
 
-            const constDeclarations = Object.keys(tune.constants)
-              .map((constName: string) => {
-                if (constName.includes('-')) {
-                  return null;
-                }
-
-                let val = tune.constants[constName].value;
-
-                if (typeof val === 'string' && val.includes('\n')) {
-                  return null;
-                }
-
-                if (typeof val === 'string') {
-                  val = `'${val}'`;
-                }
-
-                return `const ${constName} = ${val};`;
-              });
-
+            const constDeclarations = prepareConstDeclarations(tune.constants);
             try {
               // TODO: strip eval from `command` etc
               // https://www.electronjs.org/docs/tutorial/security

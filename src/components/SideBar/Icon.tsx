@@ -1,75 +1,126 @@
 import {
   ApartmentOutlined,
+  ApiOutlined,
+  BarsOutlined,
   CarOutlined,
   ControlOutlined,
   DashboardOutlined,
+  DotChartOutlined,
+  ExperimentOutlined,
   FieldTimeOutlined,
   FireOutlined,
   FundOutlined,
   FundProjectionScreenOutlined,
+  MenuOutlined,
   PoweroffOutlined,
+  QuestionCircleOutlined,
+  RocketOutlined,
   SafetyOutlined,
+  SendOutlined,
   SettingOutlined,
   TableOutlined,
+  ThunderboltOutlined,
   ToolOutlined,
   UnorderedListOutlined,
+  UpCircleOutlined,
 } from '@ant-design/icons';
 
 const Icon = ({ name }: { name: string }) => {
   switch (name) {
     // main menu
     case 'settings':
-      return <ToolOutlined />;
+      return <ControlOutlined />;
     case 'tuning':
       return <CarOutlined />;
     case 'spark':
       return <FireOutlined />;
+    case 'startupIdle':
+      return <PoweroffOutlined />;
+    case 'accessories':
+      return <ApiOutlined />;
+    case 'tools':
+      return <ToolOutlined />;
+    case '3dTuningMaps':
+      return <DotChartOutlined />;
+    case 'hardwareTesting':
+      return <ExperimentOutlined />;
+    case 'help':
+      return <QuestionCircleOutlined />;
 
     // common, 2D table
-    case 'injectorCharacteristics':
-    case 'airDensity':
-    case 'barometricCorrection':
+    case 'injChars':
+    case 'airdensity_curve':
+    case 'baroFuel_curve':
     case 'dwellCompensation':
     case 'iatRetard':
-    case 'coldAdvance':
-    case 'rotaryIgnition':
-    case 'accelerationEnrichment':
-    case 'flexFuel':
+    case 'clt_advance_curve':
+    case 'rotary_ignition':
+    case 'accelEnrichments':
+    case 'flexFueling':
+    case 'dwell_correction_curve':
+    case 'iat_retard_curve':
+    case 'crankPW':
+    case 'primePW':
+    case 'warmup':
+    case 'ASE':
+    case 'iacClosedLoop_curve':
+    case 'iacPwm_curve':
+    case 'iacPwmCrank_curve':
+    case 'iacStep_curve':
+    case 'iacStepCrank_curve':
+    case 'idleAdvanceSettings':
       return <FundOutlined />;
 
     // common 3D table / map
-    case 'sparkTable':
-    case 'veTable':
-    case 'afrTable':
-    case 'secondFuelTable':
-    case 'secondSparkTable':
-    case 'sequentialFuelTrim':
+    case 'sparkTbl':
+    case 'veTableDialog':
+    case 'afrTable1Tbl':
+    case 'fuelTable2Dialog':
+    case 'sparkTable2Dialog':
+    case 'inj_trimad':
+    case 'stagingTableDialog':
     case 'stagedInjection':
-    case 'fuelTempCorrection':
+    case 'fuelTemp_curve':
+    case 'boostLoad':
       return <TableOutlined />;
 
-    case 'resetControl':
+    // rest
+    case 'triggerSettings':
+      return <SettingOutlined />;
+    case 'reset_control':
       return <PoweroffOutlined />;
-    case 'engineConstants':
+    case 'engine_constants':
       return <ControlOutlined />;
     case 'gaugeLimits':
       return <DashboardOutlined />;
-    case 'ioSummary':
+    case 'io_summary':
       return <UnorderedListOutlined />;
-    case 'programmableOutputs':
+    case 'prgm_out_config':
       return <ApartmentOutlined />;
-    case 'realtimeDisplay':
+    case 'std_realtime':
       return <FundProjectionScreenOutlined />;
     case 'sparkSettings':
       return <FireOutlined />;
     case 'dwellSettings':
       return <FieldTimeOutlined />;
-    case 'engineProtection':
+    case 'RevLimiterS':
       return <SafetyOutlined />;
+    case 'idleUpSettings':
+      return <UpCircleOutlined />;
+    case 'LaunchControl':
+      return <ThunderboltOutlined />;
+    case 'NitrousControl':
+      return <RocketOutlined />;
+    case 'vssSettings':
+      return <SettingOutlined />;
 
     // common, default
     default:
-      return <SettingOutlined />;
+      return null;
+      // return <BarsOutlined />;
+      // return <SettingOutlined />;
+      // return <MenuOutlined />;
+      // return <ControlOutlined />;
   }
 };
 
