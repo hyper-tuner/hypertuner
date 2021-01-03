@@ -32,9 +32,15 @@ const SmartSelect = ({
     <Select
       defaultValue={defaultValue}
       showSearch
+      filterOption={
+        (input: string, option) => `${option?.key}`
+          .toLowerCase()
+          .includes(input.toLowerCase())
+      }
       disabled={disabled}
       style={{ maxWidth: 250 }}
     >
+      {/* we need to preserve indexes here */}
       {values.map((val: string, index: number) =>
         val === 'INVALID'
           ? null
