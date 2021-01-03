@@ -114,7 +114,7 @@ const Icon = ({ name }: { name: string }) => {
     case 'vssSettings':
       return <SettingOutlined />;
 
-    // common, default
+    // default / not found
     default:
       return null;
       // return <BarsOutlined />;

@@ -40,7 +40,7 @@ const SmartSelect = ({
       disabled={disabled}
       style={{ maxWidth: 250 }}
     >
-      {/* we need to preserve indexes here */}
+      {/* we need to preserve indexes here, skip INVALID option */}
       {values.map((val: string, index: number) =>
         val === 'INVALID'
           ? null

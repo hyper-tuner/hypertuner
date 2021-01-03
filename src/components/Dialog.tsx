@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import {
   Form,
-  InputNumber,
   Skeleton,
   Divider,
   Col,
@@ -13,6 +12,7 @@ import {
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
+import SmartNumber from './Dialog/SmartNumber';
 import {
   Dialogs as DialogsType,
   Dialog as DialogType,
@@ -179,16 +179,13 @@ const Dialog = ({
               break;
 
             case 'scalar':
-              input = <InputNumber
+              input = <SmartNumber
                         defaultValue={Number(tuneField.value)}
-                        precision={constant.digits}
+                        digits={constant.digits}
                         min={constant.min || 0}
                         max={constant.max}
-                        step={10**-constant.digits}
                         disabled={!enabled}
-                        style={{ minWidth: 150 }}
-                        formatter={(val) => units ? `${val} ${units}` : `${val}`}
-                        parser={(val) => `${val}`.replace(/[^\d.]/g, '')}
+                        units={units}
                       />;
               break;
 
