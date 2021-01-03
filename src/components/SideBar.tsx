@@ -8,17 +8,22 @@ import {
   Config as ConfigType,
   Menus as MenusType,
 } from '../types/config';
+import {
+  Tune as TuneType,
+} from '../types/tune';
 import Icon from './SideBar/Icon';
+import { prepareConstDeclarations } from '../lib/utils';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
+  tune: state.tune,
   ui: state.ui,
 });
 
-const SideBar = ({ config, ui }: { config: ConfigType, ui: UIState }) => {
+const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui: UIState }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
@@ -50,7 +55,24 @@ const SideBar = ({ config, ui }: { config: ConfigType, ui: UIState }) => {
         title={menus[menuName].title}
       >
         {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => {
-          const enabled = true;
+          const subMenu = menus[menuName].subMenus[subMenuName];
+          let enabled = true;
+
+          if (subMenu.condition) {
+            const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
+            try {
+              // TODO: strip eval from `command` etc
+              // https://www.electronjs.org/docs/tutorial/security
+              // eslint-disable-next-line no-eval
+              enabled = eval(`
+                'use strict';
+                ${constDeclarations.join('')}
+                ${subMenu.condition};
+              `);
+            } catch (error) {
+              console.error('Field condition evaluation failed with:', error.message);
+            }
+          }
 
           return (<Menu.Item
             key={buildLinkUrl(menuName, subMenuName)}
@@ -58,7 +80,7 @@ const SideBar = ({ config, ui }: { config: ConfigType, ui: UIState }) => {
             disabled={!enabled}
           >
             <Link to={buildLinkUrl(menuName, subMenuName)}>
-              {menus[menuName].subMenus[subMenuName].title}
+              {subMenu.title}
             </Link>
           </Menu.Item>);
         })}
