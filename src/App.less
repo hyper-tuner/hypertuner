@@ -12,6 +12,12 @@
 @layout-footer-padding: 2px 10px;
 @layout-footer-height: 22px;
 
+.border-right {
+  border-right-width: 1px;
+  border-right-color: @border-color-split;
+  border-right-style: solid;
+}
+
 .row {
   margin: 20px;
 }
@@ -36,13 +42,16 @@
   position: fixed;
   left: 0;
   user-select: none;
+  .border-right;
+}
+
+.ant-menu {
+  border-color: transparent;
 }
 
 .ant-layout-sider-trigger {
   bottom: @layout-footer-height;
-  border-right-width: 1px;
-  border-right-color: @border-color-split;
-  border-right-style: solid;
+  .border-right;
 }
 
 .app-status-bar {
