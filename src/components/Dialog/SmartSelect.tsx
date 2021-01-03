@@ -17,7 +17,7 @@ const SmartSelect = ({
 }) => {
   let sanitized = values;
 
-  // detect usage of global and use it
+  // detect use of global
   if (sanitized.length === 1 && sanitized[0].startsWith('$')) {
     sanitized = globals[sanitized[0].slice(1)];
   }

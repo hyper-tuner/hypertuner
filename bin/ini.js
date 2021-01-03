@@ -14,7 +14,7 @@ class Parser {
     this.PAGE_PATTERN = /^page\s*=\s*(?<page>\d+)/;
 
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
-    this.BASE_PATTERN = '^(?<type>scalar|bits|array),\\s*(?<size>[A-Z\\d]+),\\s*(?<offset>\\d+)';
+    this.BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*\\s*(?<offset>\\d+)';
     this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*`;
 
     this.FIRST_PATTERN  = new RegExp(`${this.BASE_PATTERN}.+`);
@@ -28,10 +28,14 @@ class Parser {
     this.KEY_VALUE_PATTERN = /^(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
     this.GLOBALS_PATTERN = /^#\s*define\s*(?<key>\w+)\s*=\s*"*(?<value>.+?)"*\s*(?<comments>;.+)*$/;
 
+    this.MENU_PATTERN = /^menu\s*=\s*"(?<menu>.+)"\s*(?<comments>;.+)*$/;
+    this.SUB_MENU_PATTERN = /^subMenu\s*=\s*(?<name>\w+),\s+"(?<title>.+)",*\s*(?<page>\d+)*\s*,*\s*(?<condition>{\s*.+\s*})*\s*(?<comments>;.+)*$/;
+
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
     this.currentDialog = {};
     this.currentPanel = {};
+    this.currentMenu = null;
 
     this.result = {
       megaTune: {},
@@ -40,6 +44,7 @@ class Parser {
       constants: {
         pages: [],
       },
+      menu: {},
       dialogs: {},
     };
   }
@@ -91,6 +96,9 @@ class Parser {
     switch (section) {
       case 'Constants':
         this.parseConstants(line);
+        break;
+      case 'Menu':
+        this.parseMenu(line);
         break;
       case 'UserDefined':
         this.parseUserDefined(line);
@@ -166,6 +174,8 @@ class Parser {
         size: 111,
         data: {},
       };
+
+      return;
     }
 
     const [name, rest] = line.split('=').map((part) => part.trim());
@@ -215,6 +225,34 @@ class Parser {
     this.result.constants.pages[this.currentPage - 1].data[name] = constant;
   }
 
+  parseMenu(line) {
+    const menuMatch = line.match(this.MENU_PATTERN);
+    if (menuMatch) {
+      const title = menuMatch.groups.menu.replace(/&/g, '');
+      const name = title
+        .toLowerCase()
+        .replace(/([^\w]\w)/g, (g) => g[1].toUpperCase()); // camelCase
+
+      this.currentMenu = name;
+
+      this.result.menu[this.currentMenu] = {
+        title,
+        subMenu: {}
+      };
+
+      return;
+    }
+
+    const subMenuMatch = line.match(this.SUB_MENU_PATTERN);
+    if (subMenuMatch) {
+      this.result.menu[this.currentMenu].subMenu[subMenuMatch.groups.name] = {
+        title: subMenuMatch.groups.title,
+        page: Number(subMenuMatch.groups.page || 0),
+        condition: (subMenuMatch.groups.condition || '').replace(/{|}/g, '').trim(),
+      };
+    }
+  }
+
   parseScalar(input) {
     const match = input.match(this.SCALAR_PATTERN);
     if (!match) {
@@ -232,7 +270,6 @@ class Parser {
       min: Number(match.groups.min) || 0,
       max: Number(match.groups.max) || 0,
       digits: Number(match.groups.digits) || 0,
-      comments: Parser.sanitizeComments(match.groups.comments),
     };
   }
 
@@ -260,7 +297,6 @@ class Parser {
       min: Number(match.groups.min),
       max: Number(match.groups.max),
       digits: Number(match.groups.digits),
-      comments: Parser.sanitizeComments(match.groups.comments),
     };
   }
 
@@ -280,7 +316,6 @@ class Parser {
         to: Number(match.groups.to),
       },
       values: match.groups.values.split(',').map((val) => val.replace(/"/g, '').trim()),
-      comments: Parser.sanitizeComments(match.groups.comments),
     };
   }
 
@@ -295,7 +330,8 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
-// console.dir(result.constants.pages[1], { maxArrayLength: 1000, depth: null });
+// console.dir(result.menu, { maxArrayLength: 1000, depth: null });
+
 // console.dir(result.dialogs, { maxArrayLength: 10, depth: null });
 // console.dir(yaml.dump(result), { maxArrayLength: 1000, depth: null });
 // console.dir(yaml.dump({ asd: 123, 'sd-asd': 22 }), { maxArrayLength: 1000, depth: null });

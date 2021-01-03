@@ -20,6 +20,7 @@ import {
   UserAddOutlined,
   LineChartOutlined,
   SlidersOutlined,
+  GithubOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
@@ -52,6 +53,11 @@ const TopBar = () => {
       <Menu.Item>
         <a href="/sign-up">
           <UserAddOutlined /> Sign-up
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href="https://github.com/karniv00l/speedy-tuner" target="__blank" rel="noopener noreferrer">
+          <GithubOutlined /> GitHub
         </a>
       </Menu.Item>
       <Menu.Divider />
