@@ -4,9 +4,11 @@ import { Link, useLocation } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import store from '../store';
 import { AppState, UIState } from '../types/state';
-import { Config, Menu as MenuType, SubMenu as SubMenuType } from '../types/config';
+import {
+  Config as ConfigType,
+  Menus as MenusType,
+} from '../types/config';
 import Icon from './SideBar/Icon';
-import { camelToUrlCase } from '../lib/utils';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -16,7 +18,7 @@ const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
 });
 
-const SideBar = ({ config, ui }: { config: Config, ui: UIState }) => {
+const SideBar = ({ config, ui }: { config: ConfigType, ui: UIState }) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
@@ -38,22 +40,22 @@ const SideBar = ({ config, ui }: { config: Config, ui: UIState }) => {
     );
   }
 
-  const buildLinkUrl = (main: string, sub: string) => camelToUrlCase(`/${main}/${sub}`);
+  const buildLinkUrl = (main: string, sub: string) => `/${main}/${sub}`;
 
-  const menusList = (menus: MenuType[]) => (
-    menus.map((menu: MenuType) => (
+  const menusList = (menus: MenusType) => (
+    Object.keys(menus).map((menuName: string) => (
       <SubMenu
-        key={`/${menu.name}`}
-        icon={<Icon name={menu.name} />}
-        title={menu.title}
+        key={`/${menuName}`}
+        icon={<Icon name={menuName} />}
+        title={menus[menuName].title}
       >
-        {menu.subMenus.map((subMenu: SubMenuType) => (
+        {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => (
           <Menu.Item
-            key={buildLinkUrl(menu.name, subMenu.name)}
-            icon={<Icon name={subMenu.name} />}
+            key={buildLinkUrl(menuName, subMenuName)}
+            icon={<Icon name={subMenuName} />}
           >
-            <Link to={buildLinkUrl(menu.name, subMenu.name)}>
-              {subMenu.title}
+            <Link to={buildLinkUrl(menuName, subMenuName)}>
+              {menus[menuName].subMenus[subMenuName].title}
             </Link>
           </Menu.Item>
         ))}

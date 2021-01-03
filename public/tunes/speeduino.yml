@@ -2650,7 +2650,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         aeColdPct:
           type: scalar
           size: U08
@@ -2661,7 +2660,6 @@ constants:
           min: 100
           max: 255
           digits: 0
-          comments: AE cold adjustment %
         aeColdTaperMin:
           type: scalar
           size: U08
@@ -2672,7 +2670,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: 'AE cold adjustment, taper start clt (full adjustment)'
         aeMode:
           type: bits
           size: U08
@@ -2685,7 +2682,6 @@ constants:
             - MAP
             - INVALID
             - INVALID
-          comments: ''
         battVCorMode:
           type: bits
           size: U08
@@ -2696,7 +2692,6 @@ constants:
           values:
             - Whole PW
             - Open Time only
-          comments: ''
         SoftLimitMode:
           type: bits
           size: U08
@@ -2707,7 +2702,6 @@ constants:
           values:
             - Fixed
             - Relative
-          comments: ''
         useTachoSweep:
           type: bits
           size: U08
@@ -2718,7 +2712,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         aeApplyMode:
           type: bits
           size: U08
@@ -2729,7 +2722,6 @@ constants:
           values:
             - PW Multiplier
             - PW Adder
-          comments: ''
         multiplyMAP:
           type: bits
           size: U08
@@ -2742,7 +2734,6 @@ constants:
             - Baro
             - Fixed
             - INVALID
-          comments: ''
         wueRates:
           type: array
           size: U08
@@ -2756,7 +2747,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         crankingPct:
           type: scalar
           size: U08
@@ -2767,7 +2757,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         pinLayout:
           type: bits
           size: U08
@@ -2908,7 +2897,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         tachoPin:
           type: bits
           size: U08
@@ -2981,7 +2969,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         tachoDiv:
           type: bits
           size: U08
@@ -2994,7 +2981,6 @@ constants:
             - Half
             - INVALID
             - INVALID
-          comments: ''
         tachoDuration:
           type: scalar
           size: U08
@@ -3005,7 +2991,6 @@ constants:
           min: 1
           max: 6
           digits: 0
-          comments: ''
         maeThresh:
           type: scalar
           size: U08
@@ -3016,7 +3001,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: MAP threshold for triggering AE
         taeThresh:
           type: scalar
           size: U08
@@ -3027,7 +3011,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: TPS threshold for triggering AE
         aeTime:
           type: scalar
           size: U08
@@ -3038,7 +3021,6 @@ constants:
           min: 0
           max: 2550
           digits: 0
-          comments: ''
         display:
           type: bits
           size: U08
@@ -3055,7 +3037,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         display1:
           type: bits
           size: U08
@@ -3072,7 +3053,6 @@ constants:
             - TPS
             - IAT
             - CLT
-          comments: ''
         display2:
           type: bits
           size: U08
@@ -3085,7 +3065,6 @@ constants:
             - Voltage
             - CPU
             - Mem
-          comments: ''
         display3:
           type: bits
           size: U08
@@ -3102,7 +3081,6 @@ constants:
             - TPS
             - IAT
             - CLT
-          comments: ''
         display4:
           type: bits
           size: U08
@@ -3115,7 +3093,6 @@ constants:
             - Voltage
             - CPU
             - Mem
-          comments: ''
         display5:
           type: bits
           size: U08
@@ -3132,7 +3109,6 @@ constants:
             - TPS
             - IAT
             - CLT
-          comments: ''
         displayB1:
           type: bits
           size: U08
@@ -3149,7 +3125,6 @@ constants:
             - TPS
             - IAT
             - CLT
-          comments: ''
         displayB2:
           type: bits
           size: U08
@@ -3166,7 +3141,6 @@ constants:
             - TPS
             - IAT
             - CLT
-          comments: ''
         reqFuel:
           type: scalar
           size: U08
@@ -3177,7 +3151,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         divider:
           type: scalar
           size: U08
@@ -3188,7 +3161,6 @@ constants:
           min: 0
           max: 0
           digits: 0
-          comments: ''
         alternate:
           type: bits
           size: U08
@@ -3199,7 +3171,6 @@ constants:
           values:
             - Simultaneous
             - Alternating
-          comments: ''
         multiplyMAP1:
           type: bits
           size: U08
@@ -3210,7 +3181,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         includeAFR:
           type: bits
           size: U08
@@ -3221,7 +3191,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         hardCutType:
           type: bits
           size: U08
@@ -3232,7 +3201,6 @@ constants:
           values:
             - Full
             - Rolling
-          comments: ''
         ignAlgorithm:
           type: bits
           size: U08
@@ -3242,7 +3210,6 @@ constants:
             to: 6
           values:
             - $loadSourceNames
-          comments: ''
         indInjAng:
           type: bits
           size: U08
@@ -3253,7 +3220,6 @@ constants:
           values:
             - Disabled
             - Enabled
-          comments: ''
         injOpen:
           type: scalar
           size: U08
@@ -3264,7 +3230,6 @@ constants:
           min: 0.1
           max: 25.5
           digits: 1
-          comments: ''
         injAng:
           type: array
           size: U16
@@ -3278,7 +3243,6 @@ constants:
           min: 0
           max: 720
           digits: 0
-          comments: ''
         mapSample:
           type: bits
           size: U08
@@ -3291,7 +3255,6 @@ constants:
             - Cycle Average
             - Cycle Minimum
             - Event Average
-          comments: ''
         twoStroke:
           type: bits
           size: U08
@@ -3302,7 +3265,6 @@ constants:
           values:
             - Four-stroke
             - Two-stroke
-          comments: ''
         injType:
           type: bits
           size: U08
@@ -3313,7 +3275,6 @@ constants:
           values:
             - Port
             - Throttle Body
-          comments: ''
         nCylinders:
           type: bits
           size: U08
@@ -3338,7 +3299,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         algorithm:
           type: bits
           size: U08
@@ -3348,7 +3308,6 @@ constants:
             to: 2
           values:
             - $loadSourceNames
-          comments: 'Has to be called algorithm for the req fuel calculator to work :('
         fixAngEnable:
           type: bits
           size: U08
@@ -3359,7 +3318,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         nInjectors:
           type: bits
           size: U08
@@ -3384,7 +3342,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         engineType:
           type: bits
           size: U08
@@ -3395,7 +3352,6 @@ constants:
           values:
             - Even fire
             - Odd fire
-          comments: ''
         flexEnabled:
           type: bits
           size: U08
@@ -3406,7 +3362,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         legacyMAP:
           type: bits
           size: U08
@@ -3417,9 +3372,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: >-
-            Whether to use the older legacy MAP reading that had the pullup
-            enabled
         baroCorr:
           type: bits
           size: U08
@@ -3430,7 +3382,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         injLayout:
           type: bits
           size: U08
@@ -3443,7 +3394,6 @@ constants:
             - Semi-Sequential
             - INVALID
             - Sequential
-          comments: ''
         perToothIgn:
           type: bits
           size: U08
@@ -3454,7 +3404,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         dfcoEnabled:
           type: bits
           size: U08
@@ -3465,7 +3414,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         aeColdTaperMax:
           type: scalar
           size: U08
@@ -3476,7 +3424,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: 'AE cold adjustment, taper start clt (full adjustment)'
         dutyLim:
           type: scalar
           size: U08
@@ -3487,7 +3434,6 @@ constants:
           min: 0
           max: 95
           digits: 0
-          comments: ''
         flexFreqLow:
           type: scalar
           size: U08
@@ -3498,7 +3444,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         flexFreqHigh:
           type: scalar
           size: U08
@@ -3509,7 +3454,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         boostMaxDuty:
           type: scalar
           size: U08
@@ -3520,7 +3464,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         tpsMin:
           type: scalar
           size: U08
@@ -3531,7 +3474,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         tpsMax:
           type: scalar
           size: U08
@@ -3542,7 +3484,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         mapMin:
           type: scalar
           size: S08
@@ -3553,7 +3494,6 @@ constants:
           min: -100
           max: 127
           digits: 0
-          comments: ''
         mapMax:
           type: scalar
           size: U16
@@ -3564,7 +3504,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fpPrime:
           type: scalar
           size: U08
@@ -3575,7 +3514,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         stoich:
           type: scalar
           size: U08
@@ -3586,7 +3524,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         oddfire2:
           type: scalar
           size: U16
@@ -3597,7 +3534,6 @@ constants:
           min: 0
           max: 720
           digits: 0
-          comments: '* (  2 byte)'
         oddfire3:
           type: scalar
           size: U16
@@ -3608,7 +3544,6 @@ constants:
           min: 0
           max: 720
           digits: 0
-          comments: '* (  2 byte)'
         oddfire4:
           type: scalar
           size: U16
@@ -3619,7 +3554,6 @@ constants:
           min: 0
           max: 720
           digits: 0
-          comments: '* (  2 byte)'
         idleUpPin:
           type: bits
           size: U08
@@ -3692,7 +3626,6 @@ constants:
             - A14
             - A15
             - INVALID
-          comments: ''
         idleUpPolarity:
           type: bits
           size: U08
@@ -3703,7 +3636,6 @@ constants:
           values:
             - Normal
             - Inverted
-          comments: ''
         idleUpEnabled:
           type: bits
           size: U08
@@ -3714,7 +3646,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         idleUpAdder:
           type: scalar
           size: U08
@@ -3725,7 +3656,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         aeTaperMin:
           type: scalar
           size: U08
@@ -3736,7 +3666,6 @@ constants:
           min: 1000
           max: 10000
           digits: 0
-          comments: ''
         aeTaperMax:
           type: scalar
           size: U08
@@ -3747,7 +3676,6 @@ constants:
           min: 2000
           max: 10000
           digits: 0
-          comments: ''
         iacCLminDuty:
           type: scalar
           size: U08
@@ -3758,7 +3686,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: Minimum and maximum duty cycles when using closed loop idle
         iacCLmaxDuty:
           type: scalar
           size: U08
@@ -3769,7 +3696,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         boostMinDuty:
           type: scalar
           size: U08
@@ -3780,7 +3706,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: Minimum and maximum duty cycles for boost control
         baroMin:
           type: scalar
           size: S08
@@ -3791,7 +3716,6 @@ constants:
           min: -100
           max: 127
           digits: 0
-          comments: ''
         baroMax:
           type: scalar
           size: U16
@@ -3802,7 +3726,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         EMAPMin:
           type: scalar
           size: S08
@@ -3813,7 +3736,6 @@ constants:
           min: -100
           max: 127
           digits: 0
-          comments: ''
         EMAPMax:
           type: scalar
           size: U16
@@ -3824,7 +3746,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fanWhenOff:
           type: bits
           size: U08
@@ -3835,7 +3756,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         fanWhenCranking:
           type: bits
           size: U08
@@ -3846,7 +3766,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         incorporateAFR:
           type: bits
           size: U08
@@ -3857,7 +3776,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         asePct:
           type: array
           size: U08
@@ -3871,7 +3789,6 @@ constants:
           min: 0
           max: 155
           digits: 0
-          comments: ''
         aseCount:
           type: array
           size: U08
@@ -3885,7 +3802,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: Values for the afterstart enrichment curve
         aseBins:
           type: array
           size: U08
@@ -3899,7 +3815,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         primePulse:
           type: array
           size: U08
@@ -3913,7 +3828,6 @@ constants:
           min: 0
           max: 127.5
           digits: 1
-          comments: ''
         primeBins:
           type: array
           size: U08
@@ -3927,7 +3841,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         CTPSPin:
           type: bits
           size: U08
@@ -4000,7 +3913,6 @@ constants:
             - A14
             - A15
             - INVALID
-          comments: ''
         CTPSPolarity:
           type: bits
           size: U08
@@ -4011,7 +3923,6 @@ constants:
           values:
             - Normal
             - Inverted
-          comments: ''
         CTPSEnabled:
           type: bits
           size: U08
@@ -4022,7 +3933,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         idleAdvEnabled:
           type: bits
           size: U08
@@ -4035,7 +3945,6 @@ constants:
             - Added
             - Switched
             - INVALID
-          comments: ''
         idleAdvAlgorithm:
           type: bits
           size: U08
@@ -4046,7 +3955,6 @@ constants:
           values:
             - TPS
             - CTPS
-          comments: ''
         idleAdvDelay:
           type: bits
           size: U08
@@ -4087,7 +3995,6 @@ constants:
             - '29'
             - INVALID
             - INVALID
-          comments: ''
         idleAdvRPM:
           type: scalar
           size: U08
@@ -4098,7 +4005,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         idleAdvTPS:
           type: scalar
           size: U08
@@ -4109,7 +4015,6 @@ constants:
           min: 0
           max: 120
           digits: 0
-          comments: ''
         injAngRPM:
           type: array
           size: U08
@@ -4123,7 +4028,6 @@ constants:
           min: 100
           max: 10000
           digits: 0
-          comments: ''
         idleTaperTime:
           type: scalar
           size: U08
@@ -4134,7 +4038,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         dfcoDelay:
           type: scalar
           size: U08
@@ -4145,7 +4048,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: Remainder of DFCO settings are in page 4
         dfcoMinCLT:
           type: scalar
           size: U08
@@ -4156,7 +4058,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         vssMode:
           type: bits
           size: U08
@@ -4169,7 +4070,6 @@ constants:
             - INVALID
             - Pulses per KM
             - Pulses per mile
-          comments: INVALID value will be CAN
         vssPin:
           type: bits
           size: U08
@@ -4242,7 +4142,6 @@ constants:
             - A14
             - A15
             - INVALID
-          comments: ''
         vssPulsesPerKm:
           type: scalar
           size: U16
@@ -4253,7 +4152,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         vssSmoothing:
           type: scalar
           size: U08
@@ -4264,7 +4162,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         vssRatio1:
           type: scalar
           size: U16
@@ -4275,7 +4172,6 @@ constants:
           min: 0
           max: 99.9
           digits: 1
-          comments: ''
         vssRatio2:
           type: scalar
           size: U16
@@ -4286,7 +4182,6 @@ constants:
           min: 0
           max: 99.9
           digits: 1
-          comments: ''
         vssRatio3:
           type: scalar
           size: U16
@@ -4297,7 +4192,6 @@ constants:
           min: 0
           max: 99.9
           digits: 1
-          comments: ''
         vssRatio4:
           type: scalar
           size: U16
@@ -4308,7 +4202,6 @@ constants:
           min: 0
           max: 99.9
           digits: 1
-          comments: ''
         vssRatio5:
           type: scalar
           size: U16
@@ -4319,7 +4212,6 @@ constants:
           min: 0
           max: 99.9
           digits: 1
-          comments: ''
         vssRatio6:
           type: scalar
           size: U16
@@ -4330,7 +4222,6 @@ constants:
           min: 0
           max: 99.9
           digits: 1
-          comments: ''
         idleUpOutputEnabled:
           type: bits
           size: U08
@@ -4341,7 +4232,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         idleUpOutputInv:
           type: bits
           size: U08
@@ -4352,7 +4242,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         idleUpOutputPin:
           type: bits
           size: U08
@@ -4425,7 +4314,6 @@ constants:
             - A14
             - A15
             - INVALID
-          comments: ''
         tachoSweepMaxRPM:
           type: scalar
           size: U08
@@ -4436,7 +4324,6 @@ constants:
           min: 100
           max: 10000
           digits: 0
-          comments: ''
         primingDelay:
           type: scalar
           size: U08
@@ -4447,7 +4334,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         iacTPSlimit:
           type: scalar
           size: U08
@@ -4458,7 +4344,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         iacRPMlimitHysteresis:
           type: scalar
           size: U08
@@ -4469,7 +4354,6 @@ constants:
           min: 10
           max: 2500
           digits: 0
-          comments: ''
         unused2-95:
           type: array
           size: U08
@@ -4483,7 +4367,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
     - number: 2
       size: 111
       data:
@@ -4500,7 +4383,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         rpmBins:
           type: array
           size: U08
@@ -4514,7 +4396,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         fuelLoadBins: {}
     - number: 3
       size: 111
@@ -4532,7 +4413,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         rpmBins2:
           type: array
           size: U08
@@ -4546,7 +4426,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         mapBins1: {}
     - number: 4
       size: 111
@@ -4561,7 +4440,6 @@ constants:
           min: -360
           max: 360
           digits: 0
-          comments: ''
         FixAng:
           type: scalar
           size: S08
@@ -4572,7 +4450,6 @@ constants:
           min: -64
           max: 64
           digits: 0
-          comments: Allow negative values here
         CrankAng:
           type: scalar
           size: U08
@@ -4583,7 +4460,6 @@ constants:
           min: -10
           max: 80
           digits: 0
-          comments: ''
         TrigAngMul:
           type: scalar
           size: U08
@@ -4594,7 +4470,6 @@ constants:
           min: 0
           max: 88
           digits: 0
-          comments: Multiplier for tooth counts that don't evenly divide into 360
         TrigEdge:
           type: bits
           size: U08
@@ -4605,7 +4480,6 @@ constants:
           values:
             - RISING
             - FALLING
-          comments: ''
         TrigSpeed:
           type: bits
           size: U08
@@ -4616,7 +4490,6 @@ constants:
           values:
             - Crank Speed
             - Cam Speed
-          comments: ''
         IgInv:
           type: bits
           size: U08
@@ -4627,7 +4500,6 @@ constants:
           values:
             - Going Low
             - Going High
-          comments: ''
         TrigPattern:
           type: bits
           size: U08
@@ -4668,7 +4540,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         TrigEdgeSec:
           type: bits
           size: U08
@@ -4679,7 +4550,78 @@ constants:
           values:
             - RISING
             - FALLING
-          comments: ''
+        fuelPumpPin:
+          type: bits
+          size: U08
+          offset: 6
+          address:
+            from: 1
+            to: 6
+          values:
+            - Board Default
+            - INVALID
+            - INVALID
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+            - '17'
+            - '18'
+            - '19'
+            - '20'
+            - '21'
+            - '22'
+            - '23'
+            - '24'
+            - '25'
+            - '26'
+            - '27'
+            - '28'
+            - '29'
+            - '30'
+            - '31'
+            - '32'
+            - '33'
+            - '34'
+            - '35'
+            - '36'
+            - '37'
+            - '38'
+            - '39'
+            - '40'
+            - '41'
+            - '42'
+            - '43'
+            - '44'
+            - '45'
+            - '46'
+            - '47'
+            - '48'
+            - '49'
+            - '50'
+            - '51'
+            - '52'
+            - '53'
+            - '54'
+            - A8
+            - A9
+            - A10
+            - A11
+            - A12
+            - A13
+            - A14
+            - A15
+            - INVALID
         useResync:
           type: bits
           size: U08
@@ -4690,7 +4632,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         sparkDur:
           type: scalar
           size: U08
@@ -4701,7 +4642,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: Spark duration
         trigPatternSec:
           type: bits
           size: U08
@@ -4966,7 +4906,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         bootloaderCaps:
           type: scalar
           size: U08
@@ -4977,7 +4916,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         resetControl:
           type: bits
           size: U08
@@ -4990,7 +4928,6 @@ constants:
             - Prevent When Running
             - Prevent Always
             - Serial Command
-          comments: ''
         resetControlPin:
           type: bits
           size: U08
@@ -5063,7 +5000,6 @@ constants:
             - A14
             - A15
             - INVALID
-          comments: ''
         SkipCycles:
           type: scalar
           size: U08
@@ -5074,7 +5010,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         boostType:
           type: bits
           size: U08
@@ -5085,7 +5020,6 @@ constants:
           values:
             - Open Loop
             - Closed Loop
-          comments: ''
         useDwellLim:
           type: bits
           size: U08
@@ -5096,7 +5030,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         sparkMode:
           type: bits
           size: U08
@@ -5113,7 +5046,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         TrigFilter:
           type: bits
           size: U08
@@ -5126,7 +5058,6 @@ constants:
             - Weak
             - Medium
             - Aggressive
-          comments: ''
         ignCranklock:
           type: bits
           size: U08
@@ -5137,7 +5068,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         dwellcrank:
           type: scalar
           size: U08
@@ -5148,7 +5078,6 @@ constants:
           min: 0
           max: 25
           digits: 1
-          comments: ''
         dwellrun:
           type: scalar
           size: U08
@@ -5159,7 +5088,6 @@ constants:
           min: 0
           max: 8
           digits: 1
-          comments: running dwell variable railed to 8 - who needs more than 8ms?
         numTeeth:
           type: scalar
           size: U08
@@ -5170,7 +5098,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         missingTeeth:
           type: scalar
           size: U08
@@ -5181,7 +5108,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         crankRPM:
           type: scalar
           size: U08
@@ -5192,7 +5118,6 @@ constants:
           min: 100
           max: 1000
           digits: 0
-          comments: ''
         tpsflood:
           type: scalar
           size: U08
@@ -5203,7 +5128,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         SoftRevLim:
           type: scalar
           size: U08
@@ -5214,7 +5138,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         SoftLimRetard:
           type: scalar
           size: U08
@@ -5225,7 +5148,6 @@ constants:
           min: 0
           max: 80
           digits: 0
-          comments: ''
         SoftLimMax:
           type: scalar
           size: U08
@@ -5236,7 +5158,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         HardRevLim:
           type: scalar
           size: U08
@@ -5247,7 +5168,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         taeBins:
           type: array
           size: U08
@@ -5261,7 +5181,6 @@ constants:
           min: 0
           max: 2550
           digits: 0
-          comments: ''
         taeRates:
           type: array
           size: U08
@@ -5275,7 +5194,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: 4 bytes
         wueBins:
           type: array
           size: U08
@@ -5289,7 +5207,6 @@ constants:
           min: -40
           max: 102
           digits: 0
-          comments: ''
         dwellLim:
           type: scalar
           size: U08
@@ -5300,7 +5217,6 @@ constants:
           min: 0
           max: 32
           digits: 0
-          comments: ''
         dwellRates:
           type: array
           size: U08
@@ -5314,7 +5230,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         iatRetBins:
           type: array
           size: U08
@@ -5328,7 +5243,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         iatRetRates:
           type: array
           size: U08
@@ -5342,7 +5256,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         dfcoRPM:
           type: scalar
           size: U08
@@ -5353,7 +5266,6 @@ constants:
           min: 100
           max: 2550
           digits: 0
-          comments: ''
         dfcoHyster:
           type: scalar
           size: U08
@@ -5364,7 +5276,6 @@ constants:
           min: 100
           max: 255
           digits: 0
-          comments: ''
         dfcoTPSThresh:
           type: scalar
           size: U08
@@ -5375,7 +5286,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         ignBypassEnable:
           type: bits
           size: U08
@@ -5386,7 +5296,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         ignBypassPin:
           type: bits
           size: U08
@@ -5459,7 +5368,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         ignBypassHiLo:
           type: bits
           size: U08
@@ -5470,7 +5378,6 @@ constants:
           values:
             - LOW
             - HIGH
-          comments: ''
         ADCFILTER_TPS:
           type: scalar
           size: U08
@@ -5481,7 +5388,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         ADCFILTER_CLT:
           type: scalar
           size: U08
@@ -5492,7 +5398,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         ADCFILTER_IAT:
           type: scalar
           size: U08
@@ -5503,7 +5408,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         ADCFILTER_O2:
           type: scalar
           size: U08
@@ -5514,7 +5418,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         ADCFILTER_BAT:
           type: scalar
           size: U08
@@ -5525,7 +5428,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         ADCFILTER_MAP:
           type: scalar
           size: U08
@@ -5536,7 +5438,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         ADCFILTER_BARO:
           type: scalar
           size: U08
@@ -5547,7 +5448,6 @@ constants:
           min: 0
           max: 240
           digits: 0
-          comments: ''
         cltAdvBins:
           type: array
           size: U08
@@ -5561,7 +5461,6 @@ constants:
           min: -40
           max: 102
           digits: 0
-          comments: ''
         cltAdvValues:
           type: array
           size: S08
@@ -5575,7 +5474,6 @@ constants:
           min: -15
           max: 15
           digits: 0
-          comments: ''
         maeBins:
           type: array
           size: U08
@@ -5589,7 +5487,6 @@ constants:
           min: 0
           max: 2550
           digits: 0
-          comments: ''
         maeRates:
           type: array
           size: U08
@@ -5603,7 +5500,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: 4 bytes
         batVoltCorrect:
           type: scalar
           size: S08
@@ -5614,7 +5510,6 @@ constants:
           min: -2
           max: 2
           digits: 1
-          comments: 'Battery reading calibration value. Note: Signed value'
         baroFuelBins:
           type: array
           size: U08
@@ -5628,7 +5523,6 @@ constants:
           min: 70
           max: 120
           digits: 0
-          comments: Bins for the Baro correction curve
         baroFuelValues:
           type: array
           size: U08
@@ -5642,7 +5536,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: '% Values for same'
         idleAdvBins:
           type: array
           size: U08
@@ -5656,7 +5549,6 @@ constants:
           min: -500
           max: 500
           digits: 0
-          comments: ''
         idleAdvValues:
           type: array
           size: U08
@@ -5670,7 +5562,6 @@ constants:
           min: -15
           max: 50
           digits: 0
-          comments: ''
         engineProtectMaxRPM:
           type: scalar
           size: U08
@@ -5681,7 +5572,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         unused4-120:
           type: array
           size: U08
@@ -5695,7 +5585,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
     - number: 5
       size: 111
       data:
@@ -5713,11 +5602,34 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         loadBinsAFR: {}
     - number: 6
       size: 111
       data:
+        egoAlgorithm:
+          type: bits
+          size: U08
+          offset: 0
+          address:
+            from: 0
+            to: 1
+          values:
+            - Simple
+            - INVALID
+            - PID
+            - No correction
+        egoType:
+          type: bits
+          size: U08
+          offset: 0
+          address:
+            from: 2
+            to: 3
+          values:
+            - Disabled
+            - Narrow Band
+            - Wide Band
+            - INVALID
         boostEnabled:
           type: bits
           size: U08
@@ -5728,7 +5640,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         vvtEnabled:
           type: bits
           size: U08
@@ -5739,7 +5650,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         engineProtectType:
           type: bits
           size: U08
@@ -5752,7 +5662,6 @@ constants:
             - Spark Only
             - Fuel Only
             - Both
-          comments: ''
         egoKP:
           type: scalar
           size: U08
@@ -5763,7 +5672,6 @@ constants:
           min: 0
           max: 200
           digits: 0
-          comments: '* (  1 byte)'
         egoKI:
           type: scalar
           size: U08
@@ -5774,7 +5682,6 @@ constants:
           min: 0
           max: 200
           digits: 0
-          comments: '* (  1 byte)'
         egoKD:
           type: scalar
           size: U08
@@ -5785,7 +5692,6 @@ constants:
           min: 0
           max: 200
           digits: 0
-          comments: '* (  1 byte)'
         egoTemp:
           type: scalar
           size: U08
@@ -5796,7 +5702,6 @@ constants:
           min: -40
           max: 102
           digits: 0
-          comments: ''
         egoCount:
           type: scalar
           size: U08
@@ -5807,7 +5712,6 @@ constants:
           min: 4
           max: 255
           digits: 0
-          comments: '* (  1 byte)'
         vvtMode:
           type: bits
           size: U08
@@ -5820,7 +5724,6 @@ constants:
             - Open Loop
             - Closed loop
             - INVALID
-          comments: ''
         vvtLoadSource:
           type: bits
           size: U08
@@ -5833,7 +5736,6 @@ constants:
             - TPS
             - INVALID
             - INVALID
-          comments: ''
         vvtPWMdir:
           type: bits
           size: U08
@@ -5844,7 +5746,6 @@ constants:
           values:
             - Advance
             - Retard
-          comments: ''
         vvtCLUseHold:
           type: bits
           size: U08
@@ -5855,7 +5756,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         vvtCLAlterFuelTiming:
           type: bits
           size: U08
@@ -5866,7 +5766,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         boostCutEnabled:
           type: bits
           size: U08
@@ -5877,7 +5776,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         egoLimit:
           type: scalar
           size: U08
@@ -5888,7 +5786,6 @@ constants:
           min: 0
           max: 16
           digits: 0
-          comments: ''
         ego_min:
           type: scalar
           size: U08
@@ -5899,7 +5796,6 @@ constants:
           min: 7
           max: 25
           digits: 1
-          comments: ''
         ego_max:
           type: scalar
           size: U08
@@ -5910,7 +5806,6 @@ constants:
           min: 7
           max: 25
           digits: 1
-          comments: ''
         ego_sdelay:
           type: scalar
           size: U08
@@ -5921,7 +5816,6 @@ constants:
           min: 0
           max: 120
           digits: 0
-          comments: ''
         egoRPM:
           type: scalar
           size: U08
@@ -5932,7 +5826,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         egoTPSMax:
           type: scalar
           size: U08
@@ -5943,7 +5836,78 @@ constants:
           min: 0
           max: 120
           digits: 0
-          comments: ''
+        vvt1Pin:
+          type: bits
+          size: U08
+          offset: 13
+          address:
+            from: 0
+            to: 5
+          values:
+            - Board Default
+            - INVALID
+            - INVALID
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+            - '17'
+            - '18'
+            - '19'
+            - '20'
+            - '21'
+            - '22'
+            - '23'
+            - '24'
+            - '25'
+            - '26'
+            - '27'
+            - '28'
+            - '29'
+            - '30'
+            - '31'
+            - '32'
+            - '33'
+            - '34'
+            - '35'
+            - '36'
+            - '37'
+            - '38'
+            - '39'
+            - '40'
+            - '41'
+            - '42'
+            - '43'
+            - '44'
+            - '45'
+            - '46'
+            - '47'
+            - '48'
+            - '49'
+            - '50'
+            - '51'
+            - '52'
+            - '53'
+            - '54'
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
         useExtBaro:
           type: bits
           size: U08
@@ -5954,7 +5918,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         boostMode:
           type: bits
           size: U08
@@ -5965,7 +5928,6 @@ constants:
           values:
             - Simple
             - Full
-          comments: ''
         boostPin:
           type: bits
           size: U08
@@ -6038,7 +6000,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         VVTasOnOff:
           type: bits
           size: U08
@@ -6049,7 +6010,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         useEMAP:
           type: bits
           size: U08
@@ -6060,7 +6020,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         brvBins:
           type: array
           size: U08
@@ -6074,7 +6033,6 @@ constants:
           min: 6
           max: 24
           digits: 1
-          comments: Bins for the battery reference voltage
         injBatRates:
           type: array
           size: U08
@@ -6088,7 +6046,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: Values for injector pulsewidth vs voltage
         airDenBins:
           type: array
           size: U08
@@ -6102,7 +6059,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: Bins for the air density correction curve
         airDenRates:
           type: array
           size: U08
@@ -6116,7 +6072,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: Values for the air density correction curve
         boostFreq:
           type: scalar
           size: U08
@@ -6127,7 +6082,6 @@ constants:
           min: 10
           max: 511
           digits: 0
-          comments: ''
         vvtFreq:
           type: scalar
           size: U08
@@ -6138,7 +6092,6 @@ constants:
           min: 10
           max: 511
           digits: 0
-          comments: ''
         idleFreq:
           type: scalar
           size: U08
@@ -6149,7 +6102,78 @@ constants:
           min: 10
           max: 511
           digits: 0
-          comments: ''
+        launchPin:
+          type: bits
+          size: U08
+          offset: 48
+          address:
+            from: 0
+            to: 5
+          values:
+            - Board Default
+            - INVALID
+            - INVALID
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+            - '17'
+            - '18'
+            - '19'
+            - '20'
+            - '21'
+            - '22'
+            - '23'
+            - '24'
+            - '25'
+            - '26'
+            - '27'
+            - '28'
+            - '29'
+            - '30'
+            - '31'
+            - '32'
+            - '33'
+            - '34'
+            - '35'
+            - '36'
+            - '37'
+            - '38'
+            - '39'
+            - '40'
+            - '41'
+            - '42'
+            - '43'
+            - '44'
+            - '45'
+            - '46'
+            - '47'
+            - '48'
+            - '49'
+            - '50'
+            - '51'
+            - '52'
+            - '53'
+            - '54'
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
         launchEnable:
           type: bits
           size: U08
@@ -6160,7 +6184,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         launchHiLo:
           type: bits
           size: U08
@@ -6171,7 +6194,6 @@ constants:
           values:
             - LOW
             - HIGH
-          comments: ''
         lnchSoftLim:
           type: scalar
           size: U08
@@ -6182,7 +6204,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         lnchRetard:
           type: scalar
           size: S08
@@ -6193,7 +6214,6 @@ constants:
           min: -30
           max: 40
           digits: 0
-          comments: ''
         lnchHardLim:
           type: scalar
           size: U08
@@ -6204,7 +6224,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         lnchFuelAdd:
           type: scalar
           size: U08
@@ -6215,7 +6234,6 @@ constants:
           min: 0
           max: 80
           digits: 0
-          comments: ''
         idleKP:
           type: scalar
           size: U08
@@ -6226,7 +6244,6 @@ constants:
           min: 0
           max: 7.96
           digits: 2
-          comments: '* (  1 byte)'
         idleKI:
           type: scalar
           size: U08
@@ -6237,7 +6254,6 @@ constants:
           min: 0
           max: 7.96
           digits: 2
-          comments: '* (  1 byte)'
         idleKD:
           type: scalar
           size: U08
@@ -6248,7 +6264,6 @@ constants:
           min: 0
           max: 1.99
           digits: 3
-          comments: '* (  1 byte)'
         boostLimit:
           type: scalar
           size: U08
@@ -6259,7 +6274,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
         boostKP:
           type: scalar
           size: U08
@@ -6270,7 +6284,6 @@ constants:
           min: 0
           max: 200
           digits: 0
-          comments: '* (  1 byte)'
         boostKI:
           type: scalar
           size: U08
@@ -6281,7 +6294,6 @@ constants:
           min: 0
           max: 200
           digits: 0
-          comments: '* (  1 byte)'
         boostKD:
           type: scalar
           size: U08
@@ -6292,7 +6304,6 @@ constants:
           min: 0
           max: 200
           digits: 0
-          comments: '* (  1 byte)'
         lnchPullRes:
           type: bits
           size: U08
@@ -6305,7 +6316,6 @@ constants:
             - Pullup
             - INVALID
             - INVALID
-          comments: ''
         fuelTrimEnabled:
           type: bits
           size: U08
@@ -6316,7 +6326,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         flatSEnable:
           type: bits
           size: U08
@@ -6327,7 +6336,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         baroPin:
           type: bits
           size: U08
@@ -6352,7 +6360,6 @@ constants:
             - A13
             - A14
             - A15
-          comments: ''
         flatSSoftWin:
           type: scalar
           size: U08
@@ -6363,7 +6370,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         flatSRetard:
           type: scalar
           size: U08
@@ -6374,7 +6380,6 @@ constants:
           min: 0
           max: 80
           digits: 0
-          comments: ''
         flatSArm:
           type: scalar
           size: U08
@@ -6385,7 +6390,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         iacCLValues:
           type: array
           size: U08
@@ -6399,7 +6403,6 @@ constants:
           min: 0
           max: 2550
           digits: 0
-          comments: ''
         iacOLStepVal:
           type: array
           size: U08
@@ -6413,7 +6416,6 @@ constants:
           min: 0
           max: 765
           digits: 0
-          comments: ''
         iacOLPWMVal:
           type: array
           size: U08
@@ -6427,7 +6429,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         iacBins:
           type: array
           size: U08
@@ -6441,7 +6442,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         iacCrankSteps:
           type: array
           size: U08
@@ -6455,7 +6455,6 @@ constants:
           min: 0
           max: 765
           digits: 0
-          comments: ''
         iacCrankDuty:
           type: array
           size: U08
@@ -6469,7 +6468,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         iacCrankBins:
           type: array
           size: U08
@@ -6483,7 +6481,38 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
+        iacAlgorithm:
+          type: bits
+          size: U08
+          offset: 116
+          address:
+            from: 0
+            to: 2
+          values:
+            - None
+            - On/Off
+            - PWM Open loop
+            - PWM Closed loop
+            - Stepper Open Loop
+            - Stepper Closed Loop
+            - PWM Closed+Open loop
+            - INVALID
+        iacStepTime:
+          type: bits
+          size: U08
+          offset: 116
+          address:
+            from: 3
+            to: 5
+          values:
+            - INVALID
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - INVALID
         iacChannels:
           type: bits
           size: U08
@@ -6494,7 +6523,16 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
+        iacPWMdir:
+          type: bits
+          size: U08
+          offset: 116
+          address:
+            from: 7
+            to: 7
+          values:
+            - Normal
+            - Reverse
         iacFastTemp:
           type: scalar
           size: U08
@@ -6505,7 +6543,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         iacStepHome:
           type: scalar
           size: U08
@@ -6516,7 +6553,6 @@ constants:
           min: 0
           max: 765
           digits: 0
-          comments: ''
         iacStepHyster:
           type: scalar
           size: U08
@@ -6527,7 +6563,6 @@ constants:
           min: 1
           max: 10
           digits: 0
-          comments: ''
         fanInv:
           type: bits
           size: U08
@@ -6538,7 +6573,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         fanEnable:
           type: bits
           size: U08
@@ -6549,7 +6583,6 @@ constants:
           values:
             - 'Off'
             - On/Off
-          comments: ''
         fanPin:
           type: bits
           size: U08
@@ -6622,7 +6655,6 @@ constants:
             - A14
             - A15
             - INVALID
-          comments: ''
         fanSP:
           type: scalar
           size: U08
@@ -6633,7 +6665,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         fanHyster:
           type: scalar
           size: U08
@@ -6644,7 +6675,16 @@ constants:
           min: 0
           max: 40
           digits: 0
-          comments: ''
+        fanFreq:
+          type: scalar
+          size: U08
+          offset: 123
+          units: Hz
+          scale: 2
+          transform: 0
+          min: 10
+          max: 511
+          digits: 0
         fanPWMBins:
           type: array
           size: U08
@@ -6658,7 +6698,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
     - number: 7
       size: 111
       data:
@@ -6676,7 +6715,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         tpsBinsBoost:
           type: array
           size: U08
@@ -6690,7 +6728,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         vvtTable:
           type: array
           size: U08
@@ -6704,7 +6741,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         rpmBinsVVT:
           type: array
           size: U08
@@ -6718,7 +6754,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         loadBinsVVT: {}
         stagingTable:
           type: array
@@ -6733,7 +6768,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         rpmBinsStaging:
           type: array
           size: U08
@@ -6747,7 +6781,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         loadBinsStaging: {}
     - number: 8
       size: 111
@@ -6765,7 +6798,6 @@ constants:
           min: -50
           max: 50
           digits: 0
-          comments: ''
         fuelTrim1rpmBins:
           type: array
           size: U08
@@ -6779,7 +6811,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fuelTrim1loadBins: {}
         fuelTrim2Table:
           type: array
@@ -6794,7 +6825,6 @@ constants:
           min: -50
           max: 50
           digits: 0
-          comments: ''
         fuelTrim2rpmBins:
           type: array
           size: U08
@@ -6808,7 +6838,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fuelTrim2loadBins: {}
         fuelTrim3Table:
           type: array
@@ -6823,7 +6852,6 @@ constants:
           min: -50
           max: 50
           digits: 0
-          comments: ''
         fuelTrim3rpmBins:
           type: array
           size: U08
@@ -6837,7 +6865,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fuelTrim3loadBins: {}
         fuelTrim4Table:
           type: array
@@ -6852,7 +6879,6 @@ constants:
           min: -50
           max: 50
           digits: 0
-          comments: ''
         fuelTrim4rpmBins:
           type: array
           size: U08
@@ -6866,7 +6892,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fuelTrim4loadBins: {}
     - number: 9
       size: 111
@@ -6881,7 +6906,6 @@ constants:
           values:
             - Disable
             - Enable
-          comments: ''
         intcan_available:
           type: bits
           size: U08
@@ -6892,7 +6916,6 @@ constants:
           values:
             - Disable
             - Enable
-          comments: ''
         enable_intcan:
           type: bits
           size: U08
@@ -6903,7 +6926,6 @@ constants:
           values:
             - Disable
             - Enable
-          comments: ''
         caninput_sel0a:
           type: bits
           size: U08
@@ -6916,7 +6938,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel0b:
           type: bits
           size: U08
@@ -6929,7 +6950,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel0extsourcea:
           type: bits
           size: U08
@@ -6940,7 +6960,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel0extsourceb:
           type: bits
           size: U08
@@ -6951,7 +6970,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel0extsourcec:
           type: bits
           size: U08
@@ -6962,7 +6980,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel1a:
           type: bits
           size: U08
@@ -6975,7 +6992,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel1b:
           type: bits
           size: U08
@@ -6988,7 +7004,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel1extsourcea:
           type: bits
           size: U08
@@ -6999,7 +7014,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel1extsourceb:
           type: bits
           size: U08
@@ -7010,7 +7024,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel1extsourcec:
           type: bits
           size: U08
@@ -7021,7 +7034,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel2a:
           type: bits
           size: U08
@@ -7034,7 +7046,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel2b:
           type: bits
           size: U08
@@ -7047,7 +7058,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel2extsourcea:
           type: bits
           size: U08
@@ -7058,7 +7068,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel2extsourceb:
           type: bits
           size: U08
@@ -7069,7 +7078,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel2extsourcec:
           type: bits
           size: U08
@@ -7080,7 +7088,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel3a:
           type: bits
           size: U08
@@ -7093,7 +7100,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel3b:
           type: bits
           size: U08
@@ -7106,7 +7112,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel3extsourcea:
           type: bits
           size: U08
@@ -7117,7 +7122,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel3extsourceb:
           type: bits
           size: U08
@@ -7128,7 +7132,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel3extsourcec:
           type: bits
           size: U08
@@ -7139,7 +7142,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel4a:
           type: bits
           size: U08
@@ -7152,7 +7154,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel4b:
           type: bits
           size: U08
@@ -7165,7 +7166,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel4extsourcea:
           type: bits
           size: U08
@@ -7176,7 +7176,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel4extsourceb:
           type: bits
           size: U08
@@ -7187,7 +7186,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel4extsourcec:
           type: bits
           size: U08
@@ -7198,7 +7196,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel5a:
           type: bits
           size: U08
@@ -7211,7 +7208,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel5b:
           type: bits
           size: U08
@@ -7224,7 +7220,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel5extsourcea:
           type: bits
           size: U08
@@ -7235,7 +7230,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel5extsourceb:
           type: bits
           size: U08
@@ -7246,7 +7240,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel5extsourcec:
           type: bits
           size: U08
@@ -7257,7 +7250,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel6a:
           type: bits
           size: U08
@@ -7270,7 +7262,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel6b:
           type: bits
           size: U08
@@ -7283,7 +7274,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel6extsourcea:
           type: bits
           size: U08
@@ -7294,7 +7284,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel6extsourceb:
           type: bits
           size: U08
@@ -7305,7 +7294,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel6extsourcec:
           type: bits
           size: U08
@@ -7316,7 +7304,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel7a:
           type: bits
           size: U08
@@ -7329,7 +7316,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel7b:
           type: bits
           size: U08
@@ -7342,7 +7328,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel7extsourcea:
           type: bits
           size: U08
@@ -7353,7 +7338,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel7extsourceb:
           type: bits
           size: U08
@@ -7364,7 +7348,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel7extsourcec:
           type: bits
           size: U08
@@ -7375,7 +7358,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel8a:
           type: bits
           size: U08
@@ -7388,7 +7370,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel8b:
           type: bits
           size: U08
@@ -7401,7 +7382,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel8extsourcea:
           type: bits
           size: U08
@@ -7412,7 +7392,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel8extsourceb:
           type: bits
           size: U08
@@ -7423,7 +7402,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel8extsourcec:
           type: bits
           size: U08
@@ -7434,7 +7412,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel9a:
           type: bits
           size: U08
@@ -7447,7 +7424,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel9b:
           type: bits
           size: U08
@@ -7460,7 +7436,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel9extsourcea:
           type: bits
           size: U08
@@ -7471,7 +7446,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel9extsourceb:
           type: bits
           size: U08
@@ -7482,7 +7456,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel9extsourcec:
           type: bits
           size: U08
@@ -7493,7 +7466,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel10a:
           type: bits
           size: U08
@@ -7506,7 +7478,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel10b:
           type: bits
           size: U08
@@ -7519,7 +7490,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel10extsourcea:
           type: bits
           size: U08
@@ -7530,7 +7500,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel10extsourceb:
           type: bits
           size: U08
@@ -7541,7 +7510,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel10extsourcec:
           type: bits
           size: U08
@@ -7552,7 +7520,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel11a:
           type: bits
           size: U08
@@ -7565,7 +7532,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel11b:
           type: bits
           size: U08
@@ -7578,7 +7544,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel11extsourcea:
           type: bits
           size: U08
@@ -7589,7 +7554,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel11extsourceb:
           type: bits
           size: U08
@@ -7600,7 +7564,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel11extsourcec:
           type: bits
           size: U08
@@ -7611,7 +7574,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel12a:
           type: bits
           size: U08
@@ -7624,7 +7586,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel12b:
           type: bits
           size: U08
@@ -7637,7 +7598,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel12extsourcea:
           type: bits
           size: U08
@@ -7648,7 +7608,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel12extsourceb:
           type: bits
           size: U08
@@ -7659,7 +7618,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel12extsourcec:
           type: bits
           size: U08
@@ -7670,7 +7628,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel13a:
           type: bits
           size: U08
@@ -7683,7 +7640,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel13b:
           type: bits
           size: U08
@@ -7696,7 +7652,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel13extsourcea:
           type: bits
           size: U08
@@ -7707,7 +7662,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel13extsourceb:
           type: bits
           size: U08
@@ -7718,7 +7672,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel13extsourcec:
           type: bits
           size: U08
@@ -7729,7 +7682,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel14a:
           type: bits
           size: U08
@@ -7742,7 +7694,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel14b:
           type: bits
           size: U08
@@ -7755,7 +7706,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel14extsourcea:
           type: bits
           size: U08
@@ -7766,7 +7716,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel14extsourceb:
           type: bits
           size: U08
@@ -7777,7 +7726,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel14extsourcec:
           type: bits
           size: U08
@@ -7788,7 +7736,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_sel15a:
           type: bits
           size: U08
@@ -7801,7 +7748,6 @@ constants:
             - INVALID
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel15b:
           type: bits
           size: U08
@@ -7814,7 +7760,6 @@ constants:
             - External Source
             - Analog_local
             - Digital_local
-          comments: ''
         caninput_sel15extsourcea:
           type: bits
           size: U08
@@ -7825,7 +7770,6 @@ constants:
           values:
             - Via Secondary Serial
             - INVALID
-          comments: ''
         caninput_sel15extsourceb:
           type: bits
           size: U08
@@ -7836,7 +7780,6 @@ constants:
           values:
             - Via Secondary Serial
             - Via Internal CAN
-          comments: ''
         caninput_sel15extsourcec:
           type: bits
           size: U08
@@ -7847,7 +7790,6 @@ constants:
           values:
             - INVALID
             - Via Internal CAN
-          comments: ''
         caninput_source_can_address0:
           type: bits
           size: U16
@@ -7857,7 +7799,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address1:
           type: bits
           size: U16
@@ -7867,7 +7808,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address2:
           type: bits
           size: U16
@@ -7877,7 +7817,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address3:
           type: bits
           size: U16
@@ -7887,7 +7826,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address4:
           type: bits
           size: U16
@@ -7897,7 +7835,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address5:
           type: bits
           size: U16
@@ -7907,7 +7844,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address6:
           type: bits
           size: U16
@@ -7917,7 +7853,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address7:
           type: bits
           size: U16
@@ -7927,7 +7862,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address8:
           type: bits
           size: U16
@@ -7937,7 +7871,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address9:
           type: bits
           size: U16
@@ -7947,7 +7880,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address10:
           type: bits
           size: U16
@@ -7957,7 +7889,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address11:
           type: bits
           size: U16
@@ -7967,7 +7898,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address12:
           type: bits
           size: U16
@@ -7977,7 +7907,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address13:
           type: bits
           size: U16
@@ -7987,7 +7916,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address14:
           type: bits
           size: U16
@@ -7997,7 +7925,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_can_address15:
           type: bits
           size: U16
@@ -8007,7 +7934,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         caninput_source_start_byte0:
           type: bits
           size: U08
@@ -8024,7 +7950,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte1:
           type: bits
           size: U08
@@ -8041,7 +7966,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte2:
           type: bits
           size: U08
@@ -8058,7 +7982,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte3:
           type: bits
           size: U08
@@ -8075,7 +7998,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte4:
           type: bits
           size: U08
@@ -8092,7 +8014,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte5:
           type: bits
           size: U08
@@ -8109,7 +8030,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte6:
           type: bits
           size: U08
@@ -8126,7 +8046,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte7:
           type: bits
           size: U08
@@ -8143,7 +8062,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte8:
           type: bits
           size: U08
@@ -8160,7 +8078,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte9:
           type: bits
           size: U08
@@ -8177,7 +8094,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte10:
           type: bits
           size: U08
@@ -8194,7 +8110,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte11:
           type: bits
           size: U08
@@ -8211,7 +8126,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte12:
           type: bits
           size: U08
@@ -8228,7 +8142,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte13:
           type: bits
           size: U08
@@ -8245,7 +8158,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte14:
           type: bits
           size: U08
@@ -8262,7 +8174,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_start_byte15:
           type: bits
           size: U08
@@ -8279,7 +8190,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         caninput_source_num_bytes0:
           type: bits
           size: U16
@@ -8290,7 +8200,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes1:
           type: bits
           size: U16
@@ -8301,7 +8210,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes2:
           type: bits
           size: U16
@@ -8312,7 +8220,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes3:
           type: bits
           size: U16
@@ -8323,7 +8230,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes4:
           type: bits
           size: U16
@@ -8334,7 +8240,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes5:
           type: bits
           size: U16
@@ -8345,7 +8250,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes6:
           type: bits
           size: U16
@@ -8356,7 +8260,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes7:
           type: bits
           size: U16
@@ -8367,7 +8270,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes8:
           type: bits
           size: U16
@@ -8378,7 +8280,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes9:
           type: bits
           size: U16
@@ -8389,7 +8290,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes10:
           type: bits
           size: U16
@@ -8400,7 +8300,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes11:
           type: bits
           size: U16
@@ -8411,7 +8310,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes12:
           type: bits
           size: U16
@@ -8422,7 +8320,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes13:
           type: bits
           size: U16
@@ -8433,7 +8330,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes14:
           type: bits
           size: U16
@@ -8444,7 +8340,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         caninput_source_num_bytes15:
           type: bits
           size: U16
@@ -8455,7 +8350,6 @@ constants:
           values:
             - '1'
             - '2'
-          comments: ''
         unused10_67:
           type: scalar
           size: U08
@@ -8466,7 +8360,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         unused10_68:
           type: scalar
           size: U08
@@ -8477,7 +8370,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         enable_intcandata_out:
           type: bits
           size: U08
@@ -8488,7 +8380,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel0:
           type: bits
           size: U08
@@ -8499,7 +8390,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel1:
           type: bits
           size: U08
@@ -8510,7 +8400,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel2:
           type: bits
           size: U08
@@ -8521,7 +8410,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel3:
           type: bits
           size: U08
@@ -8532,7 +8420,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel4:
           type: bits
           size: U08
@@ -8543,7 +8430,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel5:
           type: bits
           size: U08
@@ -8554,7 +8440,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel6:
           type: bits
           size: U08
@@ -8565,7 +8450,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         canoutput_sel7:
           type: bits
           size: U08
@@ -8576,7 +8460,19 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
+        canoutput_param_group:
+          type: array
+          size: U16
+          offset: 78
+          shape:
+            columns: 8
+            rows: 0
+          units: ''
+          scale: 1
+          transform: 0
+          min: 0
+          max: 65535
+          digits: 0
         canoutput_param_start_byte0:
           type: bits
           size: U08
@@ -8593,7 +8489,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte1:
           type: bits
           size: U08
@@ -8610,7 +8505,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte2:
           type: bits
           size: U08
@@ -8627,7 +8521,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte3:
           type: bits
           size: U08
@@ -8644,7 +8537,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte4:
           type: bits
           size: U08
@@ -8661,7 +8553,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte5:
           type: bits
           size: U08
@@ -8678,7 +8569,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte6:
           type: bits
           size: U08
@@ -8695,7 +8585,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_start_byte7:
           type: bits
           size: U08
@@ -8712,7 +8601,6 @@ constants:
             - '5'
             - '6'
             - '7'
-          comments: ''
         canoutput_param_num_bytes0:
           type: bits
           size: U08
@@ -8725,7 +8613,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes1:
           type: bits
           size: U08
@@ -8738,7 +8625,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes2:
           type: bits
           size: U08
@@ -8751,7 +8637,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes3:
           type: bits
           size: U08
@@ -8764,7 +8649,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes4:
           type: bits
           size: U08
@@ -8777,7 +8661,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes5:
           type: bits
           size: U08
@@ -8790,7 +8673,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes6:
           type: bits
           size: U08
@@ -8803,7 +8685,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         canoutput_param_num_bytes7:
           type: bits
           size: U08
@@ -8816,7 +8697,6 @@ constants:
             - '1'
             - '2'
             - INVALID
-          comments: ''
         unused10_110:
           type: scalar
           size: U08
@@ -8827,7 +8707,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         unused10_111:
           type: scalar
           size: U08
@@ -8838,7 +8717,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         unused10_112:
           type: scalar
           size: U08
@@ -8849,7 +8727,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         unused10_113:
           type: scalar
           size: U08
@@ -8860,7 +8737,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         speeduino_tsCanId:
           type: bits
           size: U08
@@ -8870,7 +8746,6 @@ constants:
             to: 3
           values:
             - $tsCanId_list
-          comments: ''
         true_address:
           type: bits
           size: U16
@@ -8880,7 +8755,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         realtime_base_address:
           type: bits
           size: U16
@@ -8890,7 +8764,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         obd_address:
           type: bits
           size: U16
@@ -8900,7 +8773,6 @@ constants:
             to: 10
           values:
             - $CAN_ADDRESS_HEX
-          comments: ''
         Auxin0pina:
           type: bits
           size: U08
@@ -8910,7 +8782,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin1pina:
           type: bits
           size: U08
@@ -8920,7 +8791,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin2pina:
           type: bits
           size: U08
@@ -8930,7 +8800,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin3pina:
           type: bits
           size: U08
@@ -8940,7 +8809,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin4pina:
           type: bits
           size: U08
@@ -8950,7 +8818,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin5pina:
           type: bits
           size: U08
@@ -8960,7 +8827,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin6pina:
           type: bits
           size: U08
@@ -8970,7 +8836,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin7pina:
           type: bits
           size: U08
@@ -8980,7 +8845,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin8pina:
           type: bits
           size: U08
@@ -8990,7 +8854,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin9pina:
           type: bits
           size: U08
@@ -9000,7 +8863,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin10pina:
           type: bits
           size: U08
@@ -9010,7 +8872,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin11pina:
           type: bits
           size: U08
@@ -9020,7 +8881,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin12pina:
           type: bits
           size: U08
@@ -9030,7 +8890,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin13pina:
           type: bits
           size: U08
@@ -9040,7 +8899,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin14pina:
           type: bits
           size: U08
@@ -9050,7 +8908,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin15pina:
           type: bits
           size: U08
@@ -9060,7 +8917,6 @@ constants:
             to: 5
           values:
             - $ANALOG_PIN
-          comments: ''
         Auxin0pinb:
           type: bits
           size: U08
@@ -9070,7 +8926,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin1pinb:
           type: bits
           size: U08
@@ -9080,7 +8935,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin2pinb:
           type: bits
           size: U08
@@ -9090,7 +8944,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin3pinb:
           type: bits
           size: U08
@@ -9100,7 +8953,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin4pinb:
           type: bits
           size: U08
@@ -9110,7 +8962,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin5pinb:
           type: bits
           size: U08
@@ -9120,7 +8971,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin6pinb:
           type: bits
           size: U08
@@ -9130,7 +8980,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin7pinb:
           type: bits
           size: U08
@@ -9140,7 +8989,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin8pinb:
           type: bits
           size: U08
@@ -9150,7 +8998,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin9pinb:
           type: bits
           size: U08
@@ -9160,7 +9007,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin10pinb:
           type: bits
           size: U08
@@ -9170,7 +9016,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin11pinb:
           type: bits
           size: U08
@@ -9180,7 +9025,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin12pinb:
           type: bits
           size: U08
@@ -9190,7 +9034,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin13pinb:
           type: bits
           size: U08
@@ -9200,7 +9043,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin14pinb:
           type: bits
           size: U08
@@ -9210,7 +9052,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         Auxin15pinb:
           type: bits
           size: U08
@@ -9220,7 +9061,6 @@ constants:
             to: 5
           values:
             - $DIGITAL_PIN
-          comments: ''
         iacStepperInv:
           type: bits
           size: U08
@@ -9231,7 +9071,6 @@ constants:
           values:
             - 'No'
             - 'Yes'
-          comments: ''
         iacCoolTime:
           type: bits
           size: U08
@@ -9248,7 +9087,6 @@ constants:
             - '5'
             - '6'
             - INVALID
-          comments: ''
         blankfield:
           type: bits
           size: U08
@@ -9259,7 +9097,6 @@ constants:
           values:
             - ''
             - ''
-          comments: ''
         unused10_153:
           type: bits
           size: U08
@@ -9269,7 +9106,6 @@ constants:
             to: 7
           values:
             - ''
-          comments: ''
         iacMaxSteps: {}
         unused10_154:
           type: array
@@ -9284,7 +9120,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
     - number: 10
       size: 111
       data:
@@ -9301,7 +9136,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         crankingEnrichValues:
           type: array
           size: U08
@@ -9315,7 +9149,38 @@ constants:
           min: 0
           max: 1275
           digits: 0
-          comments: Values for the cranking enrichment curve
+        rotaryType:
+          type: bits
+          size: U08
+          offset: 8
+          address:
+            from: 0
+            to: 1
+          values:
+            - FC
+            - FD
+            - RX8
+            - INVALID
+        stagingEnabled:
+          type: bits
+          size: U08
+          offset: 8
+          address:
+            from: 2
+            to: 2
+          values:
+            - 'Off'
+            - 'On'
+        stagingMode:
+          type: bits
+          size: U08
+          offset: 8
+          address:
+            from: 3
+            to: 3
+          values:
+            - Table
+            - Automatic
         EMAPPin:
           type: bits
           size: U08
@@ -9340,7 +9205,6 @@ constants:
             - A13
             - A14
             - A15
-          comments: ''
         rotarySplitValues:
           type: array
           size: U08
@@ -9354,7 +9218,6 @@ constants:
           min: 0
           max: 40
           digits: 0
-          comments: ''
         rotarySplitBins: {}
         boostSens:
           type: scalar
@@ -9366,7 +9229,6 @@ constants:
           min: 0
           max: 5000
           digits: 0
-          comments: ''
         boostIntv:
           type: scalar
           size: U08
@@ -9377,7 +9239,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         stagedInjSizePri:
           type: scalar
           size: U16
@@ -9388,7 +9249,6 @@ constants:
           min: 0
           max: 1500
           digits: 0
-          comments: ''
         stagedInjSizeSec:
           type: scalar
           size: U16
@@ -9399,7 +9259,6 @@ constants:
           min: 0
           max: 1500
           digits: 0
-          comments: ''
         lnchCtrlTPS:
           type: scalar
           size: U08
@@ -9410,7 +9269,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         flexBoostBins:
           type: array
           size: U08
@@ -9424,7 +9282,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         flexBoostAdj:
           type: array
           size: S16
@@ -9438,7 +9295,6 @@ constants:
           min: -500
           max: 500
           digits: 0
-          comments: ''
         flexFuelBins:
           type: array
           size: U08
@@ -9452,7 +9308,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         flexFuelAdj:
           type: array
           size: U08
@@ -9466,7 +9321,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         flexAdvBins:
           type: array
           size: U08
@@ -9480,7 +9334,6 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
         flexAdvAdj:
           type: array
           size: U08
@@ -9494,7 +9347,27 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
+        n2o_enable:
+          type: bits
+          size: U08
+          offset: 75
+          address:
+            from: 0
+            to: 1
+          values:
+            - 'Off'
+            - 1 Stage
+            - 2 stage
+            - INVALID
+        n2o_arming_pin:
+          type: bits
+          size: U08
+          offset: 75
+          address:
+            from: 2
+            to: 7
+          values:
+            - $IO_Pins_no_def
         n2o_minCLT:
           type: scalar
           size: U08
@@ -9505,7 +9378,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         n2o_maxMAP:
           type: scalar
           size: U08
@@ -9516,7 +9388,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
         n2o_minTPS:
           type: scalar
           size: U08
@@ -9527,7 +9398,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         n2o_maxAFR:
           type: scalar
           size: U08
@@ -9538,7 +9408,35 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
+        n2o_stage1_pin:
+          type: bits
+          size: U08
+          offset: 80
+          address:
+            from: 0
+            to: 5
+          values:
+            - $IO_Pins_no_def
+        n2o_pin_polarity:
+          type: bits
+          size: U08
+          offset: 80
+          address:
+            from: 6
+            to: 6
+          values:
+            - HIGH
+            - LOW
+        n2o_unused:
+          type: bits
+          size: U08
+          offset: 80
+          address:
+            from: 7
+            to: 7
+          values:
+            - 'No'
+            - 'Yes'
         n2o_stage1_minRPM:
           type: scalar
           size: U08
@@ -9549,7 +9447,6 @@ constants:
           min: 1000
           max: 10000
           digits: 0
-          comments: ''
         n2o_stage1_maxRPM:
           type: scalar
           size: U08
@@ -9560,7 +9457,6 @@ constants:
           min: 1000
           max: 10000
           digits: 0
-          comments: ''
         n2o_stage1_adderMin:
           type: scalar
           size: U08
@@ -9571,7 +9467,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         n2o_stage1_adderMax:
           type: scalar
           size: U08
@@ -9582,7 +9477,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         n2o_stage1_retard:
           type: scalar
           size: U08
@@ -9593,7 +9487,27 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
+        n2o_stage2_pin:
+          type: bits
+          size: U08
+          offset: 86
+          address:
+            from: 0
+            to: 5
+          values:
+            - $IO_Pins_no_def
+        n2o_stage2_unused:
+          type: bits
+          size: U08
+          offset: 86
+          address:
+            from: 6
+            to: 7
+          values:
+            - 'No'
+            - 'Yes'
+            - INVALID
+            - INVALID
         n2o_stage2_minRPM:
           type: scalar
           size: U08
@@ -9604,7 +9518,6 @@ constants:
           min: 1000
           max: 10000
           digits: 0
-          comments: ''
         n2o_stage2_maxRPM:
           type: scalar
           size: U08
@@ -9615,7 +9528,6 @@ constants:
           min: 1000
           max: 10000
           digits: 0
-          comments: ''
         n2o_stage2_adderMin:
           type: scalar
           size: U08
@@ -9626,7 +9538,6 @@ constants:
           min: 0
           max: 32
           digits: 1
-          comments: ''
         n2o_stage2_adderMax:
           type: scalar
           size: U08
@@ -9637,7 +9548,6 @@ constants:
           min: 0
           max: 32
           digits: 1
-          comments: ''
         n2o_stage2_retard:
           type: scalar
           size: U08
@@ -9648,7 +9558,148 @@ constants:
           min: 0
           max: 250
           digits: 0
-          comments: ''
+        knock_mode:
+          type: bits
+          size: U08
+          offset: 92
+          address:
+            from: 0
+            to: 1
+          values:
+            - 'Off'
+            - Digital
+            - Analog
+            - INVALID
+        knock_pin:
+          type: bits
+          size: U08
+          offset: 92
+          address:
+            from: 2
+            to: 7
+          values:
+            - INVALID
+            - INVALID
+            - '2'
+            - '3'
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - '18'
+            - '19'
+            - '20'
+            - '21'
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - A8
+            - A9
+            - A10
+            - A11
+            - A12
+            - A13
+            - A14
+            - A15
+            - INVALID
+        knock_trigger:
+          type: bits
+          size: U08
+          offset: 93
+          address:
+            from: 0
+            to: 0
+          values:
+            - HIGH
+            - LOW
+        knock_pullup:
+          type: bits
+          size: U08
+          offset: 93
+          address:
+            from: 1
+            to: 1
+          values:
+            - 'Off'
+            - Internal pullup
+        knock_limiterDisable:
+          type: bits
+          size: U08
+          offset: 93
+          address:
+            from: 2
+            to: 2
+          values:
+            - 'No'
+            - 'Yes'
+        knock_unused:
+          type: bits
+          size: U08
+          offset: 93
+          address:
+            from: 3
+            to: 4
+          values:
+            - INVALID
+            - '1'
+            - '2'
+            - '3'
+        knock_count:
+          type: bits
+          size: U08
+          offset: 93
+          address:
+            from: 5
+            to: 7
+          values:
+            - INVALID
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
         knock_threshold:
           type: scalar
           size: U08
@@ -9659,7 +9710,6 @@ constants:
           min: 0
           max: 5
           digits: 1
-          comments: ''
         knock_maxMAP:
           type: scalar
           size: U08
@@ -9670,7 +9720,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
         knock_maxRPM:
           type: scalar
           size: U08
@@ -9681,7 +9730,6 @@ constants:
           min: 0
           max: 10000
           digits: 0
-          comments: ''
         knock_window_rpms:
           type: array
           size: U08
@@ -9695,7 +9743,6 @@ constants:
           min: 0
           max: 10000
           digits: 0
-          comments: ''
         knock_window_angle:
           type: array
           size: U08
@@ -9709,7 +9756,6 @@ constants:
           min: -50
           max: 100
           digits: 0
-          comments: ''
         knock_window_dur:
           type: array
           size: U08
@@ -9723,7 +9769,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: Knock window duration
         knock_maxRetard:
           type: scalar
           size: U08
@@ -9734,7 +9779,6 @@ constants:
           min: 0
           max: 50
           digits: 0
-          comments: ''
         knock_firstStep:
           type: scalar
           size: U08
@@ -9745,7 +9789,6 @@ constants:
           min: 0
           max: 50
           digits: 0
-          comments: ''
         knock_stepSize:
           type: scalar
           size: U08
@@ -9756,7 +9799,6 @@ constants:
           min: 0
           max: 50
           digits: 0
-          comments: ''
         knock_stepTime:
           type: scalar
           size: U08
@@ -9767,7 +9809,6 @@ constants:
           min: 0
           max: 2.5
           digits: 1
-          comments: ''
         knock_duration:
           type: scalar
           size: U08
@@ -9778,7 +9819,6 @@ constants:
           min: 0
           max: 2.5
           digits: 1
-          comments: //Time after knock retard starts that it should start recovering
         knock_recoveryStepTime:
           type: scalar
           size: U08
@@ -9789,7 +9829,6 @@ constants:
           min: 0
           max: 2.5
           digits: 1
-          comments: ''
         knock_recoveryStep:
           type: scalar
           size: U08
@@ -9800,7 +9839,6 @@ constants:
           min: 0
           max: 50
           digits: 0
-          comments: ''
         fuel2Algorithm:
           type: bits
           size: U08
@@ -9810,7 +9848,6 @@ constants:
             to: 2
           values:
             - $loadSourceNames
-          comments: ''
         fuel2Mode:
           type: bits
           size: U08
@@ -9827,7 +9864,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         fuel2SwitchVariable:
           type: bits
           size: U08
@@ -9840,8 +9876,36 @@ constants:
             - MAP
             - TPS
             - ETH%
-          comments: ''
         fuel2SwitchValue: {}
+        fuel2InputPin:
+          type: bits
+          size: U08
+          offset: 125
+          address:
+            from: 0
+            to: 5
+          values:
+            - $IO_Pins_no_def
+        fuel2InputPolarity:
+          type: bits
+          size: U08
+          offset: 125
+          address:
+            from: 6
+            to: 6
+          values:
+            - LOW
+            - HIGH
+        fuel2InputPullup:
+          type: bits
+          size: U08
+          offset: 125
+          address:
+            from: 7
+            to: 7
+          values:
+            - 'No'
+            - 'Yes'
         vvtCLholdDuty:
           type: scalar
           size: U08
@@ -9852,7 +9916,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         vvtCLKP:
           type: scalar
           size: U08
@@ -9863,7 +9926,6 @@ constants:
           min: 0
           max: 7.96
           digits: 2
-          comments: '* (  1 byte)'
         vvtCLKI:
           type: scalar
           size: U08
@@ -9874,7 +9936,6 @@ constants:
           min: 0
           max: 7.96
           digits: 2
-          comments: '* (  1 byte)'
         vvtCLKD:
           type: scalar
           size: U08
@@ -9885,7 +9946,6 @@ constants:
           min: 0
           max: 1.99
           digits: 3
-          comments: '* (  1 byte)'
         vvtCLMinAng:
           type: scalar
           size: S16
@@ -9896,7 +9956,6 @@ constants:
           min: -360
           max: 360
           digits: 0
-          comments: '* (  2 bytes)'
         vvtCLMaxAng:
           type: scalar
           size: S16
@@ -9907,7 +9966,6 @@ constants:
           min: -360
           max: 360
           digits: 0
-          comments: '* (  2 bytes)'
         crankingEnrichTaper:
           type: scalar
           size: U08
@@ -9918,7 +9976,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         fuelPressureEnable:
           type: bits
           size: U08
@@ -9929,7 +9986,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         oilPressureEnable:
           type: bits
           size: U08
@@ -9940,7 +9996,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         oilPressureProtEnbl:
           type: bits
           size: U08
@@ -9951,7 +10006,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         fuelPressurePin:
           type: bits
           size: U08
@@ -9976,7 +10030,6 @@ constants:
             - A13
             - A14
             - A15
-          comments: ''
         oilPressurePin:
           type: bits
           size: U08
@@ -10001,7 +10054,6 @@ constants:
             - A13
             - A14
             - A15
-          comments: ''
         fuelPressureMin:
           type: scalar
           size: S08
@@ -10012,7 +10064,6 @@ constants:
           min: -100
           max: 127
           digits: 0
-          comments: Note signed int
         fuelPressureMax:
           type: scalar
           size: U08
@@ -10023,7 +10074,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         oilPressureMin:
           type: scalar
           size: S08
@@ -10034,7 +10084,6 @@ constants:
           min: -100
           max: 127
           digits: 0
-          comments: Note signed int
         oilPressureMax:
           type: scalar
           size: U08
@@ -10045,7 +10094,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         oilPressureProtRPM:
           type: array
           size: U08
@@ -10059,7 +10107,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         oilPressureProtMins:
           type: array
           size: U08
@@ -10073,7 +10120,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         wmiEnabled:
           type: bits
           size: U08
@@ -10084,7 +10130,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         wmiMode:
           type: bits
           size: U08
@@ -10097,7 +10142,6 @@ constants:
             - Proportional
             - Openloop
             - Closedloop
-          comments: ''
         wmiAdvEnabled:
           type: bits
           size: U08
@@ -10108,7 +10152,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         wmiTPS:
           type: scalar
           size: U08
@@ -10119,7 +10162,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         wmiRPM:
           type: scalar
           size: U08
@@ -10130,7 +10172,6 @@ constants:
           min: 0
           max: 10000
           digits: 0
-          comments: ''
         wmiMAP:
           type: scalar
           size: U08
@@ -10141,7 +10182,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
         wmiMAP2:
           type: scalar
           size: U08
@@ -10152,7 +10192,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
         wmiIAT:
           type: scalar
           size: U08
@@ -10163,7 +10202,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         wmiOffset:
           type: scalar
           size: S08
@@ -10174,7 +10212,6 @@ constants:
           min: -12.7
           max: 12.7
           digits: 0
-          comments: Note signed int
         wmiIndicatorEnabled:
           type: bits
           size: U08
@@ -10185,7 +10222,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         wmiIndicatorPin:
           type: bits
           size: U08
@@ -10196,7 +10232,16 @@ constants:
           values:
             - Board Default
             - $DIGITAL_PIN
-          comments: ''
+        wmiIndicatorPolarity:
+          type: bits
+          size: U08
+          offset: 156
+          address:
+            from: 7
+            to: 7
+          values:
+            - Normal
+            - Inverted
         wmiEmptyEnabled:
           type: bits
           size: U08
@@ -10207,7 +10252,6 @@ constants:
           values:
             - 'Off'
             - 'On'
-          comments: ''
         wmiEmptyPin:
           type: bits
           size: U08
@@ -10218,7 +10262,16 @@ constants:
           values:
             - Board Default
             - $DIGITAL_PIN
-          comments: ''
+        wmiEmptyPolarity:
+          type: bits
+          size: U08
+          offset: 157
+          address:
+            from: 7
+            to: 7
+          values:
+            - Normal
+            - Inverted
         wmiEnabledPin:
           type: bits
           size: U08
@@ -10229,7 +10282,6 @@ constants:
           values:
             - Board Default
             - $DIGITAL_PIN
-          comments: ''
         wmiAdvBins:
           type: array
           size: U08
@@ -10243,7 +10295,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
         wmiAdvAdj:
           type: array
           size: U08
@@ -10257,7 +10308,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         vvtCLminDuty:
           type: scalar
           size: U08
@@ -10268,7 +10318,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: Minimum and maximum duty cycles when using closed loop
         vvtCLmaxDuty:
           type: scalar
           size: U08
@@ -10279,7 +10328,78 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
+        vvt2Pin:
+          type: bits
+          size: U08
+          offset: 173
+          address:
+            from: 0
+            to: 5
+          values:
+            - Board Default
+            - INVALID
+            - INVALID
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+            - '17'
+            - '18'
+            - '19'
+            - '20'
+            - '21'
+            - '22'
+            - '23'
+            - '24'
+            - '25'
+            - '26'
+            - '27'
+            - '28'
+            - '29'
+            - '30'
+            - '31'
+            - '32'
+            - '33'
+            - '34'
+            - '35'
+            - '36'
+            - '37'
+            - '38'
+            - '39'
+            - '40'
+            - '41'
+            - '42'
+            - '43'
+            - '44'
+            - '45'
+            - '46'
+            - '47'
+            - '48'
+            - '49'
+            - '50'
+            - '51'
+            - '52'
+            - '53'
+            - '54'
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
+            - INVALID
         fuelTempBins:
           type: array
           size: U08
@@ -10293,7 +10413,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         fuelTempValues:
           type: array
           size: U08
@@ -10307,7 +10426,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         spark2Algorithm:
           type: bits
           size: U08
@@ -10317,7 +10435,6 @@ constants:
             to: 2
           values:
             - $loadSourceNames
-          comments: ''
         spark2Mode:
           type: bits
           size: U08
@@ -10334,7 +10451,6 @@ constants:
             - INVALID
             - INVALID
             - INVALID
-          comments: ''
         spark2SwitchVariable:
           type: bits
           size: U08
@@ -10347,8 +10463,36 @@ constants:
             - MAP
             - TPS
             - ETH%
-          comments: ''
         spark2SwitchValue: {}
+        spark2InputPin:
+          type: bits
+          size: U08
+          offset: 189
+          address:
+            from: 0
+            to: 5
+          values:
+            - $IO_Pins_no_def
+        spark2InputPolarity:
+          type: bits
+          size: U08
+          offset: 189
+          address:
+            from: 6
+            to: 6
+          values:
+            - LOW
+            - HIGH
+        spark2InputPullup:
+          type: bits
+          size: U08
+          offset: 189
+          address:
+            from: 7
+            to: 7
+          values:
+            - 'No'
+            - 'Yes'
         unused11_190_191:
           type: array
           size: U08
@@ -10362,7 +10506,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
     - number: 11
       size: 111
       data:
@@ -10379,7 +10522,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         fuelRPM2Bins:
           type: array
           size: U08
@@ -10393,7 +10535,6 @@ constants:
           min: 0
           max: 25500
           digits: 0
-          comments: ''
         fuelLoad2Bins: {}
     - number: 12
       size: 111
@@ -10411,7 +10552,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         rpmBinsWMI:
           type: array
           size: U08
@@ -10425,7 +10565,6 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         mapBinsWMI:
           type: array
           size: U08
@@ -10439,7 +10578,6 @@ constants:
           min: 0
           max: 511
           digits: 0
-          comments: ''
     - number: 13
       size: 111
       data:
@@ -10453,7 +10591,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted1:
           type: bits
           size: U08
@@ -10464,7 +10601,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted2:
           type: bits
           size: U08
@@ -10475,7 +10611,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted3:
           type: bits
           size: U08
@@ -10486,7 +10621,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted4:
           type: bits
           size: U08
@@ -10497,7 +10631,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted5:
           type: bits
           size: U08
@@ -10508,7 +10641,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted6:
           type: bits
           size: U08
@@ -10519,7 +10651,6 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
         outputInverted7:
           type: bits
           size: U08
@@ -10530,7 +10661,16 @@ constants:
           values:
             - Active high
             - Active low
-          comments: ''
+        unused12_1:
+          type: scalar
+          size: U08
+          offset: 1
+          units: bits
+          scale: 1
+          transform: 0
+          min: 0
+          max: 0
+          digits: 0
         outputPin:
           type: array
           size: U08
@@ -10544,7 +10684,78 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
+        outputPin0:
+          type: bits
+          size: U08
+          offset: 2
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin1:
+          type: bits
+          size: U08
+          offset: 3
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin2:
+          type: bits
+          size: U08
+          offset: 4
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin3:
+          type: bits
+          size: U08
+          offset: 5
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin4:
+          type: bits
+          size: U08
+          offset: 6
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin5:
+          type: bits
+          size: U08
+          offset: 7
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin6:
+          type: bits
+          size: U08
+          offset: 8
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
+        outputPin7:
+          type: bits
+          size: U08
+          offset: 9
+          address:
+            from: 0
+            to: 7
+          values:
+            - $comp_IO_Pins
         outputDelay:
           type: array
           size: U08
@@ -10558,7 +10769,6 @@ constants:
           min: 0
           max: 25.5
           digits: 1
-          comments: ''
         firstDataIn:
           type: array
           size: U08
@@ -10572,7 +10782,78 @@ constants:
           min: 0
           max: 65535
           digits: 0
-          comments: ''
+        firstDataIn0:
+          type: bits
+          size: U08
+          offset: 18
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn1:
+          type: bits
+          size: U08
+          offset: 19
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn2:
+          type: bits
+          size: U08
+          offset: 20
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn3:
+          type: bits
+          size: U08
+          offset: 21
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn4:
+          type: bits
+          size: U08
+          offset: 22
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn5:
+          type: bits
+          size: U08
+          offset: 23
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn6:
+          type: bits
+          size: U08
+          offset: 24
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        firstDataIn7:
+          type: bits
+          size: U08
+          offset: 25
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
         secondDataIn:
           type: array
           size: U08
@@ -10586,7 +10867,78 @@ constants:
           min: 0
           max: 65535
           digits: 0
-          comments: ''
+        secondDataIn0:
+          type: bits
+          size: U08
+          offset: 26
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn1:
+          type: bits
+          size: U08
+          offset: 27
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn2:
+          type: bits
+          size: U08
+          offset: 28
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn3:
+          type: bits
+          size: U08
+          offset: 29
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn4:
+          type: bits
+          size: U08
+          offset: 30
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn5:
+          type: bits
+          size: U08
+          offset: 31
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn6:
+          type: bits
+          size: U08
+          offset: 32
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
+        secondDataIn7:
+          type: bits
+          size: U08
+          offset: 33
+          address:
+            from: 0
+            to: 7
+          values:
+            - $fullStatus_def
         unused13_35_49:
           type: array
           size: U08
@@ -10600,7 +10952,6 @@ constants:
           min: 0
           max: 100
           digits: 0
-          comments: ''
         firstTarget:
           type: array
           size: S16
@@ -10614,7 +10965,6 @@ constants:
           min: -32768
           max: 32768
           digits: 0
-          comments: ''
         secondTarget:
           type: array
           size: S16
@@ -10628,7 +10978,6 @@ constants:
           min: -32768
           max: 32768
           digits: 0
-          comments: ''
         firstCompType0:
           type: bits
           size: U08
@@ -10638,7 +10987,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType0:
           type: bits
           size: U08
@@ -10648,7 +10996,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise0:
           type: bits
           size: U08
@@ -10658,7 +11005,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType1:
           type: bits
           size: U08
@@ -10668,7 +11014,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType1:
           type: bits
           size: U08
@@ -10678,7 +11023,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise1:
           type: bits
           size: U08
@@ -10688,7 +11032,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType2:
           type: bits
           size: U08
@@ -10698,7 +11041,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType2:
           type: bits
           size: U08
@@ -10708,7 +11050,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise2:
           type: bits
           size: U08
@@ -10718,7 +11059,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType3:
           type: bits
           size: U08
@@ -10728,7 +11068,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType3:
           type: bits
           size: U08
@@ -10738,7 +11077,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise3:
           type: bits
           size: U08
@@ -10748,7 +11086,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType4:
           type: bits
           size: U08
@@ -10758,7 +11095,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType4:
           type: bits
           size: U08
@@ -10768,7 +11104,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise4:
           type: bits
           size: U08
@@ -10778,7 +11113,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType5:
           type: bits
           size: U08
@@ -10788,7 +11122,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType5:
           type: bits
           size: U08
@@ -10798,7 +11131,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise5:
           type: bits
           size: U08
@@ -10808,7 +11140,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType6:
           type: bits
           size: U08
@@ -10818,7 +11149,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType6:
           type: bits
           size: U08
@@ -10828,7 +11158,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise6:
           type: bits
           size: U08
@@ -10838,7 +11167,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         firstCompType7:
           type: bits
           size: U08
@@ -10848,7 +11176,6 @@ constants:
             to: 2
           values:
             - $comparator_def
-          comments: ''
         secondCompType7:
           type: bits
           size: U08
@@ -10858,7 +11185,6 @@ constants:
             to: 5
           values:
             - $comparator_def
-          comments: ''
         bitwise7:
           type: bits
           size: U08
@@ -10868,7 +11194,6 @@ constants:
             to: 7
           values:
             - $bitwise_def
-          comments: ''
         candID:
           type: array
           size: U16
@@ -10882,7 +11207,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
         unused12_106_127:
           type: array
           size: U08
@@ -10896,7 +11220,6 @@ constants:
           min: 0
           max: 255
           digits: 0
-          comments: ''
     - number: 14
       size: 111
       data:
@@ -10913,7 +11236,6 @@ constants:
           min: -40
           max: 215
           digits: 0
-          comments: ''
         rpmBins3:
           type: array
           size: U08
@@ -10927,8 +11249,315 @@ constants:
           min: 100
           max: 25500
           digits: 0
-          comments: ''
         mapBins2: {}
+menus:
+  settings:
+    title: Settings
+    subMenus:
+      engine_constants:
+        title: Engine Constants
+        page: 0
+        condition: ''
+      injChars:
+        title: Injector Characteristics
+        page: 0
+        condition: ''
+      triggerSettings:
+        title: Trigger Setup
+        page: 0
+        condition: ''
+      airdensity_curve:
+        title: IAT Density
+        page: 0
+        condition: ''
+      baroFuel_curve:
+        title: Barometric Correction
+        page: 0
+        condition: ''
+      reset_control:
+        title: Reset Control
+        page: 0
+        condition: ''
+      gaugeLimits:
+        title: Gauge Limits
+        page: 0
+        condition: ''
+      io_summary:
+        title: I/O Summary
+        page: 0
+        condition: ''
+      prgm_out_config:
+        title: Programmable outputs
+        page: 0
+        condition: ''
+  tuning:
+    title: Tuning
+    subMenus:
+      std_realtime:
+        title: Realtime Display
+        page: 0
+        condition: ''
+      accelEnrichments:
+        title: Acceleration Enrichment
+        page: 0
+        condition: ''
+      egoControl:
+        title: AFR/O2
+        page: 3
+        condition: ''
+      RevLimiterS:
+        title: Engine Protection
+        page: 2
+        condition: ''
+      flexFueling:
+        title: Flex Fuel
+        page: 2
+        condition: ''
+      veTableDialog:
+        title: VE Table
+        page: 0
+        condition: ''
+      sparkTbl:
+        title: Spark Table
+        page: 2
+        condition: ''
+      afrTable1Tbl:
+        title: AFR Table
+        page: 5
+        condition: ''
+      fuelTable2Dialog:
+        title: Second fuel Table
+        page: 11
+        condition: ''
+      sparkTable2Dialog:
+        title: Second spark Table
+        page: 14
+        condition: ''
+      inj_trimad:
+        title: Sequential fuel trim
+        page: 9
+        condition: ''
+      stagingTableDialog:
+        title: Staged Injection
+        page: 10
+        condition: nCylinders <= 4
+      fuelTemp_curve:
+        title: Fuel Temp Correction
+        page: 0
+        condition: flexEnabled
+  spark:
+    title: Spark
+    subMenus:
+      sparkSettings:
+        title: Spark Settings
+        page: 0
+        condition: ''
+      sparkTbl:
+        title: Spark Table
+        page: 2
+        condition: ''
+      dwellSettings:
+        title: Dwell settings
+        page: 0
+        condition: ''
+      dwell_correction_curve:
+        title: Dwell Compensation
+        page: 0
+        condition: ''
+      iat_retard_curve:
+        title: IAT Retard
+        page: 0
+        condition: ''
+      clt_advance_curve:
+        title: Cold Advance
+        page: 0
+        condition: ''
+      rotary_ignition:
+        title: Rotary Ignition
+        page: 0
+        condition: sparkMode == 4
+  startupIdle:
+    title: Startup/Idle
+    subMenus:
+      crankPW:
+        title: Cranking Settings
+        page: 0
+        condition: ''
+      primePW:
+        title: Priming Pulsewidth
+        page: 0
+        condition: ''
+      warmup:
+        title: Warmup Enrichment
+        page: 0
+        condition: ''
+      ASE:
+        title: Afterstart Enrichment (ASE)
+        page: 0
+        condition: ''
+      idleSettings:
+        title: Idle Control
+        page: 0
+        condition: ''
+      iacClosedLoop_curve:
+        title: Idle - RPM targets
+        page: 7
+        condition: >-
+          iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6 ||
+          idleAdvEnabled >= 1
+      iacPwm_curve:
+        title: Idle - PWM Duty Cycle
+        page: 7
+        condition: iacAlgorithm == 2 || iacAlgorithm == 6
+      iacPwmCrank_curve:
+        title: Idle - PWM Cranking Duty Cycle
+        page: 7
+        condition: iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 6
+      iacStep_curve:
+        title: Idle - Stepper Motor
+        page: 7
+        condition: iacAlgorithm == 4
+      iacStepCrank_curve:
+        title: Idle - Stepper Motor Cranking
+        page: 7
+        condition: iacAlgorithm == 4 || iacAlgorithm == 5
+      idleUpSettings:
+        title: Idle Up Settings
+        page: 0
+        condition: >-
+          iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 4 ||
+          iacAlgorithm == 5 || iacAlgorithm == 6
+      idleAdvanceSettings:
+        title: Idle Advance Settings
+        page: 0
+        condition: ''
+  accessories:
+    title: Accessories
+    subMenus:
+      fanSettings:
+        title: Thermo Fan
+        page: 0
+        condition: ''
+      LaunchControl:
+        title: Launch Control / Flat Shift
+        page: 0
+        condition: ''
+      fuelpump:
+        title: Fuel Pump
+        page: 0
+        condition: ''
+      NitrousControl:
+        title: Nitrous
+        page: 0
+        condition: ''
+      vssSettings:
+        title: VSS and Gear detection
+        page: 0
+        condition: ''
+      boostSettings:
+        title: Boost Control
+        page: 0
+        condition: ''
+      boostLoad:
+        title: Boost Targets/Load
+        page: 8
+        condition: boostEnabled
+      vvtSettings:
+        title: VVT Control
+        page: 0
+        condition: ''
+      vvtTbl:
+        title: VVT duty cycle
+        page: 8
+        condition: vvtEnabled
+      wmiSettings:
+        title: WMI Control
+        page: 0
+        condition: '!vvtEnabled'
+      wmiTbl:
+        title: WMI duty cycle
+        page: 8
+        condition: '!vvtEnabled && wmiEnabled && wmiMode > 1'
+      tacho:
+        title: Tacho Output
+        page: 0
+        condition: ''
+      can_serial3IO:
+        title: Canbus/Secondary Serial IO Interface
+        page: 0
+        condition: ''
+      Canin_config:
+        title: External Auxillary Input Channel Configuration
+        page: 0
+        condition: enable_secondarySerial || (enable_intcan && intcan_available)
+      Auxin_config:
+        title: Local Auxillary Input Channel Configuration
+        page: 0
+        condition: ''
+      serial3IO:
+        title: Canbus/Secondary Serial IO Interface
+        page: 0
+        condition: ''
+      pressureSensors:
+        title: Fuel/Oil pressure
+        page: 0
+        condition: ''
+  tools:
+    title: Tools
+    subMenus:
+      mapCal:
+        title: Calibrate Pressure Sensors
+        page: 0
+        condition: ''
+      batCal:
+        title: Calibrate Voltage Reading
+        page: 0
+        condition: ''
+      std_ms2gentherm:
+        title: Calibrate Temperature Sensors
+        page: 0
+        condition: ''
+      std_ms2geno2:
+        title: Calibrate AFR Sensor
+        page: 0
+        condition: egoType > 0
+      sensorFilters:
+        title: Set analog sensor filters
+        page: 0
+        condition: ''
+  3dTuningMaps:
+    title: 3D Tuning Maps
+    subMenus:
+      veTable1Map:
+        title: Fuel Table
+        page: 0
+        condition: ''
+      sparkMap:
+        title: Spark Table
+        page: 3
+        condition: ''
+      afrTable1Map:
+        title: AFR Target Table
+        page: 0
+        condition: ''
+  hardwareTesting:
+    title: Hardware Testing
+    subMenus:
+      outputtest1:
+        title: Test Output Hardware
+        page: 0
+        condition: ''
+      stm32cmd:
+        title: STM32 Commands
+        page: 0
+        condition: ''
+  help:
+    title: Help
+    subMenus:
+      helpGeneral:
+        title: Speeduino Help
+        page: 0
+        condition: ''
 dialogs:
   engine_constants_southwest:
     title: Speeduino Board
@@ -15002,80 +15631,80 @@ dialogs:
         title: Select Rule Number
         condition: ''
 
-menus:
-  - name: settings
-    title: Settings
-    subMenus:
-      - name: engineConstants
-        title: Engine Constants
-      - name: injectorCharacteristics
-        title: Injector Characteristics
-      - name: triggerSettings
-        title: Trigger Settings
-      - name: airDensity
-        title: IAT Density
-      - name: barometricCorrection
-        title: Barometric Correction
-      - name: resetControl
-        title: Reset Control
-      # - name: separator
-      - name: gaugeLimits
-        title: Gauge Limits
-      # - name: separator
-      - name: ioSummary
-        title: I/O Summary
-      # - name: separator
-      - name: programmableOutputs
-        title: Programmable outputs
+# menus:
+#   - name: settings
+#     title: Settings
+#     subMenus:
+#       - name: engineConstants
+#         title: Engine Constants
+#       - name: injectorCharacteristics
+#         title: Injector Characteristics
+#       - name: triggerSettings
+#         title: Trigger Settings
+#       - name: airDensity
+#         title: IAT Density
+#       - name: barometricCorrection
+#         title: Barometric Correction
+#       - name: resetControl
+#         title: Reset Control
+#       # - name: separator
+#       - name: gaugeLimits
+#         title: Gauge Limits
+#       # - name: separator
+#       - name: ioSummary
+#         title: I/O Summary
+#       # - name: separator
+#       - name: programmableOutputs
+#         title: Programmable outputs
 
-  - name: tuning
-    title: Tuning
-    subMenus:
-      - name: realtimeDisplay
-        title: Realtime Display
-      - name: accelerationEnrichment
-        title: Acceleration Enrichment
-      - name: aFRO2
-        title: AFR/O2
-      - name: engineProtection
-        title: Engine Protection
-      - name: flexFuel
-        title: Flex Fuel
-      - name: veTable
-        title: VE Table
-      - name: sparkTable
-        title: Spark Table
-      - name: afrTable
-        title: AFR Table
-      - name: secondFuelTable
-        title: Second Fuel Table
-      - name: secondSparkTable
-        title: Second spark Table
-      - name: sequentialFuelTrim
-        title: Sequential Fuel trim
-      - name: stagedInjection
-        title: Staged Injection
-      - name: fuelTempCorrection
-        title: Fuel Temp Correction
+#   - name: tuning
+#     title: Tuning
+#     subMenus:
+#       - name: realtimeDisplay
+#         title: Realtime Display
+#       - name: accelerationEnrichment
+#         title: Acceleration Enrichment
+#       - name: aFRO2
+#         title: AFR/O2
+#       - name: engineProtection
+#         title: Engine Protection
+#       - name: flexFuel
+#         title: Flex Fuel
+#       - name: veTable
+#         title: VE Table
+#       - name: sparkTable
+#         title: Spark Table
+#       - name: afrTable
+#         title: AFR Table
+#       - name: secondFuelTable
+#         title: Second Fuel Table
+#       - name: secondSparkTable
+#         title: Second spark Table
+#       - name: sequentialFuelTrim
+#         title: Sequential Fuel trim
+#       - name: stagedInjection
+#         title: Staged Injection
+#       - name: fuelTempCorrection
+#         title: Fuel Temp Correction
 
-  - name: spark
-    title: Spark
-    subMenus:
-      - name: sparkSettings
-        title: Spark Settings
-      - name: sparkTable
-        title: Spark Table
-      - name: dwellSettings
-        title: Dwell settings
-      - name: dwellCompensation
-        title: Dwell Compensation
-      - name: iatRetard
-        title: IAT Retard
-      - name: coldAdvance
-        title: Cold Advance
-      - name: rotaryIgnition
-        title: Rotary Ignition
-        condition: sparkMode == 4
+#   - name: spark
+#     title: Spark
+#     subMenus:
+#       - name: sparkSettings
+#         title: Spark Settings
+#       - name: sparkTable
+#         title: Spark Table
+#       - name: dwellSettings
+#         title: Dwell settings
+#       - name: dwellCompensation
+#         title: Dwell Compensation
+#       - name: iatRetard
+#         title: IAT Retard
+#       - name: coldAdvance
+#         title: Cold Advance
+#       - name: rotaryIgnition
+#         title: Rotary Ignition
+#         condition: sparkMode == 4
 
 # dialogs:
 #   - name: engineConstants

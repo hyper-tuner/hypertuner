@@ -1,17 +1,15 @@
-interface Entity {
+interface Field {
   name: string,
   title: string,
-}
-
-interface Field extends Entity {
-  help?: string,
+  help?: string, // TODO: move this?
   condition?: string,
 }
 
-interface Dialog extends Entity {
+interface Dialog {
+  title: string,
   layout: string,
   help?: {
-    link: string,
+    link: string, // TODO: move this?
   },
   panels: {
     [name: string]: Dialog,
@@ -24,10 +22,21 @@ interface Dialogs {
   [name: string]: Dialog,
 }
 
-interface SubMenu extends Entity {}
+interface SubMenu {
+  title: string,
+  page: number,
+  condition: string,
+}
 
-interface Menu extends Entity {
-  subMenus: SubMenu[];
+interface Menu {
+  title: string,
+  subMenus: {
+    [name: string]: SubMenu,
+  },
+}
+
+interface Menus {
+  [name: string]: Menu,
 }
 
 interface ArrayShape {
@@ -81,7 +90,7 @@ interface Config {
   dialogs: {
     [name: string]: Dialog,
   },
-  menus: Menu[],
+  menus: Menus,
 }
 
 export type {
@@ -90,6 +99,7 @@ export type {
   Dialogs,
   SubMenu,
   Menu,
+  Menus,
   ArrayShape,
   BitsAddress,
   Constant,

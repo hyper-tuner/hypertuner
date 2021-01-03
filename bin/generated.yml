@@ -11250,10 +11250,10 @@ constants:
           max: 25500
           digits: 0
         mapBins2: {}
-menu:
+menus:
   settings:
     title: Settings
-    subMenu:
+    subMenus:
       engine_constants:
         title: Engine Constants
         page: 0
@@ -11292,7 +11292,7 @@ menu:
         condition: ''
   tuning:
     title: Tuning
-    subMenu:
+    subMenus:
       std_realtime:
         title: Realtime Display
         page: 0
@@ -11347,7 +11347,7 @@ menu:
         condition: flexEnabled
   spark:
     title: Spark
-    subMenu:
+    subMenus:
       sparkSettings:
         title: Spark Settings
         page: 0
@@ -11378,7 +11378,7 @@ menu:
         condition: sparkMode == 4
   startupIdle:
     title: Startup/Idle
-    subMenu:
+    subMenus:
       crankPW:
         title: Cranking Settings
         page: 0
@@ -11433,7 +11433,7 @@ menu:
         condition: ''
   accessories:
     title: Accessories
-    subMenu:
+    subMenus:
       fanSettings:
         title: Thermo Fan
         page: 0
@@ -11504,7 +11504,7 @@ menu:
         condition: ''
   tools:
     title: Tools
-    subMenu:
+    subMenus:
       mapCal:
         title: Calibrate Pressure Sensors
         page: 0
@@ -11527,7 +11527,7 @@ menu:
         condition: ''
   3dTuningMaps:
     title: 3D Tuning Maps
-    subMenu:
+    subMenus:
       veTable1Map:
         title: Fuel Table
         page: 0
@@ -11542,7 +11542,7 @@ menu:
         condition: ''
   hardwareTesting:
     title: Hardware Testing
-    subMenu:
+    subMenus:
       outputtest1:
         title: Test Output Hardware
         page: 0
@@ -11553,7 +11553,7 @@ menu:
         condition: ''
   help:
     title: Help
-    subMenu:
+    subMenus:
       helpGeneral:
         title: Speeduino Help
         page: 0

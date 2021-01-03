@@ -44,7 +44,7 @@ class Parser {
       constants: {
         pages: [],
       },
-      menu: {},
+      menus: {},
       dialogs: {},
     };
   }
@@ -235,9 +235,9 @@ class Parser {
 
       this.currentMenu = name;
 
-      this.result.menu[this.currentMenu] = {
+      this.result.menus[this.currentMenu] = {
         title,
-        subMenu: {}
+        subMenus: {}
       };
 
       return;
@@ -245,7 +245,7 @@ class Parser {
 
     const subMenuMatch = line.match(this.SUB_MENU_PATTERN);
     if (subMenuMatch) {
-      this.result.menu[this.currentMenu].subMenu[subMenuMatch.groups.name] = {
+      this.result.menus[this.currentMenu].subMenus[subMenuMatch.groups.name] = {
         title: subMenuMatch.groups.title,
         page: Number(subMenuMatch.groups.page || 0),
         condition: (subMenuMatch.groups.condition || '').replace(/{|}/g, '').trim(),
@@ -330,7 +330,7 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
-// console.dir(result.menu, { maxArrayLength: 1000, depth: null });
+// console.dir(result.menus, { maxArrayLength: 1000, depth: null });
 
 // console.dir(result.dialogs, { maxArrayLength: 10, depth: null });
 // console.dir(yaml.dump(result), { maxArrayLength: 1000, depth: null });

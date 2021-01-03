@@ -4,7 +4,6 @@ import {
 
 const standardDialogs: DialogsType = {
   std_injection: {
-    name: 'engineConstants',
     title: 'Engine Constants',
     help: {
       link: 'https://wiki.speeduino.com/en/configuration/Engine_Constants'
@@ -12,7 +11,6 @@ const standardDialogs: DialogsType = {
     layout: '',
     panels: {
       engine_constants_southwest: {
-        name: 'engine_constants_southwest',
         title: 'Speeduino Board',
         layout: '',
         panels: {},
