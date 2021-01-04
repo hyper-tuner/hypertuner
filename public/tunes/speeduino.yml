@@ -6,7 +6,7 @@ megaTune:
 tunerStudio:
   iniSpecVersion: 3.64
 defines:
-  loadSourceNames:
+  loadSourceNames: &ref_0
     - MAP
     - TPS
     - IMAP/EMAP
@@ -89,7 +89,7 @@ defines:
     - A14
     - A15
     - INVALID
-  IO_Pins_no_def:
+  IO_Pins_no_def: &ref_5
     - INVALID
     - INVALID
     - INVALID
@@ -154,12 +154,12 @@ defines:
     - A14
     - A15
     - INVALID
-  bitwise_def:
+  bitwise_def: &ref_9
     - Disabled
     - AND
     - OR
     - XOR
-  comparator_def:
+  comparator_def: &ref_8
     - '=='
     - '!='
     - '>'
@@ -168,7 +168,7 @@ defines:
     - <=
     - INVALID
     - INVALID
-  comp_IO_Pins:
+  comp_IO_Pins: &ref_6
     - Disabled
     - INVALID
     - INVALID
@@ -354,7 +354,7 @@ defines:
     - Fuel temp correction
     - Advance 1
     - Advance 2
-  fullStatus_def:
+  fullStatus_def: &ref_7
     - $fullStatus_def_1
     - $fullStatus_def_2
     - $fullStatus_def_3
@@ -442,7 +442,7 @@ defines:
     - INVALID
     - INVALID
     - INVALID
-  ANALOG_PIN:
+  ANALOG_PIN: &ref_3
     - A0
     - A1
     - A2
@@ -462,7 +462,7 @@ defines:
     - $PIN_16inv
     - $PIN_16inv
     - $PIN_16inv
-  DIGITAL_PIN:
+  DIGITAL_PIN: &ref_4
     - '1'
     - '2'
     - '3'
@@ -530,7 +530,7 @@ defines:
   ANALOG_DIG_PIN_LIST:
     - $DIGITAL_PIN
     - $ANALOG_PIN
-  tsCanId_list:
+  tsCanId_list: &ref_2
     - CAN ID 0
     - CAN ID 1
     - CAN ID 2
@@ -2626,7 +2626,7 @@ defines:
     - '0x7FD'
     - '0x7FE'
     - '0x7FF'
-  CAN_ADDRESS_HEX:
+  CAN_ADDRESS_HEX: &ref_1
     - $CAN_ADDRESS_HEX_01XX
     - $CAN_ADDRESS_HEX_02XX
     - $CAN_ADDRESS_HEX_03XX
@@ -2769,8 +2769,7 @@ pcVariables:
     address:
       from: 0
       to: 2
-    values:
-      - $loadSourceNames
+    values: *ref_0
   algorithmUnits:
     type: bits
     size: U08
@@ -3423,8 +3422,7 @@ constants:
           address:
             from: 4
             to: 6
-          values:
-            - $loadSourceNames
+          values: *ref_0
         indInjAng:
           type: bits
           size: U08
@@ -3521,8 +3519,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $loadSourceNames
+          values: *ref_0
         fixAngEnable:
           type: bits
           size: U08
@@ -8012,8 +8009,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address1:
           type: bits
           size: U16
@@ -8021,8 +8017,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address2:
           type: bits
           size: U16
@@ -8030,8 +8025,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address3:
           type: bits
           size: U16
@@ -8039,8 +8033,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address4:
           type: bits
           size: U16
@@ -8048,8 +8041,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address5:
           type: bits
           size: U16
@@ -8057,8 +8049,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address6:
           type: bits
           size: U16
@@ -8066,8 +8057,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address7:
           type: bits
           size: U16
@@ -8075,8 +8065,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address8:
           type: bits
           size: U16
@@ -8084,8 +8073,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address9:
           type: bits
           size: U16
@@ -8093,8 +8081,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address10:
           type: bits
           size: U16
@@ -8102,8 +8089,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address11:
           type: bits
           size: U16
@@ -8111,8 +8097,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address12:
           type: bits
           size: U16
@@ -8120,8 +8105,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address13:
           type: bits
           size: U16
@@ -8129,8 +8113,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address14:
           type: bits
           size: U16
@@ -8138,8 +8121,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_can_address15:
           type: bits
           size: U16
@@ -8147,8 +8129,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         caninput_source_start_byte0:
           type: bits
           size: U08
@@ -8959,8 +8940,7 @@ constants:
           address:
             from: 0
             to: 3
-          values:
-            - $tsCanId_list
+          values: *ref_2
         true_address:
           type: bits
           size: U16
@@ -8968,8 +8948,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         realtime_base_address:
           type: bits
           size: U16
@@ -8977,8 +8956,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         obd_address:
           type: bits
           size: U16
@@ -8986,8 +8964,7 @@ constants:
           address:
             from: 0
             to: 10
-          values:
-            - $CAN_ADDRESS_HEX
+          values: *ref_1
         Auxin0pina:
           type: bits
           size: U08
@@ -8995,8 +8972,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin1pina:
           type: bits
           size: U08
@@ -9004,8 +8980,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin2pina:
           type: bits
           size: U08
@@ -9013,8 +8988,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin3pina:
           type: bits
           size: U08
@@ -9022,8 +8996,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin4pina:
           type: bits
           size: U08
@@ -9031,8 +9004,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin5pina:
           type: bits
           size: U08
@@ -9040,8 +9012,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin6pina:
           type: bits
           size: U08
@@ -9049,8 +9020,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin7pina:
           type: bits
           size: U08
@@ -9058,8 +9028,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin8pina:
           type: bits
           size: U08
@@ -9067,8 +9036,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin9pina:
           type: bits
           size: U08
@@ -9076,8 +9044,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin10pina:
           type: bits
           size: U08
@@ -9085,8 +9052,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin11pina:
           type: bits
           size: U08
@@ -9094,8 +9060,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin12pina:
           type: bits
           size: U08
@@ -9103,8 +9068,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin13pina:
           type: bits
           size: U08
@@ -9112,8 +9076,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin14pina:
           type: bits
           size: U08
@@ -9121,8 +9084,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin15pina:
           type: bits
           size: U08
@@ -9130,8 +9092,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $ANALOG_PIN
+          values: *ref_3
         Auxin0pinb:
           type: bits
           size: U08
@@ -9139,8 +9100,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin1pinb:
           type: bits
           size: U08
@@ -9148,8 +9108,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin2pinb:
           type: bits
           size: U08
@@ -9157,8 +9116,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin3pinb:
           type: bits
           size: U08
@@ -9166,8 +9124,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin4pinb:
           type: bits
           size: U08
@@ -9175,8 +9132,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin5pinb:
           type: bits
           size: U08
@@ -9184,8 +9140,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin6pinb:
           type: bits
           size: U08
@@ -9193,8 +9148,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin7pinb:
           type: bits
           size: U08
@@ -9202,8 +9156,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin8pinb:
           type: bits
           size: U08
@@ -9211,8 +9164,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin9pinb:
           type: bits
           size: U08
@@ -9220,8 +9172,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin10pinb:
           type: bits
           size: U08
@@ -9229,8 +9180,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin11pinb:
           type: bits
           size: U08
@@ -9238,8 +9188,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin12pinb:
           type: bits
           size: U08
@@ -9247,8 +9196,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin13pinb:
           type: bits
           size: U08
@@ -9256,8 +9204,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin14pinb:
           type: bits
           size: U08
@@ -9265,8 +9212,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         Auxin15pinb:
           type: bits
           size: U08
@@ -9274,8 +9220,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $DIGITAL_PIN
+          values: *ref_4
         iacStepperInv:
           type: bits
           size: U08
@@ -9581,8 +9526,7 @@ constants:
           address:
             from: 2
             to: 7
-          values:
-            - $IO_Pins_no_def
+          values: *ref_5
         n2o_minCLT:
           type: scalar
           size: U08
@@ -9630,8 +9574,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $IO_Pins_no_def
+          values: *ref_5
         n2o_pin_polarity:
           type: bits
           size: U08
@@ -9709,8 +9652,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $IO_Pins_no_def
+          values: *ref_5
         n2o_stage2_unused:
           type: bits
           size: U08
@@ -10061,8 +10003,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $loadSourceNames
+          values: *ref_0
         fuel2Mode:
           type: bits
           size: U08
@@ -10099,8 +10040,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $IO_Pins_no_def
+          values: *ref_5
         fuel2InputPolarity:
           type: bits
           size: U08
@@ -10648,8 +10588,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $loadSourceNames
+          values: *ref_0
         spark2Mode:
           type: bits
           size: U08
@@ -10686,8 +10625,7 @@ constants:
           address:
             from: 0
             to: 5
-          values:
-            - $IO_Pins_no_def
+          values: *ref_5
         spark2InputPolarity:
           type: bits
           size: U08
@@ -10906,8 +10844,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin1:
           type: bits
           size: U08
@@ -10915,8 +10852,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin2:
           type: bits
           size: U08
@@ -10924,8 +10860,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin3:
           type: bits
           size: U08
@@ -10933,8 +10868,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin4:
           type: bits
           size: U08
@@ -10942,8 +10876,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin5:
           type: bits
           size: U08
@@ -10951,8 +10884,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin6:
           type: bits
           size: U08
@@ -10960,8 +10892,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputPin7:
           type: bits
           size: U08
@@ -10969,8 +10900,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $comp_IO_Pins
+          values: *ref_6
         outputDelay:
           type: array
           size: U08
@@ -11004,8 +10934,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn1:
           type: bits
           size: U08
@@ -11013,8 +10942,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn2:
           type: bits
           size: U08
@@ -11022,8 +10950,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn3:
           type: bits
           size: U08
@@ -11031,8 +10958,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn4:
           type: bits
           size: U08
@@ -11040,8 +10966,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn5:
           type: bits
           size: U08
@@ -11049,8 +10974,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn6:
           type: bits
           size: U08
@@ -11058,8 +10982,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         firstDataIn7:
           type: bits
           size: U08
@@ -11067,8 +10990,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn:
           type: array
           size: U08
@@ -11089,8 +11011,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn1:
           type: bits
           size: U08
@@ -11098,8 +11019,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn2:
           type: bits
           size: U08
@@ -11107,8 +11027,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn3:
           type: bits
           size: U08
@@ -11116,8 +11035,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn4:
           type: bits
           size: U08
@@ -11125,8 +11043,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn5:
           type: bits
           size: U08
@@ -11134,8 +11051,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn6:
           type: bits
           size: U08
@@ -11143,8 +11059,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         secondDataIn7:
           type: bits
           size: U08
@@ -11152,8 +11067,7 @@ constants:
           address:
             from: 0
             to: 7
-          values:
-            - $fullStatus_def
+          values: *ref_7
         unused13_35_49:
           type: array
           size: U08
@@ -11200,8 +11114,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType0:
           type: bits
           size: U08
@@ -11209,8 +11122,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise0:
           type: bits
           size: U08
@@ -11218,8 +11130,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType1:
           type: bits
           size: U08
@@ -11227,8 +11138,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType1:
           type: bits
           size: U08
@@ -11236,8 +11146,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise1:
           type: bits
           size: U08
@@ -11245,8 +11154,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType2:
           type: bits
           size: U08
@@ -11254,8 +11162,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType2:
           type: bits
           size: U08
@@ -11263,8 +11170,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise2:
           type: bits
           size: U08
@@ -11272,8 +11178,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType3:
           type: bits
           size: U08
@@ -11281,8 +11186,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType3:
           type: bits
           size: U08
@@ -11290,8 +11194,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise3:
           type: bits
           size: U08
@@ -11299,8 +11202,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType4:
           type: bits
           size: U08
@@ -11308,8 +11210,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType4:
           type: bits
           size: U08
@@ -11317,8 +11218,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise4:
           type: bits
           size: U08
@@ -11326,8 +11226,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType5:
           type: bits
           size: U08
@@ -11335,8 +11234,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType5:
           type: bits
           size: U08
@@ -11344,8 +11242,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise5:
           type: bits
           size: U08
@@ -11353,8 +11250,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType6:
           type: bits
           size: U08
@@ -11362,8 +11258,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType6:
           type: bits
           size: U08
@@ -11371,8 +11266,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise6:
           type: bits
           size: U08
@@ -11380,8 +11274,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         firstCompType7:
           type: bits
           size: U08
@@ -11389,8 +11282,7 @@ constants:
           address:
             from: 0
             to: 2
-          values:
-            - $comparator_def
+          values: *ref_8
         secondCompType7:
           type: bits
           size: U08
@@ -11398,8 +11290,7 @@ constants:
           address:
             from: 3
             to: 5
-          values:
-            - $comparator_def
+          values: *ref_8
         bitwise7:
           type: bits
           size: U08
@@ -11407,8 +11298,7 @@ constants:
           address:
             from: 6
             to: 7
-          values:
-            - $bitwise_def
+          values: *ref_9
         candID:
           type: array
           size: U16

@@ -119,8 +119,15 @@ class Parser {
       return;
     }
 
-    let constant;
+    // TODO: handle this somehow
+    // TODO: LAMBDA:
+    // wueAFR = array, S16,  [10], "Lambda", { 0.1 / stoich }, 0.000, -0.300, 0.300, 3
+    // key already exists - IF ELSE most likely
+    // if (name in this.result.pcVariables) {
+    //   return;
+    // }
 
+    let constant;
     switch (matchConstant.groups.type) {
       case 'scalar':
         constant = Parser.parseScalar(rest, this.PC_VARIABLE_SCALAR_PATTERN);
@@ -129,7 +136,7 @@ class Parser {
         constant = Parser.parseArray(rest, this.PC_VARIABLE_ARRAY_PATTERN);
         break;
       case 'bits':
-        constant = Parser.parseBits(rest, this.PC_VARIABLE_BITS_PATTERN);
+        constant = this.parseBits(rest, this.PC_VARIABLE_BITS_PATTERN);
         break;
       default:
         throw new Error(`Unsupported type: ${matchConstant.groups.type}`);
@@ -249,7 +256,7 @@ class Parser {
         if (name === 'unused_fan_bits') {
           return;
         }
-        constant = Parser.parseBits(rest, this.CONSTANT_BITS_PATTERN);
+        constant = this.parseBits(rest, this.CONSTANT_BITS_PATTERN);
         break;
 
       default:
@@ -285,6 +292,42 @@ class Parser {
         condition: Parser.sanitizeCondition(subMenuMatch.groups.condition || ''),
       };
     }
+  }
+
+  parseBits(input, pattern) {
+    const match = input.match(pattern);
+    if (!match) {
+      throw new Error(`Unable to parse bits: ${input}`);
+    }
+
+    let values = match.groups.values
+      .split(',')
+      .map((val) => val.replace(/"/g, '').trim());
+
+    // wmiIndicatorPin      = bits,   U08,     156, [1:6], "Board Default", $DIGITAL_PIN
+
+    if (values.find((val) => val.startsWith('$'))) {
+      const resolved = this.result.defines[values[0].slice(1)];
+      // console.log(values, resolved);
+      // console.log(values, input);
+
+      // TODO: may be array
+      if (resolved) {
+        values = resolved;
+      }
+      // console.log(values, values[0].slice(1));
+    }
+
+    return {
+      type: match.groups.type,
+      size: match.groups.size,
+      offset: Number(match.groups.offset),
+      address: {
+        from: Number(match.groups.from),
+        to: Number(match.groups.to),
+      },
+      values,
+    };
   }
 
   static parseScalar(input, pattern) {
@@ -331,32 +374,6 @@ class Parser {
       min: Number(match.groups.min),
       max: Number(match.groups.max),
       digits: Number(match.groups.digits),
-    };
-  }
-
-  static parseBits(input, pattern) {
-    const match = input.match(pattern);
-    if (!match) {
-      throw new Error(`Unable to parse bits: ${input}`);
-    }
-
-    const values = match.groups.values
-      .split(',')
-      .map((val) => val.replace(/"/g, '').trim());
-
-    if (values.find((val) => val.startsWith('$'))) {
-      // console.log(values, this.result.defines[values[0]]);
-    }
-
-    return {
-      type: match.groups.type,
-      size: match.groups.size,
-      offset: Number(match.groups.offset),
-      address: {
-        from: Number(match.groups.from),
-        to: Number(match.groups.to),
-      },
-      values,
     };
   }
 
