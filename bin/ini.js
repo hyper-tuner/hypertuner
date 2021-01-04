@@ -50,7 +50,8 @@ class Parser {
     this.result = {
       megaTune: {},
       tunerStudio: {},
-      globals: {},
+      defines: {},
+      pcVariables: {},
       constants: {
         pages: [],
       },
@@ -105,11 +106,41 @@ class Parser {
   }
 
   parsePcVariables(line) {
-    const match = line.match(this.DEFINE_PATTERN);
-    if (match) {
-      this.result.globals[match.groups.key] = match.groups.value.split(',')
+    const matchDefine = line.match(this.DEFINE_PATTERN);
+    if (matchDefine) {
+      this.result.defines[matchDefine.groups.key] = matchDefine.groups.value.split(',')
         .map((val) => Parser.sanitizeString(val));
     }
+
+    const [name, rest] = line.split('=').map((part) => part.trim());
+
+    // not a constant - TODO: #if else
+    if (!rest) {
+      return;
+    }
+
+    const matchConstant = rest.match(this.PC_VARIABLE_FIRST_PATTERN);
+    if (!matchConstant) {
+      return;
+    }
+
+    let constant;
+
+    switch (matchConstant.groups.type) {
+      case 'scalar':
+        constant = Parser.parseScalar(rest, this.PC_VARIABLE_SCALAR_PATTERN);
+        break;
+      case 'array':
+        constant = Parser.parseArray(rest, this.PC_VARIABLE_ARRAY_PATTERN);
+        break;
+      case 'bits':
+        constant = Parser.parseBits(rest, this.PC_VARIABLE_BITS_PATTERN);
+        break;
+      default:
+        throw new Error(`Unsupported type: ${matchConstant.groups.type}`);
+    }
+
+    this.result.pcVariables[name] = constant;
   }
 
   parseKeyValue(section, line) {
@@ -211,17 +242,17 @@ class Parser {
 
     switch (match.groups.type) {
       case 'scalar':
-        constant = this.parseScalar(rest);
+        constant = Parser.parseScalar(rest, this.CONSTANT_SCALAR_PATTERN);
         break;
       case 'array':
-        constant = this.parseArray(rest);
+        constant = Parser.parseArray(rest, this.CONSTANT_ARRAY_PATTERN);
         break;
       case 'bits':
         // TODO: handle this case
         if (name === 'unused_fan_bits') {
           return;
         }
-        constant = this.parseBits(rest);
+        constant = Parser.parseBits(rest, this.CONSTANT_BITS_PATTERN);
         break;
 
       default:
@@ -259,8 +290,8 @@ class Parser {
     }
   }
 
-  parseScalar(input) {
-    const match = input.match(this.CONSTANT_SCALAR_PATTERN);
+  static parseScalar(input, pattern) {
+    const match = input.match(pattern);
     if (!match) {
       // throw new Error(`Unable to parse scalar: ${input}`);
       return {};
@@ -279,8 +310,8 @@ class Parser {
     };
   }
 
-  parseArray(input) {
-    const match = input.match(this.CONSTANT_ARRAY_PATTERN);
+  static parseArray(input, pattern) {
+    const match = input.match(pattern);
     if (!match) {
       // throw new Error(`Unable to parse array: ${input}`);
       return {};
@@ -306,8 +337,8 @@ class Parser {
     };
   }
 
-  parseBits(input) {
-    const match = input.match(this.CONSTANT_BITS_PATTERN);
+  static parseBits(input, pattern) {
+    const match = input.match(pattern);
     if (!match) {
       throw new Error(`Unable to parse bits: ${input}`);
     }
@@ -317,7 +348,7 @@ class Parser {
       .map((val) => val.replace(/"/g, '').trim());
 
     if (values.find((val) => val.startsWith('$'))) {
-      // console.log(values, this.result.globals[values[0]]);
+      // console.log(values, this.result.defines[values[0]]);
     }
 
     return {
@@ -345,7 +376,7 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
-// console.dir(result.globals, { maxArrayLength: 10, depth: null });
+// console.dir(result.defines, { maxArrayLength: 10, depth: null });
 
 fs.writeFileSync(path.join(__dirname, '/../public/tunes/speeduino.yml'), yaml.dump(result));
 

@@ -5,7 +5,7 @@ megaTune:
   versionInfo: S
 tunerStudio:
   iniSpecVersion: 3.64
-globals:
+defines:
   loadSourceNames:
     - MAP
     - TPS
@@ -397,6 +397,221 @@ globals:
     - '17'
   trigger_420a:
     - '18'
+pcVariables:
+  tsCanId:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 3
+    values:
+      - CAN ID 0
+      - CAN ID 1
+      - CAN ID 2
+      - CAN ID 3
+      - CAN ID 4
+      - CAN ID 5
+      - CAN ID 6
+      - CAN ID 7
+      - CAN ID 8
+      - CAN ID 9
+      - CAN ID 10
+      - CAN ID 11
+      - CAN ID 12
+      - CAN ID 13
+      - CAN ID 14
+      - INVALID
+  rpmhigh:
+    type: scalar
+    size: U16
+    offset: .nan
+    units: rpm
+    scale: 1
+    transform: 0
+    min: 0
+    max: 30000
+    digits: 0
+  rpmwarn:
+    type: scalar
+    size: U16
+    offset: .nan
+    units: rpm
+    scale: 1
+    transform: 0
+    min: 0
+    max: 30000
+    digits: 0
+  rpmdang:
+    type: scalar
+    size: U16
+    offset: .nan
+    units: rpm
+    scale: 1
+    transform: 0
+    min: 0
+    max: 30000
+    digits: 0
+  maphigh:
+    type: scalar
+    size: U16
+    offset: .nan
+    units: kPa
+    scale: 1
+    transform: 0
+    min: 0
+    max: 30000
+    digits: 0
+  mapwarn:
+    type: scalar
+    size: U16
+    offset: .nan
+    units: kPa
+    scale: 1
+    transform: 0
+    min: 0
+    max: 30000
+    digits: 0
+  mapdang:
+    type: scalar
+    size: U16
+    offset: .nan
+    units: kPa
+    scale: 1
+    transform: 0
+    min: 0
+    max: 30000
+    digits: 0
+  wueAFR:
+    type: array
+    size: S16
+    offset: .nan
+    shape:
+      columns: 10
+      rows: 0
+    units: AFR
+    scale: 0.1
+    transform: 0
+    min: -4
+    max: 4
+    digits: 1
+  wueRecommended:
+    type: array
+    size: U08
+    offset: .nan
+    shape:
+      columns: 10
+      rows: 0
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 100
+    max: 255
+    digits: 0
+  idleUnits:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 2
+    values:
+      - None
+      - On/Off
+      - Duty Cycle
+      - Duty Cycle
+      - Steps
+      - Steps
+  boardFuelOutputs: {}
+  boardIgnOutputs: {}
+  algorithmNames:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 2
+    values:
+      - $loadSourceNames
+  algorithmUnits:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 2
+    values:
+      - kPa
+      - '% TPS'
+      - '%'
+      - '% TPS'
+      - INVALID
+      - INVALID
+      - INVALID
+      - INVALID
+  algorithmLimits: {}
+  fuel2SwitchUnits:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 2
+    values:
+      - rpm
+      - kPa
+      - '% TPS'
+      - '%'
+      - '% TPS'
+      - INVALID
+      - INVALID
+      - INVALID
+  boostTableLabels:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 1
+    values:
+      - Duty Cycle %
+      - kPa
+  prgm_out_selection:
+    type: bits
+    size: U08
+    offset: .nan
+    address:
+      from: 0
+      to: 2
+    values:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+  fuelLoadMax:
+    type: scalar
+    size: U08
+    offset: .nan
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 511
+    digits: 0
+  ignLoadMax:
+    type: scalar
+    size: U08
+    offset: .nan
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 511
+    digits: 0
 constants:
   pages:
     - number: 1
