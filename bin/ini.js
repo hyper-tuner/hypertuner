@@ -304,19 +304,13 @@ class Parser {
       .split(',')
       .map((val) => val.replace(/"/g, '').trim());
 
-    // wmiIndicatorPin      = bits,   U08,     156, [1:6], "Board Default", $DIGITAL_PIN
+    // TODO: $CAN_ADDRESS_HEX_01XX
 
-    if (values.find((val) => val.startsWith('$'))) {
-      const resolved = this.result.defines[values[0].slice(1)];
-      // console.log(values, resolved);
-      // console.log(values, input);
-
-      // TODO: may be array
-      if (resolved) {
-        values = resolved;
-      }
-      // console.log(values, values[0].slice(1));
-    }
+    values = values.map((val) => (
+      val.startsWith('$')
+        ? this.result.defines[val.slice(1)]
+        : val
+    )).flat();
 
     return {
       type: match.groups.type,
