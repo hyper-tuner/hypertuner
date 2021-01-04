@@ -376,7 +376,7 @@
 <constant name="baroCorr">"Off"</constant>
 <constant name="injLayout">"Sequential"</constant>
 <constant name="perToothIgn">"Yes"</constant>
-<constant name="dfcoEnabled">"Off"</constant>
+<constant name="dfcoEnabled">"On"</constant>
 <constant digits="0" name="aeColdTaperMax" units="C">60.0</constant>
 <constant digits="0" name="dutyLim" units="%">90.0</constant>
 <constant digits="0" name="flexFreqLow" units="Hz">50.0</constant>
@@ -818,7 +818,7 @@
       </constant>
 </page>
 <page number="5" size="128">
-<constant name="egoAlgorithm">"No correction"</constant>
+<constant name="egoAlgorithm">"PID"</constant>
 <constant name="egoType">"Wide Band"</constant>
 <constant name="boostEnabled">"On"</constant>
 <constant name="vvtEnabled">"Off"</constant>
