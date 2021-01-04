@@ -11,7 +11,6 @@ class Parser {
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
 
-
     this.DIALOG_PATTERN = new RegExp(`^dialog\\s*=\\s*(?<name>\\w+),\\s*"(?<title>.*)",*\\s*(?<layout>.+)*${this.COMMENTS_PATTERN}$`);
     this.PANEL_PATTERN = new RegExp(`^panel\\s*=\\s*(?<name>\\w+),\\s*(?<layout>\\w+|{})*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
@@ -106,11 +105,7 @@ class Parser {
   }
 
   parsePcVariables(line) {
-    const matchDefine = line.match(this.DEFINE_PATTERN);
-    if (matchDefine) {
-      this.result.defines[matchDefine.groups.key] = matchDefine.groups.value.split(',')
-        .map((val) => Parser.sanitizeString(val));
-    }
+    this.parseDefines(line);
 
     const [name, rest] = line.split('=').map((part) => part.trim());
 
@@ -141,6 +136,14 @@ class Parser {
     }
 
     this.result.pcVariables[name] = constant;
+  }
+
+  parseDefines(line) {
+    const match = line.match(this.DEFINE_PATTERN);
+    if (match) {
+      this.result.defines[match.groups.key] = match.groups.value.split(',')
+        .map((val) => Parser.sanitizeString(val));
+    }
   }
 
   parseKeyValue(section, line) {
@@ -201,7 +204,7 @@ class Parser {
   }
 
   parseConstants(line) {
-    let constant;
+    this.parseDefines(line);
 
     const pageMatch = line.match(this.PAGE_PATTERN);
     if (pageMatch) {
@@ -227,19 +230,13 @@ class Parser {
       return;
     }
 
-    // TODO: handle this
-    // not an actual constant
-    // squirts per engine cycle!!!
-    // if (name === 'divider') {
-    //   return;
-    // }
-
     // TODO: handle this somehow
     // key already exists - IF ELSE most likely
     if (name in this.result.constants.pages[this.currentPage - 1].data) {
       return;
     }
 
+    let constant;
     switch (match.groups.type) {
       case 'scalar':
         constant = Parser.parseScalar(rest, this.CONSTANT_SCALAR_PATTERN);
