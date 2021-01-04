@@ -11,8 +11,6 @@ class Parser {
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
 
-    this.CONSTANT_BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*\\s*(?<offset>\\d+)';
-    this.SCALAR_BASE_PATTERN = '\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*';
 
     this.DIALOG_PATTERN = new RegExp(`^dialog\\s*=\\s*(?<name>\\w+),\\s*"(?<title>.*)",*\\s*(?<layout>.+)*${this.COMMENTS_PATTERN}$`);
     this.PANEL_PATTERN = new RegExp(`^panel\\s*=\\s*(?<name>\\w+),\\s*(?<layout>\\w+|{})*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
@@ -21,15 +19,24 @@ class Parser {
     this.FIELD_TEXT_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"${this.COMMENTS_PATTERN}$`);
     this.PAGE_PATTERN = new RegExp(`^page\\s*=\\s*(?<page>\\d+)${this.COMMENTS_PATTERN}$`);
 
+    this.CONSTANT_BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*\\s*(?<offset>\\d+)';
+    this.PC_VARIABLE_BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*';
+    this.SCALAR_BASE_PATTERN = '\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*';
 
     this.CONSTANT_FIRST_PATTERN  = new RegExp(`${this.CONSTANT_BASE_PATTERN}.+`);
-    this.SCALAR_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
-    this.BITS_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
-    this.ARRAY_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.CONSTANT_SCALAR_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.CONSTANT_BITS_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
+    this.CONSTANT_ARRAY_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+
+    this.PC_VARIABLE_FIRST_PATTERN  = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN}.+`);
+    this.PC_VARIABLE_SCALAR_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.PC_VARIABLE_BITS_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
+    this.PC_VARIABLE_ARRAY_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.SECTION_HEADER_PATTERN = new RegExp(`^\\[(?<section>[A-z]+)]${this.COMMENTS_PATTERN}$`);
     this.KEY_VALUE_PATTERN = new RegExp(`^(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
-    this.GLOBALS_PATTERN = new RegExp(`^#\\s*define\\s*(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
+
+    this.DEFINE_PATTERN = new RegExp(`^#\\s*define\\s*(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
 
     this.MENU_PATTERN = new RegExp(`^menu\\s*=\\s*"(?<menu>.+)"${this.COMMENTS_PATTERN}$`);
     this.SUB_MENU_PATTERN = new RegExp(`^subMenu\\s*=\\s*(?<name>\\w+),\\s+"(?<title>.+)",*\\s*(?<page>\\d+)*\\s*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
@@ -68,14 +75,8 @@ class Parser {
       }
 
       const matches = trimmed.match(this.SECTION_HEADER_PATTERN);
-
-      if (!matches) {
-        if (this.parseGlobals(trimmed)) {
-          return;
-        }
-      }
-
       if (matches) {
+        // console.log('Found section:', matches.groups.section);
         section = matches.groups.section;
       } else if (section) {
         this.parseSectionLine(section, trimmed);
@@ -83,20 +84,11 @@ class Parser {
     });
   }
 
-  parseGlobals(line) {
-    const match = line.match(this.GLOBALS_PATTERN);
-    if (!match) {
-      return false;
-    }
-
-    this.result.globals[match.groups.key] = match.groups.value.split(',')
-      .map((val) => Parser.sanitizeString(val));
-
-    return true;
-  }
-
   parseSectionLine(section, line) {
     switch (section) {
+      case 'PcVariables':
+        this.parsePcVariables(line);
+        break;
       case 'Constants':
         this.parseConstants(line);
         break;
@@ -109,6 +101,14 @@ class Parser {
       default:
         this.parseKeyValue(section, line);
         break;
+    }
+  }
+
+  parsePcVariables(line) {
+    const match = line.match(this.DEFINE_PATTERN);
+    if (match) {
+      this.result.globals[match.groups.key] = match.groups.value.split(',')
+        .map((val) => Parser.sanitizeString(val));
     }
   }
 
@@ -260,7 +260,7 @@ class Parser {
   }
 
   parseScalar(input) {
-    const match = input.match(this.SCALAR_PATTERN);
+    const match = input.match(this.CONSTANT_SCALAR_PATTERN);
     if (!match) {
       // throw new Error(`Unable to parse scalar: ${input}`);
       return {};
@@ -280,7 +280,7 @@ class Parser {
   }
 
   parseArray(input) {
-    const match = input.match(this.ARRAY_PATTERN);
+    const match = input.match(this.CONSTANT_ARRAY_PATTERN);
     if (!match) {
       // throw new Error(`Unable to parse array: ${input}`);
       return {};
@@ -307,10 +307,17 @@ class Parser {
   }
 
   parseBits(input) {
-    const match = input.match(this.BITS_PATTERN);
-
+    const match = input.match(this.CONSTANT_BITS_PATTERN);
     if (!match) {
       throw new Error(`Unable to parse bits: ${input}`);
+    }
+
+    const values = match.groups.values
+      .split(',')
+      .map((val) => val.replace(/"/g, '').trim());
+
+    if (values.find((val) => val.startsWith('$'))) {
+      // console.log(values, this.result.globals[values[0]]);
     }
 
     return {
@@ -321,7 +328,7 @@ class Parser {
         from: Number(match.groups.from),
         to: Number(match.groups.to),
       },
-      values: match.groups.values.split(',').map((val) => val.replace(/"/g, '').trim()),
+      values,
     };
   }
 
@@ -338,7 +345,7 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
-// console.dir(result.dialogs, { maxArrayLength: 10, depth: null });
+// console.dir(result.globals, { maxArrayLength: 10, depth: null });
 
 fs.writeFileSync(path.join(__dirname, '/../public/tunes/speeduino.yml'), yaml.dump(result));
 
