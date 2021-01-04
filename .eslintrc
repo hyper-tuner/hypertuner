@@ -26,6 +26,8 @@
     "import/extensions": 0,
     "react/react-in-jsx-scope": 0,
     "react/jsx-props-no-spreading": 0,
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "single"],
     "no-console": 0,
     "no-plusplus": 0,
 

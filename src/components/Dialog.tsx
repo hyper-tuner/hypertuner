@@ -146,6 +146,7 @@ const Dialog = ({
           if (field.condition) {
             console.info(`Evaluating condition for '${field.name}':`, field.condition);
 
+            // TODO: move this outside and evaluate, return object / array
             const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
             try {
               // TODO: strip eval from `command` etc

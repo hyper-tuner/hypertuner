@@ -2,7 +2,6 @@ import {
   Radio,
   Select
 } from 'antd';
-import { LabeledValue } from 'antd/lib/select';
 
 const SmartSelect = ({
   values,

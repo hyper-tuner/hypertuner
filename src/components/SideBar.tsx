@@ -59,6 +59,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
           let enabled = true;
 
           if (subMenu.condition) {
+            // TODO: move this outside and evaluate, return object / array
             const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
             try {
               // TODO: strip eval from `command` etc
@@ -70,7 +71,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
                 ${subMenu.condition};
               `);
             } catch (error) {
-              console.error('Field condition evaluation failed with:', error.message);
+              // console.error('Menu condition evaluation failed with:', error.message);
             }
           }
 

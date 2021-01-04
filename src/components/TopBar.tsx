@@ -96,7 +96,7 @@ const TopBar = () => {
 
       if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
         e.preventDefault();
-        store.dispatch({ type: 'ui/toggleSidebar'});
+        store.dispatch({ type: 'ui/toggleSidebar' });
       }
     };
 
