@@ -12206,7 +12206,7 @@ dialogs:
         condition: egoType && (egoAlgorithm == 2)
   fanSettings:
     title: Fan Settings
-    layout: ''
+    layout: '7'
     panels: {}
     fields:
       - name: fanEnable
@@ -12468,7 +12468,7 @@ dialogs:
         condition: ''
   triggerSettings:
     title: Trigger Settings
-    layout: ''
+    layout: '4'
     panels: {}
     fields:
       - name: TrigPattern
@@ -12564,7 +12564,7 @@ dialogs:
         condition: ''
   sparkSettings:
     title: Spark Settings
-    layout: ''
+    layout: '4'
     panels:
       newIgnitionMode:
         layout: '{}'
@@ -12593,7 +12593,7 @@ dialogs:
         condition: ''
   dwellSettings:
     title: Dwell Settings
-    layout: ''
+    layout: '4'
     panels: {}
     fields:
       - name: dwellcrank
@@ -12677,7 +12677,7 @@ dialogs:
     fields: []
   rotary_ignition:
     title: Rotary Ignition
-    layout: ''
+    layout: '4'
     panels: {}
     fields:
       - name: rotaryType
@@ -12795,7 +12795,7 @@ dialogs:
         condition: launchEnable || flatSEnable
   LaunchControl:
     title: Launch Control / Flat shift
-    layout: ''
+    layout: '6'
     panels: {}
     fields:
       - name: _fieldText_
@@ -12919,7 +12919,7 @@ dialogs:
     fields: []
   OLED:
     title: OLED Display
-    layout: ''
+    layout: '2'
     panels: {}
     fields:
       - name: display
@@ -15804,7 +15804,7 @@ dialogs:
         condition: 'outputPin[7]'
   prgm_out_rules_master:
     title: ''
-    layout: ''
+    layout: card
     panels:
       prgm_out_rules_1:
         layout: Center
