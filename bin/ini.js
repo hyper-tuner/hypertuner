@@ -11,28 +11,28 @@ class Parser {
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
 
-    this.DIALOG_PATTERN = /^dialog\s*=\s*(?<name>\w+),\s*"(?<title>.*)",*\s*(?<layout>xAxis|yAxis|border)*/;
-    this.PANEL_PATTERN = /^panel\s*=\s*(?<name>\w+),\s*(?<layout>\w+|{})*,*\s*({(?<condition>.+)})*/;
+    this.CONSTANT_BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*\\s*(?<offset>\\d+)';
+    this.SCALAR_BASE_PATTERN = '\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*';
 
-    // this.FIELD_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"\\s*,*\\s*(?<name>\\w+)\\s*,*\\s*(?<condition>{.+})*${this.COMMENTS_PATTERN}$`);
-    this.FIELD_PATTERN = /^field\s*=\s*"(?<title>.*)"\s*,*\s*(?<name>[\w[\]]+)*\s*,*\s*(?<condition>{.+?}?)*\s*(?<comments>;.+)*$/;
-    this.FIELD_TEXT_PATTERN = /^field\s*=\s*"(?<title>.*)"$/;
-    this.PAGE_PATTERN = /^page\s*=\s*(?<page>\d+)/;
+    this.DIALOG_PATTERN = new RegExp(`^dialog\\s*=\\s*(?<name>\\w+),\\s*"(?<title>.*)",*\\s*(?<layout>.+)*${this.COMMENTS_PATTERN}$`);
+    this.PANEL_PATTERN = new RegExp(`^panel\\s*=\\s*(?<name>\\w+),\\s*(?<layout>\\w+|{})*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
-    this.BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*\\s*(?<offset>\\d+)';
-    this.SCALAR_BASE_PATTERN = `\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*`;
+    this.FIELD_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"\\s*,*\\s*(?<name>[\\w[\\]]+)*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.FIELD_TEXT_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"${this.COMMENTS_PATTERN}$`);
+    this.PAGE_PATTERN = new RegExp(`^page\\s*=\\s*(?<page>\\d+)${this.COMMENTS_PATTERN}$`);
 
-    this.FIRST_PATTERN  = new RegExp(`${this.BASE_PATTERN}.+`);
-    this.SCALAR_PATTERN = new RegExp(`${this.BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
-    this.BITS_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
-    this.ARRAY_PATTERN = new RegExp(`${this.BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
 
-    this.SECTION_HEADER_PATTERN = /^\[(?<section>[A-z]+)]$/;
+    this.CONSTANT_FIRST_PATTERN  = new RegExp(`${this.CONSTANT_BASE_PATTERN}.+`);
+    this.SCALAR_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.BITS_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
+    this.ARRAY_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+
+    this.SECTION_HEADER_PATTERN = new RegExp(`^\\[(?<section>[A-z]+)]${this.COMMENTS_PATTERN}$`);
     this.KEY_VALUE_PATTERN = new RegExp(`^(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
     this.GLOBALS_PATTERN = new RegExp(`^#\\s*define\\s*(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
 
     this.MENU_PATTERN = new RegExp(`^menu\\s*=\\s*"(?<menu>.+)"${this.COMMENTS_PATTERN}$`);
-    this.SUB_MENU_PATTERN = new RegExp(`^subMenu\\s*=\\s*(?<name>\\w+),\\s+"(?<title>.+)",*\\s*(?<page>\\d+)*\\s*,*\\s*(?<condition>{\\s*.+\\s*})*${this.COMMENTS_PATTERN}$`);
+    this.SUB_MENU_PATTERN = new RegExp(`^subMenu\\s*=\\s*(?<name>\\w+),\\s+"(?<title>.+)",*\\s*(?<page>\\d+)*\\s*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
@@ -148,7 +148,7 @@ class Parser {
       this.currentPanel = matchPanel.groups.name;
       this.result.dialogs[this.currentDialog].panels[this.currentPanel] = {
         layout: matchPanel.groups.layout || '',
-        condition: (matchPanel.groups.condition || '').trim(),
+        condition: Parser.sanitizeCondition(matchPanel.groups.condition || ''),
       };
 
       return;
@@ -191,7 +191,7 @@ class Parser {
       return;
     }
 
-    const match = rest.match(this.FIRST_PATTERN);
+    const match = rest.match(this.CONSTANT_FIRST_PATTERN);
     if (!match) {
       return;
     }
@@ -254,7 +254,7 @@ class Parser {
       this.result.menus[this.currentMenu].subMenus[subMenuMatch.groups.name] = {
         title: subMenuMatch.groups.title,
         page: Number(subMenuMatch.groups.page || 0),
-        condition: (subMenuMatch.groups.condition || '').replace(/{|}/g, '').trim(),
+        condition: Parser.sanitizeCondition(subMenuMatch.groups.condition || ''),
       };
     }
   }
@@ -340,6 +340,6 @@ const result = new Parser(
 
 // console.dir(result.dialogs, { maxArrayLength: 10, depth: null });
 
-fs.writeFileSync(path.join(__dirname, '/generated.yml'), yaml.dump(result));
+fs.writeFileSync(path.join(__dirname, '/../public/tunes/speeduino.yml'), yaml.dump(result));
 
 console.log('------- end --------');
