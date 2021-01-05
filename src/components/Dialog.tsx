@@ -13,6 +13,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
 import SmartNumber from './Dialog/SmartNumber';
+import TextField from './Dialog/TextField';
 import {
   Dialogs as DialogsType,
   Dialog as DialogType,
@@ -20,7 +21,6 @@ import {
   Field as FieldType,
   Page as PageType,
 } from '../types/config';
-
 import {
   Tune as TuneType,
 } from '../types/tune';
@@ -39,7 +39,7 @@ const skeleton = (<div style={containerStyle}>
   <Skeleton /><Skeleton />
 </div>);
 
-// TODO: refactor this! check and get rid of multiple calls and optimize
+// TODO: refactor this
 const Dialog = ({
   config,
   tune,
@@ -111,8 +111,7 @@ const Dialog = ({
   const panels = Object.keys(resolvedDialogs).map((dialogName: string) => {
     const currentDialog: DialogType = resolvedDialogs[dialogName];
     const fields = currentDialog.fields
-      .filter((field) => field.name !== '_fieldText_' );
-      // TODO: handle _fieldText_
+      .filter((field) => field.title !== '' );
 
     return {
       name: dialogName,
@@ -121,7 +120,7 @@ const Dialog = ({
     };
   });
 
-  const panelsComponents = panels.map((panel: { name: string, title: string, fields: FieldType[] }) => {
+  const panelsComponents = () => panels.map((panel: { name: string, title: string, fields: FieldType[] }) => {
     if (panel.fields.length === 0) {
       return null;
     }
@@ -136,16 +135,11 @@ const Dialog = ({
             .find((page: PageType) => field.name in page.data) || { data: {} } as PageType;
           const constant = pageFound.data[field.name];
           const tuneField = tune.constants[field.name];
+
           let input;
-
-          if (!tuneField || !constant) {
-            return null;
-          }
-
           let enabled = true;
-          if (field.condition) {
-            console.info(`Evaluating condition for '${field.name}':`, field.condition);
 
+          if (field.condition) {
             // TODO: move this outside and evaluate, return object / array
             const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
             try {
@@ -157,14 +151,24 @@ const Dialog = ({
                 ${constDeclarations.join('')}
                 ${field.condition};
               `);
+
+              console.info(`Evaluated condition for '${field.name}':`, field.condition, ': result:', enabled);
             } catch (error) {
               console.error('Field condition evaluation failed with:', error.message);
             }
           }
 
-          // TODO: handle this with custom parser
-          const units = constant.units === ':1' ? '' : constant.units;
+          if (field.name === '_fieldText_' && enabled) {
+            return <TextField key={`${panel.name}-${field.title}`} title={field.title} />;
+          }
 
+          if (!tuneField) {
+            // TODO: handle this?
+            // name: "rpmwarn", title: "Warning",
+            return null;
+          }
+
+          const units = constant.units === ':1' ? '' : constant.units;
           switch (constant.type) {
             case 'bits':
             case 'array':
@@ -236,7 +240,7 @@ const Dialog = ({
         // onFinish={(values: any) => console.log(values)}
       >
         <Row gutter={20}>
-          {panelsComponents}
+          {Object.keys(tune.constants).length && panelsComponents()}
         </Row>
         <Form.Item>
           {burnButton}

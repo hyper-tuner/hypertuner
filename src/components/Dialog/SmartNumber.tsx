@@ -27,7 +27,7 @@ const SmartNumber = ({
     sliderMarks[max] = `${max}${units}`;
   }
 
-  if (['%', 'C', 'S', 'SEC'].includes(`${units}`.toUpperCase())) {
+  if (['%', 'C', 'S', 'SEC', 'MS'].includes(`${units}`.toUpperCase())) {
     return (
       <Slider
         defaultValue={defaultValue}

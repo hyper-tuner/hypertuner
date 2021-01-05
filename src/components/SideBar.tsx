@@ -71,7 +71,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
                 ${subMenu.condition};
               `);
             } catch (error) {
-              // console.error('Menu condition evaluation failed with:', error.message);
+              console.error('Menu condition evaluation failed with:', error.message);
             }
           }
 
@@ -100,7 +100,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
           mode="inline"
           style={{ height: '100%' }}
         >
-          {menusList(config.menus)}
+          {Object.keys(tune.constants).length && menusList(config.menus)}
         </Menu>
       </PerfectScrollbar>
     </Sider>
