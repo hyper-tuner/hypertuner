@@ -56,6 +56,7 @@ class Parser {
       },
       menus: {},
       dialogs: {},
+      settingContextHelp: {},
     };
   }
 
@@ -64,6 +65,8 @@ class Parser {
 
     return this.result;
   }
+
+  // TODO: fix Idle advance mode in dwell settings
 
   parseSections() {
     let section;
@@ -174,7 +177,7 @@ class Parser {
     }
 
     this.result[sectionName][match.groups.key] = Number.isNaN(Number(match.groups.value))
-      ? match.groups.value
+      ? match.groups.value.trim()
       : Number(match.groups.value);
   }
 
