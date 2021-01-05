@@ -56,7 +56,7 @@ class Parser {
       },
       menus: {},
       dialogs: {},
-      settingContextHelp: {},
+      help: {},
     };
   }
 
@@ -98,10 +98,14 @@ class Parser {
       case 'Menu':
         this.parseMenu(line);
         break;
+      case 'SettingContextHelp':
+        this.parseKeyValue('help', line);
+        break;
       case 'UserDefined':
         this.parseDialogs(line);
         break;
       default:
+        // TODO: rename sections, and do not use default, only explicit sections
         this.parseKeyValue(section, line);
         break;
     }

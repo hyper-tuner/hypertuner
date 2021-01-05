@@ -62571,7 +62571,7 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
-settingContextHelp:
+help:
   nCylinders: Cylinder count
   alternate: >-
     Whether or not the injectors should be fired at the same time. This setting

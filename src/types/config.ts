@@ -78,6 +78,10 @@ interface Globals {
   [name: string]: string[],
 }
 
+interface Help {
+  [key: string]: string,
+}
+
 interface Config {
   megaTune: {
     signature: string,
@@ -91,6 +95,7 @@ interface Config {
     [name: string]: Dialog,
   },
   menus: Menus,
+  help: Help,
 }
 
 export type {
@@ -107,4 +112,5 @@ export type {
   Page,
   Globals,
   Config,
+  Help,
 };
