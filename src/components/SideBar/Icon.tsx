@@ -88,8 +88,6 @@ const Icon = ({ name }: { name: string }) => {
       return <PoweroffOutlined />;
     case 'engine_constants':
       return <ControlOutlined />;
-    case 'gaugeLimits':
-      return <DashboardOutlined />;
     case 'io_summary':
       return <UnorderedListOutlined />;
     case 'prgm_out_config':
@@ -113,11 +111,11 @@ const Icon = ({ name }: { name: string }) => {
 
     // default / not found
     default:
-      return null;
+      // return null;
       // return <BarsOutlined />;
       // return <SettingOutlined />;
       // return <MenuOutlined />;
-      // return <ControlOutlined />;
+      return <ControlOutlined />;
   }
 };
 
