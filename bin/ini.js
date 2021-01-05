@@ -150,6 +150,14 @@ class Parser {
     if (match) {
       this.result.defines[match.groups.key] = match.groups.value.split(',')
         .map((val) => Parser.sanitizeString(val));
+
+      const resolved = this.result.defines[match.groups.key].map((val) => (
+        val.startsWith('$')
+          ? this.result.defines[val.slice(1)]
+          : val
+        )).flat();
+
+      this.result.defines[match.groups.key] = resolved;
     }
   }
 
@@ -304,8 +312,6 @@ class Parser {
       .split(',')
       .map((val) => val.replace(/"/g, '').trim());
 
-    // TODO: $CAN_ADDRESS_HEX_01XX
-
     values = values.map((val) => (
       val.startsWith('$')
         ? this.result.defines[val.slice(1)]
@@ -384,7 +390,7 @@ const result = new Parser(
   fs.readFileSync(path.join(__dirname, '/../public/tunes/speeduino.ini'), 'utf8')
 ).parse();
 
-// console.dir(result.defines, { maxArrayLength: 10, depth: null });
+// console.dir(result.pcVariables, { maxArrayLength: 10, depth: null });
 
 fs.writeFileSync(path.join(__dirname, '/../public/tunes/speeduino.yml'), yaml.dump(result));
 
