@@ -1625,7 +1625,7 @@
          255.0 
          255.0 
       </constant>
-<constant name="wmiEnabled">"Off"</constant>
+<constant name="wmiEnabled">"On"</constant>
 <constant name="wmiMode">"Simple"</constant>
 <constant name="wmiAdvEnabled">"Off"</constant>
 <constant digits="0" name="wmiTPS" units="%TPS">255.0</constant>

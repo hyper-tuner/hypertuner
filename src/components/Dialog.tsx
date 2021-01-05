@@ -135,6 +135,7 @@ const Dialog = ({
             .find((page: PageType) => field.name in page.data) || { data: {} } as PageType;
           const constant = pageFound.data[field.name];
           const tuneField = tune.constants[field.name];
+          const help = config.help[field.name];
 
           let input;
           let enabled = true;
@@ -152,7 +153,7 @@ const Dialog = ({
                 ${field.condition};
               `);
 
-              console.info(`Evaluated condition for '${field.name}':`, field.condition, ': result:', enabled);
+              // console.info(`Evaluated condition for '${field.name}':`, field.condition, ': result:', enabled);
             } catch (error) {
               console.error('Field condition evaluation failed with:', error.message);
             }
@@ -200,8 +201,8 @@ const Dialog = ({
               label={
                 <Space>
                   {field.title}
-                  {field.help && (<Popover content={
-                    field.help.split('\n').map((line) => <div key={line}>{line}</div>)
+                  {help && (<Popover content={
+                    help.split('\\n').map((line) => <div key={line}>{line}</div>)
                   }>
                     <QuestionCircleOutlined />
                   </Popover>)}
