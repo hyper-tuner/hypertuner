@@ -82,6 +82,7 @@ interface Config {
   megaTune: {
     signature: string,
   },
+  pcVariables: Constants,
   globals: Globals,
   constants: {
     pages: Page[],
