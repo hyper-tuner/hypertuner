@@ -1,16 +1,13 @@
 interface Field {
   name: string,
   title: string,
-  help?: string, // TODO: move this?
   condition?: string,
 }
 
 interface Dialog {
   title: string,
-  layout: string,
-  help?: {
-    link: string, // TODO: move this?
-  },
+  layout?: string,
+  help?: string,
   panels: {
     [name: string]: Dialog,
   },
@@ -60,8 +57,8 @@ interface Constant {
   min: number,
   max: number,
   digits: number,
-  shape: ArrayShape,
-  values: string[],
+  shape?: ArrayShape,
+  values?: string[],
 }
 
 interface Constants {
@@ -111,6 +108,6 @@ export type {
   Constants,
   Page,
   Globals,
-  Config,
   Help,
+  Config,
 };

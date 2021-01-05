@@ -58365,6 +58365,7 @@ dialogs:
         layout: East
         condition: ''
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Engine_Constants'
   flexFuelSettings:
     title: ''
     layout: yAxis
@@ -58420,6 +58421,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Flex_Fuel'
   knock_windows:
     title: Knock Windows
     layout: xAxis
@@ -58517,6 +58519,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    help: 'http://speeduino.com/wiki/index.php/Knock'
   vss_gear_1:
     title: ''
     layout: xAxis
@@ -58598,6 +58601,7 @@ dialogs:
       - name: vssPin
         title: VSS Pin
         condition: vssMode > 1
+    help: 'https://wiki.speeduino.com/en/configuration/VSS'
   tacho:
     title: Tacho
     layout: ''
@@ -58719,6 +58723,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    help: 'http://speeduino.com/wiki/index.php/Acceleration_Wizard'
   veTableDialog_north:
     title: ''
     layout: ''
@@ -58889,6 +58894,7 @@ dialogs:
       - name: dutyLim
         title: Injector Duty Limit
         condition: ''
+    help: 'https://wiki.speeduino.com/en/configuration/Injector_Characteristics'
   egoControl:
     title: ''
     layout: ''
@@ -58936,6 +58942,7 @@ dialogs:
       - name: egoKD
         title: PID Derivative
         condition: egoType && (egoAlgorithm == 2)
+    help: 'https://wiki.speeduino.com/en/configuration/O2'
   fanSettings:
     title: Fan Settings
     layout: '7'
@@ -58962,6 +58969,7 @@ dialogs:
       - name: fanHyster
         title: Fan hysteresis
         condition: fanEnable
+    help: 'https://wiki.speeduino.com/en/configuration/Thermo_fan'
   stepper_idle:
     title: Stepper Idle
     layout: ''
@@ -59042,6 +59050,7 @@ dialogs:
       - name: iacFastTemp
         title: Fast idle temp
         condition: iacAlgorithm == 1
+    help: 'https://wiki.speeduino.com/en/configuration/Idle'
   idleUpInputSettingsPanel:
     title: Idle Up Input Settings
     layout: yAxis
@@ -59160,6 +59169,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Cranking'
   ASE_amount:
     title: Enrichment amount (%)
     layout: yAxis
@@ -59262,6 +59272,7 @@ dialogs:
           TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
           TrigPattern == 18 || TrigPattern == 19
+    help: 'https://wiki.speeduino.com/en/decoders'
   lockSparkSettings:
     title: Locked timing
     layout: ''
@@ -59323,6 +59334,7 @@ dialogs:
       - name: IgInv
         title: Spark Outputs triggers
         condition: ''
+    help: 'https://wiki.speeduino.com/en/configuration/Spark_Settings'
   dwellSettings:
     title: Dwell Settings
     layout: '4'
@@ -59394,6 +59406,7 @@ dialogs:
       - name: CTPSPolarity
         title: Closed Throttle Sensor Pin Polarity
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
+    help: 'https://wiki.speeduino.com/en/configuration/Dwell'
   idleAdvanceSettings:
     title: Idle Advance Settings
     layout: xAxis
@@ -59407,6 +59420,7 @@ dialogs:
           iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6 ||
           idleAdvEnabled >= 1
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/IdleAdvance'
   rotary_ignition:
     title: Rotary Ignition
     layout: '4'
@@ -59508,6 +59522,7 @@ dialogs:
         layout: ''
         condition: engineProtectType
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Rev_Limits'
   clutchInput:
     title: Clutch input
     layout: ''
@@ -59563,6 +59578,7 @@ dialogs:
       - name: flatSRetard
         title: Soft limit absolute timing
         condition: flatSEnable
+    help: 'https://wiki.speeduino.com/en/configuration/Launch_Flatshift'
   NitrousStage1:
     title: Stage 1
     layout: ''
@@ -59649,6 +59665,7 @@ dialogs:
         layout: East
         condition: n2o_enable > 1
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Nitrous_Control'
   OLED:
     title: OLED Display
     layout: '2'
@@ -59680,6 +59697,7 @@ dialogs:
     layout: ''
     panels: {}
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Sensor_Calibration'
   mapCal:
     title: Calibrate MAP
     layout: ''
@@ -59727,6 +59745,7 @@ dialogs:
       - name: EMAPMax
         title: kPa At 5.0 Volts
         condition: useEMAP
+    help: 'https://wiki.speeduino.com/en/configuration/Sensor_Calibration'
   sensorFilters:
     title: Analog sensor filters
     layout: ''
@@ -59787,6 +59806,7 @@ dialogs:
     layout: ''
     panels: {}
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Sensor_Calibration'
   boostSettings:
     title: Boost Control
     layout: ''
@@ -59828,6 +59848,7 @@ dialogs:
       - name: boostKD
         title: D
         condition: boostEnabled && boostMode && boostType == 1
+    help: 'https://wiki.speeduino.com/en/configuration/Boost_Control'
   vvtClosedLoop:
     title: Closed loop
     layout: ''
@@ -60088,6 +60109,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    help: 'https://wiki.speeduino.com/en/configuration/Staged_Injection'
   outputtest_warningmessage:
     title: ''
     layout: ''
@@ -60206,6 +60228,7 @@ dialogs:
     layout: ''
     panels: {}
     fields: []
+    help: 'https://wiki.speeduino.com/en/Hardware_testing_page'
   stm32cmd:
     title: STM32 Commands
     layout: yAxis
@@ -60970,6 +60993,8 @@ dialogs:
     layout: yAxis
     panels: {}
     fields: []
+    help: >-
+      http://speeduino.com/wiki/index.php/Secondary_Serial_IO_interface#Read_external_analog_data
   canAuxoutput_alias:
     title: ''
     layout: yAxis
@@ -61181,6 +61206,7 @@ dialogs:
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
+    help: 'http://speeduino.com/wiki/index.php/Secondary_Serial_IO_interface'
   serial3IO:
     title: Secondary Serial IO interface
     layout: ''
@@ -61206,6 +61232,7 @@ dialogs:
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
+    help: 'http://speeduino.com/wiki/index.php/Serial3_IO_interface'
   reset_control:
     title: Reset Control
     layout: ''

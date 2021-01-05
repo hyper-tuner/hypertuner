@@ -175,7 +175,7 @@ const Dialog = ({
             case 'array':
               input = <SmartSelect
                         defaultValue={`${tuneField.value}`}
-                        values={constant.values}
+                        values={constant.values as string[]}
                         disabled={!enabled}
                       />;
               break;
@@ -223,16 +223,18 @@ const Dialog = ({
         <Popover
           content={
             <a
-              href={`${dialogConfig.help.link}`}
+              href={`${dialogConfig.help}`}
               target="__blank"
               rel="noopener noreferrer"
             >
-              {dialogConfig.help.link}
+              {dialogConfig.help}
             </a>
           }
           placement="right"
         >
-          <QuestionCircleOutlined style={{ position: 'sticky', top: 15 }} />
+          <QuestionCircleOutlined
+            style={{ position: 'sticky', top: 15, zIndex: 1 }}
+          />
         </Popover>
       }
       <Form

@@ -12,6 +12,7 @@ class Parser {
     this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
 
     this.DIALOG_PATTERN = new RegExp(`^dialog\\s*=\\s*(?<name>\\w+),\\s*"(?<title>.*)",*\\s*(?<layout>.+)*${this.COMMENTS_PATTERN}$`);
+    this.DIALOG_TOPIC_PATTERN = new RegExp(`^topicHelp\\s*=\\s*"(?<help>.+)"${this.COMMENTS_PATTERN}$`);
     this.PANEL_PATTERN = new RegExp(`^panel\\s*=\\s*(?<name>\\w+),\\s*(?<layout>\\w+|{})*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.FIELD_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"\\s*,*\\s*(?<name>[\\w[\\]]+)*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
@@ -195,6 +196,13 @@ class Parser {
         panels: {},
         fields: [],
       };
+
+      return;
+    }
+
+    const matchHelp = line.match(this.DIALOG_TOPIC_PATTERN);
+    if (matchHelp) {
+      this.result.dialogs[this.currentDialog].help = matchHelp.groups.help;
 
       return;
     }

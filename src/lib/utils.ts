@@ -35,7 +35,7 @@ export const prepareConstDeclarations = (tuneConstants: TuneConstantsType, confi
 
       // we need array index instead of a display value
       if (constant?.type === 'bits') {
-        val = constant.values.indexOf(`${val}`);
+        val = (constant.values as string[]).indexOf(`${val}`);
       }
 
       // escape string values
