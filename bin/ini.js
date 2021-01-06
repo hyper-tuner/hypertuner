@@ -31,7 +31,7 @@ class Parser {
     this.PC_VARIABLE_FIRST_PATTERN  = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN}.+`);
     this.PC_VARIABLE_SCALAR_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
     this.PC_VARIABLE_BITS_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
-    this.PC_VARIABLE_ARRAY_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
+    this.PC_VARIABLE_ARRAY_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN},*\\s*(?<extra>\\w+)*${this.COMMENTS_PATTERN}$`);
 
     this.SECTION_HEADER_PATTERN = new RegExp(`^\\[(?<section>[A-z]+)]${this.COMMENTS_PATTERN}$`);
     this.KEY_VALUE_PATTERN = new RegExp(`^(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
@@ -336,7 +336,7 @@ class Parser {
     return {
       type: match.groups.type,
       size: match.groups.size,
-      offset: Number(match.groups.offset),
+      offset: Number(match.groups.offset || 0),
       address: {
         from: Number(match.groups.from),
         to: Number(match.groups.to),
@@ -355,7 +355,7 @@ class Parser {
     return {
       type: match.groups.type,
       size: match.groups.size,
-      offset: Number(match.groups.offset),
+      offset: Number(match.groups.offset || 0),
       units: match.groups.units,
       scale: Number(match.groups.scale),
       transform: Number(match.groups.transform),
@@ -378,7 +378,7 @@ class Parser {
     return {
       type: match.groups.type,
       size: match.groups.size,
-      offset: Number(match.groups.offset),
+      offset: Number(match.groups.offset || 0),
       shape: {
         columns: Number(columns),
         rows: Number(rows || 0),

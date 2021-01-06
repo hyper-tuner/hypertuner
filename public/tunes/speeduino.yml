@@ -5197,7 +5197,7 @@ pcVariables:
   tsCanId:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 3
@@ -5221,7 +5221,7 @@ pcVariables:
   rpmhigh:
     type: scalar
     size: U16
-    offset: .nan
+    offset: 0
     units: rpm
     scale: 1
     transform: 0
@@ -5231,7 +5231,7 @@ pcVariables:
   rpmwarn:
     type: scalar
     size: U16
-    offset: .nan
+    offset: 0
     units: rpm
     scale: 1
     transform: 0
@@ -5241,7 +5241,7 @@ pcVariables:
   rpmdang:
     type: scalar
     size: U16
-    offset: .nan
+    offset: 0
     units: rpm
     scale: 1
     transform: 0
@@ -5251,7 +5251,7 @@ pcVariables:
   maphigh:
     type: scalar
     size: U16
-    offset: .nan
+    offset: 0
     units: kPa
     scale: 1
     transform: 0
@@ -5261,7 +5261,7 @@ pcVariables:
   mapwarn:
     type: scalar
     size: U16
-    offset: .nan
+    offset: 0
     units: kPa
     scale: 1
     transform: 0
@@ -5271,7 +5271,7 @@ pcVariables:
   mapdang:
     type: scalar
     size: U16
-    offset: .nan
+    offset: 0
     units: kPa
     scale: 1
     transform: 0
@@ -5281,7 +5281,7 @@ pcVariables:
   wueAFR:
     type: array
     size: S16
-    offset: .nan
+    offset: 0
     shape:
       columns: 10
       rows: 0
@@ -5294,7 +5294,7 @@ pcVariables:
   wueRecommended:
     type: array
     size: U08
-    offset: .nan
+    offset: 0
     shape:
       columns: 10
       rows: 0
@@ -5307,7 +5307,7 @@ pcVariables:
   idleUnits:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 2
@@ -5318,12 +5318,36 @@ pcVariables:
       - Duty Cycle
       - Steps
       - Steps
-  boardFuelOutputs: {}
-  boardIgnOutputs: {}
+  boardFuelOutputs:
+    type: array
+    size: U08
+    offset: 0
+    shape:
+      columns: 128
+      rows: 0
+    units: ' '
+    scale: 1
+    transform: 0
+    min: 0
+    max: 255
+    digits: 0
+  boardIgnOutputs:
+    type: array
+    size: U08
+    offset: 0
+    shape:
+      columns: 128
+      rows: 0
+    units: ' '
+    scale: 1
+    transform: 0
+    min: 0
+    max: 255
+    digits: 0
   algorithmNames:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 2
@@ -5339,7 +5363,7 @@ pcVariables:
   algorithmUnits:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 2
@@ -5352,11 +5376,23 @@ pcVariables:
       - INVALID
       - INVALID
       - INVALID
-  algorithmLimits: {}
+  algorithmLimits:
+    type: array
+    size: U16
+    offset: 0
+    shape:
+      columns: 8
+      rows: 0
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 511
+    digits: 0
   fuel2SwitchUnits:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 2
@@ -5372,7 +5408,7 @@ pcVariables:
   boostTableLabels:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 1
@@ -5382,7 +5418,7 @@ pcVariables:
   prgm_out_selection:
     type: bits
     size: U08
-    offset: .nan
+    offset: 0
     address:
       from: 0
       to: 2
@@ -5398,7 +5434,7 @@ pcVariables:
   fuelLoadMax:
     type: scalar
     size: U08
-    offset: .nan
+    offset: 0
     units: ''
     scale: 1
     transform: 0
@@ -5408,7 +5444,7 @@ pcVariables:
   ignLoadMax:
     type: scalar
     size: U08
-    offset: .nan
+    offset: 0
     units: ''
     scale: 1
     transform: 0
