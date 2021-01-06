@@ -1,7 +1,6 @@
 import store from '../store';
 import {
   Config as ConfigType,
-  Constant as ConstantType,
 } from '../types/config';
 import stdDialogs from '../data/standardDialogs';
 import help from '../data/help';

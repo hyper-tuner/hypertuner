@@ -23,7 +23,6 @@ function createWindow() {
 
   mainWindow.loadURL(startURL);
 
-  mainWindow.once('ready-to-show', () => mainWindow.show());
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -31,6 +30,11 @@ function createWindow() {
   mainWindow.webContents.on('new-window', (event, url) => {
     event.preventDefault();
     shell.openExternal(url);
+  });
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+    // mainWindow.maximize();
   });
 }
 
