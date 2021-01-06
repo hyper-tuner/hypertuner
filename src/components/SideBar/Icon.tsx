@@ -3,7 +3,6 @@ import {
   ApiOutlined,
   CarOutlined,
   ControlOutlined,
-  DashboardOutlined,
   DotChartOutlined,
   ExperimentOutlined,
   FieldTimeOutlined,

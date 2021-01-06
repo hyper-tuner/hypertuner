@@ -8,6 +8,12 @@ Single repository for 2 cross-platform apps:
 - Web - tune viewer (backend and frontend)
 - ~~Mobile (Android, iOS)~~
 
+## Related tools
+
+- [mlg-converter](https://github.com/karniv00l/mlg-converter)
+- [speeduino-ini-parser](https://github.com/karniv00l/speeduino-ini-parser)
+- [speeduino-ini-linter](https://github.com/karniv00l/speeduino-ini-linter)
+
 ## Shared code
 
 |            | Desktop | Web | Mobile |
