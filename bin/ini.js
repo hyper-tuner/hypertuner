@@ -23,6 +23,7 @@ class Parser {
     this.PC_VARIABLE_BASE_PATTERN = '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*';
     this.SCALAR_BASE_PATTERN = '\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+),*\\s*(?<min>[\\-\\d.]+)*,*\\s*(?<max>[\\-\\d.]+)*,*\\s*(?<digits>[\\d.]+)*';
 
+    // TODO: ,*
     this.CONSTANT_FIRST_PATTERN  = new RegExp(`${this.CONSTANT_BASE_PATTERN}.+`);
     this.CONSTANT_SCALAR_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
     this.CONSTANT_BITS_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
@@ -32,6 +33,10 @@ class Parser {
     this.PC_VARIABLE_SCALAR_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
     this.PC_VARIABLE_BITS_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
     this.PC_VARIABLE_ARRAY_PATTERN = new RegExp(`${this.PC_VARIABLE_BASE_PATTERN},\\s*\\[(?<shape>.+)\\],*${this.SCALAR_BASE_PATTERN},*\\s*(?<extra>\\w+)*${this.COMMENTS_PATTERN}$`);
+
+    this.OUTPUT_CHANNELS_FIRST_PATTERN  = new RegExp(`${this.CONSTANT_BASE_PATTERN}.+`);
+    this.OUTPUT_CHANNELS_SCALAR_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},*\\s*"(?<units>.*)",*\\s*(?<scale>[\\-\\d.]+),\\s*(?<transform>[\\-\\d.]+)${this.COMMENTS_PATTERN}$`);
+    this.OUTPUT_CHANNELS_BITS_PATTERN = new RegExp(`${this.CONSTANT_BASE_PATTERN},\\s*\\[(?<from>\\d+):(?<to>\\d+)\\]${this.COMMENTS_PATTERN}$`);
 
     this.SECTION_HEADER_PATTERN = new RegExp(`^\\[(?<section>[A-z]+)]${this.COMMENTS_PATTERN}$`);
     this.KEY_VALUE_PATTERN = new RegExp(`^(?<key>\\w+)\\s*=\\s*"*(?<value>.+?)"*${this.COMMENTS_PATTERN}$`);
@@ -57,6 +62,7 @@ class Parser {
       },
       menus: {},
       dialogs: {},
+      outputChannels: {},
       help: {},
     };
   }
@@ -105,11 +111,50 @@ class Parser {
       case 'UserDefined':
         this.parseDialogs(line);
         break;
+      case 'OutputChannels':
+        this.parseOutputChannels(line);
+        break;
       default:
         // TODO: rename sections, and do not use default, only explicit sections
         this.parseKeyValue(section, line);
         break;
     }
+  }
+
+  parseOutputChannels(line) {
+    this.parseDefines(line);
+
+    const [name, rest] = line.split('=').map((part) => part.trim());
+
+    // not a constant - TODO: #if else
+    if (!rest) {
+      return;
+    }
+
+    const matchConstant = rest.match(this.OUTPUT_CHANNELS_FIRST_PATTERN);
+    // TODO: ochGetCommand    = "r\$tsCanId\x30%2o%2c"
+    if (!matchConstant || !matchConstant.groups) {
+      return;
+    }
+
+    // if / else
+    if (name in this.result.outputChannels) {
+      return;
+    }
+
+    let constant;
+    switch (matchConstant.groups.type) {
+      case 'scalar':
+        constant = Parser.parseScalar(rest, this.OUTPUT_CHANNELS_SCALAR_PATTERN);
+        break;
+      case 'bits':
+        constant = this.parseBits(rest, this.OUTPUT_CHANNELS_BITS_PATTERN);
+        break;
+      default:
+        throw new Error(`Unsupported type: ${matchConstant.groups.type}`);
+    }
+
+    this.result.outputChannels[name] = constant;
   }
 
   parsePcVariables(line) {
@@ -324,8 +369,10 @@ class Parser {
     }
 
     let values = match.groups.values
-      .split(',')
-      .map((val) => val.replace(/"/g, '').trim());
+      ? match.groups.values
+        .split(',')
+        .map((val) => val.replace(/"/g, '').trim())
+      : [];
 
     values = values.map((val) => (
       val.startsWith('$')

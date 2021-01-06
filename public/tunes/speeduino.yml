@@ -62634,6 +62634,1242 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
+outputChannels:
+  secl:
+    type: scalar
+    size: U08
+    offset: 0
+    units: sec
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  status1:
+    type: scalar
+    size: U08
+    offset: 1
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  inj1Status:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 0
+      to: 0
+    values: []
+  inj2Status:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 1
+      to: 1
+    values: []
+  inj3Status:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 2
+      to: 2
+    values: []
+  inj4Status:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 3
+      to: 3
+    values: []
+  DFCOOn:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 4
+      to: 4
+    values: []
+  boostCutFuel:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 5
+      to: 5
+    values: []
+  toothLog1Ready:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 6
+      to: 6
+    values: []
+  toothLog2Ready:
+    type: bits
+    size: U08
+    offset: 1
+    address:
+      from: 7
+      to: 7
+    values: []
+  engine:
+    type: scalar
+    size: U08
+    offset: 2
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  running:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 0
+      to: 0
+    values: []
+  crank:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 1
+      to: 1
+    values: []
+  ase:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 2
+      to: 2
+    values: []
+  warmup:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 3
+      to: 3
+    values: []
+  tpsaccaen:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 4
+      to: 4
+    values: []
+  tpsaccden:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 5
+      to: 5
+    values: []
+  mapaccaen:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 6
+      to: 6
+    values: []
+  mapaccden:
+    type: bits
+    size: U08
+    offset: 2
+    address:
+      from: 7
+      to: 7
+    values: []
+  syncLossCounter:
+    type: scalar
+    size: U08
+    offset: 3
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  map:
+    type: scalar
+    size: U16
+    offset: 4
+    units: kpa
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  iatRaw:
+    type: scalar
+    size: U08
+    offset: 6
+    units: °C
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  coolantRaw:
+    type: scalar
+    size: U08
+    offset: 7
+    units: °C
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  batCorrection:
+    type: scalar
+    size: U08
+    offset: 8
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  batteryVoltage:
+    type: scalar
+    size: U08
+    offset: 9
+    units: V
+    scale: 0.1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  afr:
+    type: scalar
+    size: U08
+    offset: 10
+    units: O2
+    scale: 0.1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  egoCorrection:
+    type: scalar
+    size: U08
+    offset: 11
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  airCorrection:
+    type: scalar
+    size: U08
+    offset: 12
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  warmupEnrich:
+    type: scalar
+    size: U08
+    offset: 13
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  rpm:
+    type: scalar
+    size: U16
+    offset: 14
+    units: rpm
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  accelEnrich:
+    type: scalar
+    size: U08
+    offset: 16
+    units: '%'
+    scale: 2
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  gammaEnrich:
+    type: scalar
+    size: U16
+    offset: 17
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  VE1:
+    type: scalar
+    size: U08
+    offset: 19
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  VE2:
+    type: scalar
+    size: U08
+    offset: 20
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  afrTarget:
+    type: scalar
+    size: U08
+    offset: 21
+    units: O2
+    scale: 0.1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  TPSdot:
+    type: scalar
+    size: U08
+    offset: 22
+    units: '%/s'
+    scale: 10
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  advance:
+    type: scalar
+    size: S08
+    offset: 23
+    units: deg
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  tps:
+    type: scalar
+    size: U08
+    offset: 24
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  loopsPerSecond:
+    type: scalar
+    size: U16
+    offset: 25
+    units: loops
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  freeRAM:
+    type: scalar
+    size: U16
+    offset: 27
+    units: bytes
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  boostTarget:
+    type: scalar
+    size: U08
+    offset: 29
+    units: kPa
+    scale: 2
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  boostDuty:
+    type: scalar
+    size: U08
+    offset: 30
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  status2:
+    type: scalar
+    size: U08
+    offset: 31
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  launchHard:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 0
+      to: 0
+    values: []
+  launchSoft:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 1
+      to: 1
+    values: []
+  hardLimitOn:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 2
+      to: 2
+    values: []
+  softlimitOn:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 3
+      to: 3
+    values: []
+  boostCutSpark:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 4
+      to: 4
+    values: []
+  error:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 5
+      to: 5
+    values: []
+  idleControlOn:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 6
+      to: 6
+    values: []
+  sync:
+    type: bits
+    size: U08
+    offset: 31
+    address:
+      from: 7
+      to: 7
+    values: []
+  rpmDOT:
+    type: scalar
+    size: S16
+    offset: 32
+    units: rpm/s
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  flex:
+    type: scalar
+    size: U08
+    offset: 34
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  flexFuelCor:
+    type: scalar
+    size: U08
+    offset: 35
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  flexIgnCor:
+    type: scalar
+    size: S08
+    offset: 36
+    units: deg
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  idleLoad: {}
+  testoutputs:
+    type: scalar
+    size: U08
+    offset: 38
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  testenabled:
+    type: bits
+    size: U08
+    offset: 38
+    address:
+      from: 0
+      to: 0
+    values: []
+  testactive:
+    type: bits
+    size: U08
+    offset: 38
+    address:
+      from: 1
+      to: 1
+    values: []
+  afr2:
+    type: scalar
+    size: U08
+    offset: 39
+    units: O2
+    scale: 0.1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  baro:
+    type: scalar
+    size: U08
+    offset: 40
+    units: kpa
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge0:
+    type: scalar
+    size: U16
+    offset: 41
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge1:
+    type: scalar
+    size: U16
+    offset: 43
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge2:
+    type: scalar
+    size: U16
+    offset: 45
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge3:
+    type: scalar
+    size: U16
+    offset: 47
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge4:
+    type: scalar
+    size: U16
+    offset: 49
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge5:
+    type: scalar
+    size: U16
+    offset: 51
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge6:
+    type: scalar
+    size: U16
+    offset: 53
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge7:
+    type: scalar
+    size: U16
+    offset: 55
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge8:
+    type: scalar
+    size: U16
+    offset: 57
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge9:
+    type: scalar
+    size: U16
+    offset: 59
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge10:
+    type: scalar
+    size: U16
+    offset: 61
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge11:
+    type: scalar
+    size: U16
+    offset: 63
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge12:
+    type: scalar
+    size: U16
+    offset: 65
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge13:
+    type: scalar
+    size: U16
+    offset: 67
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge14:
+    type: scalar
+    size: U16
+    offset: 69
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  auxin_gauge15:
+    type: scalar
+    size: U16
+    offset: 71
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  tpsADC:
+    type: scalar
+    size: U08
+    offset: 73
+    units: ADC
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  errors:
+    type: scalar
+    size: U08
+    offset: 74
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  errorNum:
+    type: bits
+    size: U08
+    offset: 74
+    address:
+      from: 0
+      to: 1
+    values: []
+  currentError:
+    type: bits
+    size: U08
+    offset: 74
+    address:
+      from: 2
+      to: 7
+    values: []
+  pulseWidth:
+    type: scalar
+    size: U16
+    offset: 75
+    units: ms
+    scale: 0.001
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  pulseWidth2:
+    type: scalar
+    size: U16
+    offset: 77
+    units: ms
+    scale: 0.001
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  pulseWidth3:
+    type: scalar
+    size: U16
+    offset: 79
+    units: ms
+    scale: 0.001
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  pulseWidth4:
+    type: scalar
+    size: U16
+    offset: 81
+    units: ms
+    scale: 0.001
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  status3:
+    type: scalar
+    size: U08
+    offset: 83
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  resetLockOn:
+    type: bits
+    size: U08
+    offset: 83
+    address:
+      from: 0
+      to: 0
+    values: []
+  nitrousOn:
+    type: bits
+    size: U08
+    offset: 83
+    address:
+      from: 1
+      to: 1
+    values: []
+  fuel2Active:
+    type: bits
+    size: U08
+    offset: 83
+    address:
+      from: 2
+      to: 2
+    values: []
+  vssRefresh:
+    type: bits
+    size: U08
+    offset: 83
+    address:
+      from: 3
+      to: 3
+    values: []
+  halfSync:
+    type: bits
+    size: U08
+    offset: 83
+    address:
+      from: 4
+      to: 4
+    values: []
+  nSquirts:
+    type: bits
+    size: U08
+    offset: 83
+    address:
+      from: 5
+      to: 7
+    values: []
+  engineProtectStatus:
+    type: scalar
+    size: U08
+    offset: 84
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  engineProtectRPM:
+    type: bits
+    size: U08
+    offset: 84
+    address:
+      from: 0
+      to: 0
+    values: []
+  engineProtectMAP:
+    type: bits
+    size: U08
+    offset: 84
+    address:
+      from: 1
+      to: 1
+    values: []
+  engineProtectOil:
+    type: bits
+    size: U08
+    offset: 84
+    address:
+      from: 2
+      to: 2
+    values: []
+  engineProtectAFR:
+    type: bits
+    size: U08
+    offset: 84
+    address:
+      from: 3
+      to: 3
+    values: []
+  engineProtectOth:
+    type: bits
+    size: U08
+    offset: 84
+    address:
+      from: 4
+      to: 6
+    values: []
+  IOError:
+    type: bits
+    size: U08
+    offset: 84
+    address:
+      from: 7
+      to: 7
+    values: []
+  unused1:
+    type: scalar
+    size: U08
+    offset: 84
+    units: ADC
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  fuelLoad: {}
+  ignLoad: {}
+  dwell:
+    type: scalar
+    size: U16
+    offset: 89
+    units: ms
+    scale: 0.001
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  CLIdleTarget:
+    type: scalar
+    size: U08
+    offset: 91
+    units: RPM
+    scale: 10
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  MAPdot:
+    type: scalar
+    size: U08
+    offset: 92
+    units: kPa/s
+    scale: 10
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  vvt1Angle:
+    type: scalar
+    size: S08
+    offset: 93
+    units: deg
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  vvt1Target:
+    type: scalar
+    size: U08
+    offset: 94
+    units: deg
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  vvt1Duty:
+    type: scalar
+    size: U08
+    offset: 95
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  flexBoostCor:
+    type: scalar
+    size: S16
+    offset: 96
+    units: kPa
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  baroCorrection:
+    type: scalar
+    size: U08
+    offset: 98
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  veCurr:
+    type: scalar
+    size: U08
+    offset: 99
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  ASECurr:
+    type: scalar
+    size: U08
+    offset: 100
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  vss:
+    type: scalar
+    size: U16
+    offset: 101
+    units: km/h
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  gear:
+    type: scalar
+    size: U08
+    offset: 103
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  fuelPressure:
+    type: scalar
+    size: U08
+    offset: 104
+    units: PSI
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  oilPressure:
+    type: scalar
+    size: U08
+    offset: 105
+    units: PSI
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  wmiPW:
+    type: scalar
+    size: U08
+    offset: 106
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  wmiEmpty:
+    type: scalar
+    size: U08
+    offset: 107
+    units: bits
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  wmiEmptyBit:
+    type: bits
+    size: U08
+    offset: 107
+    address:
+      from: 0
+      to: 0
+    values: []
+  vvt2Angle:
+    type: scalar
+    size: S08
+    offset: 108
+    units: deg
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  vvt2Target:
+    type: scalar
+    size: U08
+    offset: 109
+    units: deg
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  vvt2Duty:
+    type: scalar
+    size: U08
+    offset: 110
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  outputsStatus0:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 0
+      to: 0
+    values: []
+  outputsStatus1:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 1
+      to: 1
+    values: []
+  outputsStatus2:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 2
+      to: 2
+    values: []
+  outputsStatus3:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 3
+      to: 3
+    values: []
+  outputsStatus4:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 4
+      to: 4
+    values: []
+  outputsStatus5:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 5
+      to: 5
+    values: []
+  outputsStatus6:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 6
+      to: 6
+    values: []
+  outputsStatus7:
+    type: bits
+    size: U08
+    offset: 111
+    address:
+      from: 7
+      to: 7
+    values: []
+  fuelTempRaw:
+    type: scalar
+    size: U08
+    offset: 112
+    units: °C
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  fuelTempCor:
+    type: scalar
+    size: U08
+    offset: 113
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  advance1:
+    type: scalar
+    size: U08
+    offset: 114
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  advance2:
+    type: scalar
+    size: U08
+    offset: 115
+    units: '%'
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  unused116:
+    type: scalar
+    size: U08
+    offset: 116
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
+  '#sd_status':
+    type: scalar
+    size: U08
+    offset: 99
+    units: ''
+    scale: 1
+    transform: 0
+    min: 0
+    max: 0
+    digits: 0
 help:
   nCylinders: Cylinder count
   alternate: >-
