@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const { shell } = require('electron')
+const { shell } = require('electron');
 
 const isDev = !app.isPackaged;
 
