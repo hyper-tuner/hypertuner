@@ -5,14 +5,14 @@
   "private": true,
   "license": "MIT",
   "homepage": "./",
-  "main": "./src/electron.js",
+  "main": "./public/electron.js",
   "scripts": {
     "start": "craco start",
     "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "web:build": "craco build",
     "electron:start": "electron-forge start",
-    "electron:package": "electron-forge package",
-    "electron:make": "electron-forge make",
+    "electron:package": "npm run web:build && electron-forge package",
+    "electron:make": "npm run web:build && electron-forge make",
     "test": "craco test",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",
@@ -74,12 +74,14 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./public/assets/icons/icon"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "speedy_tuner"
+            "name": "SpeedyTuner"
           }
         },
         {
