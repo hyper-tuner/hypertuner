@@ -134,6 +134,7 @@ const TopBar = () => {
               </Button>
             </Dropdown>
             <Button icon={<ShareAltOutlined />}>
+              {/* TODO: add mobile native share */}
               {lg && 'Share'}
             </Button>
             <Dropdown

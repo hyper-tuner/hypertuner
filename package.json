@@ -9,7 +9,7 @@
   "scripts": {
     "start": "craco start",
     "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build-web": "craco build",
+    "web:build": "craco build",
     "test": "craco test",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",

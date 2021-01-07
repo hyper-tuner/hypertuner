@@ -1,7 +1,13 @@
 import {
   Radio,
-  Select
+  Select,
+  Switch
 } from 'antd';
+import {
+  CheckOutlined,
+  CloseOutlined,
+} from '@ant-design/icons';
+import { Switches } from '../../types/config';
 
 const SmartSelect = ({
   values,
@@ -12,6 +18,19 @@ const SmartSelect = ({
   defaultValue: string,
   disabled: boolean,
 }) => {
+
+  if (values.length === 2
+    && (
+      (values.includes(Switches.YES) && values.includes(Switches.NO)) ||
+      (values.includes(Switches.ON) && values.includes(Switches.OFF))
+    )
+  ) {
+    return <Switch
+              defaultChecked={[Switches.ON, Switches.YES].includes(defaultValue as Switches)}
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+            />;
+  }
 
   if (values.length < 3) {
     return (
