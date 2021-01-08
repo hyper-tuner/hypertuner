@@ -75,6 +75,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
+        "name": "SpeedyTuner",
         "icon": "./public/assets/icons/icon"
       },
       "makers": [

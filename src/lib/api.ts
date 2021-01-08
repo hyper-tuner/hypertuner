@@ -11,11 +11,11 @@ const yaml = require('js-yaml');
 export const loadAll = () => {
   const started = new Date();
 
-  fetch('./public/tunes/speeduino.yml')
+  fetch('./tunes/speeduino.yml')
     .then((response) => response.text())
     .then((yamlContent) => {
 
-      fetch('./public/tunes/test.msq')
+      fetch('./tunes/test.msq')
         .then((response) => response.text())
         .then((tune) => {
           const xml = (new DOMParser()).parseFromString(tune, 'text/xml');
