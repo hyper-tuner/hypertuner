@@ -65,11 +65,10 @@ const Dialog = ({
 
   const calculateSpan = (dialogsCount: number) => {
     let xxl = 24;
-    let xl = 24;
+    const xl = 24;
 
     if (dialogsCount > 1) {
-      xl = 12;
-      xxl = dialogsCount === 2 ? 12 : 8;
+      xxl = 12;
     }
 
     return {
