@@ -37,6 +37,8 @@ const SmartNumber = ({
         disabled={disabled}
         marks={sliderMarks}
         tipFormatter={(val) => `${val}${units}`}
+        // tooltipVisible
+        // tooltipPlacement="bottom"
       />
     );
   }

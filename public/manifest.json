@@ -3,17 +3,12 @@
   "name": "Speeduino Tuning Software",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/icons/icon.ico",
       "type": "image/x-icon",
       "sizes": "256x256"
     },
     {
-      "src": "/assets/icons/png/128x128.png",
-      "type": "image/png",
-      "sizes": "128x128"
-    },
-    {
-      "src": "/assets/icons/png/512x512.png",
+      "src": "/icons/icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
