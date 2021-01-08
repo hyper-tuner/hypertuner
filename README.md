@@ -14,7 +14,7 @@ Single repository for 2 cross-platform apps:
 - [speeduino-ini-parser](https://github.com/karniv00l/speeduino-ini-parser)
 - [speeduino-ini-linter](https://github.com/karniv00l/speeduino-ini-linter)
 
-## Shared code
+## Code sharing opportunities
 
 |            | Desktop | Web | Mobile |
 |------------|---------|-----|--------|

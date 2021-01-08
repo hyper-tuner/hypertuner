@@ -14,6 +14,12 @@
 @layout-footer-padding: 2px 10px;
 @layout-footer-height: 22px;
 
+@bars-z-index: 5;
+
+body {
+  overflow: hidden;
+}
+
 .border-right {
   border-right-width: 1px;
   border-right-color: @border-color-split;
@@ -37,6 +43,7 @@
   border-bottom-width: 1px;
   border-bottom-color: @border-color-split;
   border-bottom-style: solid;
+  z-index: @bars-z-index;
 }
 
 .app-sidebar {
@@ -64,6 +71,7 @@
   background-color: @primary-color;
   font-size: @font-size-sm;
   color: @text;
+  z-index: @bars-z-index;
 }
 
 .app-content {
