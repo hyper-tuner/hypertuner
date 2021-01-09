@@ -46,11 +46,21 @@ class Parser {
     this.MENU_PATTERN = new RegExp(`^menu\\s*=\\s*"(?<menu>.+)"${this.COMMENTS_PATTERN}$`);
     this.SUB_MENU_PATTERN = new RegExp(`^subMenu\\s*=\\s*(?<name>\\w+)\\s*,*\\s+"(?<title>.+)"\\s*,*\\s*(?<page>\\d+)*\\s*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
+    this.CURVE_PATTERN = new RegExp(`^curve\\s*=\\s*(?<name>\\w+)\\s*,*\\s*"(?<title>.+)${this.COMMENTS_PATTERN}"`);
+    this.CURVE_LABELS_PATTERN = new RegExp(`^columnLabel\\s*=\\s*(?<labels>.+)${this.COMMENTS_PATTERN}`);
+    this.CURVE_X_AXIS_PATTERN = new RegExp(`^xAxis\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
+    this.CURVE_Y_AXIS_PATTERN = new RegExp(`^yAxis\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
+    this.CURVE_X_BINS_PATTERN = new RegExp(`^xBins\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
+    this.CURVE_Y_BINS_PATTERN = new RegExp(`^yBins\\s*=\\s*(?<value>.+)${this.COMMENTS_PATTERN}`);
+    this.CURVE_SIZE_PATTERN = new RegExp(`^size\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
+    this.CURVE_GAUGE_PATTERN = new RegExp(`^gauge\\s*=\\s*(?<value>.+)${this.COMMENTS_PATTERN}`);
+
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
     this.currentDialog = {};
     this.currentPanel = {};
     this.currentMenu = null;
+    this.currentCurve = null;
 
     this.result = {
       megaTune: {},
@@ -62,6 +72,7 @@ class Parser {
       },
       menus: {},
       dialogs: {},
+      curves: {},
       outputChannels: {},
       help: {},
     };
@@ -111,6 +122,9 @@ class Parser {
       case 'UserDefined':
         this.parseDialogs(line);
         break;
+      case 'CurveEditor':
+        this.parseCurves(line);
+        break;
       case 'OutputChannels':
         this.parseOutputChannels(line);
         break;
@@ -118,6 +132,65 @@ class Parser {
         // TODO: rename sections, and do not use default, only explicit sections
         this.parseKeyValue(section, line);
         break;
+    }
+  }
+
+  parseCurves(line) {
+    let match = line.match(this.CURVE_PATTERN);
+    if (match) {
+      this.currentCurve = match.groups.name;
+      this.result.curves[this.currentCurve] = {
+        title: match.groups.title,
+        labels: [],
+        xAxis: [],
+        yAxis: [],
+        xBins: [],
+        yBins: '',
+        size: [],
+        gauge: '',
+      };
+    }
+
+    match = line.match(this.CURVE_LABELS_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].labels = match.groups.labels
+        .split(',').map(Parser.sanitizeString);
+    }
+
+    match = line.match(this.CURVE_X_AXIS_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].xAxis = match.groups.values
+        .split(',').map(Number);
+    }
+
+    match = line.match(this.CURVE_Y_AXIS_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].yAxis = match.groups.values
+        .split(',').map(Number);
+    }
+
+    match = line.match(this.CURVE_X_BINS_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].xBins = match.groups.values
+        .split(',').map(Parser.sanitizeString);
+    }
+
+    match = line.match(this.CURVE_Y_BINS_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].yBins
+        = Parser.sanitizeString(match.groups.value);
+    }
+
+    match = line.match(this.CURVE_SIZE_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].size = match.groups.values
+        .split(',').map(Number);
+    }
+
+    match = line.match(this.CURVE_GAUGE_PATTERN);
+    if (match) {
+      this.result.curves[this.currentCurve].gauge
+        = Parser.sanitizeString(match.groups.value);
     }
   }
 
@@ -202,7 +275,7 @@ class Parser {
     const match = line.match(this.DEFINE_PATTERN);
     if (match) {
       this.result.defines[match.groups.key] = match.groups.value.split(',')
-        .map((val) => Parser.sanitizeString(val));
+        .map(Parser.sanitizeString);
 
       const resolved = this.result.defines[match.groups.key].map((val) => (
         val.startsWith('$')

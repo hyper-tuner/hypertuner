@@ -62979,6 +62979,575 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
+curves:
+  time_accel_tpsdot_curve:
+    title: TPS based AE
+    labels:
+      - TPSdot
+      - Added
+    xAxis:
+      - 0
+      - 1200
+      - 6
+    yAxis:
+      - 0
+      - 250
+      - 4
+    xBins:
+      - taeBins
+      - TPSdot
+    yBins: taeRates
+    size: []
+    gauge: ''
+  time_accel_mapdot_curve:
+    title: MAP based AE
+    labels:
+      - MAPdot
+      - Added
+    xAxis:
+      - 0
+      - 1200
+      - 6
+    yAxis:
+      - 0
+      - 250
+      - 4
+    xBins:
+      - maeBins
+      - MAPdot
+    yBins: maeRates
+    size: []
+    gauge: ''
+  dwell_correction_curve:
+    title: Dwell voltage correction
+    labels:
+      - Voltage
+      - Dwell
+    xAxis:
+      - 6
+      - 22
+      - 6
+    yAxis:
+      - 0
+      - 255
+      - 6
+    xBins:
+      - brvBins
+      - batteryVoltage
+    yBins: dwellRates
+    size: []
+    gauge: ''
+  injector_voltage_curve:
+    title: Injector voltage correction
+    labels:
+      - Voltage
+      - Injector
+    xAxis:
+      - 6
+      - 22
+      - 6
+    yAxis:
+      - 0
+      - 255
+      - 6
+    xBins:
+      - brvBins
+      - batteryVoltage
+    yBins: injBatRates
+    size: []
+    gauge: ''
+  injector_timing_curve:
+    title: Injector timing
+    labels:
+      - RPM
+      - Injector
+    xAxis:
+      - 0
+      - 7000
+      - 6
+    yAxis:
+      - 0
+      - 720
+      - 5
+    xBins:
+      - injAngRPM
+      - rpm
+    yBins: injAng
+    size: []
+    gauge: ''
+  airdensity_curve:
+    title: IAT density correction
+    labels:
+      - Air Temperature
+      - Fuel Amount
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 255
+      - 6
+    xBins:
+      - airDenBins
+      - iat
+    yBins: airDenRates
+    size: []
+    gauge: ''
+  baroFuel_curve:
+    title: Baro fuel correction
+    labels:
+      - Baro Pressure
+      - Fuel Amount
+    xAxis:
+      - 75
+      - 112
+      - 6
+    yAxis:
+      - 0
+      - 255
+      - 6
+    xBins:
+      - baroFuelBins
+      - baro
+    yBins: baroFuelValues
+    size: []
+    gauge: ''
+  fuelTemp_curve:
+    title: Fuel temp correction
+    labels:
+      - Fuel Temperature
+      - Fuel Amount
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 255
+      - 6
+    xBins:
+      - fuelTempBins
+      - fuelTemp
+    yBins: fuelTempValues
+    size: []
+    gauge: ''
+  iat_retard_curve:
+    title: IAT timing retard
+    labels:
+      - Inlet Air Temp
+      - Retard
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 30
+      - 5
+    xBins:
+      - iatRetBins
+      - iat
+    yBins: iatRetRates
+    size: []
+    gauge: ''
+  clt_advance_curve:
+    title: Cold Advance
+    labels:
+      - Coolant Temp
+      - Advance
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+    xBins:
+      - cltAdvBins
+      - coolant
+    yBins: cltAdvValues
+    size: []
+    gauge: ''
+  idle_advance_curve:
+    title: Idle Advance
+    labels:
+      - RPM Delta
+      - Advance
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+    xBins:
+      - idleAdvBins
+      - CLIdleDelta
+    yBins: idleAdvValues
+    size:
+      - 450
+      - 200
+    gauge: ''
+  iacPwm_curve:
+    title: IAC PWM Duty
+    labels:
+      - Coolant Temperature
+      - Valve
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 100
+      - 4
+    xBins:
+      - iacBins
+      - coolant
+    yBins: iacOLPWMVal
+    size: []
+    gauge: ''
+  iacPwmCrank_curve:
+    title: IAC PWM Cranking Duty
+    labels:
+      - Coolant Temperature
+      - Valve
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 100
+      - 4
+    xBins:
+      - iacCrankBins
+      - coolant
+    yBins: iacCrankDuty
+    size: []
+    gauge: ''
+  iacStep_curve:
+    title: IAC Stepper Motor
+    labels:
+      - Coolant Temperature
+      - Motor
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 850
+      - 4
+    xBins:
+      - iacBins
+      - coolant
+    yBins: iacOLStepVal
+    size: []
+    gauge: ''
+  iacStepCrank_curve:
+    title: IAC Stepper Motor Cranking
+    labels:
+      - Coolant Temperature
+      - Motor
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 850
+      - 4
+    xBins:
+      - iacCrankBins
+      - coolant
+    yBins: iacCrankSteps
+    size: []
+    gauge: ''
+  iacClosedLoop_curve:
+    title: Idle RPM Targets
+    labels:
+      - Coolant Temperature
+      - Motor
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 2000
+      - 4
+    xBins:
+      - iacBins
+      - coolant
+    yBins: iacCLValues
+    size:
+      - 450
+      - 200
+    gauge: ''
+  rotaryTrailing_curve:
+    title: Rotary Trailing Split
+    labels:
+      - Engine load
+      - Split
+    xAxis:
+      - 0
+      - 0
+    yAxis:
+      - 0
+      - 40
+      - 4
+    xBins:
+      - rotarySplitBins
+      - fuelLoad
+    yBins: rotarySplitValues
+    size: []
+    gauge: ''
+  warmup_curve:
+    title: Warmup Enrichment (WUE) Curve
+    labels:
+      - Coolant
+      - WUE %
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 240
+      - 6
+    xBins:
+      - wueBins
+      - coolant
+    yBins: wueRates
+    size: []
+    gauge: cltGauge
+  cranking_enrich_curve:
+    title: Cranking Enrichment Curve
+    labels:
+      - Coolant
+      - Fuel Modifier
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 400
+      - 6
+    xBins:
+      - crankingEnrichBins
+      - coolant
+    yBins: crankingEnrichValues
+    size: []
+    gauge: ''
+  priming_pw_curve:
+    title: Priming Pulsewidth
+    labels:
+      - Coolant
+      - PW
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 10
+      - 4
+    xBins:
+      - primeBins
+      - coolant
+    yBins: primePulse
+    size: []
+    gauge: cltGauge
+  afterstart_enrichment_curve:
+    title: ASE - Enrichment %
+    labels:
+      - Coolant
+      - Enrichment
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 200
+      - 4
+    xBins:
+      - aseBins
+      - coolant
+    yBins: asePct
+    size:
+      - 50
+      - 250
+    gauge: cltGauge
+  afterstart_enrichment_time:
+    title: ASE - Duration
+    labels:
+      - Coolant
+      - Time
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+      - 20
+      - 4
+    xBins:
+      - aseBins
+      - coolant
+    yBins: aseCount
+    size:
+      - 50
+      - 250
+    gauge: cltGauge
+  flex_fuel_curve:
+    title: Flex Fuel Adjustments
+    labels:
+      - Ethanol
+      - Fuel
+    xAxis:
+      - 0
+      - 100
+      - 10
+    yAxis:
+      - 50
+      - 250
+      - 5
+    xBins:
+      - flexFuelBins
+      - flex
+    yBins: flexFuelAdj
+    size:
+      - 400
+      - 200
+    gauge: ''
+  flex_adv_curve:
+    title: Flex Timing Advance
+    labels:
+      - Ethanol
+      - Advance
+    xAxis:
+      - 0
+      - 100
+      - 10
+    yAxis:
+      - 0
+      - 50
+      - 5
+    xBins:
+      - flexAdvBins
+      - flex
+    yBins: flexAdvAdj
+    size:
+      - 400
+      - 200
+    gauge: ''
+  flex_boost_curve:
+    title: Flex Boost Adjustments
+    labels:
+      - Ethanol
+      - Boost
+    xAxis:
+      - 0
+      - 100
+      - 10
+    yAxis:
+      - 0
+    xBins:
+      - flexBoostBins
+      - flex
+    yBins: flexBoostAdj
+    size:
+      - 400
+      - 200
+    gauge: ''
+  knock_window_angle_curve:
+    title: Knock Window
+    labels:
+      - RPM
+      - Window Start
+    xAxis:
+      - 0
+      - 8000
+      - 9
+    yAxis:
+      - 0
+    xBins:
+      - knock_window_rpms
+      - rpm
+    yBins: knock_window_angle
+    size:
+      - 400
+      - 200
+    gauge: ''
+  knock_window_duration_curve:
+    title: Knock Window Duration
+    labels:
+      - RPM
+      - Window Duration
+    xAxis:
+      - 0
+      - 8000
+      - 9
+    yAxis:
+      - 0
+      - 100
+      - 10
+    xBins:
+      - knock_window_rpms
+      - rpm
+    yBins: knock_window_dur
+    size:
+      - 400
+      - 200
+    gauge: ''
+  oil_pressure_prot_curve:
+    title: Oil Pressure Protection
+    labels:
+      - RPM
+      - Minimum PSI
+    xAxis:
+      - 0
+      - 8000
+      - 9
+    yAxis:
+      - 0
+      - 150
+      - 3
+    xBins:
+      - oilPressureProtRPM
+      - rpm
+    yBins: oilPressureProtMins
+    size:
+      - 400
+      - 200
+    gauge: ''
+  warmup_afr_curve:
+    title: Target Adjustment
+    labels:
+      - Coolant
+      - Offset
+    xAxis:
+      - 0
+    yAxis:
+      - 0
+    xBins:
+      - wueBins
+      - coolant
+    yBins: wueAFR
+    size: []
+    gauge: ''
+  warmup_analyzer_curve:
+    title: Warmup Enrichment
+    labels:
+      - Coolant
+      - Current WUE
+      - Coolant
+      - Recommended WUE
+    xAxis:
+      - 0
+    yAxis:
+      - 100
+      - 255
+      - 6
+    xBins:
+      - wueBins
+      - coolant
+    yBins: wueRecommended
+    size: []
+    gauge: ''
+  wmi_adv_curve:
+    title: WMI Timing Advance
+    labels:
+      - kPa
+      - Advance
+    xAxis:
+      - 0
+      - 511
+      - 20
+    yAxis:
+      - 0
+      - 50
+      - 5
+    xBins:
+      - wmiAdvBins
+      - map
+    yBins: wmiAdvAdj
+    size:
+      - 400
+      - 200
+    gauge: ''
 outputChannels:
   secl:
     type: scalar
