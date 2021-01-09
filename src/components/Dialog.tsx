@@ -78,7 +78,7 @@ const Dialog = ({
     };
   };
 
-  const resolvedDialogs = {} as any; // TODO: describe
+  const resolvedDialogs: DialogsType = {};
 
   const resolveDialogs = (source: DialogsType, dialogName: string) => {
     if (!source[dialogName]) {
@@ -92,6 +92,14 @@ const Dialog = ({
       const currentDialog = source[panelName];
 
       if (!currentDialog) {
+        if (!config.curves[panelName]) {
+          console.error('Panel does not exists:', panelName);
+
+          return;
+        }
+
+        // resolve 2D map / curve panel
+        // console.log(config.curves[panelName]);
         return;
       }
 
@@ -99,6 +107,7 @@ const Dialog = ({
         // resolve in root scope
         resolvedDialogs[panelName] = config.dialogs[panelName];
       }
+
         // NOTE: recursion
       resolveDialogs(config.dialogs, panelName);
     });

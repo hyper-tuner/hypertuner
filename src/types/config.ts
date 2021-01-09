@@ -16,7 +16,7 @@ interface Field {
 
 interface Dialog {
   title: string,
-  layout?: string,
+  layout: string,
   help?: string,
   panels: {
     [name: string]: Dialog,
@@ -89,6 +89,17 @@ interface Help {
   [key: string]: string,
 }
 
+interface Curve {
+  title: string,
+  labels: string[],
+  xAxis: number[],
+  yAxis: number[],
+  xBins: string[],
+  yBins: string,
+  size: number[],
+  gauge: string,
+}
+
 interface Config {
   megaTune: {
     signature: string,
@@ -100,6 +111,9 @@ interface Config {
   },
   dialogs: {
     [name: string]: Dialog,
+  },
+  curves: {
+    [name: string]: Curve,
   },
   menus: Menus,
   help: Help,
@@ -119,5 +133,6 @@ export type {
   Page,
   Globals,
   Help,
+  Curve,
   Config,
 };
