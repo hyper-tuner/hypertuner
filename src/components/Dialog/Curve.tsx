@@ -18,20 +18,34 @@ const Curve = ({
 }) => {
   const data = [{
     id: 'curve',
-    color: 'hsl(239, 70%, 50%)',
+    // color: 'hsl(239, 70%, 50%)',
     data: xData.map((val, index) => ({ x: val, y: yData[index] })),
   }];
 
   return (
     <>
       <Typography.Text type="secondary">{help}</Typography.Text>
-      <div style={{ height: 400 }}>
+      <div style={{ height: 450 }}>
         <ResponsiveLine
           data={data}
           isInteractive={!disabled}
-          margin={{ top: 30, right: 30, bottom: 50, left: 50 }}
+          margin={{ top: 30, right: 30, bottom: 60, left: 70 }}
           xScale={{ type: 'point' }}
           yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+          // colors={{ scheme: 'dark2' }}
+          colors={{ scheme: 'category10' }}
+          // tooltip={() => `dupa ${xLabel}`}
+          lineWidth={3}
+          theme={{
+            background: '#191C1E',
+            textColor: '#ddd',
+            fontSize: 14,
+            grid: {
+              line: {
+                stroke: '#333',
+              }
+            }
+          }}
           // yFormat=" >-.2f"
           axisTop={null}
           axisRight={null}
@@ -42,7 +56,7 @@ const Curve = ({
             tickRotation: 0,
             legend: xLabel,
             legendOffset: 36,
-            legendPosition: 'middle'
+            legendPosition: 'middle',
           }}
           axisLeft={{
             orient: 'left',
@@ -50,7 +64,7 @@ const Curve = ({
             tickPadding: 5,
             tickRotation: 0,
             legend: yLabel,
-            legendOffset: -40,
+            legendOffset: -50,
             legendPosition: 'middle'
           }}
           pointSize={10}
