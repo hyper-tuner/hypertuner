@@ -19,7 +19,7 @@ Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 This repository contains code for 2 cross-platform apps:
 
 - [Desktop](https://github.com/karniv00l/speedy-tuner/releases) (Windows, Linux, macOs, Raspberry Pi)
-- [Web](https://speeduino.cloud) share and view tune + logs (frontend only)
+- [Web](https://speeduino.cloud) share and view tunes + logs ([https://speeduino.cloud](https://speeduino.cloud))
 - ~~Mobile (Android, iOS)~~
 
 Written in [TypeScript](https://github.com/microsoft/TypeScript) using [React](https://github.com/facebook/react) and [Electron](https://github.com/electron/electron).
