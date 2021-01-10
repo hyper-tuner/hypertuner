@@ -14,17 +14,29 @@ import { AppState } from '../types/state';
 import SmartSelect from './Dialog/SmartSelect';
 import SmartNumber from './Dialog/SmartNumber';
 import TextField from './Dialog/TextField';
+import Curve from './Dialog/Curve';
 import {
   Dialogs as DialogsType,
   Dialog as DialogType,
   Config as ConfigType,
   Field as FieldType,
   Page as PageType,
+  Curve as CurveType,
 } from '../types/config';
 import {
   Tune as TuneType,
 } from '../types/tune';
 import { prepareConstDeclarations } from '../lib/utils';
+
+interface DialogsAndCurves {
+  [name: string]: DialogType | CurveType,
+}
+
+interface DialogPanel extends CurveType {
+  type: string,
+  name: string,
+  fields: FieldType[],
+}
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -78,7 +90,7 @@ const Dialog = ({
     };
   };
 
-  const resolvedDialogs: DialogsType = {};
+  const resolvedDialogs: DialogsAndCurves = {};
 
   const resolveDialogs = (source: DialogsType, dialogName: string) => {
     if (!source[dialogName]) {
@@ -97,9 +109,9 @@ const Dialog = ({
 
           return;
         }
-
         // resolve 2D map / curve panel
-        // console.log(config.curves[panelName]);
+        resolvedDialogs[panelName] = config.curves[panelName];
+
         return;
       }
 
@@ -116,22 +128,33 @@ const Dialog = ({
   resolveDialogs(config.dialogs, name);
 
   // remove dummy dialogs and flatten to array
-  const panels = Object.keys(resolvedDialogs).map((dialogName: string) => {
-    const currentDialog: DialogType = resolvedDialogs[dialogName];
-    const fields = currentDialog.fields
+  const panels = Object.keys(resolvedDialogs).map((dialogName: string): DialogPanel => {
+    const currentDialog: DialogType | CurveType = resolvedDialogs[dialogName];
+    const type = 'fields' in currentDialog ? 'fields' : 'curve';
+    const fields = type === 'curve' ? [] : (currentDialog as DialogType).fields
       .filter((field) => field.title !== '' );
 
     return {
+      type,
       name: dialogName,
       title: currentDialog.title,
       fields,
+      labels: (currentDialog as CurveType).labels,
+      xAxis: (currentDialog as CurveType).xAxis,
+      yAxis: (currentDialog as CurveType).yAxis,
+      xBins: (currentDialog as CurveType).xBins,
+      yBins: (currentDialog as CurveType).yBins,
+      size: (currentDialog as CurveType).size,
+      gauge: (currentDialog as CurveType).gauge,
     };
   });
 
-  const panelsComponents = () => panels.map((panel: { name: string, title: string, fields: FieldType[] }) => {
-    if (panel.fields.length === 0) {
+  const panelsComponents = () => panels.map((panel: DialogPanel) => {
+    if (panel.type === 'fields' && panel.fields.length === 0) {
       return null;
     }
+
+    console.log(panel);
 
     return (
       <Col key={panel.name} {...calculateSpan(panels.length)}>
@@ -221,6 +244,26 @@ const Dialog = ({
             </Form.Item>
           );
         })}
+
+        {panel.type === 'curve' &&
+          <Curve
+            xLabel={panel.labels[0]}
+            yLabel={panel.labels[1]}
+            xData={
+              (tune.constants[panel.xBins[0]].value as string)
+                .split('\n')
+                .map((val) => val.trim())
+                .filter((val) => val !== '')
+                .map(Number)
+            }
+            yData={
+              (tune.constants[panel.yBins].value as string)
+                .split('\n')
+                .map((val) => val.trim())
+                .filter((val) => val !== '')
+                .map(Number)
+            }
+          />}
       </Col>
     );
   });

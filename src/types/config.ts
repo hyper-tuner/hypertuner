@@ -56,17 +56,20 @@ interface BitsAddress {
   to: number,
 }
 
-interface Constant {
+interface ScalarConstant {
   type: 'scalar' | 'bits' | 'array',
   size: 'U08' | 'S08' | 'U16' | 'S16'
   offset: number,
-  address?: BitsAddress,
   units: string,
   scale: number,
   transform: number,
   min: number,
   max: number,
   digits: number,
+}
+
+interface Constant extends ScalarConstant {
+  address?: BitsAddress,
   shape?: ArrayShape,
   values?: string[],
 }
@@ -115,6 +118,9 @@ interface Config {
   curves: {
     [name: string]: Curve,
   },
+  outputChannels: {
+    [name: string]: ScalarConstant,
+  },
   menus: Menus,
   help: Help,
 }
@@ -128,6 +134,7 @@ export type {
   Menus,
   ArrayShape,
   BitsAddress,
+  ScalarConstant,
   Constant,
   Constants,
   Page,
