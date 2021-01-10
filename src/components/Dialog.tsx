@@ -154,8 +154,6 @@ const Dialog = ({
       return null;
     }
 
-    console.log(panel);
-
     return (
       <Col key={panel.name} {...calculateSpan(panels.length)}>
         <Divider>{panel.title}</Divider>
@@ -247,7 +245,7 @@ const Dialog = ({
 
         {panel.type === 'curve' &&
           <Curve
-            xLabel={panel.labels[0]}
+            xLabel={panel.labels[0]} // TODO: add units from constant
             yLabel={panel.labels[1]}
             xData={
               (tune.constants[panel.xBins[0]].value as string)

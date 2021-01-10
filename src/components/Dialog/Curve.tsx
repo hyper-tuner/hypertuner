@@ -14,7 +14,7 @@ const Curve = ({ xLabel, yLabel, xData, yData }: { xLabel: string, yLabel: strin
         margin={{ top: 50, right: 30, bottom: 50, left: 50 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=" >-.2f"
+        // yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -39,9 +39,7 @@ const Curve = ({ xLabel, yLabel, xData, yData }: { xLabel: string, yLabel: strin
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}
-        pointLabelYOffset={-12}
         useMesh
-
       />
     </div>
   );
