@@ -64,13 +64,50 @@ const Dialog = ({
   name: string,
   burnButton: any
 }) => {
-  if (!config || !config.constants) {
+  const isDataReady = Object.keys(tune.constants).length && Object.keys(config.constants).length;
+
+  const curveComponent = (curve: CurveType) => (
+    <Curve
+      disabled={false} // TODO: evaluate condition
+      help={config.help[curve.yBins]}
+      xLabel={curve.labels[0]} // TODO: add units from constant
+      yLabel={curve.labels[1]}
+      xData={
+        (tune.constants[curve.xBins[0]].value as string)
+          .split('\n')
+          .map((val) => val.trim())
+          .filter((val) => val !== '')
+          .map(Number)
+      }
+      yData={
+        (tune.constants[curve.yBins].value as string)
+          .split('\n')
+          .map((val) => val.trim())
+          .filter((val) => val !== '')
+          .map(Number)
+      }
+    />
+  );
+
+  if (!isDataReady) {
     return skeleton;
   }
 
   const dialogConfig = config.dialogs[name];
+  const curveConfig = config.curves[name];
 
   if (!dialogConfig) {
+    if (curveConfig) {
+      console.log(curveConfig);
+
+      return (
+        <div style={containerStyle}>
+          <Divider>{curveConfig.title}</Divider>
+          {curveComponent(curveConfig)}
+        </div>
+      );
+    }
+
     return (
       <Result status="warning" title="Not found 👀" style={{ marginTop: 50 }} />
     );
@@ -130,9 +167,8 @@ const Dialog = ({
     });
   };
 
+  // TODO: refactor this
   resolveDialogs(config.dialogs, name);
-
-  console.log(resolvedDialogs);
 
   // remove dummy dialogs and flatten to array
   const panels = Object.keys(resolvedDialogs).map((dialogName: string): RenderedPanel => {
@@ -251,26 +287,7 @@ const Dialog = ({
           );
         })}
 
-        {panel.type === 'curve' &&
-          <Curve
-            disabled={false} // TODO: evaluate condition
-            xLabel={panel.labels[0]} // TODO: add units from constant
-            yLabel={panel.labels[1]}
-            xData={
-              (tune.constants[panel.xBins[0]].value as string)
-                .split('\n')
-                .map((val) => val.trim())
-                .filter((val) => val !== '')
-                .map(Number)
-            }
-            yData={
-              (tune.constants[panel.yBins].value as string)
-                .split('\n')
-                .map((val) => val.trim())
-                .filter((val) => val !== '')
-                .map(Number)
-            }
-          />}
+        {panel.type === 'curve' && curveComponent(panel)}
       </Col>
     );
   });
@@ -301,7 +318,7 @@ const Dialog = ({
         // onFinish={(values: any) => console.log(values)}
       >
         <Row gutter={20}>
-          {Object.keys(tune.constants).length && panelsComponents()}
+          {isDataReady && panelsComponents()}
         </Row>
         <Form.Item>
           {burnButton}
