@@ -1,55 +1,46 @@
 # SpeedyTuner
 
-Speeduino Tuner Studio
+Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 
-Single repository for 2 cross-platform apps:
+## Project main goals
 
-- Desktop (Windows, Linux, MacOs, Raspberry Pi)
-- Web - tune viewer (backend and frontend)
+- 🚀 always free and open source
+- 💻 cross-platform desktop and mobile app
+- 🤗 great user experience
+  - modern and responsive UI
+  - fast startup, low resource consumption
+  - touch screen support
+  - 60 FPS animations
+- 🔥 fully featured
+  - all the tuning essentials and beyond
+
+## The repository
+
+This repository contains code for 2 cross-platform apps:
+
+- [Desktop](https://github.com/karniv00l/speedy-tuner/releases) (Windows, Linux, macOs, Raspberry Pi)
+- [Web](https://speeduino.cloud) share and view tune + logs (frontend only)
 - ~~Mobile (Android, iOS)~~
 
-## Related tools
+Written in [TypeScript](https://github.com/microsoft/TypeScript) using [React](https://github.com/facebook/react) and [Electron](https://github.com/electron/electron).
 
-- [mlg-converter](https://github.com/karniv00l/mlg-converter)
-- [speeduino-ini-parser](https://github.com/karniv00l/speeduino-ini-parser)
-- [speeduino-ini-linter](https://github.com/karniv00l/speeduino-ini-linter)
+## ECU firmware
 
-## Code sharing opportunities
+Source code: [noisymime/speeduino](https://github.com/noisymime/speeduino).
 
-|            | Desktop | Web | Mobile |
-|------------|---------|-----|--------|
-| state      | x       | x   | x      |
-| styles     | x       | x   | x      |
-| components | x       | x   |        |
-| comms      | x       |     | x      |
+## Related tools 🛠
 
-## Available Scripts
+Additional tools and components created during development:
 
-In the project directory, you can run:
+- [MLG logs converter](https://github.com/karniv00l/mlg-converter)
+- [INI parser](https://github.com/karniv00l/speeduino-ini-parser)
+- [INI linter](https://github.com/karniv00l/speeduino-ini-linter)
 
-### `npm run dev`
+## Contributing 🤝
 
-Runs the app in the development mode in the browser and as a `Electron` process.
+There are many ways in which you can participate in the project and every bit of help is greatly appreciated.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 🐞 [Submit bugs and feature requests](https://github.com/karniv00l/speedy-tuner/issues)
+- 🧪 Test on different platforms, hardware and Speeduino firmware
+- 👓 Review source code
+- ⌨️ Write tests and refactor code according to best practices
