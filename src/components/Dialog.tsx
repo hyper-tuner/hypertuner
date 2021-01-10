@@ -32,9 +32,10 @@ interface DialogsAndCurves {
   [name: string]: DialogType | CurveType,
 }
 
-interface DialogPanel extends CurveType {
+interface RenderedPanel extends CurveType {
   type: string,
   name: string,
+  condition: string,
   fields: FieldType[],
 }
 
@@ -109,8 +110,12 @@ const Dialog = ({
 
           return;
         }
+
         // resolve 2D map / curve panel
-        resolvedDialogs[panelName] = config.curves[panelName];
+        resolvedDialogs[panelName] = {
+          ...config.curves[panelName],
+          condition: source[dialogName].panels[panelName].condition,
+        };
 
         return;
       }
@@ -127,8 +132,10 @@ const Dialog = ({
 
   resolveDialogs(config.dialogs, name);
 
+  console.log(resolvedDialogs);
+
   // remove dummy dialogs and flatten to array
-  const panels = Object.keys(resolvedDialogs).map((dialogName: string): DialogPanel => {
+  const panels = Object.keys(resolvedDialogs).map((dialogName: string): RenderedPanel => {
     const currentDialog: DialogType | CurveType = resolvedDialogs[dialogName];
     const type = 'fields' in currentDialog ? 'fields' : 'curve';
     const fields = type === 'curve' ? [] : (currentDialog as DialogType).fields
@@ -138,6 +145,7 @@ const Dialog = ({
       type,
       name: dialogName,
       title: currentDialog.title,
+      condition: currentDialog.condition,
       fields,
       labels: (currentDialog as CurveType).labels,
       xAxis: (currentDialog as CurveType).xAxis,
@@ -149,7 +157,7 @@ const Dialog = ({
     };
   });
 
-  const panelsComponents = () => panels.map((panel: DialogPanel) => {
+  const panelsComponents = () => panels.map((panel: RenderedPanel) => {
     if (panel.type === 'fields' && panel.fields.length === 0) {
       return null;
     }
@@ -245,6 +253,7 @@ const Dialog = ({
 
         {panel.type === 'curve' &&
           <Curve
+            disabled={false} // TODO: evaluate condition
             xLabel={panel.labels[0]} // TODO: add units from constant
             yLabel={panel.labels[1]}
             xData={

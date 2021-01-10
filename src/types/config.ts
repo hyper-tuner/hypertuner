@@ -22,7 +22,7 @@ interface Dialog {
     [name: string]: Dialog,
   },
   fields: Field[],
-  condition?: string,
+  condition: string,
 }
 
 interface Dialogs {
@@ -94,6 +94,7 @@ interface Help {
 
 interface Curve {
   title: string,
+  condition: string,
   labels: string[],
   xAxis: number[],
   yAxis: number[],

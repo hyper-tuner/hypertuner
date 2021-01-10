@@ -1,6 +1,18 @@
 import { ResponsiveLine } from '@nivo/line';
 
-const Curve = ({ xLabel, yLabel, xData, yData }: { xLabel: string, yLabel: string, xData: number[], yData: number[] }) => {
+const Curve = ({
+  xLabel,
+  yLabel,
+  xData,
+  yData,
+  disabled,
+}: {
+  xLabel: string,
+  yLabel: string,
+  xData: number[],
+  yData: number[],
+  disabled: boolean,
+}) => {
   const data = [{
     id: 'curve',
     color: 'hsl(239, 70%, 50%)',
@@ -11,6 +23,7 @@ const Curve = ({ xLabel, yLabel, xData, yData }: { xLabel: string, yLabel: strin
     <div style={{ height: 500 }}>
       <ResponsiveLine
         data={data}
+        isInteractive={!disabled}
         margin={{ top: 50, right: 30, bottom: 50, left: 50 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
