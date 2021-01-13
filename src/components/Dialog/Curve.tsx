@@ -28,7 +28,7 @@ const Curve = ({
       <div style={{ height: 450 }}>
         <ResponsiveLineCanvas
           data={data}
-          isInteractive={!disabled}
+          isInteractive={disabled} // NOTE: this is buggy in built version
           margin={{ top: 30, right: 30, bottom: 60, left: 70 }}
           xScale={{ type: 'point' }}
           yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
