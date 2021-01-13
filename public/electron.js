@@ -1,6 +1,5 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, shell } = require('electron');
 const path = require('path');
-const { shell } = require('electron');
 
 const isDev = !app.isPackaged;
 
@@ -32,10 +31,7 @@ function createWindow() {
     shell.openExternal(url);
   });
 
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show();
-    // mainWindow.maximize();
-  });
+  mainWindow.once('ready-to-show', () => mainWindow.show());
 }
 
 app.on('ready', createWindow);
