@@ -8,13 +8,13 @@ export enum Switches {
   OFF = 'Off',
 }
 
-interface Field {
+export interface Field {
   name: string,
   title: string,
   condition?: string,
 }
 
-interface Dialog {
+export interface Dialog {
   title: string,
   layout: string,
   help?: string,
@@ -25,38 +25,38 @@ interface Dialog {
   condition: string,
 }
 
-interface Dialogs {
+export interface Dialogs {
   [name: string]: Dialog,
 }
 
-interface SubMenu {
+export interface SubMenu {
   title: string,
   page: number,
   condition: string,
 }
 
-interface Menu {
+export interface Menu {
   title: string,
   subMenus: {
     [name: string]: SubMenu,
   },
 }
 
-interface Menus {
+export interface Menus {
   [name: string]: Menu,
 }
 
-interface ArrayShape {
+export interface ArrayShape {
   columns: number,
   rows: number,
 }
 
-interface BitsAddress {
+export interface BitsAddress {
   from: number,
   to: number,
 }
 
-interface ScalarConstant {
+export interface ScalarConstant {
   type: 'scalar' | 'bits' | 'array',
   size: 'U08' | 'S08' | 'U16' | 'S16'
   offset: number,
@@ -68,31 +68,31 @@ interface ScalarConstant {
   digits: number,
 }
 
-interface Constant extends ScalarConstant {
+export interface Constant extends ScalarConstant {
   address?: BitsAddress,
   shape?: ArrayShape,
   values?: string[],
 }
 
-interface Constants {
+export interface Constants {
   [name: string]: Constant,
 }
 
-interface Page {
+export interface Page {
   number: number,
   size: number,
   data: Constants,
 }
 
-interface Globals {
+export interface Globals {
   [name: string]: string[],
 }
 
-interface Help {
+export interface Help {
   [key: string]: string,
 }
 
-interface Curve {
+export interface Curve {
   title: string,
   condition: string,
   labels: string[],
@@ -104,7 +104,7 @@ interface Curve {
   gauge: string,
 }
 
-interface Config {
+export interface Config {
   megaTune: {
     signature: string,
   },
@@ -125,22 +125,3 @@ interface Config {
   menus: Menus,
   help: Help,
 }
-
-export type {
-  Field,
-  Dialog,
-  Dialogs,
-  SubMenu,
-  Menu,
-  Menus,
-  ArrayShape,
-  BitsAddress,
-  ScalarConstant,
-  Constant,
-  Constants,
-  Page,
-  Globals,
-  Help,
-  Curve,
-  Config,
-};

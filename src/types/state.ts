@@ -1,35 +1,26 @@
 import { Config } from './config';
 import { Tune } from './tune';
 
-interface ConfigState extends Config {}
+export interface ConfigState extends Config {}
 
-interface TuneState extends Tune {}
+export interface TuneState extends Tune {}
 
-interface UIState {
+export interface UIState {
   sidebarCollapsed: boolean,
 }
 
-interface StatusState {
+export interface StatusState {
   text: string | null,
 }
 
-interface AppState {
+export interface AppState {
   tune: TuneState,
   config: ConfigState,
   ui: UIState,
   status: StatusState,
 }
 
-interface UpdateTunePayload {
+export interface UpdateTunePayload {
   name: string,
   value: string | number,
 }
-
-export type {
-  ConfigState,
-  TuneState,
-  AppState,
-  UpdateTunePayload,
-  UIState,
-  StatusState,
-};

@@ -1,17 +1,11 @@
-interface Constant {
+export interface Constant {
   value: string | number,
 }
 
-interface Constants {
+export interface Constants {
   [name: string]: Constant,
 }
 
-interface Tune {
+export interface Tune {
   constants: Constants,
 }
-
-export type {
-  Tune,
-  Constant,
-  Constants,
-};

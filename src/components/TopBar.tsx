@@ -9,6 +9,7 @@ import {
   Grid,
   Menu,
   Dropdown,
+  Typography,
 } from 'antd';
 import {
   UserOutlined,
@@ -24,6 +25,7 @@ import {
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
+import { isMac } from '../lib/env';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -110,7 +112,12 @@ const TopBar = () => {
       <Row>
         <Col span={0} sm={8} />
         <Col span={0} sm={8} style={{ textAlign: 'center' }}>
-          <Tooltip title="⌘ / CTRL + P">
+          <Tooltip title={
+            <>
+              <Typography.Text keyboard>{isMac ? '⌘' : 'CTRL'}</Typography.Text>
+              <Typography.Text keyboard>P</Typography.Text>
+            </>
+          }>
             <Input
               ref={searchInput}
               onKeyUp={(e) => e.key === 'Escape' && e.currentTarget.blur()}
