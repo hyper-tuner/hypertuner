@@ -91,7 +91,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
 
   return (
     <Sider {...siderProps} className="app-sidebar">
-      <PerfectScrollbar>
+      <PerfectScrollbar options={{ suppressScrollX: true }}>
         <Menu
           defaultSelectedKeys={[pathname]}
           defaultOpenKeys={[

@@ -1,4 +1,4 @@
-import { ResponsiveLine } from '@nivo/line';
+import { ResponsiveLineCanvas } from '@nivo/line';
 import { Typography } from 'antd';
 
 const Curve = ({
@@ -26,7 +26,7 @@ const Curve = ({
     <>
       <Typography.Text type="secondary">{help}</Typography.Text>
       <div style={{ height: 450 }}>
-        <ResponsiveLine
+        <ResponsiveLineCanvas
           data={data}
           isInteractive={!disabled}
           margin={{ top: 30, right: 30, bottom: 60, left: 70 }}
@@ -34,7 +34,6 @@ const Curve = ({
           yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
           // colors={{ scheme: 'dark2' }}
           colors={{ scheme: 'category10' }}
-          // tooltip={() => `dupa ${xLabel}`}
           lineWidth={3}
           theme={{
             background: '#191C1E',
@@ -71,7 +70,7 @@ const Curve = ({
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}
           pointBorderColor={{ from: 'serieColor' }}
-          useMesh
+          // useMesh
         />
       </div>
     </>

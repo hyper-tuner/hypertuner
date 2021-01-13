@@ -40,7 +40,7 @@ const App = ({ ui }: { ui: UIState }) => {
           <SideBar />
           <Layout className="app-content">
             <Content>
-              <PerfectScrollbar>
+              <PerfectScrollbar options={{ suppressScrollX: true }}>
                 <Dialog
                   name={dialogName}
                   burnButton={isDesktop() && <BurnButton />}
