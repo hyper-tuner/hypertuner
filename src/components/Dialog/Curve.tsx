@@ -24,7 +24,9 @@ const Curve = ({
 
   return (
     <>
-      <Typography.Text type="secondary">{help}</Typography.Text>
+      <Typography.Paragraph>
+        <Typography.Text type="secondary">{help}</Typography.Text>
+      </Typography.Paragraph>
       <div style={{ height: 450 }}>
         <ResponsiveLineCanvas
           data={data}
@@ -70,7 +72,6 @@ const Curve = ({
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}
           pointBorderColor={{ from: 'serieColor' }}
-          // useMesh
         />
       </div>
     </>

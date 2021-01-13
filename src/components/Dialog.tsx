@@ -98,8 +98,6 @@ const Dialog = ({
 
   if (!dialogConfig) {
     if (curveConfig) {
-      console.log(curveConfig);
-
       return (
         <div style={containerStyle}>
           <Divider>{curveConfig.title}</Divider>
