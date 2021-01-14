@@ -44,3 +44,12 @@ There are many ways in which you can participate in the project and every bit of
 - 🧪 Test on different platforms, hardware and Speeduino firmware
 - 👓 Review source code
 - ⌨️ Write tests and refactor code according to best practices
+
+### Recommended dev environment
+
+[Visual Studio Code](https://code.visualstudio.com/) with following extensions (or similar):
+
+- [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [SonarLint](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
