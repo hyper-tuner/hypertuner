@@ -22,6 +22,9 @@ import {
   LineChartOutlined,
   SlidersOutlined,
   GithubOutlined,
+  FileExcelOutlined,
+  FileTextOutlined,
+  FileZipOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
@@ -29,60 +32,47 @@ import { isMac } from '../lib/env';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
-
-// const trigger = () => {
-//   const triggerProps = {
-//     className: 'trigger',
-//     onClick: store.dispatch({ type: 'ui/sidebarCollapsed', payload: !ui.sidebarCollapsed }),
-//   } as any;
-
-//   return ui.sidebarCollapsed
-//     ? <MenuUnfoldOutlined {...triggerProps} />
-//     : <MenuFoldOutlined {...triggerProps} />;
-// };
-
+const { SubMenu } = Menu;
 
 const TopBar = () => {
   const { lg, xl } = useBreakpoint();
 
   const userMenu = (
     <Menu>
-      <Menu.Item>
-        <a href="/login">
-          <LoginOutlined /> Login
-        </a>
+      <Menu.Item icon={<LoginOutlined />}>
+        Login
       </Menu.Item>
-      <Menu.Item>
-        <a href="/sign-up">
-          <UserAddOutlined /> Sign-up
-        </a>
+      <Menu.Item icon={<UserAddOutlined />}>
+        Sign-up
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item icon={<GithubOutlined />}>
         <a href="https://github.com/karniv00l/speedy-tuner" target="__blank" rel="noopener noreferrer">
-          <GithubOutlined /> GitHub
+          GitHub
         </a>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item>
-        <a href="/preferences">
-          <SettingOutlined /> Preferences
-        </a>
+      <Menu.Item icon={<SettingOutlined />}>
+        Preferences
       </Menu.Item>
     </Menu>
   );
 
   const downloadMenu = (
     <Menu>
-      <Menu.Item>
-        <a href="/download/tune">
-          <SlidersOutlined /> Tune
-        </a>
+      <Menu.Item icon={<SlidersOutlined />}>
+        Tune
       </Menu.Item>
-      <Menu.Item>
-        <a href="/download/logs">
-          <LineChartOutlined /> Logs
-        </a>
-      </Menu.Item>
+      <SubMenu title="Logs" icon={<LineChartOutlined />}>
+        <Menu.Item icon={<FileZipOutlined />}>
+          MLG
+        </Menu.Item>
+        <Menu.Item icon={<FileTextOutlined />}>
+          MSL
+        </Menu.Item>
+        <Menu.Item icon={<FileExcelOutlined />}>
+          CSV
+        </Menu.Item>
+      </SubMenu>
     </Menu>
   );
 
@@ -134,7 +124,6 @@ const TopBar = () => {
             <Dropdown
               overlay={downloadMenu}
               placement="bottomCenter"
-              trigger={['click']}
             >
               <Button icon={<CloudDownloadOutlined />}>
                 {xl && 'Download'}
@@ -147,7 +136,6 @@ const TopBar = () => {
             <Dropdown
               overlay={userMenu}
               placement="bottomCenter"
-              trigger={['click']}
             >
               <Button icon={<UserOutlined />} />
             </Dropdown>

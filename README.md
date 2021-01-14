@@ -4,7 +4,7 @@ Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 
 ## Project main goals
 
-- 🚀 always free and open source
+- 🚀 always free and open source (FOSS)
 - 💻 cross-platform desktop and mobile app
 - 🤗 great user experience
   - modern and responsive UI
