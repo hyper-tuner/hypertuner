@@ -25,6 +25,8 @@ import {
   FileExcelOutlined,
   FileTextOutlined,
   FileZipOutlined,
+  SaveOutlined,
+  DesktopOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
@@ -59,9 +61,14 @@ const TopBar = () => {
 
   const downloadMenu = (
     <Menu>
-      <Menu.Item icon={<SlidersOutlined />}>
-        Tune
-      </Menu.Item>
+      <SubMenu title="Tune" icon={<SlidersOutlined />}>
+        <Menu.Item icon={<SaveOutlined />}>
+          Save on disk
+        </Menu.Item>
+        <Menu.Item icon={<DesktopOutlined />}>
+          Open in app
+        </Menu.Item>
+      </SubMenu>
       <SubMenu title="Logs" icon={<LineChartOutlined />}>
         <Menu.Item icon={<FileZipOutlined />}>
           MLG
