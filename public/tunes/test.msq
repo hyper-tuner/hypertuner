@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <msq xmlns="http://www.msefi.com/:msq">
-<bibliography author="TunerStudio MS Ultra 3.1.04 - EFI Analytics, Inc." tuneComment="" writeDate="Wed Nov 18 12:51:57 CET 2020"/>
-<versionInfo fileFormat="5.0" firmwareInfo="Speeduino+2020.09-dev" nPages="14" signature="speeduino 202009-dev"/>
+<bibliography author="TunerStudio MS Ultra 3.1.05 - EFI Analytics, Inc." tuneComment="" writeDate="Thu Jan 14 12:09:14 CET 2021"/>
+<versionInfo fileFormat="5.0" firmwareInfo="Speeduino+2020.09-dev" nPages="14" signature="speeduino 202101-dev"/>
 <page>
+<pcVariable name="tsCanId">"0"</pcVariable>
 <pcVariable name="tsCanId">"CAN ID 0"</pcVariable>
 <pcVariable digits="0" name="rpmhigh" units="rpm">8000.0</pcVariable>
 <pcVariable digits="0" name="rpmwarn" units="rpm">3000.0</pcVariable>
@@ -95,7 +96,7 @@
          4.0 
          4.0 
          4.0 
-         4.0 
+         8.0 
          4.0 
          4.0 
          4.0 
@@ -225,7 +226,7 @@
          4.0 
          4.0 
          4.0 
-         4.0 
+         8.0 
          4.0 
          4.0 
          4.0 
@@ -304,11 +305,29 @@
          100.0 
          100.0 
       </pcVariable>
+<pcVariable name="prgm_out_selection">"1"</pcVariable>
 <pcVariable digits="0" name="fuelLoadMax">255.0</pcVariable>
 <pcVariable digits="0" name="ignLoadMax">255.0</pcVariable>
 <pcVariable name="AUXin00Alias">VSS_RAW</pcVariable>
 <pcVariable name="AUXin01Alias">Clutch_RAW</pcVariable>
 <pcVariable name="prgm_out00Alias">Alternator_Disable</pcVariable>
+<pcVariable name="tsSpeedSource">"GPS Speed"</pcVariable>
+<pcVariable digits="0" name="tsPrimaryInjectorSize">450.0</pcVariable>
+<pcVariable name="tsInjSizeConstant">"cc/min"</pcVariable>
+<pcVariable name="tsLogPowerFields">"Log HP &amp; Tq"</pcVariable>
+<pcVariable name="tsLogPerfFields">"Off"</pcVariable>
+<pcVariable name="tsFuelConsumptionUnits">"Liters"</pcVariable>
+<pcVariable name="tsDistanceUnits">"Kilometers Per Hour"</pcVariable>
+<pcVariable digits="0" name="tsVehicleWeight">1000.0</pcVariable>
+<pcVariable name="tsWeightUnits">"kg"</pcVariable>
+<pcVariable digits="2" name="tsVehicleDragCoef">0.34</pcVariable>
+<pcVariable digits="0" name="tsTirePressure" units="psi">32.0</pcVariable>
+<pcVariable digits="1" name="tsFrontalArea">19.3</pcVariable>
+<pcVariable name="tsFrontalUnits">"sqft"</pcVariable>
+<pcVariable digits="1" name="tsTireDiameter" units="in">25.5</pcVariable>
+<pcVariable digits="2" name="tsTransGearRatio" units=":1">1.0</pcVariable>
+<pcVariable digits="2" name="tsFinalDriveRatio" units=":1">3.7</pcVariable>
+<pcVariable digits="0" name="tsEtRollOut" units="in">0.0</pcVariable>
 </page>
 <page number="0" size="128">
 <constant digits="1" name="aseTaperTime" units="S">5.0</constant>
@@ -317,7 +336,7 @@
 <constant name="aeMode">"TPS"</constant>
 <constant name="battVCorMode">"Open Time only"</constant>
 <constant name="SoftLimitMode">"Fixed"</constant>
-<constant name="unused1-3c">"TPS"</constant>
+<constant name="useTachoSweep">"On"</constant>
 <constant name="aeApplyMode">"PW Adder"</constant>
 <constant name="multiplyMAP">"Baro"</constant>
 <constant cols="1" digits="0" name="wueRates" rows="10" units="%">
@@ -393,7 +412,7 @@
 <constant digits="0" name="oddfire4" units="deg">0.0</constant>
 <constant name="idleUpPin">"36"</constant>
 <constant name="idleUpPolarity">"Normal"</constant>
-<constant name="idleUpEnabled">"Off"</constant>
+<constant name="idleUpEnabled">"On"</constant>
 <constant digits="0" name="idleUpAdder" units="% / Steps">20.0</constant>
 <constant digits="0" name="aeTaperMin" units="RPM">1500.0</constant>
 <constant digits="0" name="aeTaperMax" units="RPM">2000.0</constant>
@@ -465,18 +484,24 @@
 <constant digits="1" name="vssRatio4" units="km/h per 1000rpm">6553.5</constant>
 <constant digits="1" name="vssRatio5" units="km/h per 1000rpm">6553.5</constant>
 <constant digits="1" name="vssRatio6" units="km/h per 1000rpm">6553.5</constant>
-<constant cols="1" digits="0" name="unused2-95" rows="9" units="%">
-         255.0 
-         255.0 
-         255.0 
-         255.0 
+<constant name="idleUpOutputEnabled">"On"</constant>
+<constant name="idleUpOutputInv">"No"</constant>
+<constant name="idleUpOutputPin">"Board Default"</constant>
+<constant digits="0" name="tachoSweepMaxRPM" units="RPM">7000.0</constant>
+<constant digits="1" name="primingDelay" units="S">1.0</constant>
+<constant digits="0" name="iacTPSlimit" units="%">255.0</constant>
+<constant digits="0" name="iacRPMlimitHysteresis" units="RPM">2550.0</constant>
+<constant cols="1" digits="0" name="unused2-95" rows="5" units="%">
          255.0 
          255.0 
          255.0 
          255.0 
          255.0 
       </constant>
-<constant digits="1" name="primingDelay" units="S">1.0</constant>
+<constant cols="1" digits="0" name="UNALLOCATED_TOP_0" rows="2" units="RAW">
+         255.0 
+         10.0 
+      </constant>
 </page>
 <page number="1" size="288">
 <constant cols="16" digits="0" name="veTable" rows="16" units="%">
@@ -608,7 +633,7 @@
 <constant name="resetControl">"Serial Command"</constant>
 <constant name="resetControlPin">"Board Default"</constant>
 <constant digits="0" name="SkipCycles" units="cycles">0.0</constant>
-<constant name="boostType">"Open Loop"</constant>
+<constant name="boostType">"Closed Loop"</constant>
 <constant name="useDwellLim">"On"</constant>
 <constant name="sparkMode">"Sequential"</constant>
 <constant name="TrigFilter">"Weak"</constant>
@@ -902,7 +927,7 @@
 <constant digits="0" name="boostKI" units="%">15.0</constant>
 <constant digits="0" name="boostKD" units="%">9.0</constant>
 <constant name="lnchPullRes">"Pullup"</constant>
-<constant name="fuelTrimEnabled">"No"</constant>
+<constant name="fuelTrimEnabled">"Yes"</constant>
 <constant name="flatSEnable">"No"</constant>
 <constant name="baroPin">"A0"</constant>
 <constant digits="0" name="flatSSoftWin" units="rpm">800.0</constant>
@@ -974,7 +999,7 @@
          16.0 
          70.0 
       </constant>
-<constant name="iacAlgorithm">"PWM Open loop"</constant>
+<constant name="iacAlgorithm">"PWM Closed loop"</constant>
 <constant name="iacStepTime">"3"</constant>
 <constant name="iacChannels">"1"</constant>
 <constant name="iacPWMdir">"Normal"</constant>
@@ -995,7 +1020,7 @@
       </constant>
 </page>
 <page number="6" size="240">
-<constant cols="8" digits="0" name="boostTable" rows="8" units="Duty Cycle %">
+<constant cols="8" digits="0" name="boostTable" rows="8" units="kPa">
          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 
          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 
          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 
@@ -1452,8 +1477,8 @@
          90.0 
       </constant>
 <constant name="rotaryType">"FC"</constant>
-<constant name="stagingEnabled">"Off"</constant>
-<constant name="stagingMode">"Automatic"</constant>
+<constant name="stagingEnabled">"On"</constant>
+<constant name="stagingMode">"Table"</constant>
 <constant name="EMAPPin">"A0"</constant>
 <constant cols="1" digits="0" name="rotarySplitValues" rows="8" units="degrees">
          255.0 
@@ -1528,7 +1553,7 @@
          71.0 
          85.0 
       </constant>
-<constant name="n2o_enable">"Off"</constant>
+<constant name="n2o_enable">"2 stage"</constant>
 <constant name="n2o_arming_pin">"30"</constant>
 <constant digits="0" name="n2o_minCLT" units="C">60.0</constant>
 <constant digits="0" name="n2o_maxMAP" units="kPa">250.0</constant>
@@ -1591,7 +1616,7 @@
 <constant digits="1" name="knock_recoveryStepTime" units="Sec">0.0</constant>
 <constant digits="0" name="knock_recoveryStep" units="Deg">0.0</constant>
 <constant name="fuel2Algorithm">"MAP"</constant>
-<constant name="fuel2Mode">"Off"</constant>
+<constant name="fuel2Mode">"Multiplied %"</constant>
 <constant name="fuel2SwitchVariable">"MAP"</constant>
 <constant digits="0" name="fuel2SwitchValue" units="kPa">102.0</constant>
 <constant name="fuel2InputPin">"21"</constant>
@@ -1626,8 +1651,8 @@
          255.0 
       </constant>
 <constant name="wmiEnabled">"On"</constant>
-<constant name="wmiMode">"Simple"</constant>
-<constant name="wmiAdvEnabled">"Off"</constant>
+<constant name="wmiMode">"Closedloop"</constant>
+<constant name="wmiAdvEnabled">"On"</constant>
 <constant digits="0" name="wmiTPS" units="%TPS">255.0</constant>
 <constant digits="0" name="wmiRPM" units="RPM">25500.0</constant>
 <constant digits="0" name="wmiMAP" units="kPa">510.0</constant>
@@ -1659,6 +1684,7 @@
       </constant>
 <constant digits="0" name="vvtCLminDuty" units="%">255.0</constant>
 <constant digits="0" name="vvtCLmaxDuty" units="%">255.0</constant>
+<constant name="vvt2Pin">"Board Default"</constant>
 <constant cols="1" digits="0" name="fuelTempBins" rows="6" units="C">
          215.0 
          215.0 
@@ -1675,18 +1701,18 @@
          255.0 
          255.0 
       </constant>
+<constant name="spark2Algorithm">"MAP"</constant>
+<constant name="spark2Mode">"Added"</constant>
 <constant name="spark2SwitchVariable">"ETH%"</constant>
-<constant digits="0" name="spark2SwitchValue" units="kPa">65535.0</constant>
+<constant digits="0" name="spark2SwitchValue" units="%">65535.0</constant>
+<constant name="spark2InputPin">"3"</constant>
 <constant name="spark2InputPolarity">"HIGH"</constant>
 <constant name="spark2InputPullup">"Yes"</constant>
-<constant cols="1" digits="0" name="unused11_187_191" rows="2" units="RPM">
-         25500.0 
-         25500.0 
+<constant cols="1" digits="0" name="unused11_190_191" rows="2" units="RPM">
+         2000.0 
+         500.0 
       </constant>
-<constant cols="1" digits="0" name="UNALLOCATED_TOP_9" rows="5" units="RAW">
-         255.0 
-         255.0 
-         255.0 
+<constant cols="1" digits="0" name="UNALLOCATED_TOP_9" rows="2" units="RAW">
          255.0 
          255.0 
       </constant>
@@ -1904,7 +1930,7 @@
 <constant name="outputInverted7">"Active low"</constant>
 <constant digits="0" name="unused12_1" units="bits">255.0</constant>
 <constant cols="1" digits="0" name="outputPin" rows="8">
-         0.0 
+         3.0 
          0.0 
          0.0 
          0.0 
@@ -1913,7 +1939,7 @@
          0.0 
          0.0 
       </constant>
-<constant name="outputPin0">"Disabled"</constant>
+<constant name="outputPin0">"3"</constant>
 <constant name="outputPin1">"Disabled"</constant>
 <constant name="outputPin2">"Disabled"</constant>
 <constant name="outputPin3">"Disabled"</constant>
@@ -1981,7 +2007,7 @@
          -1.0 
       </constant>
 <constant cols="1" digits="0" name="secondTarget" rows="8">
-         -1.0 
+         3.0 
          -1.0 
          -1.0 
          -1.0 
@@ -1991,8 +2017,8 @@
          -1.0 
       </constant>
 <constant name="firstCompType0">"&gt;="</constant>
-<constant name="secondCompType0">"=="</constant>
-<constant name="bitwise0">"Disabled"</constant>
+<constant name="secondCompType0">"&gt;="</constant>
+<constant name="bitwise0">"AND"</constant>
 <constant name="firstCompType1">"=="</constant>
 <constant name="secondCompType1">"=="</constant>
 <constant name="bitwise1">"XOR"</constant>

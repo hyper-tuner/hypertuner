@@ -1,7 +1,7 @@
 import {
   Radio,
   Select,
-  Switch
+  Switch,
 } from 'antd';
 import {
   CheckOutlined,
@@ -41,7 +41,7 @@ const SmartSelect = ({
         disabled={disabled}
       >
          {values.map((val: string, index) =>
-          <Radio key={val} value={index}>{val}</Radio>
+          <Radio key={val} value={index}>{val}</Radio>,
          )}
        </Radio.Group>
     );
@@ -59,7 +59,7 @@ const SmartSelect = ({
       {values.map((val: string, index) =>
         val === 'INVALID'
           ? null
-          : <Select.Option key={val} value={index} label={val}>{val}</Select.Option>
+          : <Select.Option key={val} value={index} label={val}>{val}</Select.Option>,
       )}
     </Select>
   );

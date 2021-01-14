@@ -57,7 +57,7 @@ const Dialog = ({
   config,
   tune,
   name,
-  burnButton
+  burnButton,
 }: {
   config: ConfigType,
   tune: TuneType,

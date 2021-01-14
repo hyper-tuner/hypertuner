@@ -95,7 +95,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
         <Menu
           defaultSelectedKeys={[pathname]}
           defaultOpenKeys={[
-            `/${pathname.substr(1).split('/')[0]}`
+            `/${pathname.substr(1).split('/')[0]}`,
           ]}
           mode="inline"
           style={{ height: '100%' }}

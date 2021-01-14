@@ -44,8 +44,8 @@ const Curve = ({
             grid: {
               line: {
                 stroke: '#333',
-              }
-            }
+              },
+            },
           }}
           // yFormat=" >-.2f"
           axisTop={null}
@@ -66,7 +66,7 @@ const Curve = ({
             tickRotation: 0,
             legend: yLabel,
             legendOffset: -50,
-            legendPosition: 'middle'
+            legendPosition: 'middle',
           }}
           pointSize={10}
           pointColor={{ theme: 'background' }}

@@ -3,6 +3,7 @@ import {
   ApiOutlined,
   CarOutlined,
   ControlOutlined,
+  DashboardOutlined,
   DotChartOutlined,
   ExperimentOutlined,
   FieldTimeOutlined,
@@ -107,6 +108,11 @@ const Icon = ({ name }: { name: string }) => {
       return <RocketOutlined />;
     case 'vssSettings':
       return <SettingOutlined />;
+    case 'Auxin_config':
+      return <ApiOutlined />;
+    case 'tacho':
+    case 'pressureSensors':
+      return <DashboardOutlined />;
 
     // default / not found
     default:
