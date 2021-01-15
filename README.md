@@ -32,6 +32,7 @@ Source code: [noisymime/speeduino](https://github.com/noisymime/speeduino).
 
 Additional tools and components created during development:
 
+- [Trigger simulator](https://github.com/karniv00l/trigger-sim)
 - [MLG logs converter](https://github.com/karniv00l/mlg-converter)
 - [INI parser](https://github.com/karniv00l/speeduino-ini-parser)
 - [INI linter](https://github.com/karniv00l/speeduino-ini-linter)
@@ -47,9 +48,9 @@ There are many ways in which you can participate in the project and every bit of
 
 ### Recommended dev environment
 
-[Visual Studio Code](https://code.visualstudio.com/) with following extensions (or similar):
-
-- [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [SonarLint](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode)
-- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Node LTS](https://nodejs.org/) 14.x.x
+- [Visual Studio Code](https://code.visualstudio.com/) with following extensions:
+  - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - [SonarLint](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode)
+  - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
