@@ -32,7 +32,8 @@ Source code: [noisymime/speeduino](https://github.com/noisymime/speeduino).
 
 Additional tools and components created during development:
 
-- [Trigger simulator](https://github.com/karniv00l/trigger-sim)
+- [Trigger Simulator](https://github.com/karniv00l/trigger-sim)
+- [Serial Monitor](https://github.com/karniv00l/serial-monitor)  
 - [MLG logs converter](https://github.com/karniv00l/mlg-converter)
 - [INI parser](https://github.com/karniv00l/speeduino-ini-parser)
 - [INI linter](https://github.com/karniv00l/speeduino-ini-linter)
