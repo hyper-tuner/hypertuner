@@ -18,7 +18,7 @@ const miata_9905 = [
   0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, // Pulse at 640
   0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, // Pulse at 710
 ];
- 
+
 const flattenPattern = (pattern) => {
   const multiplayer = 720 / pattern.length;
   const result = [];
@@ -50,7 +50,7 @@ const splitPattern = (pattern) => {
       case 3:
         result.crank[index] = 1;
         result.cam[index] = 1;
-        break; 
+        break;
       default:
         throw new Error(`Invalid value [${val}] at index [${index}]`);
     }
@@ -60,7 +60,7 @@ const splitPattern = (pattern) => {
 };
 
 // flat
-console.dir(flattenPattern(miata_9905), { maxArrayLength: null });
+// console.dir(flattenPattern(miata_9905), { maxArrayLength: null });
 
 // split
 // console.dir(splitPattern(flattenPattern(miata_9905)), { maxArrayLength: null });
@@ -74,7 +74,7 @@ fs.writeFileSync(
 // csv out split
 const { crank, cam } = splitPattern(flattenPattern(miata_9905));
 fs.writeFileSync(
-  path.join(__dirname, 'trigger_split.csv'), 
+  path.join(__dirname, 'trigger_split.csv'),
   [crank.join(','), cam.join(',')].join('\n'),
 );
 
