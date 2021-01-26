@@ -49,8 +49,7 @@ export const loadAll = () => {
             });
           });
 
-          const config = yaml.safeLoad(yamlContent) as ConfigType;
-
+          const config = yaml.load(yamlContent) as ConfigType;
 
           // override / merge standard dialogs, constants and help
           config.dialogs = {
