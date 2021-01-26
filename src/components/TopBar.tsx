@@ -63,7 +63,7 @@ const TopBar = () => {
     <Menu>
       <SubMenu title="Tune" icon={<SlidersOutlined />}>
         <Menu.Item icon={<SaveOutlined />}>
-          Save on disk
+          Download
         </Menu.Item>
         <Menu.Item icon={<DesktopOutlined />}>
           Open in app
