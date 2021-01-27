@@ -44,6 +44,7 @@ Additional tools and components created during development:
 
 There are many ways in which you can participate in the project and every bit of help is greatly appreciated.
 
+- 👋 Say Hi and start a conversation over at [Discussions](https://github.com/karniv00l/speedy-tuner/discussions)
 - 🐞 [Submit bugs and feature requests](https://github.com/karniv00l/speedy-tuner/issues)
 - 🧪 Test on different platforms, hardware and Speeduino firmware
 - 👓 Review source code
