@@ -7,12 +7,13 @@ Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 - 🚀 always free and open source (FOSS)
 - 💻 cross-platform desktop and mobile app
 - 🤗 great user experience
-  - modern and responsive UI
-  - fast startup, low resource consumption
-  - touch screen support
-  - 60 FPS animations
-- 🔥 fully featured
-  - all the tuning essentials and beyond
+  - 💎 intuitive, modern and responsive UI
+  - 👶 easy for newcomers with tips, tools and simple diagnostics
+  - 🔥 fast startup and low resource consumption
+  - 📱 touch screen support
+  - 🏎 60 FPS animations
+- 👏 fully featured
+  - 🚗 all the tuning essentials and beyond
 
 ## The repository
 
@@ -33,10 +34,11 @@ Source code: [noisymime/speeduino](https://github.com/noisymime/speeduino).
 Additional tools and components created during development:
 
 - [Trigger Simulator](https://github.com/karniv00l/trigger-sim)
-- [Serial Monitor](https://github.com/karniv00l/serial-monitor)  
+- [Serial Monitor](https://github.com/karniv00l/serial-monitor)
 - [MLG logs converter](https://github.com/karniv00l/mlg-converter)
 - [INI parser](https://github.com/karniv00l/speeduino-ini-parser)
 - [INI linter](https://github.com/karniv00l/speeduino-ini-linter)
+- [USB Board](https://github.com/karniv00l/usb-boards)
 
 ## Contributing 🤝
 
