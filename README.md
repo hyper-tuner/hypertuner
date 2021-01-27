@@ -27,7 +27,8 @@ Written in [TypeScript](https://github.com/microsoft/TypeScript) using [React](h
 
 ## ECU firmware
 
-Source code: [noisymime/speeduino](https://github.com/noisymime/speeduino).
+- Documentation: [wiki.speeduino.com](https://wiki.speeduino.com/)
+- Source code: [noisymime/speeduino](https://github.com/noisymime/speeduino)
 
 ## Related tools 🛠
 
