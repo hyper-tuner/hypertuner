@@ -38,7 +38,7 @@
     "antd": "^4.12.2",
     "electron-squirrel-startup": "^1.0.0",
     "js-yaml": "^4.0.0 ",
-    "mlg-converter": "^0.1.2",
+    "mlg-converter": "^0.1.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-perfect-scrollbar": "^1.5.8",
