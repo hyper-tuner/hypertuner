@@ -58404,7 +58404,7 @@ dialogs:
         layout: East
         condition: ''
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Engine_Constants'
+    help: https://wiki.speeduino.com/en/configuration/Engine_Constants
   flexFuelSettings:
     title: ''
     layout: yAxis
@@ -58460,7 +58460,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Flex_Fuel'
+    help: https://wiki.speeduino.com/en/configuration/Flex_Fuel
   knock_windows:
     title: Knock Windows
     layout: xAxis
@@ -58558,7 +58558,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
-    help: 'http://speeduino.com/wiki/index.php/Knock'
+    help: http://speeduino.com/wiki/index.php/Knock
   vss_gear_1:
     title: ''
     layout: xAxis
@@ -58664,7 +58664,7 @@ dialogs:
       - name: vssPin
         title: VSS Pin
         condition: vssMode > 1
-    help: 'https://wiki.speeduino.com/en/configuration/VSS'
+    help: https://wiki.speeduino.com/en/configuration/VSS
   tacho:
     title: Tacho
     layout: ''
@@ -58792,7 +58792,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
-    help: 'http://speeduino.com/wiki/index.php/Acceleration_Wizard'
+    help: http://speeduino.com/wiki/index.php/Acceleration_Wizard
   veTableDialog_north:
     title: ''
     layout: ''
@@ -58984,7 +58984,7 @@ dialogs:
       - name: dutyLim
         title: Injector Duty Limit
         condition: ''
-    help: 'https://wiki.speeduino.com/en/configuration/Injector_Characteristics'
+    help: https://wiki.speeduino.com/en/configuration/Injector_Characteristics
   egoControl:
     title: ''
     layout: ''
@@ -59032,7 +59032,7 @@ dialogs:
       - name: egoKD
         title: PID Derivative
         condition: egoType && (egoAlgorithm == 2)
-    help: 'https://wiki.speeduino.com/en/configuration/O2'
+    help: https://wiki.speeduino.com/en/configuration/O2
   fanSettings:
     title: Fan Settings
     layout: '7'
@@ -59059,7 +59059,7 @@ dialogs:
       - name: fanHyster
         title: Fan hysteresis
         condition: fanEnable
-    help: 'https://wiki.speeduino.com/en/configuration/Thermo_fan'
+    help: https://wiki.speeduino.com/en/configuration/Thermo_fan
   stepper_idle:
     title: Stepper Idle
     layout: ''
@@ -59149,7 +59149,7 @@ dialogs:
       - name: iacFastTemp
         title: Fast idle temp
         condition: iacAlgorithm == 1
-    help: 'https://wiki.speeduino.com/en/configuration/Idle'
+    help: https://wiki.speeduino.com/en/configuration/Idle
   idleUpInputSettingsPanel:
     title: Idle Up Input Settings
     layout: yAxis
@@ -59280,7 +59280,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Cranking'
+    help: https://wiki.speeduino.com/en/configuration/Cranking
   ASE_amount:
     title: Enrichment amount (%)
     layout: yAxis
@@ -59395,7 +59395,7 @@ dialogs:
           TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
           TrigPattern == 18 || TrigPattern == 19
-    help: 'https://wiki.speeduino.com/en/decoders'
+    help: https://wiki.speeduino.com/en/decoders
   lockSparkSettings:
     title: Locked timing
     layout: ''
@@ -59423,7 +59423,7 @@ dialogs:
           triggers
         condition: ''
       - name: _fieldText_
-        title: 'However if timing issues are encountered, please disable this'
+        title: However if timing issues are encountered, please disable this
         condition: ''
       - name: perToothIgn
         title: Use new ignition mode
@@ -59460,7 +59460,7 @@ dialogs:
       - name: IgInv
         title: Spark Outputs triggers
         condition: ''
-    help: 'https://wiki.speeduino.com/en/configuration/Spark_Settings'
+    help: https://wiki.speeduino.com/en/configuration/Spark_Settings
   dwellSettings:
     title: Dwell Settings
     layout: '4'
@@ -59532,7 +59532,7 @@ dialogs:
       - name: CTPSPolarity
         title: Closed Throttle Sensor Pin Polarity
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
-    help: 'https://wiki.speeduino.com/en/configuration/Dwell'
+    help: https://wiki.speeduino.com/en/configuration/Dwell
   idleAdvanceSettings:
     title: Idle Advance Settings
     layout: xAxis
@@ -59549,7 +59549,7 @@ dialogs:
           iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6 ||
           idleAdvEnabled >= 1
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/IdleAdvance'
+    help: https://wiki.speeduino.com/en/configuration/IdleAdvance
   rotary_ignition:
     title: Rotary Ignition
     layout: '4'
@@ -59584,10 +59584,10 @@ dialogs:
         title: Mode
         condition: ''
       - name: _fieldText_
-        title: 'In open loop mode, the values in this table are duty cycle %'
+        title: In open loop mode, the values in this table are duty cycle %
         condition: ''
       - name: _fieldText_
-        title: 'In closed loop mode, the values are boost targets in kPa'
+        title: In closed loop mode, the values are boost targets in kPa
         condition: ''
   revLimiterDialog:
     title: Rev Limiter
@@ -59660,7 +59660,7 @@ dialogs:
         layout: ''
         condition: engineProtectType
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Rev_Limits'
+    help: https://wiki.speeduino.com/en/configuration/Rev_Limits
   clutchInput:
     title: Clutch input
     layout: ''
@@ -59719,7 +59719,7 @@ dialogs:
       - name: flatSRetard
         title: Soft limit absolute timing
         condition: flatSEnable
-    help: 'https://wiki.speeduino.com/en/configuration/Launch_Flatshift'
+    help: https://wiki.speeduino.com/en/configuration/Launch_Flatshift
   NitrousStage1:
     title: Stage 1
     layout: ''
@@ -59806,7 +59806,7 @@ dialogs:
         layout: East
         condition: n2o_enable > 1
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Nitrous_Control'
+    help: https://wiki.speeduino.com/en/configuration/Nitrous_Control
   OLED:
     title: OLED Display
     layout: '2'
@@ -59838,7 +59838,7 @@ dialogs:
     layout: ''
     panels: {}
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Sensor_Calibration'
+    help: https://wiki.speeduino.com/en/configuration/Sensor_Calibration
   mapCal:
     title: Calibrate MAP
     layout: ''
@@ -59886,7 +59886,7 @@ dialogs:
       - name: EMAPMax
         title: kPa At 5.0 Volts
         condition: useEMAP
-    help: 'https://wiki.speeduino.com/en/configuration/Sensor_Calibration'
+    help: https://wiki.speeduino.com/en/configuration/Sensor_Calibration
   sensorFilters:
     title: Analog sensor filters
     layout: ''
@@ -59959,7 +59959,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Sensor_Calibration'
+    help: https://wiki.speeduino.com/en/configuration/Sensor_Calibration
   boostSettings:
     title: Boost Control
     layout: ''
@@ -60004,7 +60004,7 @@ dialogs:
       - name: boostKD
         title: D
         condition: boostEnabled && boostMode && boostType == 1
-    help: 'https://wiki.speeduino.com/en/configuration/Boost_Control'
+    help: https://wiki.speeduino.com/en/configuration/Boost_Control
   vvtClosedLoop:
     title: Closed loop
     layout: ''
@@ -60280,7 +60280,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
-    help: 'https://wiki.speeduino.com/en/configuration/Staged_Injection'
+    help: https://wiki.speeduino.com/en/configuration/Staged_Injection
   outputtest_warningmessage:
     title: ''
     layout: ''
@@ -60459,7 +60459,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
-    help: 'https://wiki.speeduino.com/en/Hardware_testing_page'
+    help: https://wiki.speeduino.com/en/Hardware_testing_page
   stm32cmd:
     title: STM32 Commands
     layout: yAxis
@@ -61325,28 +61325,28 @@ dialogs:
       - name: _fieldText_
         title: Output Parameter Group
         condition: ''
-      - name: 'canoutput_param_group[0]'
+      - name: canoutput_param_group[0]
         title: ''
         condition: canoutput_sel0 && enable_intcandata_out
-      - name: 'canoutput_param_group[1]'
+      - name: canoutput_param_group[1]
         title: ''
         condition: canoutput_sel1 && enable_intcandata_out
-      - name: 'canoutput_param_group[2]'
+      - name: canoutput_param_group[2]
         title: ''
         condition: canoutput_sel3 && enable_intcandata_out
-      - name: 'canoutput_param_group[3]'
+      - name: canoutput_param_group[3]
         title: ''
         condition: canoutput_sel3 && enable_intcandata_out
-      - name: 'canoutput_param_group[4]'
+      - name: canoutput_param_group[4]
         title: ''
         condition: canoutput_sel4 && enable_intcandata_out
-      - name: 'canoutput_param_group[5]'
+      - name: canoutput_param_group[5]
         title: ''
         condition: canoutput_sel5 && enable_intcandata_out
-      - name: 'canoutput_param_group[6]'
+      - name: canoutput_param_group[6]
         title: ''
         condition: canoutput_sel6 && enable_intcandata_out
-      - name: 'canoutput_param_group[7]'
+      - name: canoutput_param_group[7]
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
   canoutput_parameter_start_byte:
@@ -61488,7 +61488,7 @@ dialogs:
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
-    help: 'http://speeduino.com/wiki/index.php/Secondary_Serial_IO_interface'
+    help: http://speeduino.com/wiki/index.php/Secondary_Serial_IO_interface
   serial3IO:
     title: Secondary Serial IO interface
     layout: ''
@@ -61514,7 +61514,7 @@ dialogs:
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
-    help: 'http://speeduino.com/wiki/index.php/Serial3_IO_interface'
+    help: http://speeduino.com/wiki/index.php/Serial3_IO_interface
   reset_control:
     title: Reset Control
     layout: ''
@@ -62095,28 +62095,28 @@ dialogs:
         condition: ''
       - name: outputInverted0
         title: ''
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: outputInverted1
         title: ''
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: outputInverted2
         title: ''
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: outputInverted3
         title: ''
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: outputInverted4
         title: ''
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: outputInverted5
         title: ''
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: outputInverted6
         title: ''
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: outputInverted7
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_pin_selection_2:
     title: ''
     layout: yAxis
@@ -62127,28 +62127,28 @@ dialogs:
         condition: ''
       - name: firstDataIn0
         title: if(
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: firstDataIn1
         title: if(
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: firstDataIn2
         title: if(
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: firstDataIn3
         title: if(
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: firstDataIn4
         title: if(
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: firstDataIn5
         title: if(
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: firstDataIn6
         title: if(
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: firstDataIn7
         title: if(
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_pin_selection_3:
     title: ''
     layout: yAxis
@@ -62159,28 +62159,28 @@ dialogs:
         condition: ''
       - name: firstCompType0
         title: ''
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: firstCompType1
         title: ''
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: firstCompType2
         title: ''
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: firstCompType3
         title: ''
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: firstCompType4
         title: ''
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: firstCompType5
         title: ''
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: firstCompType6
         title: ''
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: firstCompType7
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_pin_selection_4:
     title: ''
     layout: yAxis
@@ -62189,30 +62189,30 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
-      - name: 'firstTarget[0]'
+      - name: firstTarget[0]
         title: ''
-        condition: 'outputPin[0]'
-      - name: 'firstTarget[1]'
+        condition: outputPin[0]
+      - name: firstTarget[1]
         title: ''
-        condition: 'outputPin[1]'
-      - name: 'firstTarget[2]'
+        condition: outputPin[1]
+      - name: firstTarget[2]
         title: ''
-        condition: 'outputPin[2]'
-      - name: 'firstTarget[3]'
+        condition: outputPin[2]
+      - name: firstTarget[3]
         title: ''
-        condition: 'outputPin[3]'
-      - name: 'firstTarget[4]'
+        condition: outputPin[3]
+      - name: firstTarget[4]
         title: ''
-        condition: 'outputPin[4]'
-      - name: 'firstTarget[5]'
+        condition: outputPin[4]
+      - name: firstTarget[5]
         title: ''
-        condition: 'outputPin[5]'
-      - name: 'firstTarget[6]'
+        condition: outputPin[5]
+      - name: firstTarget[6]
         title: ''
-        condition: 'outputPin[6]'
-      - name: 'firstTarget[7]'
+        condition: outputPin[6]
+      - name: firstTarget[7]
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_pin_selection_5:
     title: ''
     layout: yAxis
@@ -62223,28 +62223,28 @@ dialogs:
         condition: ''
       - name: bitwise0
         title: )
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: bitwise1
         title: )
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: bitwise2
         title: )
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: bitwise3
         title: )
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: bitwise4
         title: )
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: bitwise5
         title: )
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: bitwise6
         title: )
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: bitwise7
         title: )
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_pin_selection_6:
     title: ''
     layout: yAxis
@@ -62255,28 +62255,28 @@ dialogs:
         condition: ''
       - name: secondDataIn0
         title: ''
-        condition: 'outputPin[0] && bitwise0'
+        condition: outputPin[0] && bitwise0
       - name: secondDataIn1
         title: ''
-        condition: 'outputPin[1] && bitwise1'
+        condition: outputPin[1] && bitwise1
       - name: secondDataIn2
         title: ''
-        condition: 'outputPin[2] && bitwise2'
+        condition: outputPin[2] && bitwise2
       - name: secondDataIn3
         title: ''
-        condition: 'outputPin[3] && bitwise3'
+        condition: outputPin[3] && bitwise3
       - name: secondDataIn4
         title: ''
-        condition: 'outputPin[4] && bitwise4'
+        condition: outputPin[4] && bitwise4
       - name: secondDataIn5
         title: ''
-        condition: 'outputPin[5] && bitwise5'
+        condition: outputPin[5] && bitwise5
       - name: secondDataIn6
         title: ''
-        condition: 'outputPin[6] && bitwise6'
+        condition: outputPin[6] && bitwise6
       - name: secondDataIn7
         title: ''
-        condition: 'outputPin[7] && bitwise7'
+        condition: outputPin[7] && bitwise7
   prgm_out_pin_selection_:
     title: ''
     layout: yAxis
@@ -62285,30 +62285,30 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
-      - name: 'firstTarget[0]'
+      - name: firstTarget[0]
         title: ''
-        condition: 'outputPin[0]'
-      - name: 'firstTarget[1]'
+        condition: outputPin[0]
+      - name: firstTarget[1]
         title: ''
-        condition: 'outputPin[1]'
-      - name: 'firstTarget[2]'
+        condition: outputPin[1]
+      - name: firstTarget[2]
         title: ''
-        condition: 'outputPin[2]'
-      - name: 'firstTarget[3]'
+        condition: outputPin[2]
+      - name: firstTarget[3]
         title: ''
-        condition: 'outputPin[3]'
-      - name: 'firstTarget[4]'
+        condition: outputPin[3]
+      - name: firstTarget[4]
         title: ''
-        condition: 'outputPin[4]'
-      - name: 'firstTarget[5]'
+        condition: outputPin[4]
+      - name: firstTarget[5]
         title: ''
-        condition: 'outputPin[5]'
-      - name: 'firstTarget[6]'
+        condition: outputPin[5]
+      - name: firstTarget[6]
         title: ''
-        condition: 'outputPin[6]'
-      - name: 'firstTarget[7]'
+        condition: outputPin[6]
+      - name: firstTarget[7]
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_pin_selection_7:
     title: ''
     layout: yAxis
@@ -62319,28 +62319,28 @@ dialogs:
         condition: ''
       - name: secondCompType0
         title: ''
-        condition: 'outputPin[0] && bitwise0'
+        condition: outputPin[0] && bitwise0
       - name: secondCompType1
         title: ''
-        condition: 'outputPin[1] && bitwise1'
+        condition: outputPin[1] && bitwise1
       - name: secondCompType2
         title: ''
-        condition: 'outputPin[2] && bitwise2'
+        condition: outputPin[2] && bitwise2
       - name: secondCompType3
         title: ''
-        condition: 'outputPin[3] && bitwise3'
+        condition: outputPin[3] && bitwise3
       - name: secondCompType4
         title: ''
-        condition: 'outputPin[4] && bitwise4'
+        condition: outputPin[4] && bitwise4
       - name: secondCompType5
         title: ''
-        condition: 'outputPin[5] && bitwise5'
+        condition: outputPin[5] && bitwise5
       - name: secondCompType6
         title: ''
-        condition: 'outputPin[6] && bitwise6'
+        condition: outputPin[6] && bitwise6
       - name: secondCompType6
         title: ''
-        condition: 'outputPin[7] && bitwise7'
+        condition: outputPin[7] && bitwise7
   prgm_out_pin_selection_8:
     title: ''
     layout: yAxis
@@ -62349,30 +62349,30 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
-      - name: 'secondTarget[0]'
+      - name: secondTarget[0]
         title: ''
-        condition: 'outputPin[0] && bitwise0'
-      - name: 'secondTarget[1]'
+        condition: outputPin[0] && bitwise0
+      - name: secondTarget[1]
         title: ''
-        condition: 'outputPin[1] && bitwise1'
-      - name: 'secondTarget[2]'
+        condition: outputPin[1] && bitwise1
+      - name: secondTarget[2]
         title: ''
-        condition: 'outputPin[2] && bitwise2'
-      - name: 'secondTarget[3]'
+        condition: outputPin[2] && bitwise2
+      - name: secondTarget[3]
         title: ''
-        condition: 'outputPin[3] && bitwise3'
-      - name: 'secondTarget[4]'
+        condition: outputPin[3] && bitwise3
+      - name: secondTarget[4]
         title: ''
-        condition: 'outputPin[4] && bitwise4'
-      - name: 'secondTarget[5]'
+        condition: outputPin[4] && bitwise4
+      - name: secondTarget[5]
         title: ''
-        condition: 'outputPin[5] && bitwise5'
-      - name: 'secondTarget[6]'
+        condition: outputPin[5] && bitwise5
+      - name: secondTarget[6]
         title: ''
-        condition: 'outputPin[6] && bitwise6'
-      - name: 'secondTarget[7]'
+        condition: outputPin[6] && bitwise6
+      - name: secondTarget[7]
         title: ''
-        condition: 'outputPin[7] && bitwise7'
+        condition: outputPin[7] && bitwise7
   prgm_out_pin_selection_9:
     title: ''
     layout: yAxis
@@ -62381,30 +62381,30 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
-      - name: 'outputDelay[0]'
+      - name: outputDelay[0]
         title: during
-        condition: 'outputPin[0]'
-      - name: 'outputDelay[1]'
+        condition: outputPin[0]
+      - name: outputDelay[1]
         title: during
-        condition: 'outputPin[1]'
-      - name: 'outputDelay[2]'
+        condition: outputPin[1]
+      - name: outputDelay[2]
         title: during
-        condition: 'outputPin[2]'
-      - name: 'outputDelay[3]'
+        condition: outputPin[2]
+      - name: outputDelay[3]
         title: during
-        condition: 'outputPin[3]'
-      - name: 'outputDelay[4]'
+        condition: outputPin[3]
+      - name: outputDelay[4]
         title: during
-        condition: 'outputPin[4]'
-      - name: 'outputDelay[5]'
+        condition: outputPin[4]
+      - name: outputDelay[5]
         title: during
-        condition: 'outputPin[5]'
-      - name: 'outputDelay[6]'
+        condition: outputPin[5]
+      - name: outputDelay[6]
         title: during
-        condition: 'outputPin[6]'
-      - name: 'outputDelay[7]'
+        condition: outputPin[6]
+      - name: outputDelay[7]
         title: during
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_alias:
     title: ''
     layout: yAxis
@@ -62415,28 +62415,28 @@ dialogs:
         condition: ''
       - name: prgm_out00Alias
         title: ''
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: prgm_out01Alias
         title: ''
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: prgm_out02Alias
         title: ''
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: prgm_out03Alias
         title: ''
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: prgm_out04Alias
         title: ''
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: prgm_out05Alias
         title: ''
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: prgm_out06Alias
         title: ''
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: prgm_out07Alias
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_channelenable:
     title: ''
     layout: yAxis
@@ -62514,13 +62514,13 @@ dialogs:
     fields:
       - name: firstDataIn0
         title: ''
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: firstCompType0
         title: ''
-        condition: 'outputPin[0]'
-      - name: 'firstTarget[0]'
+        condition: outputPin[0]
+      - name: firstTarget[0]
         title: ''
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
   prgm_out_rules_1_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62528,13 +62528,13 @@ dialogs:
     fields:
       - name: secondDataIn0
         title: ''
-        condition: 'outputPin[0] && bitwise0'
+        condition: outputPin[0] && bitwise0
       - name: secondCompType0
         title: ''
-        condition: 'outputPin[0] && bitwise0'
-      - name: 'secondTarget[0]'
+        condition: outputPin[0] && bitwise0
+      - name: secondTarget[0]
         title: ''
-        condition: 'outputPin[0] && bitwise0'
+        condition: outputPin[0] && bitwise0
   prgm_out_rules_2_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62542,13 +62542,13 @@ dialogs:
     fields:
       - name: firstDataIn1
         title: ''
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: firstCompType1
         title: ''
-        condition: 'outputPin[1]'
-      - name: 'firstTarget[1]'
+        condition: outputPin[1]
+      - name: firstTarget[1]
         title: ''
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
   prgm_out_rules_2_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62556,13 +62556,13 @@ dialogs:
     fields:
       - name: secondDataIn1
         title: ''
-        condition: 'outputPin[1] && bitwise1'
+        condition: outputPin[1] && bitwise1
       - name: secondCompType1
         title: ''
-        condition: 'outputPin[1] && bitwise1'
-      - name: 'secondTarget[1]'
+        condition: outputPin[1] && bitwise1
+      - name: secondTarget[1]
         title: ''
-        condition: 'outputPin[1] && bitwise1'
+        condition: outputPin[1] && bitwise1
   prgm_out_rules_3_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62570,13 +62570,13 @@ dialogs:
     fields:
       - name: firstDataIn2
         title: ''
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: firstCompType2
         title: ''
-        condition: 'outputPin[2]'
-      - name: 'firstTarget[2]'
+        condition: outputPin[2]
+      - name: firstTarget[2]
         title: ''
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
   prgm_out_rules_3_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62584,13 +62584,13 @@ dialogs:
     fields:
       - name: secondDataIn2
         title: ''
-        condition: 'outputPin[2] && bitwise2'
+        condition: outputPin[2] && bitwise2
       - name: secondCompType2
         title: ''
-        condition: 'outputPin[2] && bitwise2'
-      - name: 'secondTarget[2]'
+        condition: outputPin[2] && bitwise2
+      - name: secondTarget[2]
         title: ''
-        condition: 'outputPin[2] && bitwise2'
+        condition: outputPin[2] && bitwise2
   prgm_out_rules_4_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62598,13 +62598,13 @@ dialogs:
     fields:
       - name: firstDataIn3
         title: ''
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: firstCompType3
         title: ''
-        condition: 'outputPin[3]'
-      - name: 'firstTarget[3]'
+        condition: outputPin[3]
+      - name: firstTarget[3]
         title: ''
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
   prgm_out_rules_4_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62612,13 +62612,13 @@ dialogs:
     fields:
       - name: secondDataIn3
         title: ''
-        condition: 'outputPin[3] && bitwise3'
+        condition: outputPin[3] && bitwise3
       - name: secondCompType3
         title: ''
-        condition: 'outputPin[3] && bitwise3'
-      - name: 'secondTarget[3]'
+        condition: outputPin[3] && bitwise3
+      - name: secondTarget[3]
         title: ''
-        condition: 'outputPin[3] && bitwise3'
+        condition: outputPin[3] && bitwise3
   prgm_out_rules_5_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62626,13 +62626,13 @@ dialogs:
     fields:
       - name: firstDataIn4
         title: ''
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: firstCompType4
         title: ''
-        condition: 'outputPin[4]'
-      - name: 'firstTarget[4]'
+        condition: outputPin[4]
+      - name: firstTarget[4]
         title: ''
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
   prgm_out_rules_5_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62640,13 +62640,13 @@ dialogs:
     fields:
       - name: secondDataIn4
         title: ''
-        condition: 'outputPin[4] && bitwise4'
+        condition: outputPin[4] && bitwise4
       - name: secondCompType4
         title: ''
-        condition: 'outputPin[4] && bitwise4'
-      - name: 'secondTarget[4]'
+        condition: outputPin[4] && bitwise4
+      - name: secondTarget[4]
         title: ''
-        condition: 'outputPin[4] && bitwise4'
+        condition: outputPin[4] && bitwise4
   prgm_out_rules_6_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62654,13 +62654,13 @@ dialogs:
     fields:
       - name: firstDataIn5
         title: ''
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: firstCompType5
         title: ''
-        condition: 'outputPin[5]'
-      - name: 'firstTarget[5]'
+        condition: outputPin[5]
+      - name: firstTarget[5]
         title: ''
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
   prgm_out_rules_6_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62668,13 +62668,13 @@ dialogs:
     fields:
       - name: secondDataIn5
         title: ''
-        condition: 'outputPin[5] && bitwise5'
+        condition: outputPin[5] && bitwise5
       - name: secondCompType5
         title: ''
-        condition: 'outputPin[5] && bitwise5'
-      - name: 'secondTarget[5]'
+        condition: outputPin[5] && bitwise5
+      - name: secondTarget[5]
         title: ''
-        condition: 'outputPin[5] && bitwise5'
+        condition: outputPin[5] && bitwise5
   prgm_out_rules_7_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62682,13 +62682,13 @@ dialogs:
     fields:
       - name: firstDataIn6
         title: ''
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: firstCompType6
         title: ''
-        condition: 'outputPin[6]'
-      - name: 'firstTarget[6]'
+        condition: outputPin[6]
+      - name: firstTarget[6]
         title: ''
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
   prgm_out_rules_7_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62696,13 +62696,13 @@ dialogs:
     fields:
       - name: secondDataIn6
         title: ''
-        condition: 'outputPin[6] && bitwise6'
+        condition: outputPin[6] && bitwise6
       - name: secondCompType6
         title: ''
-        condition: 'outputPin[6] && bitwise6'
-      - name: 'secondTarget[6]'
+        condition: outputPin[6] && bitwise6
+      - name: secondTarget[6]
         title: ''
-        condition: 'outputPin[6] && bitwise6'
+        condition: outputPin[6] && bitwise6
   prgm_out_rules_8_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62710,13 +62710,13 @@ dialogs:
     fields:
       - name: firstDataIn7
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
       - name: firstCompType7
         title: ''
-        condition: 'outputPin[7]'
-      - name: 'firstTarget[7]'
+        condition: outputPin[7]
+      - name: firstTarget[7]
         title: ''
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_rules_8_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62724,13 +62724,13 @@ dialogs:
     fields:
       - name: secondDataIn7
         title: ''
-        condition: 'outputPin[7] && bitwise7'
+        condition: outputPin[7] && bitwise7
       - name: secondCompType7
         title: ''
-        condition: 'outputPin[7] && bitwise7'
-      - name: 'secondTarget[7]'
+        condition: outputPin[7] && bitwise7
+      - name: secondTarget[7]
         title: ''
-        condition: 'outputPin[7] && bitwise7'
+        condition: outputPin[7] && bitwise7
   prgm_out_rules_1:
     title: Rule 1
     layout: yAxis
@@ -62747,16 +62747,16 @@ dialogs:
         condition: ''
       - name: prgm_out00Alias
         title: Rule Alias
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: outputInverted0
         title: Output Polarity
-        condition: 'outputPin[0]'
-      - name: 'outputDelay[0]'
+        condition: outputPin[0]
+      - name: outputDelay[0]
         title: Activation Delay
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
       - name: bitwise0
         title: 2nd Condition
-        condition: 'outputPin[0]'
+        condition: outputPin[0]
   prgm_out_rules_2:
     title: Rule 2
     layout: yAxis
@@ -62773,16 +62773,16 @@ dialogs:
         condition: ''
       - name: prgm_out01Alias
         title: Rule Alias
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: outputInverted1
         title: Output Polarity
-        condition: 'outputPin[1]'
-      - name: 'outputDelay[1]'
+        condition: outputPin[1]
+      - name: outputDelay[1]
         title: Activation Delay
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
       - name: bitwise1
         title: 2nd Condition
-        condition: 'outputPin[1]'
+        condition: outputPin[1]
   prgm_out_rules_3:
     title: Rule 3
     layout: yAxis
@@ -62799,16 +62799,16 @@ dialogs:
         condition: ''
       - name: prgm_out02Alias
         title: Rule Alias
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: outputInverted2
         title: Output Polarity
-        condition: 'outputPin[2]'
-      - name: 'outputDelay[2]'
+        condition: outputPin[2]
+      - name: outputDelay[2]
         title: Activation Delay
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
       - name: bitwise2
         title: 2nd Condition
-        condition: 'outputPin[2]'
+        condition: outputPin[2]
   prgm_out_rules_4:
     title: Rule 4
     layout: yAxis
@@ -62825,16 +62825,16 @@ dialogs:
         condition: ''
       - name: prgm_out03Alias
         title: Rule Alias
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: outputInverted3
         title: Output Polarity
-        condition: 'outputPin[3]'
-      - name: 'outputDelay[3]'
+        condition: outputPin[3]
+      - name: outputDelay[3]
         title: Activation Delay
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
       - name: bitwise3
         title: 2nd Condition
-        condition: 'outputPin[3]'
+        condition: outputPin[3]
   prgm_out_rules_5:
     title: Rule 5
     layout: yAxis
@@ -62851,16 +62851,16 @@ dialogs:
         condition: ''
       - name: prgm_out04Alias
         title: Rule Alias
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: outputInverted4
         title: Output Polarity
-        condition: 'outputPin[4]'
-      - name: 'outputDelay[4]'
+        condition: outputPin[4]
+      - name: outputDelay[4]
         title: Activation Delay
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
       - name: bitwise4
         title: 2nd Condition
-        condition: 'outputPin[4]'
+        condition: outputPin[4]
   prgm_out_rules_6:
     title: Rule 6
     layout: yAxis
@@ -62877,16 +62877,16 @@ dialogs:
         condition: ''
       - name: prgm_out05Alias
         title: Rule Alias
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: outputInverted5
         title: Output Polarity
-        condition: 'outputPin[5]'
-      - name: 'outputDelay[5]'
+        condition: outputPin[5]
+      - name: outputDelay[5]
         title: Activation Delay
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
       - name: bitwise5
         title: 2nd Condition
-        condition: 'outputPin[5]'
+        condition: outputPin[5]
   prgm_out_rules_7:
     title: Rule 7
     layout: yAxis
@@ -62903,16 +62903,16 @@ dialogs:
         condition: ''
       - name: prgm_out06Alias
         title: Rule Alias
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: outputInverted6
         title: Output Polarity
-        condition: 'outputPin[6]'
-      - name: 'outputDelay[6]'
+        condition: outputPin[6]
+      - name: outputDelay[6]
         title: Activation Delay
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
       - name: bitwise6
         title: 2nd Condition
-        condition: 'outputPin[6]'
+        condition: outputPin[6]
   prgm_out_rules_8:
     title: Rule 8
     layout: yAxis
@@ -62929,16 +62929,16 @@ dialogs:
         condition: ''
       - name: prgm_out07Alias
         title: Rule Alias
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
       - name: outputInverted7
         title: Output Polarity
-        condition: 'outputPin[7]'
-      - name: 'outputDelay[7]'
+        condition: outputPin[7]
+      - name: outputDelay[7]
         title: Activation Delay
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
       - name: bitwise7
         title: 2nd Condition
-        condition: 'outputPin[7]'
+        condition: outputPin[7]
   prgm_out_rules_master:
     title: ''
     layout: card
@@ -64794,7 +64794,7 @@ help:
     Engines with an equal number of degrees between all firings (This is most
     engines) should select Even fire. Some 2 and 6 cylinder engines are Odd fire
     however.
-  twoStroke: 'Four-Stroke (most engines), Two-stroke.'
+  twoStroke: Four-Stroke (most engines), Two-stroke.
   nInjectors: Number of primary injectors.
   mapSample: >-
     The method used for calculating the MAP reading\nFor 1-2 Cylinder engines,
