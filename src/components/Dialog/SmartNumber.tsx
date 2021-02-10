@@ -19,7 +19,6 @@ const SmartNumber = ({
   disabled: boolean,
 }) => {
   const sliderMarks: { [value: number]: string } = {};
-
   sliderMarks[min] = `${min}${units}`;
 
   if (min <= 0) {
