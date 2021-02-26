@@ -70,8 +70,6 @@ const Dialog = ({
     const x = tune.constants[curve.xBins[0]];
     const y = tune.constants[curve.yBins];
 
-    console.log(curve.labels);
-
     return (
       <Curve
         disabled={false} // TODO: evaluate condition
@@ -322,7 +320,6 @@ const Dialog = ({
       <Form
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 10 }}
-        // onFinish={(values: any) => console.log(values)}
       >
         <Row gutter={20}>
           {isDataReady && panelsComponents()}

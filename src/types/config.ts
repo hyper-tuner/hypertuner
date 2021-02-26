@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-// eslint-disable-next-line no-shadow
 export enum Switches {
   YES = 'Yes',
   NO = 'No',
