@@ -43,3 +43,4 @@ rules:
   import/no-extraneous-dependencies: 0
   no-undef: 1
   no-unused-vars: 1
+  react/require-default-props: 0

@@ -44,7 +44,7 @@ export const loadAll = () => {
                   // digits: Number.isNaN(Number(attributes.digits)) ? attributes.digits : Number(attributes.digits),
                   // cols: Number.isNaN(Number(attributes.cols)) ? attributes.cols : Number(attributes.cols),
                   // rows: Number.isNaN(Number(attributes.rows)) ? attributes.rows : Number(attributes.rows),
-                  // units: attributes.units ?? '',
+                  units: attributes.units ?? null,
                 };
               }
             });

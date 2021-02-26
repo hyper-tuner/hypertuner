@@ -1,4 +1,5 @@
 export interface Constant {
+  units?: string;
   value: string | number,
 }
 

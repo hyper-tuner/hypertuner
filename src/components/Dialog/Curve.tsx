@@ -17,6 +17,8 @@ const Curve = ({
   yData,
   disabled,
   help,
+  xUnits = '',
+  yUnits = '',
 }: {
   xLabel: string,
   yLabel: string,
@@ -24,6 +26,8 @@ const Curve = ({
   yData: number[],
   disabled: boolean,
   help: string,
+  xUnits?: string,
+  yUnits?: string,
 }) => {
   const data = xData.map((val, index) => ({
     [xLabel]: val,
@@ -31,6 +35,7 @@ const Curve = ({
   }));
   const margin = 15;
   const mainColor = '#ccc';
+  const tooltipBg = '#2E3338';
 
   return (
     <>
@@ -49,25 +54,34 @@ const Curve = ({
             }}
           >
             <CartesianGrid
-              strokeDasharray="3 3"
+              strokeDasharray="4 4"
               style={{ fill: mainColor }}
             />
             <XAxis dataKey={xLabel}>
               <Label
-                value={xLabel}
+                value={`${xLabel} (${xUnits})`}
                 position="bottom"
                 style={{ fill: mainColor }}
               />
             </XAxis>
             <YAxis domain={['auto', 'auto']}>
               <Label
-                value={yLabel}
+                value={`${yLabel} (${yUnits})`}
                 position="left"
                 angle={-90}
                 style={{ fill: mainColor }}
               />
             </YAxis>
-            <Tooltip />
+            <Tooltip
+              labelFormatter={(value) => `${xLabel} : ${value} ${xUnits}`}
+              formatter={(value: number) => `${value} ${yUnits}`}
+              contentStyle={{
+                backgroundColor: tooltipBg,
+                border: 0,
+                boxShadow: '0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%)',
+                borderRadius: 5,
+              }}
+            />
             <Line
               strokeWidth={3}
               type="linear"

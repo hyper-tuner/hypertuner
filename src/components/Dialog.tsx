@@ -66,29 +66,37 @@ const Dialog = ({
 }) => {
   const isDataReady = Object.keys(tune.constants).length && Object.keys(config.constants).length;
 
-  const curveComponent = (curve: CurveType) => (
-    // TODO: map here, add units?
-    <Curve
-      disabled={false} // TODO: evaluate condition
-      help={config.help[curve.yBins]}
-      xLabel={curve.labels[0]} // TODO: add units from constant
-      yLabel={curve.labels[1]}
-      xData={
-        (tune.constants[curve.xBins[0]].value as string)
-          .split('\n')
-          .map((val) => val.trim())
-          .filter((val) => val !== '')
-          .map(Number)
-      }
-      yData={
-        (tune.constants[curve.yBins].value as string)
-          .split('\n')
-          .map((val) => val.trim())
-          .filter((val) => val !== '')
-          .map(Number)
-      }
-    />
-  );
+  const curveComponent = (curve: CurveType) => {
+    const x = tune.constants[curve.xBins[0]];
+    const y = tune.constants[curve.yBins];
+
+    console.log(curve.labels);
+
+    return (
+      <Curve
+        disabled={false} // TODO: evaluate condition
+        help={config.help[curve.yBins]}
+        xLabel={curve.labels[0]}
+        yLabel={curve.labels[1]}
+        xUnits={x.units}
+        yUnits={y.units}
+        xData={
+          (x.value as string)
+            .split('\n')
+            .map((val) => val.trim())
+            .filter((val) => val !== '')
+            .map(Number)
+        }
+        yData={
+          (y.value as string)
+            .split('\n')
+            .map((val) => val.trim())
+            .filter((val) => val !== '')
+            .map(Number)
+        }
+      />
+    );
+  };
 
   if (!isDataReady) {
     return skeleton;
