@@ -6,6 +6,8 @@ const yaml = require('js-yaml');
 
 console.log('------- start --------');
 
+// TODO: convert to TS
+
 class Parser {
   constructor(buffer) {
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';

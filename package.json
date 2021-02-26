@@ -31,8 +31,6 @@
     ]
   },
   "dependencies": {
-    "@nivo/core": "^0.67.0",
-    "@nivo/line": "^0.67.0",
     "@reduxjs/toolkit": "^1.5.0",
     "antd": "^4.12.3",
     "electron-squirrel-startup": "^1.0.0",
@@ -43,7 +41,8 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "recharts": "^2.0.8"
   },
   "devDependencies": {
     "@craco/craco": "^6.1.1",
@@ -59,7 +58,6 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "concurrently": "^6.0.0",
-    "craco-less": "^1.17.1",
     "electron": "^12.0.0-beta.30",
     "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -68,6 +66,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.3.1",
+    "less-loader": "^6.1.0",
     "prettier": "^2.2.1",
     "typescript": "^4.1.5",
     "wait-on": "^5.2.1"

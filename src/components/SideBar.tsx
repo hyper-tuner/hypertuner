@@ -60,6 +60,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
 
           if (subMenu.condition) {
             // TODO: move this outside and evaluate, return object / array
+            // optimise this
             const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
             try {
               // TODO: strip eval from `command` etc

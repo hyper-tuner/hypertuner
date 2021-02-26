@@ -1,4 +1,3 @@
-import { ResponsiveLineCanvas } from '@nivo/line';
 import { Typography } from 'antd';
 
 const Curve = ({
@@ -28,7 +27,8 @@ const Curve = ({
         <Typography.Text type="secondary">{help}</Typography.Text>
       </Typography.Paragraph>
       <div style={{ height: 450 }}>
-        <ResponsiveLineCanvas
+        Placeholder
+        {/* <ResponsiveLineCanvas
           data={data}
           isInteractive={disabled} // NOTE: this is buggy in built version
           margin={{ top: 30, right: 30, bottom: 60, left: 70 }}
@@ -72,7 +72,7 @@ const Curve = ({
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}
           pointBorderColor={{ from: 'serieColor' }}
-        />
+        /> */}
       </div>
     </>
   );

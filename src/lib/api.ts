@@ -6,6 +6,7 @@ import stdDialogs from '../data/standardDialogs';
 import help from '../data/help';
 import { divider } from '../data/constants';
 
+// TODO: remove this dependency, load raw JSON instead
 const yaml = require('js-yaml');
 
 export const loadAll = () => {
