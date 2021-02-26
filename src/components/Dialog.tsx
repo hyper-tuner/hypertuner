@@ -67,6 +67,7 @@ const Dialog = ({
   const isDataReady = Object.keys(tune.constants).length && Object.keys(config.constants).length;
 
   const curveComponent = (curve: CurveType) => (
+    // TODO: map here, add units?
     <Curve
       disabled={false} // TODO: evaluate condition
       help={config.help[curve.yBins]}
