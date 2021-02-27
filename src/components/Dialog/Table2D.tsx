@@ -53,7 +53,7 @@ const Table2D = ({
     .map((value, index) => <td key={`${axis}-${index}`}>{`${value}`}</td>);
 
   const columnsCells = new Array(xData.length + 1).fill(false);
-  const [cells, setCells] = useState([
+  const [cells, setCells] = useState<boolean[][]>([
     columnsCells,
     [...columnsCells],
   ]);
