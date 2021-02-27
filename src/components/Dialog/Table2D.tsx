@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 
 import { useRef, useState } from 'react';
+import TableDragSelect from 'react-table-drag-select';
 
 type Axis = 'x' | 'y';
 
@@ -13,20 +14,12 @@ const Cell = ({
   axis: Axis,
   value: string | number,
 }) => {
-  const [editable, setEditable] = useState(false);
   const ref = useRef(null);
-  const onDoubleClick = () => {
-    setEditable((current) => !current);
-    (ref.current as any).focus();
-  };
+
+  // ref.current
 
   return (
     <td
-      contentEditable={editable}
-      suppressContentEditableWarning
-      ref={ref}
-      onDoubleClick={onDoubleClick}
-      className={index > 0 ? 'value' : 'title'}
       key={`${axis}-${index}`}
     >
       {value}
@@ -53,17 +46,34 @@ const Table2D = ({
   xUnits?: string,
   yUnits?: string,
 }) => {
+  // const renderRow = (axis: Axis, input: (string | number)[]) => input
+  //   .map((value, index) => <Cell axis={axis} key={index} index={index} value={value} />);
+
   const renderRow = (axis: Axis, input: (string | number)[]) => input
-    .map((value, index) => <Cell axis={axis} key={index} index={index} value={value} />);
+    .map((value, index) => <td key={`${axis}-${index}`}>{`${value}`}</td>);
+
+  const columnsCells = new Array(xData.length + 1).fill(false);
+  const [cells, setCells] = useState([
+    columnsCells,
+    [...columnsCells],
+  ]);
+  const titleProps = { disabled: true };
 
   return (
     <div className="table table-2d">
-      <table>
-        <tbody>
-          <tr>{renderRow('y', [yLabel, ...yData])}</tr>
-          <tr>{renderRow('x', [xLabel, ...xData])}</tr>
-        </tbody>
-      </table>
+      <TableDragSelect
+        value={cells}
+        onChange={setCells}
+      >
+        <tr>
+          <td {...titleProps} className="title">{yLabel}</td>
+          {renderRow('y', yData)}
+        </tr>
+        <tr>
+          <td {...titleProps} className="title">{xLabel}</td>
+          {renderRow('x', xData)}
+        </tr>
+      </TableDragSelect>
     </div>
   );
 };

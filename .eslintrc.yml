@@ -44,6 +44,6 @@ rules:
   no-undef: 1
   react/require-default-props: 0
   no-unused-vars: 0
-  '@typescript-eslint/no-unused-vars': 2
+  '@typescript-eslint/no-unused-vars': 1
   no-shadow: 0
   '@typescript-eslint/no-shadow': 2

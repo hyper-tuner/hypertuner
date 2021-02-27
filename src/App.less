@@ -95,5 +95,14 @@ body {
     text-align: center;
     border: 1px solid @main-light;
     height: 50px;
+    user-select: none;
+
+    &.cell-selected {
+      background-color: @primary-color;
+    }
+
+    &.cell-being-selected {
+      background-color: @main-light;
+    }
   }
 }
