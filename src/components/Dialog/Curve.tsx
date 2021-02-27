@@ -13,6 +13,7 @@ import {
 import Table2D from './Table2D';
 
 const Curve = ({
+  name,
   xLabel,
   yLabel,
   xData,
@@ -22,6 +23,7 @@ const Curve = ({
   xUnits = '',
   yUnits = '',
 }: {
+  name: string,
   xLabel: string,
   yLabel: string,
   xData: number[],
@@ -55,7 +57,7 @@ const Curve = ({
 
   useEffect(() => {
     setData([xData, yData]);
-  }, [xData, yData]);
+  }, [xData, yData, xLabel, yLabel]);
 
   return (
     <>
@@ -112,6 +114,7 @@ const Curve = ({
         </LineChart>
       </ResponsiveContainer>
       <Table2D
+        name={name}
         xLabel={xLabel}
         yLabel={yLabel}
         xData={xData}
