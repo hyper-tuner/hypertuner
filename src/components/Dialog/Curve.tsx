@@ -38,6 +38,7 @@ const Curve = ({
   const margin = 15;
   const mainColor = '#ccc';
   const tooltipBg = '#2E3338';
+  const animationDuration = 500;
 
   const onTableEdit = (axis: string, index: number, value: number) => {
     const x = [...xData];
@@ -99,12 +100,14 @@ const Curve = ({
               boxShadow: '0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%)',
               borderRadius: 5,
             }}
+            animationDuration={animationDuration}
           />
           <Line
             strokeWidth={3}
             type="linear"
             dataKey="y"
             stroke="#1e88ea"
+            animationDuration={animationDuration}
           />
         </LineChart>
       </ResponsiveContainer>
