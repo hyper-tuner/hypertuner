@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   CartesianGrid,
   Line,
@@ -34,28 +34,27 @@ const Curve = ({
   const mapData = (inX: number[], inY: number[]) => inX.map((val, i) => ({
     x: val, y: inY[i],
   }));
-  const [x, setX] = useState(xData);
-  const [y, setY] = useState(yData);
-  const [data, setData] = useState(mapData(x, y));
+  const [data, setData] = useState([xData, yData]);
   const margin = 15;
   const mainColor = '#ccc';
   const tooltipBg = '#2E3338';
 
   const onTableEdit = (axis: string, index: number, value: number) => {
+    const x = [...xData];
+    const y = [...yData];
+
     if (axis === 'x') {
       x[index] = value;
-      setX(x);
-      return;
+    } else {
+      y[index] = value;
     }
 
-    y[index] = value;
-    setY(y);
-
-    console.log({
-      x, y,
-    });
-    setData(mapData(x, y));
+    setData([x, y]);
   };
+
+  useEffect(() => {
+    setData([xData, yData]);
+  }, [xData, yData]);
 
   return (
     <>
@@ -64,7 +63,7 @@ const Curve = ({
       </Typography.Paragraph>
       <ResponsiveContainer height={450}>
         <LineChart
-          data={data}
+          data={mapData(data[0], data[1])}
           margin={{
             top: margin,
             right: margin,
