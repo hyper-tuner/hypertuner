@@ -84,23 +84,24 @@ const TopBar = () => {
   );
 
   const searchInput = useRef({} as any);
-  useEffect(() => {
-    document.onkeydown = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
-        if (searchInput) {
-          e.preventDefault();
-          searchInput.current.focus();
-        }
-      }
-
-      if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
+  const handleCommandP = (e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+      if (searchInput) {
         e.preventDefault();
-        store.dispatch({ type: 'ui/toggleSidebar' });
+        searchInput.current.focus();
       }
-    };
+    }
+
+    if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
+      e.preventDefault();
+      store.dispatch({ type: 'ui/toggleSidebar' });
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('keydown', handleCommandP);
 
     return () => {
-      document.onkeyup = null;
+      document.removeEventListener('keydown', handleCommandP);
     };
   });
 
