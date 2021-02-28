@@ -53,51 +53,37 @@ const Table2D = ({
   //   .map((value, index) => <Cell axis={axis} key={index} index={index} value={value} />);
 
   const renderRow = (axis: Axis, input: (string | number)[]) => input
-    .map((value, index) => (
-      <td
-        key={`${axis}-${index}`}
-        onKeyPress={(e) => console.log(e.key)}
-      >
-        {`${value}`}
-      </td>
-    ));
+    .map((value, index) => <td key={`${name}-${axis}-${index}`}>{`${value}`}</td>);
 
   const titleProps = { disabled: true };
-  const [data, setData] = useState([xData, yData]);
-  const [labels, setLabels] = useState([xLabel, yLabel]);
-  const columnsCells = new Array(data[0].length + 1).fill(false);
-  const [cells, setCells] = useState<boolean[][]>([
-    columnsCells,
-    [...columnsCells],
-  ]);
-  useEffect(() => {
-    // TODO: make keys for everything
-    setCells([
-      columnsCells,
-      [...columnsCells],
-    ]);
-    setData([xData, yData]);
-    setLabels([xLabel, yLabel]);
+  const rowsCount = xData.length + 1;
+  const generateCells = () => [
+    Array(rowsCount).fill(false),
+    Array(rowsCount).fill(false),
+  ];
+  const [cells, setCells] = useState<boolean[][]>(generateCells());
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [xData, yData, xLabel, yLabel]);
+  useEffect(() => {
+    setCells(generateCells());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
 
   return (
     <div className="table table-2d">
-      <TableDragSelect
+      {cells[0].length === rowsCount && <TableDragSelect
+        key={name}
         value={cells}
         onChange={setCells}
-        key={name}
       >
         <tr>
-          <td {...titleProps} className="title">{labels[1]}</td>
-          {renderRow('y', data[1])}
+          <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
+          {renderRow('y', yData)}
         </tr>
         <tr>
-          <td {...titleProps} className="title">{labels[0]}</td>
-          {renderRow('x', data[0])}
+          <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
+          {renderRow('x', xData)}
         </tr>
-      </TableDragSelect>
+      </TableDragSelect>}
     </div>
   );
 };
