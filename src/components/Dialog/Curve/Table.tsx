@@ -3,7 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import TableDragSelect from 'react-table-drag-select';
-import { isDecrement, isIncrement } from '../../utils/keyboard/shortcuts';
+import { isDecrement, isIncrement } from '../../../utils/keyboard/shortcuts';
 
 type Axis = 'x' | 'y';
 
@@ -30,7 +30,7 @@ const Cell = ({
 type CellsType = boolean[][];
 type DataType = number[][];
 
-const Table2D = ({
+const Table = ({
   name,
   xLabel,
   yLabel,
@@ -129,4 +129,4 @@ const Table2D = ({
   );
 };
 
-export default Table2D;
+export default Table;
