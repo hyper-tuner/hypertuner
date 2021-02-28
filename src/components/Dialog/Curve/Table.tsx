@@ -86,19 +86,6 @@ const Table = ({
 
     return [...newData];
   };
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (isIncrement(e)) {
-      setData(modifyData(Operations.INC, cellsRef.current, dataRef.current));
-    }
-
-    if (isDecrement(e)) {
-      setData(modifyData(Operations.DEC, cellsRef.current, dataRef.current));
-    }
-
-    if (isReplace(e)) {
-      setIsModalVisible(true);
-    }
-  };
   const oneModalOk = () => {
     setData(modifyData(Operations.REPLACE, cellsRef.current, dataRef.current, modalValue));
     setIsModalVisible(false);
@@ -110,6 +97,22 @@ const Table = ({
   };
 
   useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (isIncrement(e)) {
+        setData(modifyData(Operations.INC, cellsRef.current, dataRef.current));
+      }
+
+      if (isDecrement(e)) {
+        setData(modifyData(Operations.DEC, cellsRef.current, dataRef.current));
+      }
+
+      if (isReplace(e)) {
+        // don't show modal when no cell is selected
+        if (cellsRef.current.flat().find((val) => val === true)) {
+          setIsModalVisible(true);
+        }
+      }
+    };
     document.addEventListener('keydown', onKeyDown);
 
     return () => document.removeEventListener('keydown', onKeyDown);
