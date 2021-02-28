@@ -17,8 +17,6 @@ const Cell = ({
 }) => {
   const ref = useRef(null);
 
-  // ref.current
-
   return (
     <td
       key={`${axis}-${index}`}
@@ -27,6 +25,9 @@ const Cell = ({
     </td>
   );
 };
+
+type CellsType = boolean[][];
+type DataType = [number[], number[]];
 
 const Table2D = ({
   name,
@@ -49,31 +50,44 @@ const Table2D = ({
   xUnits?: string,
   yUnits?: string,
 }) => {
-  // const renderRow = (axis: Axis, input: (string | number)[]) => input
-  //   .map((value, index) => <Cell axis={axis} key={index} index={index} value={value} />);
-
   const renderRow = (axis: Axis, input: (string | number)[]) => input
     .map((value, index) => <td key={`${name}-${axis}-${index}`}>{`${value}`}</td>);
 
   const titleProps = { disabled: true };
-  const rowsCount = xData.length + 1;
+  const [data, _setData] = useState<DataType>([yData, xData]);
+  const rowsCount = data[1].length + 1;
   const generateCells = () => [
     Array(rowsCount).fill(false),
     Array(rowsCount).fill(false),
   ];
-  const [cells, _setCells] = useState<boolean[][]>(generateCells());
+  const [cells, _setCells] = useState<CellsType>(generateCells());
   const cellsRef = useRef(cells);
-  const setCells = (data: boolean[][]) => {
-    cellsRef.current = data;
-    _setCells(data);
+  const dataRef = useRef(data);
+  const setCells = (currentCells: CellsType) => {
+    cellsRef.current = currentCells;
+    _setCells(currentCells);
   };
+  const setData = (currentData: DataType) => {
+    dataRef.current = currentData;
+    _setData(currentData);
+  };
+  const incrementData = (currentCells: CellsType, currentData: DataType): DataType => {
+    const test = 'test';
 
+    console.log({
+      currentCells,
+      currentData,
+    });
+
+    return [[], []];
+  };
   const onKeyDown = (e: KeyboardEvent) => {
     const { key } = e;
 
     switch (key) {
       case '.':
         console.log('up');
+        incrementData(cellsRef.current, data);
         break;
       case ',':
         console.log('down');
@@ -84,30 +98,28 @@ const Table2D = ({
   };
 
   useEffect(() => {
-    setCells(generateCells());
-
     document.addEventListener('keydown', onKeyDown);
 
     return () => document.removeEventListener('keydown', onKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="table table-2d">
-      {cells[0].length === rowsCount && <TableDragSelect
+      <TableDragSelect
         key={name}
         value={cells}
         onChange={setCells}
       >
         <tr>
           <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
-          {renderRow('y', yData)}
+          {renderRow('y', data[0])}
         </tr>
         <tr>
           <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
-          {renderRow('x', xData)}
+          {renderRow('x', data[1])}
         </tr>
-      </TableDragSelect>}
+      </TableDragSelect>
     </div>
   );
 };

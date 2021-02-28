@@ -115,6 +115,7 @@ const Curve = ({
       </ResponsiveContainer>
       <Table2D
         name={name}
+        key={name}
         xLabel={xLabel}
         yLabel={yLabel}
         xData={xData}
