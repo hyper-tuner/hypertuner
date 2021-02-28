@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 import TableDragSelect from 'react-table-drag-select';
 import { isDecrement, isIncrement } from '../../../utils/keyboard/shortcuts';
 
-type Axis = 'x' | 'y';
+type AxisType = 'x' | 'y';
 type CellsType = boolean[][];
 type DataType = number[][];
+type OnChangeType = (data: DataType) => void;
 
 const Table = ({
   name,
@@ -16,7 +17,7 @@ const Table = ({
   xData,
   yData,
   disabled,
-  onEdit,
+  onChange,
   xUnits = '',
   yUnits = '',
 }: {
@@ -26,11 +27,11 @@ const Table = ({
   xData: number[],
   yData: number[],
   disabled: boolean,
-  onEdit: (axis: Axis, index: number, value: number) => void,
+  onChange: OnChangeType,
   xUnits?: string,
   yUnits?: string,
 }) => {
-  const renderRow = (axis: Axis, input: (string | number)[]) => input
+  const renderRow = (axis: AxisType, input: (string | number)[]) => input
     .map((value, index) => <td key={`${axis}-${index}-${value}`}>{`${value}`}</td>);
 
   const titleProps = { disabled: true };
@@ -51,6 +52,7 @@ const Table = ({
   const setData = (currentData: DataType) => {
     dataRef.current = currentData;
     _setData(currentData);
+    onChange(currentData);
   };
   const modifyData = (sign: '-' | '+', currentCells: CellsType, currentData: DataType): DataType => {
     const newData = [...currentData.map((row) => [...row])];

@@ -73,6 +73,7 @@ const Dialog = ({
     return (
       <Curve
         name={curve.yBins}
+        key={curve.yBins}
         disabled={false} // TODO: evaluate condition
         help={config.help[curve.yBins]}
         xLabel={curve.labels[0]}

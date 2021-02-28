@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   CartesianGrid,
   Line,
@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   Label,
 } from 'recharts';
-import Table2D from './Curve/Table';
+import Table from './Curve/Table';
 
 const Curve = ({
   name,
@@ -33,31 +33,15 @@ const Curve = ({
   xUnits?: string,
   yUnits?: string,
 }) => {
-  const mapData = (inX: number[], inY: number[]) => inX.map((val, i) => ({
-    x: val, y: inY[i],
+  const mapData = (rawData: number[][]) => rawData[1].map((val, i) => ({
+    x: val,
+    y: rawData[0][i],
   }));
-  const [data, setData] = useState([xData, yData]);
+  const [data, setData] = useState(mapData([yData, xData]));
   const margin = 15;
   const mainColor = '#ccc';
   const tooltipBg = '#2E3338';
   const animationDuration = 500;
-
-  const onTableEdit = (axis: string, index: number, value: number) => {
-    const x = [...xData];
-    const y = [...yData];
-
-    if (axis === 'x') {
-      x[index] = value;
-    } else {
-      y[index] = value;
-    }
-
-    setData([x, y]);
-  };
-
-  useEffect(() => {
-    setData([xData, yData]);
-  }, [xData, yData, xLabel, yLabel]);
 
   return (
     <>
@@ -66,7 +50,7 @@ const Curve = ({
       </Typography.Paragraph>
       <ResponsiveContainer height={450}>
         <LineChart
-          data={mapData(data[0], data[1])}
+          data={data}
           margin={{
             top: margin,
             right: margin,
@@ -113,7 +97,7 @@ const Curve = ({
           />
         </LineChart>
       </ResponsiveContainer>
-      <Table2D
+      <Table
         name={name}
         key={name}
         xLabel={xLabel}
@@ -123,7 +107,7 @@ const Curve = ({
         disabled={disabled}
         xUnits={xUnits}
         yUnits={yUnits}
-        onEdit={onTableEdit}
+        onChange={(newData: number[][]) => setData(mapData(newData))}
       />
     </>
   );
