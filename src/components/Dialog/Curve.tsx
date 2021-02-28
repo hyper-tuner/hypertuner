@@ -60,7 +60,7 @@ const Curve = ({
         >
           <CartesianGrid
             strokeDasharray="4 4"
-            style={{ fill: mainColor }}
+            strokeOpacity={0.1}
           />
           <XAxis dataKey="x">
             <Label

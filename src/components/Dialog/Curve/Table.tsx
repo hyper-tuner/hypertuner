@@ -3,12 +3,17 @@
 
 import { useEffect, useRef, useState } from 'react';
 import TableDragSelect from 'react-table-drag-select';
-import { isDecrement, isIncrement } from '../../../utils/keyboard/shortcuts';
+import { isDecrement, isIncrement, useDigits } from '../../../utils/keyboard/shortcuts';
 
 type AxisType = 'x' | 'y';
 type CellsType = boolean[][];
 type DataType = number[][];
 type OnChangeType = (data: DataType) => void;
+enum Operations {
+  INC,
+  DEC,
+  REPLACE,
+}
 
 const Table = ({
   name,
@@ -54,7 +59,7 @@ const Table = ({
     _setData(currentData);
     onChange(currentData);
   };
-  const modifyData = (sign: '-' | '+', currentCells: CellsType, currentData: DataType): DataType => {
+  const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value?: number): DataType => {
     const newData = [...currentData.map((row) => [...row])];
 
     currentCells.forEach((_, rowIndex) => {
@@ -63,10 +68,18 @@ const Table = ({
           return;
         }
 
-        if (sign === '+') {
-          newData[rowIndex][valueIndex - 1] += 1;
-        } else {
-          newData[rowIndex][valueIndex - 1] -= 1;
+        switch (operation) {
+          case Operations.INC:
+            newData[rowIndex][valueIndex - 1] += 1;
+            break;
+          case Operations.DEC:
+            newData[rowIndex][valueIndex - 1] -= 1;
+            break;
+          case Operations.REPLACE:
+            newData[rowIndex][valueIndex - 1] = value || 0;
+            break;
+          default:
+            break;
         }
       });
     });
@@ -75,11 +88,23 @@ const Table = ({
   };
   const onKeyDown = (e: KeyboardEvent) => {
     if (isIncrement(e)) {
-      setData(modifyData('+', cellsRef.current, dataRef.current));
+      setData(
+        modifyData(Operations.INC, cellsRef.current, dataRef.current),
+      );
     }
 
     if (isDecrement(e)) {
-      setData(modifyData('-', cellsRef.current, dataRef.current));
+      setData(
+        modifyData(Operations.DEC, cellsRef.current, dataRef.current),
+      );
+    }
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [isDigit, digit] = useDigits(e);
+    if (isDigit) {
+      setData(
+        modifyData(Operations.REPLACE, cellsRef.current, dataRef.current, digit),
+      );
     }
   };
 
