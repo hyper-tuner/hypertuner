@@ -36,9 +36,6 @@ const Table = ({
   xUnits?: string,
   yUnits?: string,
 }) => {
-  const renderRow = (axis: AxisType, input: (string | number)[]) => input
-    .map((value, index) => <td key={`${axis}-${index}-${value}`}>{`${value}`}</td>);
-
   const titleProps = { disabled: true };
   const [data, _setData] = useState<DataType>([yData, xData]);
   // data starts from `1` index, 0 is title / name
@@ -114,6 +111,9 @@ const Table = ({
     return () => document.removeEventListener('keydown', onKeyDown);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const renderRow = (axis: AxisType, input: (string | number)[]) => input
+    .map((value, index) => <td className="value" key={`${axis}-${index}-${value}`}>{`${value}`}</td>);
 
   return (
     <div className="table table-2d">
