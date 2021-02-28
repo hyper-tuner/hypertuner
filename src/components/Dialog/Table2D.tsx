@@ -55,6 +55,7 @@ const Table2D = ({
 
   const titleProps = { disabled: true };
   const [data, _setData] = useState<DataType>([yData, xData]);
+  // data starts from `1` index, 0 is title / name
   const rowsCount = data[1].length + 1;
   const generateCells = () => [
     Array(rowsCount).fill(false),
@@ -72,22 +73,32 @@ const Table2D = ({
     _setData(currentData);
   };
   const incrementData = (currentCells: CellsType, currentData: DataType): DataType => {
-    const test = 'test';
+    const newData = [[...currentData[0]], [...currentData[1]]];
 
     console.log({
       currentCells,
       currentData,
     });
+    currentCells[0].forEach((selected, index) => {
+      if (selected) {
+        newData[0][index - 1] += 1;
+      }
+    });
 
-    return [[], []];
+    currentCells[1].forEach((selected, index) => {
+      if (selected) {
+        newData[1][index - 1] += 1;
+      }
+    });
+
+    return [newData[0], newData[1]];
   };
   const onKeyDown = (e: KeyboardEvent) => {
     const { key } = e;
 
     switch (key) {
       case '.':
-        console.log('up');
-        incrementData(cellsRef.current, data);
+        console.log('up', incrementData(cellsRef.current, data));
         break;
       case ',':
         console.log('down');
