@@ -31,6 +31,7 @@ import {
 import { useEffect, useRef } from 'react';
 import store from '../store';
 import { isMac } from '../lib/env';
+import { isCommand, isEscape, isToggleSidebar } from '../utils/keyboard/shortcuts';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -84,23 +85,23 @@ const TopBar = () => {
   );
 
   const searchInput = useRef({} as any);
-  const handleCommandP = (e: KeyboardEvent) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+  const handleGlobalKeyboard = (e: KeyboardEvent) => {
+    if (isCommand(e)) {
       if (searchInput) {
         e.preventDefault();
         searchInput.current.focus();
       }
     }
 
-    if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
+    if (isToggleSidebar(e)) {
       e.preventDefault();
       store.dispatch({ type: 'ui/toggleSidebar' });
     }
   };
   useEffect(() => {
-    document.addEventListener('keydown', handleCommandP);
+    document.addEventListener('keydown', handleGlobalKeyboard);
 
-    return () => document.removeEventListener('keydown', handleCommandP);
+    return () => document.removeEventListener('keydown', handleGlobalKeyboard);
   });
 
   return (
@@ -116,7 +117,7 @@ const TopBar = () => {
           }>
             <Input
               ref={searchInput}
-              onKeyUp={(e) => e.key === 'Escape' && e.currentTarget.blur()}
+              onKeyUp={(e) => isEscape(e) && e.currentTarget.blur()}
               placeholder="Search / Command"
               className="electron-not-draggable"
             />

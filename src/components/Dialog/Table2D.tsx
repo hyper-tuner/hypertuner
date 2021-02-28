@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import TableDragSelect from 'react-table-drag-select';
+import { isDecrement, isIncrement } from '../../utils/keyboard/shortcuts';
 
 type Axis = 'x' | 'y';
 
@@ -92,17 +93,12 @@ const Table2D = ({
     return [...newData];
   };
   const onKeyDown = (e: KeyboardEvent) => {
-    const { key } = e;
+    if (isIncrement(e)) {
+      setData(modifyData('+', cellsRef.current, dataRef.current));
+    }
 
-    switch (key) {
-      case '.':
-        setData(modifyData('+', cellsRef.current, dataRef.current));
-        break;
-      case ',':
-        setData(modifyData('-', cellsRef.current, dataRef.current));
-        break;
-      default:
-        break;
+    if (isDecrement(e)) {
+      setData(modifyData('-', cellsRef.current, dataRef.current));
     }
   };
 
