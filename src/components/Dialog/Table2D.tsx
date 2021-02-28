@@ -27,7 +27,7 @@ const Cell = ({
 };
 
 type CellsType = boolean[][];
-type DataType = [number[], number[]];
+type DataType = number[][];
 
 const Table2D = ({
   name,
@@ -51,7 +51,7 @@ const Table2D = ({
   yUnits?: string,
 }) => {
   const renderRow = (axis: Axis, input: (string | number)[]) => input
-    .map((value, index) => <td key={`${name}-${axis}-${index}`}>{`${value}`}</td>);
+    .map((value, index) => <td key={`${axis}-${index}-${value}`}>{`${value}`}</td>);
 
   const titleProps = { disabled: true };
   const [data, _setData] = useState<DataType>([yData, xData]);
@@ -72,36 +72,34 @@ const Table2D = ({
     dataRef.current = currentData;
     _setData(currentData);
   };
-  const incrementData = (currentCells: CellsType, currentData: DataType): DataType => {
-    const newData = [[...currentData[0]], [...currentData[1]]];
+  const modifyData = (sign: '-' | '+', currentCells: CellsType, currentData: DataType): DataType => {
+    const newData = [...currentData.map((row) => [...row])];
 
-    console.log({
-      currentCells,
-      currentData,
-    });
-    currentCells[0].forEach((selected, index) => {
-      if (selected) {
-        newData[0][index - 1] += 1;
-      }
-    });
+    currentCells.forEach((_, rowIndex) => {
+      currentCells[rowIndex].forEach((selected, valueIndex) => {
+        if (!selected) {
+          return;
+        }
 
-    currentCells[1].forEach((selected, index) => {
-      if (selected) {
-        newData[1][index - 1] += 1;
-      }
+        if (sign === '+') {
+          newData[rowIndex][valueIndex - 1] += 1;
+        } else {
+          newData[rowIndex][valueIndex - 1] -= 1;
+        }
+      });
     });
 
-    return [newData[0], newData[1]];
+    return [...newData];
   };
   const onKeyDown = (e: KeyboardEvent) => {
     const { key } = e;
 
     switch (key) {
       case '.':
-        console.log('up', incrementData(cellsRef.current, data));
+        setData(modifyData('+', cellsRef.current, dataRef.current));
         break;
       case ',':
-        console.log('down');
+        setData(modifyData('-', cellsRef.current, dataRef.current));
         break;
       default:
         break;
