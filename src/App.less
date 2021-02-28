@@ -98,8 +98,10 @@ body {
     border: 1px solid @main-light;
     height: 50px;
     user-select: none;
+    // transition: all 0.1s;
 
     &.value {
+      color: rgba(0, 0, 0, 0.7);
       width: 5%;
     }
 
@@ -108,11 +110,14 @@ body {
     }
 
     &.cell-selected {
-      background-color: @primary-color;
+      // border-color: @primary-color;
+      border-color: rgba(255, 255, 255, 0.8);
+      // background-color: @primary-color!important;
     }
 
     &.cell-being-selected {
-      background-color: @main-light;
+      border-color: @warn;
+      // background-color: @warn!important;
     }
   }
 }

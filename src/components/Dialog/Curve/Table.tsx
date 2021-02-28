@@ -147,8 +147,31 @@ const Table = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderRow = (axis: AxisType, input: (string | number)[]) => input
-    .map((value, index) => <td className="value" key={`${axis}-${index}-${value}`}>{`${value}`}</td>);
+  const colorHsl = (min: number, max: number, value: number) => {
+    const coldDeg = 220;
+    const hotDeg = 0;
+    const remap = (x: number, inMin: number, inMax: number, outMin: number, outMax: number) => (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+
+    let remapped = remap(value, min, max, coldDeg, hotDeg);
+
+    // fallback to cold temp
+    if (Number.isNaN(remapped)) {
+      remapped = coldDeg;
+    }
+
+    return `hsl(${remapped}deg, 50%, 50%)`;
+  };
+
+  const renderRow = (axis: AxisType, input: number[]) => input
+    .map((value, index) => (
+      <td
+        className="value"
+        key={`${axis}-${index}-${value}`}
+        style={{ backgroundColor: colorHsl(Math.min(...input), Math.max(...input), value) }}
+      >
+        {`${value}`}
+      </td>
+    ));
 
   return (
     <>
