@@ -2,8 +2,9 @@
 /* eslint-disable react/no-array-index-key */
 
 import { useEffect, useRef, useState } from 'react';
+import { InputNumber, Modal } from 'antd';
 import TableDragSelect from 'react-table-drag-select';
-import { isDecrement, isIncrement, useDigits } from '../../../utils/keyboard/shortcuts';
+import { isDecrement, isIncrement, isReplace } from '../../../utils/keyboard/shortcuts';
 
 type AxisType = 'x' | 'y';
 type CellsType = boolean[][];
@@ -37,6 +38,8 @@ const Table = ({
   yUnits?: string,
 }) => {
   const titleProps = { disabled: true };
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalValue, setModalValue] = useState<number | undefined>();
   const [data, _setData] = useState<DataType>([yData, xData]);
   // data starts from `1` index, 0 is title / name
   const rowsCount = data[1].length + 1;
@@ -56,7 +59,7 @@ const Table = ({
     _setData(currentData);
     onChange(currentData);
   };
-  const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value?: number): DataType => {
+  const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
 
     currentCells.forEach((_, rowIndex) => {
@@ -85,24 +88,25 @@ const Table = ({
   };
   const onKeyDown = (e: KeyboardEvent) => {
     if (isIncrement(e)) {
-      setData(
-        modifyData(Operations.INC, cellsRef.current, dataRef.current),
-      );
+      setData(modifyData(Operations.INC, cellsRef.current, dataRef.current));
     }
 
     if (isDecrement(e)) {
-      setData(
-        modifyData(Operations.DEC, cellsRef.current, dataRef.current),
-      );
+      setData(modifyData(Operations.DEC, cellsRef.current, dataRef.current));
     }
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [isDigit, digit] = useDigits(e);
-    if (isDigit) {
-      setData(
-        modifyData(Operations.REPLACE, cellsRef.current, dataRef.current, digit),
-      );
+    if (isReplace(e)) {
+      setIsModalVisible(true);
     }
+  };
+  const oneModalOk = () => {
+    setData(modifyData(Operations.REPLACE, cellsRef.current, dataRef.current, modalValue));
+    setIsModalVisible(false);
+    setModalValue(undefined);
+  };
+  const onModalCancel = () => {
+    setIsModalVisible(false);
+    setModalValue(undefined);
   };
 
   useEffect(() => {
@@ -116,22 +120,40 @@ const Table = ({
     .map((value, index) => <td className="value" key={`${axis}-${index}-${value}`}>{`${value}`}</td>);
 
   return (
-    <div className="table table-2d">
-      <TableDragSelect
-        key={name}
-        value={cells}
-        onChange={setCells}
+    <>
+      <div className="table table-2d">
+        <TableDragSelect
+          key={name}
+          value={cells}
+          onChange={setCells}
+        >
+          <tr>
+            <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
+            {renderRow('y', data[0])}
+          </tr>
+          <tr>
+            <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
+            {renderRow('x', data[1])}
+          </tr>
+        </TableDragSelect>
+      </div>
+      <Modal
+        title="Set cell values"
+        visible={isModalVisible}
+        onOk={oneModalOk}
+        onCancel={onModalCancel}
       >
-        <tr>
-          <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
-          {renderRow('y', data[0])}
-        </tr>
-        <tr>
-          <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
-          {renderRow('x', data[1])}
-        </tr>
-      </TableDragSelect>
-    </div>
+        <InputNumber
+          min={0}
+          max={255}
+          value={modalValue}
+          onChange={(val) => setModalValue(Number(val))}
+          autoFocus
+          onPressEnter={oneModalOk}
+          style={{ width: '20%' }}
+        />
+      </Modal>
+    </>
   );
 };
 
