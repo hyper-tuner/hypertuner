@@ -1,10 +1,29 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
 
-import { useEffect, useRef, useState } from 'react';
-import { InputNumber, Modal } from 'antd';
+import {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  Button,
+  InputNumber,
+  Modal,
+  Popover,
+  Space,
+} from 'antd';
+import {
+  PlusCircleOutlined,
+  MinusCircleOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
 import TableDragSelect from 'react-table-drag-select';
-import { isDecrement, isIncrement, isReplace } from '../../../utils/keyboard/shortcuts';
+import {
+  isDecrement,
+  isIncrement,
+  isReplace,
+} from '../../../utils/keyboard/shortcuts';
 
 type AxisType = 'x' | 'y';
 type CellsType = boolean[][];
@@ -59,6 +78,7 @@ const Table = ({
     _setData(currentData);
     onChange(currentData);
   };
+  const inputRef = useRef();
   const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
 
@@ -95,24 +115,33 @@ const Table = ({
     setIsModalVisible(false);
     setModalValue(undefined);
   };
+  const increment = () => setData(modifyData(Operations.INC, cellsRef.current, dataRef.current));
+  const decrement = () => setData(modifyData(Operations.DEC, cellsRef.current, dataRef.current));
+  const replace = () => {
+    // don't show modal when no cell is selected
+    if (cellsRef.current.flat().find((val) => val === true)) {
+      setIsModalVisible(true);
+      if (inputRef.current) {
+        (inputRef.current as any).focus();
+      }
+    }
+  };
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (isIncrement(e)) {
-        setData(modifyData(Operations.INC, cellsRef.current, dataRef.current));
+        increment();
       }
 
       if (isDecrement(e)) {
-        setData(modifyData(Operations.DEC, cellsRef.current, dataRef.current));
+        decrement();
       }
 
       if (isReplace(e)) {
-        // don't show modal when no cell is selected
-        if (cellsRef.current.flat().find((val) => val === true)) {
-          setIsModalVisible(true);
-        }
+        replace();
       }
     };
+
     document.addEventListener('keydown', onKeyDown);
 
     return () => document.removeEventListener('keydown', onKeyDown);
@@ -125,20 +154,31 @@ const Table = ({
   return (
     <>
       <div className="table table-2d">
-        <TableDragSelect
-          key={name}
-          value={cells}
-          onChange={setCells}
+        <Popover
+          visible={cells.flat().find((val) => val === true) === true}
+          content={
+            <Space>
+              <Button onClick={decrement} icon={<MinusCircleOutlined />} />
+              <Button onClick={increment} icon={<PlusCircleOutlined />} />
+              <Button onClick={replace} icon={<EditOutlined />} />
+            </Space>
+          }
         >
-          <tr>
-            <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
-            {renderRow('y', data[0])}
-          </tr>
-          <tr>
-            <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
-            {renderRow('x', data[1])}
-          </tr>
-        </TableDragSelect>
+          <TableDragSelect
+            key={name}
+            value={cells}
+            onChange={setCells}
+          >
+            <tr>
+              <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
+              {renderRow('y', data[0])}
+            </tr>
+            <tr>
+              <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
+              {renderRow('x', data[1])}
+            </tr>
+          </TableDragSelect>
+        </Popover>
       </div>
       <Modal
         title="Set cell values"
@@ -151,6 +191,7 @@ const Table = ({
           max={255}
           value={modalValue}
           onChange={(val) => setModalValue(Number(val))}
+          ref={inputRef}
           autoFocus
           onPressEnter={oneModalOk}
           style={{ width: '20%' }}
