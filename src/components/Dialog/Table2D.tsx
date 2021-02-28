@@ -61,10 +61,34 @@ const Table2D = ({
     Array(rowsCount).fill(false),
     Array(rowsCount).fill(false),
   ];
-  const [cells, setCells] = useState<boolean[][]>(generateCells());
+  const [cells, _setCells] = useState<boolean[][]>(generateCells());
+  const cellsRef = useRef(cells);
+  const setCells = (data: boolean[][]) => {
+    cellsRef.current = data;
+    _setCells(data);
+  };
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    const { key } = e;
+
+    switch (key) {
+      case '.':
+        console.log('up');
+        break;
+      case ',':
+        console.log('down');
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     setCells(generateCells());
+
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => document.removeEventListener('keydown', onKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 

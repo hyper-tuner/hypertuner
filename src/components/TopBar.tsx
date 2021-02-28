@@ -100,9 +100,7 @@ const TopBar = () => {
   useEffect(() => {
     document.addEventListener('keydown', handleCommandP);
 
-    return () => {
-      document.removeEventListener('keydown', handleCommandP);
-    };
+    return () => document.removeEventListener('keydown', handleCommandP);
   });
 
   return (
