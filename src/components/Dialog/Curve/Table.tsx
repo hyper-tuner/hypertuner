@@ -6,27 +6,6 @@ import TableDragSelect from 'react-table-drag-select';
 import { isDecrement, isIncrement } from '../../../utils/keyboard/shortcuts';
 
 type Axis = 'x' | 'y';
-
-const Cell = ({
-  index,
-  axis,
-  value,
-}: {
-  index: number,
-  axis: Axis,
-  value: string | number,
-}) => {
-  const ref = useRef(null);
-
-  return (
-    <td
-      key={`${axis}-${index}`}
-    >
-      {value}
-    </td>
-  );
-};
-
 type CellsType = boolean[][];
 type DataType = number[][];
 
