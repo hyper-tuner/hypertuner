@@ -5,15 +5,15 @@ Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 ## Project main goals
 
 - 🚀 always free and open source (FOSS)
-- 💻 cross-platform desktop and mobile app
-- 🤗 great user experience
+- 💻 cross-platform desktop app (Linux, MacOS, Windows)
+- 🔥 `60Hz` logging and `60 FPS` animations
+- 🏎 fast startup and low resource consumption
+- 👏 fully featured
+  - 🚗 all tuning essentials and beyond
+- 🤗 good user experience
   - 💎 intuitive, modern and responsive UI
   - 👶 easy for newcomers with tips, tools and simple diagnostics
-  - 🔥 fast startup and low resource consumption
-  - 📱 touch screen support
-  - 🏎 60 FPS animations
-- 👏 fully featured
-  - 🚗 all the tuning essentials and beyond
+  - 📱 touch screen friendly
 
 ## The repository
 
