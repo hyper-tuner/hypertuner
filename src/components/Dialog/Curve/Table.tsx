@@ -219,8 +219,6 @@ const Table = ({
         onCancel={onModalCancel}
       >
         <InputNumber
-          min={0}
-          max={255}
           value={modalValue}
           onChange={(val) => setModalValue(Number(val))}
           ref={inputRef}

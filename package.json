@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "homepage": "./",
-  "main": "./public/electron.js",
+  "main": "src/electron.js",
   "scripts": {
     "start": "craco start",
     "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
