@@ -33,6 +33,7 @@ enum Operations {
   DEC,
   REPLACE,
 }
+type HslType = [number, number, number];
 
 const Table = ({
   name,
@@ -147,31 +148,40 @@ const Table = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const colorHsl = (min: number, max: number, value: number) => {
+  const colorHsl = (min: number, max: number, value: number): HslType => {
+    const saturation = 50;
+    const lightness = 50;
     const coldDeg = 220;
     const hotDeg = 0;
     const remap = (x: number, inMin: number, inMax: number, outMin: number, outMax: number) => (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 
-    let remapped = remap(value, min, max, coldDeg, hotDeg);
+    let hue = remap(value, min, max, coldDeg, hotDeg);
 
     // fallback to cold temp
-    if (Number.isNaN(remapped)) {
-      remapped = coldDeg;
+    if (Number.isNaN(hue)) {
+      hue = coldDeg;
     }
 
-    return `hsl(${remapped}deg, 50%, 50%)`;
+    return [hue, saturation, lightness];
   };
 
   const renderRow = (axis: AxisType, input: number[]) => input
-    .map((value, index) => (
-      <td
-        className="value"
-        key={`${axis}-${index}-${value}`}
-        style={{ backgroundColor: colorHsl(Math.min(...input), Math.max(...input), value) }}
-      >
-        {`${value}`}
-      </td>
-    ));
+    .map((value, index) => {
+      const hsl = colorHsl(Math.min(...input), Math.max(...input), value);
+      const [hue, sat, light] = hsl;
+
+      return (
+        <td
+          className="value"
+          key={`${axis}-${index}-${value}-${hsl.join('-')}`}
+          style={{
+            backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)`,
+          }}
+        >
+          {`${value}`}
+        </td>
+      );
+    });
 
   return (
     <>
