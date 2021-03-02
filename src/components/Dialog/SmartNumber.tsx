@@ -55,7 +55,7 @@ const SmartNumber = ({
       disabled={disabled}
       style={{ minWidth: 150 }}
       formatter={(val) => units ? `${val} ${units}` : `${val}`}
-      parser={(val) => `${val}`.replace(/[^\d.]/g, '')}
+      parser={(val) => Number(`${val}`.replace(/[^\d.]/g, ''))}
     />
   );
 };

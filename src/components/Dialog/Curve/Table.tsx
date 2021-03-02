@@ -78,7 +78,6 @@ const Table = ({
     _setData(currentData);
     onChange(currentData);
   };
-  const inputRef = useRef();
   const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
 
@@ -121,9 +120,6 @@ const Table = ({
     // don't show modal when no cell is selected
     if (cellsRef.current.flat().find((val) => val === true)) {
       setIsModalVisible(true);
-      if (inputRef.current) {
-        (inputRef.current as any).focus();
-      }
     }
   };
 
@@ -219,9 +215,9 @@ const Table = ({
         onCancel={onModalCancel}
       >
         <InputNumber
+          // TODO: add validation
           value={modalValue}
           onChange={(val) => setModalValue(Number(val))}
-          ref={inputRef}
           autoFocus
           onPressEnter={oneModalOk}
           style={{ width: '20%' }}
