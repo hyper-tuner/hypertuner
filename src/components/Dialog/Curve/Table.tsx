@@ -20,6 +20,7 @@ import {
 import TableDragSelect from 'react-table-drag-select';
 import {
   isDecrement,
+  isEscape,
   isIncrement,
   isReplace,
 } from '../../../utils/keyboard/shortcuts';
@@ -128,13 +129,15 @@ const Table = ({
       if (isIncrement(e)) {
         increment();
       }
-
       if (isDecrement(e)) {
         decrement();
       }
-
       if (isReplace(e)) {
         replace();
+      }
+      if (isEscape(e)) {
+        // clear out
+        setCells(generateCells());
       }
     };
 
