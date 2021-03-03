@@ -61,6 +61,6 @@ function createMain() {
 }
 
 app.on('ready', () => {
-  createSplash();
+  // createSplash();
   createMain();
 });
