@@ -20,13 +20,13 @@ import {
   Dialog as DialogType,
   Config as ConfigType,
   Field as FieldType,
-  Page as PageType,
   Curve as CurveType,
 } from '../types/config';
 import {
   Tune as TuneType,
 } from '../types/tune';
 import { prepareConstDeclarations } from '../lib/utils';
+import { findOnPage } from '../utils/config/find';
 
 interface DialogsAndCurves {
   [name: string]: DialogType | CurveType,
@@ -69,6 +69,7 @@ const Dialog = ({
   const curveComponent = (curve: CurveType) => {
     const x = tune.constants[curve.xBins[0]];
     const y = tune.constants[curve.yBins];
+    const xConstant = findOnPage(config, curve.yBins);
 
     return (
       <Curve
@@ -80,6 +81,8 @@ const Dialog = ({
         yLabel={curve.labels[1]}
         xUnits={x.units}
         yUnits={y.units}
+        xMin={xConstant.min}
+        xMax={xConstant.max}
         xData={
           (x.value as string)
             .split('\n')
@@ -169,7 +172,7 @@ const Dialog = ({
         resolvedDialogs[panelName] = config.dialogs[panelName];
       }
 
-        // NOTE: recursion
+      // recursion
       resolveDialogs(config.dialogs, panelName);
     });
   };
@@ -209,11 +212,7 @@ const Dialog = ({
       <Col key={panel.name} {...calculateSpan(panels.length)}>
         <Divider>{panel.title}</Divider>
         {(panel.fields).map((field: FieldType) => {
-          const pageFound = config
-            .constants
-            .pages
-            .find((page: PageType) => field.name in page.data) || { data: {} } as PageType;
-          const constant = pageFound.data[field.name];
+          const constant = findOnPage(config, field.name);
           const tuneField = tune.constants[field.name];
           const help = config.help[field.name];
 

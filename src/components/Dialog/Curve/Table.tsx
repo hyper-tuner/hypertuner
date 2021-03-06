@@ -44,6 +44,10 @@ const Table = ({
   yData,
   disabled,
   onChange,
+  xMin,
+  xMax,
+  yMin = 0,
+  yMax = 255,
   xUnits = '',
   yUnits = '',
 }: {
@@ -54,6 +58,10 @@ const Table = ({
   yData: number[],
   disabled: boolean,
   onChange: OnChangeType,
+  xMin: number,
+  xMax: number,
+  yMin?: number,
+  yMax?: number,
   xUnits?: string,
   yUnits?: string,
 }) => {

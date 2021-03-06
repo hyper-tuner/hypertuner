@@ -20,6 +20,8 @@ const Curve = ({
   yData,
   disabled,
   help,
+  xMin,
+  xMax,
   xUnits = '',
   yUnits = '',
 }: {
@@ -30,6 +32,8 @@ const Curve = ({
   yData: number[],
   disabled: boolean,
   help: string,
+  xMin: number,
+  xMax: number,
   xUnits?: string,
   yUnits?: string,
 }) => {
@@ -105,6 +109,8 @@ const Curve = ({
         xData={xData}
         yData={yData}
         disabled={disabled}
+        xMin={xMin}
+        xMax={xMax}
         xUnits={xUnits}
         yUnits={yUnits}
         onChange={(newData: number[][]) => setData(mapData(newData))}

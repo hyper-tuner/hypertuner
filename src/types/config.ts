@@ -6,119 +6,119 @@ export enum Switches {
 }
 
 export interface Field {
-  name: string
-  title: string
-  condition?: string
+  name: string;
+  title: string;
+  condition?: string;
 }
 
 export interface Dialog {
-  title: string
-  layout: string
-  help?: string
+  title: string;
+  layout: string;
+  help?: string;
   panels: {
-    [name: string]: Dialog
-  }
-  fields: Field[]
-  condition: string
+    [name: string]: Dialog;
+  };
+  fields: Field[];
+  condition: string;
 }
 
 export interface Dialogs {
-  [name: string]: Dialog
+  [name: string]: Dialog;
 }
 
 export interface SubMenu {
-  title: string
-  page: number
-  condition: string
+  title: string;
+  page: number;
+  condition: string;
 }
 
 export interface Menu {
-  title: string
+  title: string;
   subMenus: {
-    [name: string]: SubMenu
-  }
+    [name: string]: SubMenu;
+  };
 }
 
 export interface Menus {
-  [name: string]: Menu
+  [name: string]: Menu;
 }
 
 export interface ArrayShape {
-  columns: number
-  rows: number
+  columns: number;
+  rows: number;
 }
 
 export interface BitsAddress {
-  from: number
-  to: number
+  from: number;
+  to: number;
 }
 
 export interface ScalarConstant {
-  type: 'scalar' | 'bits' | 'array'
-  size: 'U08' | 'S08' | 'U16' | 'S16'
-  offset: number
-  units: string
-  scale: number
-  transform: number
-  min: number
-  max: number
-  digits: number
+  type: 'scalar' | 'bits' | 'array';
+  size: 'U08' | 'S08' | 'U16' | 'S16';
+  offset: number;
+  units: string;
+  scale: number;
+  transform: number;
+  min: number;
+  max: number;
+  digits: number;
 }
 
 export interface Constant extends ScalarConstant {
-  address?: BitsAddress
-  shape?: ArrayShape
-  values?: string[]
+  address?: BitsAddress;
+  shape?: ArrayShape;
+  values?: string[];
 }
 
 export interface Constants {
-  [name: string]: Constant
+  [name: string]: Constant;
 }
 
 export interface Page {
-  number: number
-  size: number
-  data: Constants
+  number: number;
+  size: number;
+  data: Constants;
 }
 
 export interface Globals {
-  [name: string]: string[]
+  [name: string]: string[];
 }
 
 export interface Help {
-  [key: string]: string
+  [key: string]: string;
 }
 
 export interface Curve {
-  title: string
-  condition: string
-  labels: string[]
-  xAxis: number[]
-  yAxis: number[]
-  xBins: string[]
-  yBins: string
-  size: number[]
-  gauge: string
+  title: string;
+  condition: string;
+  labels: string[];
+  xAxis: number[];
+  yAxis: number[];
+  xBins: string[];
+  yBins: string;
+  size: number[];
+  gauge: string;
 }
 
 export interface Config {
   megaTune: {
-    signature: string
-  }
-  pcVariables: Constants
-  globals: Globals
+    signature: string;
+  };
+  pcVariables: Constants;
+  globals: Globals;
   constants: {
-    pages: Page[]
-  }
+    pages: Page[];
+  };
   dialogs: {
-    [name: string]: Dialog
-  }
+    [name: string]: Dialog;
+  };
   curves: {
-    [name: string]: Curve
-  }
+    [name: string]: Curve;
+  };
   outputChannels: {
-    [name: string]: ScalarConstant
-  }
-  menus: Menus
-  help: Help
+    [name: string]: ScalarConstant;
+  };
+  menus: Menus;
+  help: Help;
 }
