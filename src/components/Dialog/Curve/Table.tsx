@@ -115,6 +115,7 @@ const Table = ({
     setIsModalVisible(false);
     setModalValue(undefined);
   };
+  const resetCells = () => setCells(generateCells());
   const increment = () => setData(modifyData(Operations.INC, cellsRef.current, dataRef.current));
   const decrement = () => setData(modifyData(Operations.DEC, cellsRef.current, dataRef.current));
   const replace = () => {
@@ -136,8 +137,7 @@ const Table = ({
         replace();
       }
       if (isEscape(e)) {
-        // clear out
-        setCells(generateCells());
+        resetCells();
       }
     };
 
@@ -148,8 +148,8 @@ const Table = ({
   }, []);
 
   const colorHsl = (min: number, max: number, value: number): HslType => {
-    const saturation = 50;
-    const lightness = 50;
+    const saturation = 60;
+    const lightness = 40;
     const coldDeg = 220;
     const hotDeg = 0;
     const remap = (x: number, inMin: number, inMax: number, outMin: number, outMax: number) => (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
