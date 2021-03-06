@@ -46,8 +46,8 @@ const Table = ({
   onChange,
   xMin,
   xMax,
-  yMin = 0,
-  yMax = 255,
+  yMin,
+  yMax,
   xUnits = '',
   yUnits = '',
 }: {
@@ -60,8 +60,8 @@ const Table = ({
   onChange: OnChangeType,
   xMin: number,
   xMax: number,
-  yMin?: number,
-  yMax?: number,
+  yMin: number,
+  yMax: number,
   xUnits?: string,
   yUnits?: string,
 }) => {
@@ -87,21 +87,30 @@ const Table = ({
     _setData(currentData);
     onChange(currentData);
   };
+  // TODO: useCallback
   const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
+    const isNotGreater = (row: number, val: number) => (row === 0 && val < yMax) || (row === 1 && val < xMax);
+    const isNotLess = (row: number, val: number) => (row === 0 && val > yMin) || (row === 1 && val > xMin);
 
     currentCells.forEach((_, rowIndex) => {
+      // rowIndex: [0 => Y, 1 => X]
       currentCells[rowIndex].forEach((selected, valueIndex) => {
         if (!selected) {
           return;
         }
+        const current = newData[rowIndex][valueIndex - 1];
 
         switch (operation) {
           case Operations.INC:
-            newData[rowIndex][valueIndex - 1] += 1;
+            if (isNotGreater(rowIndex, current)) {
+              newData[rowIndex][valueIndex - 1] += 1;
+            }
             break;
           case Operations.DEC:
-            newData[rowIndex][valueIndex - 1] -= 1;
+            if (isNotLess(rowIndex, current)) {
+              newData[rowIndex][valueIndex - 1] -= 1;
+            }
             break;
           case Operations.REPLACE:
             newData[rowIndex][valueIndex - 1] = value || 0;

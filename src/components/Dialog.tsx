@@ -69,7 +69,9 @@ const Dialog = ({
   const curveComponent = (curve: CurveType) => {
     const x = tune.constants[curve.xBins[0]];
     const y = tune.constants[curve.yBins];
-    const xConstant = findOnPage(config, curve.yBins);
+    const xConstant = findOnPage(config, curve.xBins[0]);
+    const yConstant = findOnPage(config, curve.yBins);
+    console.log({ curve });
 
     return (
       <Curve
@@ -83,6 +85,8 @@ const Dialog = ({
         yUnits={y.units}
         xMin={xConstant.min}
         xMax={xConstant.max}
+        yMin={yConstant.min}
+        yMax={yConstant.max}
         xData={
           (x.value as string)
             .split('\n')
