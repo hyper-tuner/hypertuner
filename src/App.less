@@ -2,22 +2,8 @@
 // @import '~antd/dist/antd.compact.less';
 // @import './themes/light.less';
 @import './themes/dark.less';
-
-@primary-color: #126ec3;
-
-@text-light: #fff;
-
-@border-radius-base: 5px;
-
-@layout-header-padding: 0 15px;
-@layout-header-height: 40px;
-
-@layout-footer-padding: 2px 10px;
-@layout-footer-height: 22px;
-
-@bars-z-index: 5;
-
-@zindex-modal: 1080;
+@import './themes/common.less';
+@import './themes/ant.less';
 
 body {
   overflow: hidden;
@@ -56,19 +42,6 @@ body {
   left: 0;
   user-select: none;
   .border-right;
-}
-
-.ant-menu {
-  border-color: transparent;
-}
-
-.ant-layout-sider-trigger {
-  bottom: @layout-footer-height;
-  .border-right;
-}
-
-.ant-empty {
-  opacity: 0.6;
 }
 
 .app-status-bar {
@@ -110,11 +83,11 @@ body {
     }
 
     &.cell-selected {
-      box-shadow: inset 0 0 25px 2px @info;
+      box-shadow: inset 0 0 25px 2px @info-color;
     }
 
     &.cell-being-selected {
-      box-shadow: inset 0 0 25px 2px @warn;
+      box-shadow: inset 0 0 25px 2px @warning-color;
     }
   }
 }
