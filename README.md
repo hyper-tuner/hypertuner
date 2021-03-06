@@ -10,7 +10,7 @@ Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 - 🏎 fast startup and low resource consumption
 - 👏 fully featured
   - 🚗 all tuning essentials and beyond
-- 🤗 good user experience
+- 👍 good user experience
   - 💎 intuitive, modern and responsive UI
   - 👶 easy for newcomers with tips, tools and simple diagnostics
   - 📱 touch screen friendly
