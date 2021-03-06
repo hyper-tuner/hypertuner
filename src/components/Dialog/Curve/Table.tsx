@@ -90,17 +90,19 @@ const Table = ({
   // TODO: useCallback
   const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
-    const isNotGreater = (row: number, val: number) => (row === 0 && val < yMax) || (row === 1 && val < xMax);
-    const isNotLess = (row: number, val: number) => (row === 0 && val > yMin) || (row === 1 && val > xMin);
+    // rowIndex: [0 => Y, 1 => X]
+    const isY = (row: number) => row === 0;
+    const isX = (row: number) => row === 1;
+    const isNotGreater = (row: number, val: number) => (isY(row) && val < yMax) || (isX(row) && val < xMax);
+    const isNotLess = (row: number, val: number) => (isY(row) && val > yMin) || (isX(row) && val > xMin);
 
     currentCells.forEach((_, rowIndex) => {
-      // rowIndex: [0 => Y, 1 => X]
       currentCells[rowIndex].forEach((selected, valueIndex) => {
         if (!selected) {
           return;
         }
-        const current = newData[rowIndex][valueIndex - 1];
 
+        const current = newData[rowIndex][valueIndex - 1];
         switch (operation) {
           case Operations.INC:
             if (isNotGreater(rowIndex, current)) {
@@ -113,7 +115,24 @@ const Table = ({
             }
             break;
           case Operations.REPLACE:
-            newData[rowIndex][valueIndex - 1] = value || 0;
+            if (isX(rowIndex) && value > xMax) {
+              newData[rowIndex][valueIndex - 1] = xMax;
+              break;
+            }
+            if (isX(rowIndex) && value < xMin) {
+              newData[rowIndex][valueIndex - 1] = xMin;
+              break;
+            }
+            if (isY(rowIndex) && value < yMin) {
+              newData[rowIndex][valueIndex - 1] = yMin;
+              break;
+            }
+            if (isY(rowIndex) && value > yMax) {
+              newData[rowIndex][valueIndex - 1] = yMax;
+              break;
+            }
+
+            newData[rowIndex][valueIndex - 1] = value;
             break;
           default:
             break;
