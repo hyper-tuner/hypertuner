@@ -126,7 +126,7 @@ const Table = ({
   };
 
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
+    const keyboardListener = (e: KeyboardEvent) => {
       if (isIncrement(e)) {
         increment();
       }
@@ -141,9 +141,11 @@ const Table = ({
       }
     };
 
-    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('keydown', keyboardListener);
 
-    return () => document.removeEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', keyboardListener);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
