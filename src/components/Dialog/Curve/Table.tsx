@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 
 import {
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -78,6 +79,7 @@ const Table = ({
   const [cells, _setCells] = useState<CellsType>(generateCells());
   const cellsRef = useRef(cells);
   const dataRef = useRef(data);
+  const modalInputRef = useRef<HTMLInputElement | null>(null);
   const setCells = (currentCells: CellsType) => {
     cellsRef.current = currentCells;
     _setCells(currentCells);
@@ -87,8 +89,7 @@ const Table = ({
     _setData(currentData);
     onChange(currentData);
   };
-  // TODO: useCallback
-  const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
+  const modifyData = useCallback((operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
     // rowIndex: [0 => Y, 1 => X]
     const isY = (row: number) => row === 0;
@@ -141,7 +142,8 @@ const Table = ({
     });
 
     return [...newData];
-  };
+  }, [xMax, xMin, yMax, yMin]);
+
   const oneModalOk = () => {
     setData(modifyData(Operations.REPLACE, cellsRef.current, dataRef.current, modalValue));
     setIsModalVisible(false);
@@ -157,12 +159,15 @@ const Table = ({
   const replace = () => {
     // don't show modal when no cell is selected
     if (cellsRef.current.flat().find((val) => val === true)) {
+      setModalValue(undefined);
       setIsModalVisible(true);
+      setInterval(() => modalInputRef.current?.focus(), 1);
     }
   };
 
   useEffect(() => {
     const keyboardListener = (e: KeyboardEvent) => {
+
       if (isIncrement(e)) {
         increment();
       }
@@ -170,6 +175,7 @@ const Table = ({
         decrement();
       }
       if (isReplace(e)) {
+        e.preventDefault();
         replace();
       }
       if (isEscape(e)) {
@@ -254,12 +260,13 @@ const Table = ({
         visible={isModalVisible}
         onOk={oneModalOk}
         onCancel={onModalCancel}
+        centered
+        forceRender
       >
         <InputNumber
-          // TODO: add validation
+          ref={modalInputRef}
           value={modalValue}
           onChange={(val) => setModalValue(Number(val))}
-          autoFocus
           onPressEnter={oneModalOk}
           style={{ width: '20%' }}
         />

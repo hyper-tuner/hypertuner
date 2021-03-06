@@ -71,7 +71,6 @@ const Dialog = ({
     const y = tune.constants[curve.yBins];
     const xConstant = findOnPage(config, curve.xBins[0]);
     const yConstant = findOnPage(config, curve.yBins);
-    console.log({ curve });
 
     return (
       <Curve

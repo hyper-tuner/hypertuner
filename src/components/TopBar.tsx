@@ -84,12 +84,12 @@ const TopBar = () => {
     </Menu>
   );
 
-  const searchInput = useRef({} as any);
+  const searchInput = useRef<Input | null>(null);
   const handleGlobalKeyboard = (e: KeyboardEvent) => {
     if (isCommand(e)) {
       if (searchInput) {
         e.preventDefault();
-        searchInput.current.focus();
+        searchInput.current!.focus();
       }
     }
 
