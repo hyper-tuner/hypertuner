@@ -1,7 +1,7 @@
 megaTune:
+  signature: speeduino 202012
   MTversion: 2.25
   queryCommand: Q
-  signature: speeduino 202012
   versionInfo: S
 tunerStudio:
   iniSpecVersion: 3.64
@@ -58344,6 +58344,7 @@ dialogs:
       - name: mapSample
         title: MAP Sample method
         condition: ''
+    condition: ''
   engine_constants_west:
     title: ''
     layout: ''
@@ -58355,6 +58356,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   engine_constants_northeast:
     title: Oddfire Angles
     layout: ''
@@ -58369,6 +58371,7 @@ dialogs:
       - name: oddfire4
         title: Channel 4 angle
         condition: engineType == 1 && nCylinders >= 4
+    condition: ''
   engine_constants_east:
     title: ''
     layout: ''
@@ -58380,6 +58383,7 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
+    condition: ''
   engine_constants_warning:
     title: ''
     layout: ''
@@ -58390,6 +58394,7 @@ dialogs:
           !Warning: The board you have selected may not have enough channels for
           sequential fuel!
         condition: injLayout == 3 && !sequentialFuelAvailable
+    condition: ''
   engine_constants:
     title: ''
     layout: border
@@ -58404,6 +58409,7 @@ dialogs:
         layout: East
         condition: ''
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Engine_Constants
   flexFuelSettings:
     title: ''
@@ -58419,6 +58425,7 @@ dialogs:
       - name: flexFreqHigh
         title: High (E100)
         condition: flexEnabled
+    condition: ''
   flexFuelWest:
     title: ''
     layout: ''
@@ -58430,6 +58437,7 @@ dialogs:
         layout: ''
         condition: flexEnabled
     fields: []
+    condition: ''
   flexFuelEast:
     title: ''
     layout: ''
@@ -58438,6 +58446,7 @@ dialogs:
         layout: ''
         condition: flexEnabled && boostEnabled
     fields: []
+    condition: ''
   flexCurves:
     title: ''
     layout: xAxis
@@ -58449,6 +58458,7 @@ dialogs:
         layout: East
         condition: ''
     fields: []
+    condition: ''
   flexFueling:
     title: Fuel Sensor Settings
     layout: border
@@ -58460,6 +58470,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Flex_Fuel
   knock_windows:
     title: Knock Windows
@@ -58472,6 +58483,7 @@ dialogs:
         layout: East
         condition: knock_mode
     fields: []
+    condition: ''
   knock_settings_west:
     title: Settings
     layout: yAxis
@@ -58489,6 +58501,7 @@ dialogs:
       - name: knock_pullup
         title: Use pullup
         condition: knock_mode == 1
+    condition: ''
   knock_settings_east:
     title: Detection and Response
     layout: ''
@@ -58536,6 +58549,7 @@ dialogs:
       - name: knock_recoveryStep
         title: Recovery step size
         condition: knock_mode
+    condition: ''
   knock_settings_top:
     title: ''
     layout: xAxis
@@ -58547,6 +58561,7 @@ dialogs:
         layout: East
         condition: ''
     fields: []
+    condition: ''
   knockSettings:
     title: ''
     layout: border
@@ -58558,6 +58573,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
     help: http://speeduino.com/wiki/index.php/Knock
   vss_gear_1:
     title: ''
@@ -58567,6 +58583,7 @@ dialogs:
       - name: vssRatio1
         title: Speed ratio 1
         condition: ''
+    condition: ''
   vss_gear_2:
     title: ''
     layout: xAxis
@@ -58575,6 +58592,7 @@ dialogs:
       - name: vssRatio2
         title: Speed ratio 2
         condition: ''
+    condition: ''
   vss_gear_3:
     title: ''
     layout: xAxis
@@ -58583,6 +58601,7 @@ dialogs:
       - name: vssRatio3
         title: Speed ratio 3
         condition: ''
+    condition: ''
   vss_gear_4:
     title: ''
     layout: xAxis
@@ -58591,6 +58610,7 @@ dialogs:
       - name: vssRatio4
         title: Speed ratio 4
         condition: ''
+    condition: ''
   vss_gear_5:
     title: ''
     layout: xAxis
@@ -58599,6 +58619,7 @@ dialogs:
       - name: vssRatio5
         title: Speed ratio 5
         condition: ''
+    condition: ''
   vss_gear_6:
     title: ''
     layout: xAxis
@@ -58607,6 +58628,7 @@ dialogs:
       - name: vssRatio6
         title: Speed ratio 6
         condition: ''
+    condition: ''
   vss_gear_detection:
     title: Gear Detection
     layout: yAxis
@@ -58636,6 +58658,7 @@ dialogs:
       - name: _fieldText_
         title: Drive in each gear (any speed) and press appropriate button
         condition: ''
+    condition: ''
   vss_calibration:
     title: VSS Calibration
     layout: ''
@@ -58647,6 +58670,7 @@ dialogs:
       - name: vssSmoothing
         title: Smoothing Factor
         condition: vssMode > 1
+    condition: ''
   vssSettings:
     title: ''
     layout: yAxis
@@ -58664,6 +58688,7 @@ dialogs:
       - name: vssPin
         title: VSS Pin
         condition: vssMode > 1
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/VSS
   tacho:
     title: Tacho
@@ -58685,6 +58710,7 @@ dialogs:
       - name: tachoSweepMaxRPM
         title: Tacho sweep Max RPM
         condition: useTachoSweep
+    condition: ''
   accelEnrichments_aeSettings:
     title: ''
     layout: ''
@@ -58711,6 +58737,7 @@ dialogs:
       - name: aeTaperMax
         title: Taper End RPM
         condition: ''
+    condition: ''
   accelEnrichments_coldAdj:
     title: Acceleration Enrichment cold adjustment
     layout: ''
@@ -58725,6 +58752,7 @@ dialogs:
       - name: aeColdTaperMax
         title: Cold adjustment taper end temperature
         condition: ''
+    condition: ''
   accelEnrichments_south:
     title: Decelleration Fuel Cutoff (DFCO)
     layout: ''
@@ -58748,11 +58776,13 @@ dialogs:
       - name: dfcoHyster
         title: RPM Hysteresis
         condition: dfcoEnabled
+    condition: ''
   accelEnrichments_north_south:
     title: ''
     layout: ''
     panels: {}
     fields: []
+    condition: ''
   accelEnrichments_north:
     title: ''
     layout: xAxis
@@ -58764,6 +58794,7 @@ dialogs:
         layout: ''
         condition: aeMode == 1
     fields: []
+    condition: ''
   accelEnrichments_center:
     title: Acceleration Enrichment
     layout: xAxis
@@ -58775,6 +58806,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   accelEnrichments:
     title: Acceleration Enrichment
     layout: ''
@@ -58792,6 +58824,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
     help: http://speeduino.com/wiki/index.php/Acceleration_Wizard
   veTableDialog_north:
     title: ''
@@ -58801,6 +58834,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   veTableDialog_south:
     title: ''
     layout: ''
@@ -58815,6 +58849,7 @@ dialogs:
       - name: incorporateAFR
         title: Multiply by ratio of stoich AFR/target AFR (incorporate AFR)
         condition: '!includeAFR || (incorporateAFR==includeAFR)'
+    condition: ''
   veTableDialog:
     title: VE Table
     layout: ''
@@ -58826,6 +58861,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
   fuelTable2Dialog_switch:
     title: Switch Conditions
     layout: xAxis
@@ -58837,6 +58873,7 @@ dialogs:
       - name: fuel2SwitchValue
         title: 'is greater than:'
         condition: ''
+    condition: ''
   fuelTable2Dialog_input:
     title: Input Options
     layout: yAxis
@@ -58851,6 +58888,7 @@ dialogs:
       - name: fuel2InputPullup
         title: Use internal pullup on pin
         condition: fuel2InputPolarity == 0
+    condition: ''
   fuelTable2Dialog_north:
     title: ''
     layout: ''
@@ -58868,6 +58906,7 @@ dialogs:
       - name: fuel2Algorithm
         title: Load source
         condition: fuel2Mode
+    condition: ''
   fuelTable2Dialog_south:
     title: ''
     layout: ''
@@ -58876,6 +58915,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   fuelTable2Dialog:
     title: Fuel Table 2
     layout: ''
@@ -58887,6 +58927,7 @@ dialogs:
         layout: South
         condition: fuel2Mode
     fields: []
+    condition: ''
   sparkTable2Dialog_switch:
     title: Switch Conditions
     layout: xAxis
@@ -58898,6 +58939,7 @@ dialogs:
       - name: spark2SwitchValue
         title: 'is greater than:'
         condition: ''
+    condition: ''
   sparkTable2Dialog_input:
     title: Input Options
     layout: yAxis
@@ -58912,6 +58954,7 @@ dialogs:
       - name: spark2InputPullup
         title: Use internal pullup on pin
         condition: spark2InputPolarity == 0
+    condition: ''
   sparkTable2Dialog_north:
     title: ''
     layout: ''
@@ -58929,6 +58972,7 @@ dialogs:
       - name: spark2Algorithm
         title: Load source
         condition: spark2Mode
+    condition: ''
   sparkTable2Dialog_south:
     title: ''
     layout: ''
@@ -58937,6 +58981,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   sparkTable2Dialog:
     title: Spark Table 2
     layout: ''
@@ -58948,6 +58993,7 @@ dialogs:
         layout: South
         condition: spark2Mode
     fields: []
+    condition: ''
   injAngleDialog:
     title: Injector close angles
     layout: ''
@@ -58956,6 +59002,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   injOpenTimeDialog:
     title: Injector opening time
     layout: ''
@@ -58970,6 +59017,7 @@ dialogs:
       - name: battVCorMode
         title: Battery Voltage Correction Mode
         condition: ''
+    condition: ''
   injChars:
     title: Injector Characteristics
     layout: ''
@@ -58984,6 +59032,7 @@ dialogs:
       - name: dutyLim
         title: Injector Duty Limit
         condition: ''
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Injector_Characteristics
   egoControl:
     title: ''
@@ -59032,6 +59081,7 @@ dialogs:
       - name: egoKD
         title: PID Derivative
         condition: egoType && (egoAlgorithm == 2)
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/O2
   fanSettings:
     title: Fan Settings
@@ -59059,6 +59109,7 @@ dialogs:
       - name: fanHyster
         title: Fan hysteresis
         condition: fanEnable
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Thermo_fan
   stepper_idle:
     title: Stepper Idle
@@ -59083,6 +59134,7 @@ dialogs:
       - name: iacStepperInv
         title: Stepper Inverted
         condition: iacAlgorithm == 4 || iacAlgorithm == 5
+    condition: ''
   pwm_idle:
     title: PWM Idle
     layout: ''
@@ -59097,6 +59149,7 @@ dialogs:
       - name: iacPWMdir
         title: Idle valve direction
         condition: iacAlgorithm == 2 || iacAlgorithm == 3 || iacAlgorithm == 6
+    condition: ''
   closedloop_idle:
     title: Closed loop Idle
     layout: ''
@@ -59123,6 +59176,7 @@ dialogs:
       - name: iacRPMlimitHysteresis
         title: Integeral reset RPM Hysteresis
         condition: iacAlgorithm == 6
+    condition: ''
   idleSettings:
     title: Idle Settings
     layout: ''
@@ -59149,6 +59203,7 @@ dialogs:
       - name: iacFastTemp
         title: Fast idle temp
         condition: iacAlgorithm == 1
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Idle
   idleUpInputSettingsPanel:
     title: Idle Up Input Settings
@@ -59167,6 +59222,7 @@ dialogs:
       - name: idleUpAdder
         title: Idle Up Amount
         condition: idleUpEnabled
+    condition: ''
   idleUpOutputSettingsPanel:
     title: Idle Up Output Settings
     layout: yAxis
@@ -59181,6 +59237,7 @@ dialogs:
       - name: idleUpOutputPin
         title: Idle Up Output Pin
         condition: idleUpEnabled && idleUpOutputEnabled
+    condition: ''
   idleUpSettings:
     title: Idle Up Settings
     layout: ''
@@ -59192,6 +59249,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   fuelpump:
     title: Fuel pump
     layout: ''
@@ -59203,6 +59261,7 @@ dialogs:
       - name: fpPrime
         title: Fuel pump prime duration
         condition: ''
+    condition: ''
   crankingEnrichDialog:
     title: Cranking Enrichment
     layout: yAxis
@@ -59219,6 +59278,7 @@ dialogs:
           Values are specified as modifiers to the normal fueling. Eg 100% = No
           change.
         condition: ''
+    condition: ''
   crankingIgnOptions:
     title: Cranking Timing
     layout: yAxis
@@ -59238,6 +59298,7 @@ dialogs:
         condition: >-
           TrigPattern == 1 || TrigPattern == 4 || TrigPattern == 10 ||
           TrigPattern == 9
+    condition: ''
   crankingOptions:
     title: ''
     layout: yAxis
@@ -59258,6 +59319,7 @@ dialogs:
       - name: crankingEnrichTaper
         title: Cranking enrichment taper time
         condition: ''
+    condition: ''
   primePW:
     title: Priming Pulsewidth
     layout: ''
@@ -59266,6 +59328,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   crankPW:
     title: Cranking Settings
     layout: yAxis
@@ -59280,6 +59343,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Cranking
   ASE_amount:
     title: Enrichment amount (%)
@@ -59298,6 +59362,7 @@ dialogs:
       - name: _fieldText_
         title: Common values are 5% when engine is hot to 50% when engine is cold.
         condition: ''
+    condition: ''
   ASE_time:
     title: Duration (s)
     layout: yAxis
@@ -59317,6 +59382,7 @@ dialogs:
       - name: aseTaperTime
         title: Transition time to disable
         condition: ''
+    condition: ''
   ASE:
     title: Afterstart Enrichment(ASE)
     layout: yAxis
@@ -59331,6 +59397,7 @@ dialogs:
       - name: _fieldText_
         title: '#Time and duration curves share common coolant values'
         condition: ''
+    condition: ''
   triggerSettings:
     title: Trigger Settings
     layout: '4'
@@ -59395,6 +59462,7 @@ dialogs:
           TrigPattern == 2 || TrigPattern == 4 || TrigPattern == 7 ||
           TrigPattern == 12 || TrigPattern == 9 || TrigPattern == 13 ||
           TrigPattern == 18 || TrigPattern == 19
+    condition: ''
     help: https://wiki.speeduino.com/en/decoders
   lockSparkSettings:
     title: Locked timing
@@ -59412,6 +59480,7 @@ dialogs:
           #Note: During cranking the fixed/locked timing angle is overriden by
           the Cranking advance angle value above
         condition: ''
+    condition: ''
   newIgnitionMode:
     title: New Ignition Mode
     layout: ''
@@ -59428,6 +59497,7 @@ dialogs:
       - name: perToothIgn
         title: Use new ignition mode
         condition: ''
+    condition: ''
   sparkSettings:
     title: Spark Settings
     layout: '4'
@@ -59460,6 +59530,7 @@ dialogs:
       - name: IgInv
         title: Spark Outputs triggers
         condition: ''
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Spark_Settings
   dwellSettings:
     title: Dwell Settings
@@ -59532,6 +59603,7 @@ dialogs:
       - name: CTPSPolarity
         title: Closed Throttle Sensor Pin Polarity
         condition: idleAdvEnabled >= 1 && idleAdvAlgorithm == 1 && CTPSEnabled == 1
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Dwell
   idleAdvanceSettings:
     title: Idle Advance Settings
@@ -59549,6 +59621,7 @@ dialogs:
           iacAlgorithm == 3 || iacAlgorithm == 5 || iacAlgorithm == 6 ||
           idleAdvEnabled >= 1
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/IdleAdvance
   rotary_ignition:
     title: Rotary Ignition
@@ -59561,6 +59634,7 @@ dialogs:
       - name: rotaryType
         title: Ignition Configuration
         condition: ''
+    condition: ''
   boostCut:
     title: Boost Cut
     layout: ''
@@ -59572,6 +59646,7 @@ dialogs:
       - name: boostLimit
         title: Boost Limit
         condition: boostCutEnabled
+    condition: ''
   boostLoad:
     title: ''
     layout: ''
@@ -59589,6 +59664,7 @@ dialogs:
       - name: _fieldText_
         title: In closed loop mode, the values are boost targets in kPa
         condition: ''
+    condition: ''
   revLimiterDialog:
     title: Rev Limiter
     layout: ''
@@ -59615,6 +59691,7 @@ dialogs:
       - name: HardRevLim
         title: Hard Rev limit
         condition: ''
+    condition: ''
   oilPressureProtection:
     title: Oil Pressure
     layout: ''
@@ -59626,6 +59703,7 @@ dialogs:
       - name: oilPressureProtEnbl
         title: Oil Pressure Protection
         condition: oilPressureEnable
+    condition: ''
   engineProtectionWest:
     title: ''
     layout: ''
@@ -59643,6 +59721,7 @@ dialogs:
       - name: hardCutType
         title: Cut method
         condition: engineProtectType == 1 || engineProtectType == 3
+    condition: ''
   RevLimiterS:
     title: Engine Protection and Limiters
     layout: xAxis
@@ -59660,6 +59739,7 @@ dialogs:
         layout: ''
         condition: engineProtectType
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Rev_Limits
   clutchInput:
     title: Clutch input
@@ -59678,6 +59758,7 @@ dialogs:
       - name: flatSArm
         title: Launch / Flat Shift switch RPM
         condition: launchEnable || flatSEnable
+    condition: ''
   LaunchControl:
     title: Launch Control / Flat shift
     layout: '6'
@@ -59719,6 +59800,7 @@ dialogs:
       - name: flatSRetard
         title: Soft limit absolute timing
         condition: flatSEnable
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Launch_Flatshift
   NitrousStage1:
     title: Stage 1
@@ -59743,6 +59825,7 @@ dialogs:
       - name: n2o_stage1_retard
         title: Ignition retard when active
         condition: ''
+    condition: ''
   NitrousStage2:
     title: Stage 2
     layout: ''
@@ -59766,6 +59849,7 @@ dialogs:
       - name: n2o_stage2_retard
         title: Ignition retard when active
         condition: ''
+    condition: ''
   NitrousMain:
     title: Settings
     layout: ''
@@ -59792,6 +59876,7 @@ dialogs:
       - name: n2o_maxAFR
         title: Leanest AFR
         condition: n2o_enable > 0
+    condition: ''
   NitrousControl:
     title: Nitrous
     layout: ''
@@ -59806,6 +59891,7 @@ dialogs:
         layout: East
         condition: n2o_enable > 1
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Nitrous_Control
   OLED:
     title: OLED Display
@@ -59833,11 +59919,13 @@ dialogs:
       - name: display4
         title: Field 4
         condition: display
+    condition: ''
   batCal:
     title: Calibrate voltage reading
     layout: ''
     panels: {}
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Sensor_Calibration
   mapCal:
     title: Calibrate MAP
@@ -59886,6 +59974,7 @@ dialogs:
       - name: EMAPMax
         title: kPa At 5.0 Volts
         condition: useEMAP
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Sensor_Calibration
   sensorFilters:
     title: Analog sensor filters
@@ -59920,6 +60009,7 @@ dialogs:
       - name: fuelPressureMax
         title: Pressure at 5v
         condition: fuelPressureEnable
+    condition: ''
   fuelPressureDialog:
     title: Fuel Pressure
     layout: xAxis
@@ -59940,6 +60030,7 @@ dialogs:
       - name: oilPressureMax
         title: Pressure at 5v
         condition: oilPressureEnable
+    condition: ''
   oilPressureDialog:
     title: Oil Pressure
     layout: xAxis
@@ -59948,6 +60039,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   pressureSensors:
     title: Pressure Transducers
     layout: ''
@@ -59959,6 +60051,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Sensor_Calibration
   boostSettings:
     title: Boost Control
@@ -60004,6 +60097,7 @@ dialogs:
       - name: boostKD
         title: D
         condition: boostEnabled && boostMode && boostType == 1
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Boost_Control
   vvtClosedLoop:
     title: Closed loop
@@ -60040,6 +60134,7 @@ dialogs:
       - name: vvtCLmaxDuty
         title: Maximum valve duty
         condition: vvtEnabled && vvtMode == 2
+    condition: ''
   vvtSettings:
     title: VVT Control
     layout: ''
@@ -60074,6 +60169,7 @@ dialogs:
       - name: vvtPWMdir
         title: Increased duty direction
         condition: vvtEnabled
+    condition: ''
   wmiSettings:
     title: WMI Control
     layout: ''
@@ -60154,6 +60250,7 @@ dialogs:
       - name: wmiAdvEnabled
         title: Iginition advance correction
         condition: wmiEnabled
+    condition: ''
   warmup:
     title: Warmup Enrichment (WUE) - Percent Multiplier
     layout: ''
@@ -60168,6 +60265,7 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
+    condition: ''
   inj_trim1TblTitle:
     title: 'Channel #1'
     layout: ''
@@ -60176,6 +60274,7 @@ dialogs:
         layout: ''
         condition: fuelTrimEnabled
     fields: []
+    condition: ''
   inj_trim2TblTitle:
     title: 'Channel #2'
     layout: ''
@@ -60184,6 +60283,7 @@ dialogs:
         layout: ''
         condition: fuelTrimEnabled
     fields: []
+    condition: ''
   inj_trim3TblTitle:
     title: 'Channel #3'
     layout: ''
@@ -60192,6 +60292,7 @@ dialogs:
         layout: ''
         condition: fuelTrimEnabled
     fields: []
+    condition: ''
   inj_trim4TblTitle:
     title: 'Channel #4'
     layout: ''
@@ -60200,6 +60301,7 @@ dialogs:
         layout: ''
         condition: fuelTrimEnabled
     fields: []
+    condition: ''
   inj_trimadt:
     title: ''
     layout: xAxis
@@ -60211,6 +60313,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   inj_trimadb:
     title: ''
     layout: xAxis
@@ -60222,6 +60325,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   inj_trim_enable:
     title: ''
     layout: ''
@@ -60230,6 +60334,7 @@ dialogs:
       - name: fuelTrimEnabled
         title: Individual fuel trim enabled
         condition: injLayout == 3 && nCylinders <= 4
+    condition: ''
   inj_trimad:
     title: Injector Cyl 1-4 Trims
     layout: yAxis
@@ -60244,6 +60349,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
   stagingTableDialog_north:
     title: ''
     layout: ''
@@ -60261,6 +60367,7 @@ dialogs:
       - name: stagedInjSizeSec
         title: Size of secondary injectors
         condition: stagingEnabled
+    condition: ''
   stagingTableDialog_south:
     title: ''
     layout: ''
@@ -60269,6 +60376,7 @@ dialogs:
         layout: ''
         condition: stagingMode == 0
     fields: []
+    condition: ''
   stagingTableDialog:
     title: Staged injection
     layout: ''
@@ -60280,6 +60388,7 @@ dialogs:
         layout: South
         condition: ''
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/configuration/Staged_Injection
   outputtest_warningmessage:
     title: ''
@@ -60299,51 +60408,61 @@ dialogs:
           Forcing the Injector or Spark outputs could cause flooding of your
           engine or permanent damage to ignition coils!
         condition: ''
+    condition: ''
   enableoutputtestbuttons:
     title: Enable Test Controls
     layout: xAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj1:
     title: Injector CH1
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj2:
     title: Injector CH2
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj3:
     title: Injector CH3
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj4:
     title: Injector CH4
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj5:
     title: Injector CH5
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj6:
     title: Injector CH6
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj7:
     title: Injector CH7
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestinj8:
     title: Injector CH8
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtest_injectors:
     title: Injector Driver Output Test
     layout: xAxis
@@ -60373,46 +60492,55 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   outputtestspk1:
     title: 'Spark CH1 '
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk2:
     title: Spark CH2
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk3:
     title: Spark CH3
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk4:
     title: Spark CH4
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk5:
     title: Spark CH5
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk6:
     title: Spark CH6
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk7:
     title: Spark CH7
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtestspk8:
     title: Spark CH8
     layout: yAxis
     panels: {}
     fields: []
+    condition: ''
   outputtest_spark:
     title: Spark Driver Output Test
     layout: xAxis
@@ -60442,6 +60570,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   outputtest1:
     title: Test Output Hardware
     layout: ''
@@ -60459,6 +60588,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
     help: https://wiki.speeduino.com/en/Hardware_testing_page
   stm32cmd:
     title: STM32 Commands
@@ -60470,6 +60600,7 @@ dialogs:
           If Secondary Serial or Internal CANBUS is DISABLED then any input
           channel assigned to that external source will NOT function
         condition: ''
+    condition: ''
   canAuxinput_alias:
     title: ''
     layout: yAxis
@@ -60574,6 +60705,7 @@ dialogs:
           (caninput_sel15a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
+    condition: ''
   caninput_sel:
     title: ''
     layout: ''
@@ -60758,6 +60890,7 @@ dialogs:
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
+    condition: ''
   caninput_parameter_group:
     title: ''
     layout: yAxis
@@ -60846,6 +60979,7 @@ dialogs:
         condition: >-
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
+    condition: ''
   caninput_parameter_start_byte:
     title: ''
     layout: yAxis
@@ -60934,6 +61068,7 @@ dialogs:
         condition: >-
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
+    condition: ''
   caninput_parameter_num_byte:
     title: ''
     layout: yAxis
@@ -61022,6 +61157,7 @@ dialogs:
         condition: >-
           (caninput_sel15a == 1 || caninput_sel15b == 1) &&
           (enable_secondarySerial || (enable_intcan && intcan_available))
+    condition: ''
   caninput_serial_can:
     title: ''
     layout: yAxis
@@ -61206,6 +61342,7 @@ dialogs:
       - name: caninput_sel15extsourcec
         title: ''
         condition: '!enable_secondarySerial && (enable_intcan && intcan_available)'
+    condition: ''
   caninconfig_blank1:
     title: ''
     layout: ''
@@ -61214,6 +61351,7 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
+    condition: ''
   Canin_config1:
     title: ''
     layout: xAxis
@@ -61240,6 +61378,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   Canin_config:
     title: ''
     layout: yAxis
@@ -61251,6 +61390,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
     help: >-
       http://speeduino.com/wiki/index.php/Secondary_Serial_IO_interface#Read_external_analog_data
   canAuxoutput_alias:
@@ -61285,6 +61425,7 @@ dialogs:
       - name: AUXin07Alias
         title: ''
         condition: canoutput_sel7
+    condition: ''
   canoutput_sel:
     title: ''
     layout: yAxis
@@ -61317,6 +61458,7 @@ dialogs:
       - name: canoutput_sel7
         title: CAN Output 7
         condition: enable_intcandata_out
+    condition: ''
   canoutput_parameter_group:
     title: ''
     layout: yAxis
@@ -61349,6 +61491,7 @@ dialogs:
       - name: canoutput_param_group[7]
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
+    condition: ''
   canoutput_parameter_start_byte:
     title: ''
     layout: yAxis
@@ -61381,6 +61524,7 @@ dialogs:
       - name: canoutput_param_start_byte7
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
+    condition: ''
   canoutput_parameter_num_byte:
     title: ''
     layout: yAxis
@@ -61413,6 +61557,7 @@ dialogs:
       - name: canoutput_param_num_bytes7
         title: ''
         condition: canoutput_sel7 && enable_intcandata_out
+    condition: ''
   canoutconfig_blank1:
     title: ''
     layout: ''
@@ -61421,6 +61566,7 @@ dialogs:
       - name: _fieldText_
         title: ''
         condition: ''
+    condition: ''
   Canout_config1:
     title: ''
     layout: xAxis
@@ -61444,6 +61590,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   Canout_config2:
     title: CAN Data Out
     layout: ''
@@ -61452,6 +61599,7 @@ dialogs:
       - name: enable_intcandata_out
         title: Enable CanBus data Output
         condition: ''
+    condition: ''
   Canout_config:
     title: ''
     layout: yAxis
@@ -61463,6 +61611,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   can_serial3IO:
     title: CanBus/Secondary Serial IO interface
     layout: ''
@@ -61488,6 +61637,7 @@ dialogs:
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
+    condition: ''
     help: http://speeduino.com/wiki/index.php/Secondary_Serial_IO_interface
   serial3IO:
     title: Secondary Serial IO interface
@@ -61514,6 +61664,7 @@ dialogs:
       - name: obd_address
         title: Speeduino OBD address
         condition: ''
+    condition: ''
     help: http://speeduino.com/wiki/index.php/Serial3_IO_interface
   reset_control:
     title: Reset Control
@@ -61526,6 +61677,7 @@ dialogs:
       - name: resetControlPin
         title: Control Pin
         condition: ''
+    condition: ''
   Auxinput_pin_selection:
     title: ''
     layout: yAxis
@@ -61738,6 +61890,7 @@ dialogs:
           || (enable_intcan && intcan_available == 0)))) || (caninput_sel15b ==
           3 && (enable_secondarySerial || (enable_intcan && intcan_available ==
           1 )))
+    condition: ''
   Auxinput_alias:
     title: ''
     layout: yAxis
@@ -61842,6 +61995,7 @@ dialogs:
           (caninput_sel15a && (!enable_secondarySerial && (!enable_intcan ||
           (enable_intcan && intcan_available == 0)))) || (caninput_sel15b &&
           (enable_secondarySerial || (enable_intcan && intcan_available)))
+    condition: ''
   Auxinput_channelenable:
     title: ''
     layout: yAxis
@@ -62026,6 +62180,7 @@ dialogs:
           (enable_secondarySerial && enable_intcan) || (!enable_secondarySerial
           && (enable_intcan && intcan_available)) || (enable_secondarySerial &&
           !enable_intcan)
+    condition: ''
   Auxin_south:
     title: Auxillary Input Configuration
     layout: xAxis
@@ -62040,6 +62195,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   Auxin_config:
     title: ''
     layout: yAxis
@@ -62051,6 +62207,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   gaugeLimits:
     title: Gauge Limits
     layout: ''
@@ -62080,11 +62237,13 @@ dialogs:
       - name: maphigh
         title: High
         condition: ''
+    condition: ''
   io_summary:
     title: I/O Summary
     layout: ''
     panels: {}
     fields: []
+    condition: ''
   prgm_out_pin_selection_1:
     title: ''
     layout: yAxis
@@ -62117,6 +62276,7 @@ dialogs:
       - name: outputInverted7
         title: ''
         condition: outputPin[7]
+    condition: ''
   prgm_out_pin_selection_2:
     title: ''
     layout: yAxis
@@ -62149,6 +62309,7 @@ dialogs:
       - name: firstDataIn7
         title: if(
         condition: outputPin[7]
+    condition: ''
   prgm_out_pin_selection_3:
     title: ''
     layout: yAxis
@@ -62181,6 +62342,7 @@ dialogs:
       - name: firstCompType7
         title: ''
         condition: outputPin[7]
+    condition: ''
   prgm_out_pin_selection_4:
     title: ''
     layout: yAxis
@@ -62213,6 +62375,7 @@ dialogs:
       - name: firstTarget[7]
         title: ''
         condition: outputPin[7]
+    condition: ''
   prgm_out_pin_selection_5:
     title: ''
     layout: yAxis
@@ -62245,6 +62408,7 @@ dialogs:
       - name: bitwise7
         title: )
         condition: outputPin[7]
+    condition: ''
   prgm_out_pin_selection_6:
     title: ''
     layout: yAxis
@@ -62277,6 +62441,7 @@ dialogs:
       - name: secondDataIn7
         title: ''
         condition: outputPin[7] && bitwise7
+    condition: ''
   prgm_out_pin_selection_:
     title: ''
     layout: yAxis
@@ -62309,6 +62474,7 @@ dialogs:
       - name: firstTarget[7]
         title: ''
         condition: outputPin[7]
+    condition: ''
   prgm_out_pin_selection_7:
     title: ''
     layout: yAxis
@@ -62341,6 +62507,7 @@ dialogs:
       - name: secondCompType6
         title: ''
         condition: outputPin[7] && bitwise7
+    condition: ''
   prgm_out_pin_selection_8:
     title: ''
     layout: yAxis
@@ -62373,6 +62540,7 @@ dialogs:
       - name: secondTarget[7]
         title: ''
         condition: outputPin[7] && bitwise7
+    condition: ''
   prgm_out_pin_selection_9:
     title: ''
     layout: yAxis
@@ -62405,6 +62573,7 @@ dialogs:
       - name: outputDelay[7]
         title: during
         condition: outputPin[7]
+    condition: ''
   prgm_out_alias:
     title: ''
     layout: yAxis
@@ -62437,6 +62606,7 @@ dialogs:
       - name: prgm_out07Alias
         title: ''
         condition: outputPin[7]
+    condition: ''
   prgm_out_channelenable:
     title: ''
     layout: yAxis
@@ -62469,6 +62639,7 @@ dialogs:
       - name: outputPin7
         title: ''
         condition: ''
+    condition: ''
   prgm_out_unique:
     title: ''
     layout: xAxis
@@ -62507,6 +62678,7 @@ dialogs:
         layout: ''
         condition: ''
     fields: []
+    condition: ''
   prgm_out_rules_1_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62521,6 +62693,7 @@ dialogs:
       - name: firstTarget[0]
         title: ''
         condition: outputPin[0]
+    condition: ''
   prgm_out_rules_1_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62535,6 +62708,7 @@ dialogs:
       - name: secondTarget[0]
         title: ''
         condition: outputPin[0] && bitwise0
+    condition: ''
   prgm_out_rules_2_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62549,6 +62723,7 @@ dialogs:
       - name: firstTarget[1]
         title: ''
         condition: outputPin[1]
+    condition: ''
   prgm_out_rules_2_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62563,6 +62738,7 @@ dialogs:
       - name: secondTarget[1]
         title: ''
         condition: outputPin[1] && bitwise1
+    condition: ''
   prgm_out_rules_3_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62577,6 +62753,7 @@ dialogs:
       - name: firstTarget[2]
         title: ''
         condition: outputPin[2]
+    condition: ''
   prgm_out_rules_3_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62591,6 +62768,7 @@ dialogs:
       - name: secondTarget[2]
         title: ''
         condition: outputPin[2] && bitwise2
+    condition: ''
   prgm_out_rules_4_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62605,6 +62783,7 @@ dialogs:
       - name: firstTarget[3]
         title: ''
         condition: outputPin[3]
+    condition: ''
   prgm_out_rules_4_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62619,6 +62798,7 @@ dialogs:
       - name: secondTarget[3]
         title: ''
         condition: outputPin[3] && bitwise3
+    condition: ''
   prgm_out_rules_5_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62633,6 +62813,7 @@ dialogs:
       - name: firstTarget[4]
         title: ''
         condition: outputPin[4]
+    condition: ''
   prgm_out_rules_5_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62647,6 +62828,7 @@ dialogs:
       - name: secondTarget[4]
         title: ''
         condition: outputPin[4] && bitwise4
+    condition: ''
   prgm_out_rules_6_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62661,6 +62843,7 @@ dialogs:
       - name: firstTarget[5]
         title: ''
         condition: outputPin[5]
+    condition: ''
   prgm_out_rules_6_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62675,6 +62858,7 @@ dialogs:
       - name: secondTarget[5]
         title: ''
         condition: outputPin[5] && bitwise5
+    condition: ''
   prgm_out_rules_7_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62689,6 +62873,7 @@ dialogs:
       - name: firstTarget[6]
         title: ''
         condition: outputPin[6]
+    condition: ''
   prgm_out_rules_7_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62703,6 +62888,7 @@ dialogs:
       - name: secondTarget[6]
         title: ''
         condition: outputPin[6] && bitwise6
+    condition: ''
   prgm_out_rules_8_condition_1:
     title: Condition 1
     layout: xAxis
@@ -62717,6 +62903,7 @@ dialogs:
       - name: firstTarget[7]
         title: ''
         condition: outputPin[7]
+    condition: ''
   prgm_out_rules_8_condition_2:
     title: Condition 2
     layout: xAxis
@@ -62731,6 +62918,7 @@ dialogs:
       - name: secondTarget[7]
         title: ''
         condition: outputPin[7] && bitwise7
+    condition: ''
   prgm_out_rules_1:
     title: Rule 1
     layout: yAxis
@@ -62757,6 +62945,7 @@ dialogs:
       - name: bitwise0
         title: 2nd Condition
         condition: outputPin[0]
+    condition: ''
   prgm_out_rules_2:
     title: Rule 2
     layout: yAxis
@@ -62783,6 +62972,7 @@ dialogs:
       - name: bitwise1
         title: 2nd Condition
         condition: outputPin[1]
+    condition: ''
   prgm_out_rules_3:
     title: Rule 3
     layout: yAxis
@@ -62809,6 +62999,7 @@ dialogs:
       - name: bitwise2
         title: 2nd Condition
         condition: outputPin[2]
+    condition: ''
   prgm_out_rules_4:
     title: Rule 4
     layout: yAxis
@@ -62835,6 +63026,7 @@ dialogs:
       - name: bitwise3
         title: 2nd Condition
         condition: outputPin[3]
+    condition: ''
   prgm_out_rules_5:
     title: Rule 5
     layout: yAxis
@@ -62861,6 +63053,7 @@ dialogs:
       - name: bitwise4
         title: 2nd Condition
         condition: outputPin[4]
+    condition: ''
   prgm_out_rules_6:
     title: Rule 6
     layout: yAxis
@@ -62887,6 +63080,7 @@ dialogs:
       - name: bitwise5
         title: 2nd Condition
         condition: outputPin[5]
+    condition: ''
   prgm_out_rules_7:
     title: Rule 7
     layout: yAxis
@@ -62913,6 +63107,7 @@ dialogs:
       - name: bitwise6
         title: 2nd Condition
         condition: outputPin[6]
+    condition: ''
   prgm_out_rules_8:
     title: Rule 8
     layout: yAxis
@@ -62939,6 +63134,7 @@ dialogs:
       - name: bitwise7
         title: 2nd Condition
         condition: outputPin[7]
+    condition: ''
   prgm_out_rules_master:
     title: ''
     layout: card
@@ -62968,6 +63164,7 @@ dialogs:
         layout: Center
         condition: prgm_out_selection == 7
     fields: []
+    condition: ''
   prgm_out_config:
     title: ''
     layout: yAxis
@@ -62979,6 +63176,7 @@ dialogs:
       - name: prgm_out_selection
         title: Select Rule Number
         condition: ''
+    condition: ''
 curves:
   time_accel_tpsdot_curve:
     title: TPS based AE
@@ -62999,6 +63197,7 @@ curves:
     yBins: taeRates
     size: []
     gauge: ''
+    condition: ''
   time_accel_mapdot_curve:
     title: MAP based AE
     labels:
@@ -63018,6 +63217,7 @@ curves:
     yBins: maeRates
     size: []
     gauge: ''
+    condition: ''
   dwell_correction_curve:
     title: Dwell voltage correction
     labels:
@@ -63037,6 +63237,7 @@ curves:
     yBins: dwellRates
     size: []
     gauge: ''
+    condition: ''
   injector_voltage_curve:
     title: Injector voltage correction
     labels:
@@ -63056,6 +63257,7 @@ curves:
     yBins: injBatRates
     size: []
     gauge: ''
+    condition: ''
   injector_timing_curve:
     title: Injector timing
     labels:
@@ -63075,6 +63277,7 @@ curves:
     yBins: injAng
     size: []
     gauge: ''
+    condition: ''
   airdensity_curve:
     title: IAT density correction
     labels:
@@ -63092,6 +63295,7 @@ curves:
     yBins: airDenRates
     size: []
     gauge: ''
+    condition: ''
   baroFuel_curve:
     title: Baro fuel correction
     labels:
@@ -63111,6 +63315,7 @@ curves:
     yBins: baroFuelValues
     size: []
     gauge: ''
+    condition: ''
   fuelTemp_curve:
     title: Fuel temp correction
     labels:
@@ -63128,6 +63333,7 @@ curves:
     yBins: fuelTempValues
     size: []
     gauge: ''
+    condition: ''
   iat_retard_curve:
     title: IAT timing retard
     labels:
@@ -63145,6 +63351,7 @@ curves:
     yBins: iatRetRates
     size: []
     gauge: ''
+    condition: ''
   clt_advance_curve:
     title: Cold Advance
     labels:
@@ -63160,6 +63367,7 @@ curves:
     yBins: cltAdvValues
     size: []
     gauge: ''
+    condition: ''
   idle_advance_curve:
     title: Idle Advance
     labels:
@@ -63177,6 +63385,7 @@ curves:
       - 450
       - 200
     gauge: ''
+    condition: ''
   iacPwm_curve:
     title: IAC PWM Duty
     labels:
@@ -63194,6 +63403,7 @@ curves:
     yBins: iacOLPWMVal
     size: []
     gauge: ''
+    condition: ''
   iacPwmCrank_curve:
     title: IAC PWM Cranking Duty
     labels:
@@ -63211,6 +63421,7 @@ curves:
     yBins: iacCrankDuty
     size: []
     gauge: ''
+    condition: ''
   iacStep_curve:
     title: IAC Stepper Motor
     labels:
@@ -63228,6 +63439,7 @@ curves:
     yBins: iacOLStepVal
     size: []
     gauge: ''
+    condition: ''
   iacStepCrank_curve:
     title: IAC Stepper Motor Cranking
     labels:
@@ -63245,6 +63457,7 @@ curves:
     yBins: iacCrankSteps
     size: []
     gauge: ''
+    condition: ''
   iacClosedLoop_curve:
     title: Idle RPM Targets
     labels:
@@ -63264,6 +63477,7 @@ curves:
       - 450
       - 200
     gauge: ''
+    condition: ''
   rotaryTrailing_curve:
     title: Rotary Trailing Split
     labels:
@@ -63282,6 +63496,7 @@ curves:
     yBins: rotarySplitValues
     size: []
     gauge: ''
+    condition: ''
   warmup_curve:
     title: Warmup Enrichment (WUE) Curve
     labels:
@@ -63299,6 +63514,7 @@ curves:
     yBins: wueRates
     size: []
     gauge: cltGauge
+    condition: ''
   cranking_enrich_curve:
     title: Cranking Enrichment Curve
     labels:
@@ -63316,6 +63532,7 @@ curves:
     yBins: crankingEnrichValues
     size: []
     gauge: ''
+    condition: ''
   priming_pw_curve:
     title: Priming Pulsewidth
     labels:
@@ -63333,6 +63550,7 @@ curves:
     yBins: primePulse
     size: []
     gauge: cltGauge
+    condition: ''
   afterstart_enrichment_curve:
     title: ASE - Enrichment %
     labels:
@@ -63352,6 +63570,7 @@ curves:
       - 50
       - 250
     gauge: cltGauge
+    condition: ''
   afterstart_enrichment_time:
     title: ASE - Duration
     labels:
@@ -63371,6 +63590,7 @@ curves:
       - 50
       - 250
     gauge: cltGauge
+    condition: ''
   flex_fuel_curve:
     title: Flex Fuel Adjustments
     labels:
@@ -63392,6 +63612,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
   flex_adv_curve:
     title: Flex Timing Advance
     labels:
@@ -63413,6 +63634,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
   flex_boost_curve:
     title: Flex Boost Adjustments
     labels:
@@ -63432,6 +63654,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
   knock_window_angle_curve:
     title: Knock Window
     labels:
@@ -63451,6 +63674,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
   knock_window_duration_curve:
     title: Knock Window Duration
     labels:
@@ -63472,6 +63696,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
   oil_pressure_prot_curve:
     title: Oil Pressure Protection
     labels:
@@ -63493,6 +63718,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
   warmup_afr_curve:
     title: Target Adjustment
     labels:
@@ -63508,6 +63734,7 @@ curves:
     yBins: wueAFR
     size: []
     gauge: ''
+    condition: ''
   warmup_analyzer_curve:
     title: Warmup Enrichment
     labels:
@@ -63527,6 +63754,7 @@ curves:
     yBins: wueRecommended
     size: []
     gauge: ''
+    condition: ''
   wmi_adv_curve:
     title: WMI Timing Advance
     labels:
@@ -63548,6 +63776,7 @@ curves:
       - 400
       - 200
     gauge: ''
+    condition: ''
 outputChannels:
   secl:
     type: scalar
