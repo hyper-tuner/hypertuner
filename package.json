@@ -16,7 +16,7 @@
     "electron:make": "npm run web:build && npm run electron:compile && electron-forge make",
     "ini:compile": "tsc -p tsconfig.custom.json",
     "ini:start": "npm run ini:compile && node src/parser/ini.js",
-    "ini:watch": "npx onchange src/parser/ini.js -- node src/parser/ini.js",
+    "ini:watch": "npx onchange src/parser/ini.ts -- npm run ini:start",
     "test": "craco test",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",
