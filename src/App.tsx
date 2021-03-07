@@ -28,8 +28,20 @@ const App = ({ ui }: { ui: UIState }) => {
   const { pathname } = useLocation();
   const dialogName = pathname.substr(1).split('/')[1];
 
+  // const beforeUnload = (e: BeforeUnloadEvent) => {
+  //   // cancel the event
+  //   e.preventDefault();
+  //   // Chrome requires returnValue to be set
+  //   e.returnValue = '';
+  // };
+
   useEffect(() => {
     loadAll();
+    // window.addEventListener('beforeunload', beforeUnload);
+
+    // return () => {
+    //   window.removeEventListener('beforeunload', beforeUnload);
+    // };
   }, []);
 
   return (
