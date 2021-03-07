@@ -63991,9 +63991,14 @@ tables:
       - RPM
       - 'Fuel Load:'
     zBins: veTable
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTable2Tbl:
     name: fuelTable2Tbl
     map: fuel2Map
@@ -64010,9 +64015,14 @@ tables:
       - RPM
       - 'Fuel Load:'
     zBins: veTable2
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   sparkTbl:
     name: sparkTbl
     map: sparkMap
@@ -64029,9 +64039,11 @@ tables:
       - RPM
       - 'Ignition Load:'
     zBins: advTable1
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - ADVANCING
+      - RETARDING
   spark2Tbl:
     name: spark2Tbl
     map: spark2Map
@@ -64048,9 +64060,11 @@ tables:
       - RPM
       - 'Ignition Load:'
     zBins: advTable2
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - ADVANCING
+      - RETARDING
   afrTable1Tbl:
     name: afrTable1Tbl
     map: afrTable1Map
@@ -64065,9 +64079,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: afrTable
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 1
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - RICHER
+      - LEANER
   boostTbl:
     name: boostTbl
     map: boostMap
@@ -64082,9 +64101,11 @@ tables:
       - throttle
     xyLabels: []
     zBins: boostTable
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
   vvtTbl:
     name: vvtTbl
     map: vvtMap
@@ -64101,9 +64122,11 @@ tables:
       - RPM
       - 'VVT Load:'
     zBins: vvtTable
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
   wmiTbl:
     name: wmiTbl
     map: wmiMapMap
@@ -64120,9 +64143,11 @@ tables:
       - RPM
       - 'WMI Load:'
     zBins: wmiTable
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
   stagingTbl:
     name: stagingTbl
     map: stagingMap
@@ -64137,9 +64162,11 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: stagingTable
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
   fuelTrimTable1Tbl:
     name: fuelTrimTable1Tbl
     map: fuelTrimTable1Map
@@ -64154,9 +64181,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim1Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable2Tbl:
     name: fuelTrimTable2Tbl
     map: fuelTrimTable2Map
@@ -64171,9 +64203,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim2Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable3Tbl:
     name: fuelTrimTable3Tbl
     map: fuelTrimTable3Map
@@ -64188,9 +64225,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim3Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable4Tbl:
     name: fuelTrimTable4Tbl
     map: fuelTrimTable4Map
@@ -64205,9 +64247,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim4Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable5Tbl:
     name: fuelTrimTable5Tbl
     map: fuelTrimTable5Map
@@ -64222,9 +64269,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim5Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable6Tbl:
     name: fuelTrimTable6Tbl
     map: fuelTrimTable6Map
@@ -64239,9 +64291,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim6Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable7Tbl:
     name: fuelTrimTable7Tbl
     map: fuelTrimTable7Map
@@ -64256,9 +64313,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim7Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   fuelTrimTable8Tbl:
     name: fuelTrimTable8Tbl
     map: fuelTrimTable8Map
@@ -64273,9 +64335,14 @@ tables:
       - fuelLoad
     xyLabels: []
     zBins: fuelTrim8Table
-    gridHeight: 0
-    gridOrient: []
-    upDownLabel: []
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
   dwell_map:
     name: dwell_map
     map: dwell_tblMap
@@ -64292,9 +64359,11 @@ tables:
       - RPM
       - 'Load:'
     zBins: dwellTable
-    gridHeight: 0
+    gridHeight: 3
     gridOrient: []
-    upDownLabel: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
 outputChannels:
   secl:
     type: scalar

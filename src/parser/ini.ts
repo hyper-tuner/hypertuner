@@ -90,6 +90,12 @@ class Parser {
 
   TABLE_LABELS_PATTERN: RegExp;
 
+  TABLE_UP_DW_LABELS_PATTERN: RegExp;
+
+  TABLE_HEIGHT_PATTERN: RegExp;
+
+  TABLE_ORIENT_PATTERN: RegExp;
+
   lines: string[];
 
   currentPage: number;
@@ -159,6 +165,9 @@ class Parser {
 
     this.TABLE_PATTERN = new RegExp(`^table\\s*=\\s*(?<name>\\w+)\\s*,*\\s*(?<map>\\w+)\\s*,\\s*"(?<title>.+)"\\s*,\\s*(?<page>\\d+)${this.COMMENTS_PATTERN}`);
     this.TABLE_LABELS_PATTERN = new RegExp(`^xyLabels\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
+    this.TABLE_UP_DW_LABELS_PATTERN = new RegExp(`^upDownLabel\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
+    this.TABLE_HEIGHT_PATTERN = new RegExp(`^gridHeight\\s*=\\s*(?<value>[\\d.]+)${this.COMMENTS_PATTERN}`);
+    this.TABLE_ORIENT_PATTERN = new RegExp(`^gridOrient\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
@@ -353,6 +362,23 @@ class Parser {
     match = line.match(this.TABLE_LABELS_PATTERN);
     if (match) {
       this.result.tables[this.currentTable].xyLabels = match.groups!.values
+        .split(',').map(Parser.sanitizeString);
+    }
+
+    match = line.match(this.TABLE_HEIGHT_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].gridHeight = Number(match.groups!.value);
+    }
+
+    match = line.match(this.TABLE_ORIENT_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].gridOrient = match.groups!.values
+        .split(',').map((val) => Number(val));
+    }
+
+    match = line.match(this.TABLE_UP_DW_LABELS_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].upDownLabel = match.groups!.values
         .split(',').map(Parser.sanitizeString);
     }
   }
