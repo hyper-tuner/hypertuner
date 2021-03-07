@@ -158,7 +158,7 @@ const Dialog = ({
 
       if (!currentDialog) {
         if (!config.curves[panelName]) {
-          console.error('Panel does not exists:', panelName);
+          console.info('Panel does not exists:', panelName);
 
           return;
         }

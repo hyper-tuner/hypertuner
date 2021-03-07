@@ -137,7 +137,7 @@ class Parser {
     this.MENU_PATTERN = new RegExp(`^menu\\s*=\\s*"(?<menu>.+)"${this.COMMENTS_PATTERN}$`);
     this.SUB_MENU_PATTERN = new RegExp(`^subMenu\\s*=\\s*(?<name>\\w+)\\s*,*\\s+"(?<title>.+)"\\s*,*\\s*(?<page>\\d+)*\\s*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
-    this.CURVE_PATTERN = new RegExp(`^curve\\s*=\\s*(?<name>\\w+)\\s*,*\\s*"(?<title>.+)${this.COMMENTS_PATTERN}"`);
+    this.CURVE_PATTERN = new RegExp(`^curve\\s*=\\s*(?<name>\\w+)\\s*,*\\s*"(?<title>.+)"${this.COMMENTS_PATTERN}`);
     this.CURVE_LABELS_PATTERN = new RegExp(`^columnLabel\\s*=\\s*(?<labels>.+)${this.COMMENTS_PATTERN}`);
     this.CURVE_X_AXIS_PATTERN = new RegExp(`^xAxis\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
     this.CURVE_Y_AXIS_PATTERN = new RegExp(`^yAxis\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
@@ -618,14 +618,18 @@ class Parser {
   static sanitizeCondition = (val: string) => val.replace(/^{\s*|\s*}$/g, '').trim();
 }
 
-// const version = 202012;
-const version = 202103;
+const versions = [
+  202012,
+  202103,
+];
 
-const result = new Parser(
-  fs.readFileSync(path.join(__dirname, `/../../public/tunes/${version}.ini`), 'utf8'),
-).parse();
+versions.forEach((version) => {
+  const result = new Parser(
+    fs.readFileSync(path.join(__dirname, `/../../public/tunes/${version}.ini`), 'utf8'),
+  ).parse();
 
-fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
-fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
+  fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
+  fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
+});
 
 console.log('------- end --------');
