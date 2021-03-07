@@ -91,6 +91,25 @@ const Dialog = ({
 }) => {
   const isDataReady = Object.keys(tune.constants).length && Object.keys(config.constants).length;
 
+  const renderHelp = (link?: string) => (link &&
+    <Popover
+      content={
+        <a
+          href={`${link}`}
+          target="__blank"
+          rel="noopener noreferrer"
+        >
+          {link}
+        </a>
+      }
+      placement="right"
+    >
+      <QuestionCircleOutlined
+        style={{ position: 'sticky', top: 15, zIndex: 1 }}
+      />
+    </Popover>
+  );
+
   const renderCurve = (curve: CurveType) => {
     const x = tune.constants[curve.xBins[0]];
     const y = tune.constants[curve.yBins[0]];
@@ -129,13 +148,24 @@ const Dialog = ({
     );
   };
 
+  const renderTable = (table: TableType) => {
+    const test = '';
+
+    return <div>
+      {renderHelp(table.help)}
+      <div>Table</div>
+    </div>;
+  };
+
   if (!isDataReady) {
     return skeleton;
   }
 
   const dialogConfig = config.dialogs[name];
   const curveConfig = config.curves[name];
+  const tableConfig = config.tables[name];
 
+  // standalone dialog / page
   if (!dialogConfig) {
     if (curveConfig) {
       return (
@@ -146,16 +176,20 @@ const Dialog = ({
       );
     }
 
+    if (tableConfig) {
+      return (
+        <div style={containerStyle}>
+          {renderHelp(tableConfig.help)}
+          <Divider>{tableConfig.title}</Divider>
+          {renderTable(tableConfig)}
+        </div>
+      );
+    }
+
     return (
       <Result status="warning" title="Not found 👀" style={{ marginTop: 50 }} />
     );
   }
-
-  const renderTable = (table: TableType) => {
-    const test = '';
-
-    return <div>Table</div>;
-  };
 
   const calculateSpan = (dialogsCount: number) => {
     let xxl = 24;
@@ -198,7 +232,6 @@ const Dialog = ({
 
         // resolve 3D map / table panel
         if (config.tables[panelName]) {
-          // console.log(config.tables[panelName]);
           resolvedDialogs[panelName] = {
             ...config.tables[panelName],
             condition: source[dialogName].panels[panelName].condition || '',
@@ -362,24 +395,7 @@ const Dialog = ({
 
   return (
     <div style={containerStyle}>
-      {dialogConfig.help &&
-        <Popover
-          content={
-            <a
-              href={`${dialogConfig.help}`}
-              target="__blank"
-              rel="noopener noreferrer"
-            >
-              {dialogConfig.help}
-            </a>
-          }
-          placement="right"
-        >
-          <QuestionCircleOutlined
-            style={{ position: 'sticky', top: 15, zIndex: 1 }}
-          />
-        </Popover>
-      }
+      {renderHelp(dialogConfig?.help)}
       <Form
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 10 }}
