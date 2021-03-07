@@ -129,7 +129,7 @@ export interface Curve {
   xBins: string[];
   yBins: string;
   size: number[];
-  gauge: string;
+  gauge?: string;
 }
 
 export interface Table {
@@ -137,6 +137,14 @@ export interface Table {
   map: string;
   title: string;
   page: number;
+  help: string;
+  xBins: string[];
+  yBins: string[];
+  xyLabels: string[];
+  zBins: string;
+  gridHeight: number;
+  gridOrient: number[];
+  upDownLabel: string[];
 }
 
 export interface Config {

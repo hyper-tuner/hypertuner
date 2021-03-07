@@ -19,8 +19,9 @@ class Parser {
   CONDITION_PATTERN: string;
 
   DIALOG_PATTERN: RegExp;
+  HELP_PATTERN: RegExp;
 
-  DIALOG_TOPIC_PATTERN: RegExp;
+
 
   PANEL_PATTERN: RegExp;
 
@@ -106,8 +107,9 @@ class Parser {
     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
     this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
 
+    this.HELP_PATTERN = new RegExp(`^topicHelp\\s*=\\s*"(?<help>.+)"${this.COMMENTS_PATTERN}$`);
+
     this.DIALOG_PATTERN = new RegExp(`^dialog\\s*=\\s*(?<name>\\w+)\\s*,*\\s*"(?<title>.*)"\\s*,*\\s*(?<layout>.+)*${this.COMMENTS_PATTERN}$`);
-    this.DIALOG_TOPIC_PATTERN = new RegExp(`^topicHelp\\s*=\\s*"(?<help>.+)"${this.COMMENTS_PATTERN}$`);
     this.PANEL_PATTERN = new RegExp(`^panel\\s*=\\s*(?<name>\\w+)\\s*,*\\s*(?<layout>\\w+|{})*\\s*,*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
 
     this.FIELD_PATTERN = new RegExp(`^field\\s*=\\s*"(?<title>.*)"\\s*,*\\s*(?<name>[\\w[\\]]+)*${this.CONDITION_PATTERN}${this.COMMENTS_PATTERN}$`);
@@ -255,7 +257,6 @@ class Parser {
         xBins: [],
         yBins: '',
         size: [],
-        gauge: '',
         condition: '',
       };
     }
@@ -304,7 +305,7 @@ class Parser {
   }
 
   parseTables(line: string) {
-    const match = line.match(this.TABLE_PATTERN);
+    let match = line.match(this.TABLE_PATTERN);
     if (match) {
       this.currentTable = match.groups!.name;
       this.result.tables[this.currentTable] = {
@@ -312,7 +313,19 @@ class Parser {
         map: match.groups!.map,
         title: match.groups!.title,
         page: Number(match.groups!.page),
+        help: '',
+        xBins: [],
+        yBins: [],
+        xyLabels: [],
+        zBins: '',
+        gridHeight: 0,
+        gridOrient: [],
+        upDownLabel: [],
       };
+    }
+    match = line.match(this.HELP_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].help = Parser.sanitizeString(match.groups!.help);
     }
   }
 
@@ -427,12 +440,12 @@ class Parser {
   }
 
   parseDialogs(line: string) {
-    const matchDialog = line.match(this.DIALOG_PATTERN);
-    if (matchDialog) {
-      this.currentDialog = matchDialog.groups!.name;
+    let match = line.match(this.DIALOG_PATTERN);
+    if (match) {
+      this.currentDialog = match.groups!.name;
       this.result.dialogs[this.currentDialog] = {
-        title: matchDialog.groups!.title,
-        layout: matchDialog.groups!.layout || '',
+        title: match.groups!.title,
+        layout: match.groups!.layout || '',
         panels: {},
         fields: [],
         condition: '',
@@ -440,20 +453,19 @@ class Parser {
 
       return;
     }
-
-    const matchHelp = line.match(this.DIALOG_TOPIC_PATTERN);
-    if (matchHelp) {
-      this.result.dialogs[this.currentDialog].help = matchHelp.groups!.help;
+    match = line.match(this.HELP_PATTERN);
+    if (match) {
+      this.result.dialogs[this.currentDialog].help = Parser.sanitizeString(match.groups!.help);
 
       return;
     }
 
-    const matchPanel = line.match(this.PANEL_PATTERN);
-    if (matchPanel) {
-      this.currentPanel = matchPanel.groups!.name;
+    match = line.match(this.PANEL_PATTERN);
+    if (match) {
+      this.currentPanel = match.groups!.name;
       this.result.dialogs[this.currentDialog].panels[this.currentPanel] = {
-        layout: matchPanel.groups!.layout || '',
-        condition: Parser.sanitizeCondition(matchPanel.groups!.condition || ''),
+        layout: match.groups!.layout || '',
+        condition: Parser.sanitizeCondition(match.groups!.condition || ''),
       };
 
       return;
@@ -464,12 +476,12 @@ class Parser {
     //   name: { egoType },
     //   ...
     // }
-    const matchField = line.match(this.FIELD_PATTERN);
-    if (matchField) {
+    match = line.match(this.FIELD_PATTERN);
+    if (match) {
       this.result.dialogs[this.currentDialog].fields.push({
-        name: matchField.groups!.name ? Parser.sanitizeString(matchField.groups!.name) : '_fieldText_',
-        title: Parser.sanitizeString(matchField.groups!.title),
-        condition: Parser.sanitizeCondition(matchField.groups!.condition || ''),
+        name: match.groups!.name ? Parser.sanitizeString(match.groups!.name) : '_fieldText_',
+        title: Parser.sanitizeString(match.groups!.title),
+        condition: Parser.sanitizeCondition(match.groups!.condition || ''),
       });
     }
   }
