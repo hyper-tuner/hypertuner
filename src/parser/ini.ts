@@ -619,12 +619,12 @@ class Parser {
 }
 
 const result = new Parser(
-  fs.readFileSync(path.join(__dirname, '/../../public/tunes/speeduino.ini'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, '/../../public/tunes/202012.ini'), 'utf8'),
 ).parse();
 
 // console.log('Dupa');
 // console.dir(result.pcVariables, { maxArrayLength: 10, depth: null });
 
-fs.writeFileSync(path.join(__dirname, '/../../public/tunes/speeduino.yml'), yaml.dump(result));
+fs.writeFileSync(path.join(__dirname, '/../../public/tunes/202012.yml'), yaml.dump(result));
 
 console.log('------- end --------');
