@@ -1,11 +1,17 @@
 {
   "extends": "./tsconfig.json",
+  "target": "ES2019",
+  "lib": [
+    "ES2019"
+  ],
   "compilerOptions": {
     "module": "commonjs",
     "noEmit": false
   },
   "files": [
-    "bin/"
+    "src/electron.ts"
   ],
-  "include": []
+  "include": [
+    "src/parser"
+  ]
 }

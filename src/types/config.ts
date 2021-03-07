@@ -11,12 +11,17 @@ export interface Field {
   condition?: string;
 }
 
+export interface Panel {
+  layout: string;
+  condition: string;
+}
+
 export interface Dialog {
   title: string;
   layout: string;
   help?: string;
   panels: {
-    [name: string]: Dialog;
+    [name: string]: Panel;
   };
   fields: Field[];
   condition: string;
@@ -53,9 +58,17 @@ export interface BitsAddress {
   to: number;
 }
 
+export enum ConstantTypes {
+  SCALAR = 'scalar',
+  BITS = 'bits',
+  ARRAY = 'array',
+}
+
+export type ConstantSize = 'U08' | 'S08' | 'U16' | 'S16';
+
 export interface ScalarConstant {
-  type: 'scalar' | 'bits' | 'array';
-  size: 'U08' | 'S08' | 'U16' | 'S16';
+  type: ConstantTypes.SCALAR;
+  size: ConstantSize;
   offset: number;
   units: string;
   scale: number;
@@ -65,11 +78,28 @@ export interface ScalarConstant {
   digits: number;
 }
 
-export interface Constant extends ScalarConstant {
-  address?: BitsAddress;
-  shape?: ArrayShape;
-  values?: string[];
+export interface BitsConstant {
+  type: ConstantTypes.BITS;
+  size: ConstantSize;
+  offset: number;
+  address: BitsAddress;
+  values: string[];
 }
+
+export interface ArrayConstant {
+  type: ConstantTypes.ARRAY;
+  size: ConstantSize;
+  offset: number;
+  shape: ArrayShape;
+  units: string;
+  scale: number;
+  transform: number;
+  min: number;
+  max: number;
+  digits: number;
+}
+
+export type Constant = ScalarConstant | BitsConstant | ArrayConstant;
 
 export interface Constants {
   [name: string]: Constant;
@@ -79,10 +109,6 @@ export interface Page {
   number: number;
   size: number;
   data: Constants;
-}
-
-export interface Globals {
-  [name: string]: string[];
 }
 
 export interface Help {
@@ -105,8 +131,13 @@ export interface Config {
   megaTune: {
     signature: string;
   };
+  tunerStudio: {
+    iniSpecVersion: number;
+  };
+  defines: {
+    [name: string]: string[];
+  };
   pcVariables: Constants;
-  globals: Globals;
   constants: {
     pages: Page[];
   };

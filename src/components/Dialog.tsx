@@ -21,6 +21,8 @@ import {
   Config as ConfigType,
   Field as FieldType,
   Curve as CurveType,
+  ScalarConstant as ScalarConstantType,
+  ConstantTypes,
 } from '../types/config';
 import {
   Tune as TuneType,
@@ -69,8 +71,8 @@ const Dialog = ({
   const curveComponent = (curve: CurveType) => {
     const x = tune.constants[curve.xBins[0]];
     const y = tune.constants[curve.yBins];
-    const xConstant = findOnPage(config, curve.xBins[0]);
-    const yConstant = findOnPage(config, curve.yBins);
+    const xConstant = findOnPage(config, curve.xBins[0]) as ScalarConstantType;
+    const yConstant = findOnPage(config, curve.yBins) as ScalarConstantType;
 
     return (
       <Curve
@@ -251,10 +253,9 @@ const Dialog = ({
             return null;
           }
 
-          const units = constant.units === ':1' ? '' : constant.units;
           switch (constant.type) {
-            case 'bits':
-            case 'array':
+            // case ConstantTypes.ARRAY: // TODO: arrays
+            case ConstantTypes.BITS:
               input = <SmartSelect
                         defaultValue={`${tuneField.value}`}
                         values={constant.values as string[]}
@@ -262,14 +263,14 @@ const Dialog = ({
                       />;
               break;
 
-            case 'scalar':
+            case ConstantTypes.SCALAR:
               input = <SmartNumber
                         defaultValue={Number(tuneField.value)}
                         digits={constant.digits}
                         min={constant.min || 0}
                         max={constant.max}
                         disabled={!enabled}
-                        units={units}
+                        units={constant.units}
                       />;
               break;
 
