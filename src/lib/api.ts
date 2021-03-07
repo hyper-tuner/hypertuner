@@ -1,6 +1,3 @@
-// TODO: remove this dependency, load raw JSON instead
-import yaml from 'js-yaml';
-
 import store from '../store';
 import {
   Config as ConfigType,
@@ -15,9 +12,9 @@ export const loadAll = () => {
   // const version = 202103;
   const version = 202012;
 
-  fetch(`./tunes/${version}.yml`)
-    .then((response) => response.text())
-    .then((yamlContent) => {
+  fetch(`./tunes/${version}.json`)
+    .then((response) => response.json())
+    .then((jsonContent: ConfigType) => {
 
       fetch(`./tunes/${version}.msq`)
         .then((response) => response.text())
@@ -53,7 +50,7 @@ export const loadAll = () => {
             });
           });
 
-          const config = yaml.load(yamlContent) as ConfigType;
+          const config = jsonContent;
 
           // override / merge standard dialogs, constants and help
           config.dialogs = {
