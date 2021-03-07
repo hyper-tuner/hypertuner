@@ -132,6 +132,13 @@ export interface Curve {
   gauge: string;
 }
 
+export interface Table {
+  name: string;
+  map: string;
+  title: string;
+  page: number;
+}
+
 export interface Config {
   [key: string]: any;
   megaTune: {
@@ -152,6 +159,9 @@ export interface Config {
   };
   curves: {
     [name: string]: Curve;
+  };
+  tables: {
+    [name: string]: Table;
   };
   outputChannels: {
     [name: string]: ScalarConstant | BitsConstant;

@@ -64001,6 +64001,97 @@ curves:
       - 200
     gauge: ''
     condition: ''
+tables:
+  veTable1Tbl:
+    name: veTable1Tbl
+    map: veTable1Map
+    title: VE Table
+    page: 2
+  fuelTable2Tbl:
+    name: fuelTable2Tbl
+    map: fuel2Map
+    title: Fuel Table 2
+    page: 11
+  sparkTbl:
+    name: sparkTbl
+    map: sparkMap
+    title: Ignition Advance Table
+    page: 3
+  spark2Tbl:
+    name: spark2Tbl
+    map: spark2Map
+    title: Second Ignition Advance Table
+    page: 14
+  afrTable1Tbl:
+    name: afrTable1Tbl
+    map: afrTable1Map
+    title: AFR Table
+    page: 5
+  boostTbl:
+    name: boostTbl
+    map: boostMap
+    title: Boost Duty / Target
+    page: 8
+  vvtTbl:
+    name: vvtTbl
+    map: vvtMap
+    title: VVT control Table
+    page: 8
+  wmiTbl:
+    name: wmiTbl
+    map: wmiMapMap
+    title: WMI control Table
+    page: 8
+  stagingTbl:
+    name: stagingTbl
+    map: stagingMap
+    title: Fuel Staging Table
+    page: 10
+  fuelTrimTable1Tbl:
+    name: fuelTrimTable1Tbl
+    map: fuelTrimTable1Map
+    title: Fuel trim Table 1
+    page: 9
+  fuelTrimTable2Tbl:
+    name: fuelTrimTable2Tbl
+    map: fuelTrimTable2Map
+    title: Fuel trim Table 2
+    page: 9
+  fuelTrimTable3Tbl:
+    name: fuelTrimTable3Tbl
+    map: fuelTrimTable3Map
+    title: Fuel trim Table 3
+    page: 9
+  fuelTrimTable4Tbl:
+    name: fuelTrimTable4Tbl
+    map: fuelTrimTable4Map
+    title: Fuel trim Table 4
+    page: 9
+  fuelTrimTable5Tbl:
+    name: fuelTrimTable5Tbl
+    map: fuelTrimTable5Map
+    title: Fuel trim Table 5
+    page: 9
+  fuelTrimTable6Tbl:
+    name: fuelTrimTable6Tbl
+    map: fuelTrimTable6Map
+    title: Fuel trim Table 6
+    page: 9
+  fuelTrimTable7Tbl:
+    name: fuelTrimTable7Tbl
+    map: fuelTrimTable7Map
+    title: Fuel trim Table 7
+    page: 9
+  fuelTrimTable8Tbl:
+    name: fuelTrimTable8Tbl
+    map: fuelTrimTable8Map
+    title: Fuel trim Table 8
+    page: 9
+  dwell_map:
+    name: dwell_map
+    map: dwell_tblMap
+    title: Dwell map
+    page: 4
 outputChannels:
   secl:
     type: scalar

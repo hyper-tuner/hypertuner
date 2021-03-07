@@ -84,6 +84,8 @@ class Parser {
 
   CURVE_GAUGE_PATTERN: RegExp;
 
+  TABLE_PATTERN: RegExp;
+
   lines: string[];
 
   currentPage: number;
@@ -95,6 +97,8 @@ class Parser {
   currentMenu: string;
 
   currentCurve: string;
+
+  currentTable: string;
 
   result: ConfigType;
 
@@ -146,12 +150,17 @@ class Parser {
     this.CURVE_SIZE_PATTERN = new RegExp(`^size\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
     this.CURVE_GAUGE_PATTERN = new RegExp(`^gauge\\s*=\\s*(?<value>.+)${this.COMMENTS_PATTERN}`);
 
+    this.TABLE_PATTERN = new RegExp(`^table\\s*=\\s*(?<name>\\w+)\\s*,*\\s*(?<map>\\w+)\\s*,\\s*"(?<title>.+)"\\s*,\\s*(?<page>\\d+)${this.COMMENTS_PATTERN}`);
+
+    // console.log(this.TABLE_PATTERN);
+
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
     this.currentDialog = 'NONE';
     this.currentPanel = 'NONE';
     this.currentMenu = 'NONE';
     this.currentCurve = 'NONE';
+    this.currentTable = 'NONE';
 
     this.result = {
       megaTune: {
@@ -168,6 +177,7 @@ class Parser {
       menus: {},
       dialogs: {},
       curves: {},
+      tables: {},
       outputChannels: {},
       help: {},
     };
@@ -220,6 +230,9 @@ class Parser {
       case 'CurveEditor':
         this.parseCurves(line);
         break;
+      case 'TableEditor':
+          this.parseTables(line);
+          break;
       case 'OutputChannels':
         this.parseOutputChannels(line);
         break;
@@ -287,6 +300,19 @@ class Parser {
     if (match) {
       this.result.curves[this.currentCurve].gauge
         = Parser.sanitizeString(match.groups!.value);
+    }
+  }
+
+  parseTables(line: string) {
+    const match = line.match(this.TABLE_PATTERN);
+    if (match) {
+      this.currentTable = match.groups!.name;
+      this.result.tables[this.currentTable] = {
+        name: match.groups!.name,
+        map: match.groups!.map,
+        title: match.groups!.title,
+        page: Number(match.groups!.page),
+      };
     }
   }
 
@@ -619,7 +645,7 @@ class Parser {
 }
 
 const versions = [
-  202012,
+  // 202012,
   202103,
 ];
 
