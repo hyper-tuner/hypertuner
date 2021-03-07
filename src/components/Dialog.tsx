@@ -166,7 +166,7 @@ const Dialog = ({
         // resolve 2D map / curve panel
         resolvedDialogs[panelName] = {
           ...config.curves[panelName],
-          condition: source[dialogName].panels[panelName].condition,
+          condition: source[dialogName].panels[panelName].condition || '',
         };
 
         return;

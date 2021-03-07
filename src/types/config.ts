@@ -12,8 +12,13 @@ export interface Field {
 }
 
 export interface Panel {
+  title?: string;
   layout: string;
-  condition: string;
+  panels?: {
+    [name: string]: Panel;
+  };
+  fields?: Field[];
+  condition?: string;
 }
 
 export interface Dialog {

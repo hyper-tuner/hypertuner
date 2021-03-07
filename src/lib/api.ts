@@ -1,3 +1,6 @@
+// TODO: remove this dependency, load raw JSON instead
+import yaml from 'js-yaml';
+
 import store from '../store';
 import {
   Config as ConfigType,
@@ -6,17 +9,17 @@ import stdDialogs from '../data/standardDialogs';
 import help from '../data/help';
 import { divider } from '../data/constants';
 
-// TODO: remove this dependency, load raw JSON instead
-const yaml = require('js-yaml');
 
 export const loadAll = () => {
   const started = new Date();
+  // const version = 202103;
+  const version = 202012;
 
-  fetch('./tunes/speeduino.yml')
+  fetch(`./tunes/${version}.yml`)
     .then((response) => response.text())
     .then((yamlContent) => {
 
-      fetch('./tunes/202103.msq')
+      fetch(`./tunes/${version}.msq`)
         .then((response) => response.text())
         .then((tune) => {
           const xml = (new DOMParser()).parseFromString(tune, 'text/xml');

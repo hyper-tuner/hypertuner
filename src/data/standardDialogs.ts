@@ -12,7 +12,6 @@ const standardDialogs: DialogsType = {
       engine_constants_southwest: {
         title: 'Speeduino Board',
         layout: '',
-        panels: {},
         fields: [], // overridden by ini file
         condition: '',
       },

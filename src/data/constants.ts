@@ -1,10 +1,11 @@
 import {
-  Constant as ConstantType,
+  ConstantTypes,
+  ScalarConstant,
 } from '../types/config';
 
 // eslint-disable-next-line import/prefer-default-export
-export const divider: ConstantType = {
-  type: 'scalar',
+export const divider: ScalarConstant = {
+  type: ConstantTypes.SCALAR,
   size: 'U08',
   offset: 25,
   units: '',
