@@ -63196,7 +63196,6 @@ curves:
       - TPSdot
     yBins: taeRates
     size: []
-    gauge: ''
     condition: ''
   time_accel_mapdot_curve:
     title: MAP based AE
@@ -63216,7 +63215,6 @@ curves:
       - MAPdot
     yBins: maeRates
     size: []
-    gauge: ''
     condition: ''
   dwell_correction_curve:
     title: Dwell voltage correction
@@ -63236,7 +63234,6 @@ curves:
       - batteryVoltage
     yBins: dwellRates
     size: []
-    gauge: ''
     condition: ''
   injector_voltage_curve:
     title: Injector voltage correction
@@ -63256,7 +63253,6 @@ curves:
       - batteryVoltage
     yBins: injBatRates
     size: []
-    gauge: ''
     condition: ''
   injector_timing_curve:
     title: Injector timing
@@ -63276,7 +63272,6 @@ curves:
       - rpm
     yBins: injAng
     size: []
-    gauge: ''
     condition: ''
   airdensity_curve:
     title: IAT density correction
@@ -63294,7 +63289,6 @@ curves:
       - iat
     yBins: airDenRates
     size: []
-    gauge: ''
     condition: ''
   baroFuel_curve:
     title: Baro fuel correction
@@ -63314,7 +63308,6 @@ curves:
       - baro
     yBins: baroFuelValues
     size: []
-    gauge: ''
     condition: ''
   fuelTemp_curve:
     title: Fuel temp correction
@@ -63332,7 +63325,6 @@ curves:
       - fuelTemp
     yBins: fuelTempValues
     size: []
-    gauge: ''
     condition: ''
   iat_retard_curve:
     title: IAT timing retard
@@ -63350,7 +63342,6 @@ curves:
       - iat
     yBins: iatRetRates
     size: []
-    gauge: ''
     condition: ''
   clt_advance_curve:
     title: Cold Advance
@@ -63366,7 +63357,6 @@ curves:
       - coolant
     yBins: cltAdvValues
     size: []
-    gauge: ''
     condition: ''
   idle_advance_curve:
     title: Idle Advance
@@ -63384,7 +63374,6 @@ curves:
     size:
       - 450
       - 200
-    gauge: ''
     condition: ''
   iacPwm_curve:
     title: IAC PWM Duty
@@ -63402,7 +63391,6 @@ curves:
       - coolant
     yBins: iacOLPWMVal
     size: []
-    gauge: ''
     condition: ''
   iacPwmCrank_curve:
     title: IAC PWM Cranking Duty
@@ -63420,7 +63408,6 @@ curves:
       - coolant
     yBins: iacCrankDuty
     size: []
-    gauge: ''
     condition: ''
   iacStep_curve:
     title: IAC Stepper Motor
@@ -63438,7 +63425,6 @@ curves:
       - coolant
     yBins: iacOLStepVal
     size: []
-    gauge: ''
     condition: ''
   iacStepCrank_curve:
     title: IAC Stepper Motor Cranking
@@ -63456,7 +63442,6 @@ curves:
       - coolant
     yBins: iacCrankSteps
     size: []
-    gauge: ''
     condition: ''
   iacClosedLoop_curve:
     title: Idle RPM Targets
@@ -63476,7 +63461,6 @@ curves:
     size:
       - 450
       - 200
-    gauge: ''
     condition: ''
   rotaryTrailing_curve:
     title: Rotary Trailing Split
@@ -63495,7 +63479,6 @@ curves:
       - fuelLoad
     yBins: rotarySplitValues
     size: []
-    gauge: ''
     condition: ''
   warmup_curve:
     title: Warmup Enrichment (WUE) Curve
@@ -63513,8 +63496,8 @@ curves:
       - coolant
     yBins: wueRates
     size: []
-    gauge: cltGauge
     condition: ''
+    gauge: cltGauge
   cranking_enrich_curve:
     title: Cranking Enrichment Curve
     labels:
@@ -63531,7 +63514,6 @@ curves:
       - coolant
     yBins: crankingEnrichValues
     size: []
-    gauge: ''
     condition: ''
   priming_pw_curve:
     title: Priming Pulsewidth
@@ -63549,8 +63531,8 @@ curves:
       - coolant
     yBins: primePulse
     size: []
-    gauge: cltGauge
     condition: ''
+    gauge: cltGauge
   afterstart_enrichment_curve:
     title: ASE - Enrichment %
     labels:
@@ -63569,8 +63551,8 @@ curves:
     size:
       - 50
       - 250
-    gauge: cltGauge
     condition: ''
+    gauge: cltGauge
   afterstart_enrichment_time:
     title: ASE - Duration
     labels:
@@ -63589,8 +63571,8 @@ curves:
     size:
       - 50
       - 250
-    gauge: cltGauge
     condition: ''
+    gauge: cltGauge
   flex_fuel_curve:
     title: Flex Fuel Adjustments
     labels:
@@ -63611,7 +63593,6 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
   flex_adv_curve:
     title: Flex Timing Advance
@@ -63633,7 +63614,6 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
   flex_boost_curve:
     title: Flex Boost Adjustments
@@ -63653,7 +63633,6 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
   knock_window_angle_curve:
     title: Knock Window
@@ -63673,7 +63652,6 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
   knock_window_duration_curve:
     title: Knock Window Duration
@@ -63695,7 +63673,6 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
   oil_pressure_prot_curve:
     title: Oil Pressure Protection
@@ -63717,7 +63694,6 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
   warmup_afr_curve:
     title: Target Adjustment
@@ -63733,7 +63709,6 @@ curves:
       - coolant
     yBins: wueAFR
     size: []
-    gauge: ''
     condition: ''
   warmup_analyzer_curve:
     title: Warmup Enrichment
@@ -63753,7 +63728,6 @@ curves:
       - coolant
     yBins: wueRecommended
     size: []
-    gauge: ''
     condition: ''
   wmi_adv_curve:
     title: WMI Timing Advance
@@ -63775,8 +63749,288 @@ curves:
     size:
       - 400
       - 200
-    gauge: ''
     condition: ''
+tables:
+  veTable1Tbl:
+    name: veTable1Tbl
+    map: veTable1Map
+    title: VE Table
+    page: 2
+    help: http://speeduino.com/wiki/index.php/Tuning
+    xBins:
+      - rpmBins
+      - rpm
+    yBins:
+      - fuelLoadBins
+      - fuelLoad
+    xyLabels:
+      - RPM
+      - 'Fuel Load:'
+    zBins: veTable
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
+  fuelTable2Tbl:
+    name: fuelTable2Tbl
+    map: fuel2Map
+    title: Fuel Table 2
+    page: 11
+    help: http://speeduino.com/wiki/index.php/Tuning
+    xBins:
+      - fuelRPM2Bins
+      - rpm
+    yBins:
+      - fuelLoad2Bins
+      - fuelLoad2
+    xyLabels:
+      - RPM
+      - 'Fuel Load:'
+    zBins: veTable2
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
+  sparkTbl:
+    name: sparkTbl
+    map: sparkMap
+    title: Ignition Advance Table
+    page: 3
+    help: ''
+    xBins:
+      - rpmBins2
+      - rpm
+    yBins:
+      - mapBins1
+      - ignLoad
+    xyLabels:
+      - RPM
+      - 'Ignition Load:'
+    zBins: advTable1
+    gridHeight: 3
+    gridOrient: []
+    upDownLabel:
+      - ADVANCING
+      - RETARDING
+  spark2Tbl:
+    name: spark2Tbl
+    map: spark2Map
+    title: Second Ignition Advance Table
+    page: 14
+    help: ''
+    xBins:
+      - rpmBins3
+      - rpm
+    yBins:
+      - mapBins2
+      - ignLoad
+    xyLabels:
+      - RPM
+      - 'Ignition Load:'
+    zBins: advTable2
+    gridHeight: 3
+    gridOrient: []
+    upDownLabel:
+      - ADVANCING
+      - RETARDING
+  afrTable1Tbl:
+    name: afrTable1Tbl
+    map: afrTable1Map
+    title: AFR Table
+    page: 5
+    help: ''
+    xBins:
+      - rpmBinsAFR
+      - rpm
+    yBins:
+      - loadBinsAFR
+      - fuelLoad
+    xyLabels: []
+    zBins: afrTable
+    gridHeight: 1
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - RICHER
+      - LEANER
+  boostTbl:
+    name: boostTbl
+    map: boostMap
+    title: Boost Duty / Target
+    page: 8
+    help: ''
+    xBins:
+      - rpmBinsBoost
+      - rpm
+    yBins:
+      - tpsBinsBoost
+      - throttle
+    xyLabels: []
+    zBins: boostTable
+    gridHeight: 3
+    gridOrient: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
+  vvtTbl:
+    name: vvtTbl
+    map: vvtMap
+    title: VVT control Table
+    page: 8
+    help: ''
+    xBins:
+      - rpmBinsVVT
+      - rpm
+    yBins:
+      - loadBinsVVT
+      - vvtLoad
+    xyLabels:
+      - RPM
+      - 'VVT Load:'
+    zBins: vvtTable
+    gridHeight: 3
+    gridOrient: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
+  wmiTbl:
+    name: wmiTbl
+    map: wmiMapMap
+    title: WMI control Table
+    page: 8
+    help: ''
+    xBins:
+      - rpmBinsWMI
+      - rpm
+    yBins:
+      - mapBinsWMI
+      - map
+    xyLabels:
+      - RPM
+      - 'WMI Load:'
+    zBins: wmiTable
+    gridHeight: 3
+    gridOrient: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
+  stagingTbl:
+    name: stagingTbl
+    map: stagingMap
+    title: Fuel Staging Table
+    page: 10
+    help: ''
+    xBins:
+      - rpmBinsStaging
+      - rpm
+    yBins:
+      - loadBinsStaging
+      - fuelLoad
+    xyLabels: []
+    zBins: stagingTable
+    gridHeight: 3
+    gridOrient: []
+    upDownLabel:
+      - HIGHER
+      - LOWER
+  fuelTrimTable1Tbl:
+    name: fuelTrimTable1Tbl
+    map: fuelTrimTable1Map
+    title: Fuel trim Table 1
+    page: 9
+    help: http://speeduino.com/wiki/index.php/Tuning
+    xBins:
+      - fuelTrim1rpmBins
+      - rpm
+    yBins:
+      - fuelTrim1loadBins
+      - fuelLoad
+    xyLabels: []
+    zBins: fuelTrim1Table
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
+  fuelTrimTable2Tbl:
+    name: fuelTrimTable2Tbl
+    map: fuelTrimTable2Map
+    title: Fuel trim Table 2
+    page: 9
+    help: http://speeduino.com/wiki/index.php/Tuning
+    xBins:
+      - fuelTrim2rpmBins
+      - rpm
+    yBins:
+      - fuelTrim2loadBins
+      - fuelLoad
+    xyLabels: []
+    zBins: fuelTrim2Table
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
+  fuelTrimTable3Tbl:
+    name: fuelTrimTable3Tbl
+    map: fuelTrimTable3Map
+    title: Fuel trim Table 3
+    page: 9
+    help: http://speeduino.com/wiki/index.php/Tuning
+    xBins:
+      - fuelTrim3rpmBins
+      - rpm
+    yBins:
+      - fuelTrim3loadBins
+      - fuelLoad
+    xyLabels: []
+    zBins: fuelTrim3Table
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
+  fuelTrimTable4Tbl:
+    name: fuelTrimTable4Tbl
+    map: fuelTrimTable4Map
+    title: Fuel trim Table 4
+    page: 9
+    help: http://speeduino.com/wiki/index.php/Tuning
+    xBins:
+      - fuelTrim4rpmBins
+      - rpm
+    yBins:
+      - fuelTrim4loadBins
+      - fuelLoad
+    xyLabels: []
+    zBins: fuelTrim4Table
+    gridHeight: 2
+    gridOrient:
+      - 250
+      - 0
+      - 340
+    upDownLabel:
+      - (RICHER)
+      - (LEANER)
 outputChannels:
   secl:
     type: scalar

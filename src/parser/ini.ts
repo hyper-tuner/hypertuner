@@ -711,7 +711,7 @@ class Parser {
 }
 
 const versions = [
-  // 202012,
+  202012,
   202103,
 ];
 
