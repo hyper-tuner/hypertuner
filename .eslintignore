@@ -1,2 +1,1 @@
-/src/electron.js
-/bin/ini.js
+/src/**/*.js
