@@ -618,14 +618,12 @@ class Parser {
   static sanitizeCondition = (val: string) => val.replace(/^{\s*|\s*}$/g, '').trim();
 }
 
-const version = 202012;
-// const version = 202103;
+// const version = 202012;
+const version = 202103;
 
 const result = new Parser(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${version}.ini`), 'utf8'),
 ).parse();
-
-// console.dir(result.pcVariables, { maxArrayLength: 10, depth: null });
 
 fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
 fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));

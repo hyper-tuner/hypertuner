@@ -6,15 +6,14 @@ import stdDialogs from '../data/standardDialogs';
 import help from '../data/help';
 import { divider } from '../data/constants';
 
-
 export const loadAll = () => {
   const started = new Date();
-  // const version = 202103;
-  const version = 202012;
+  // const version = 202012;
+  const version = 202103;
 
   fetch(`./tunes/${version}.json`)
     .then((response) => response.json())
-    .then((jsonContent: ConfigType) => {
+    .then((json: ConfigType) => {
 
       fetch(`./tunes/${version}.msq`)
         .then((response) => response.text())
@@ -50,7 +49,11 @@ export const loadAll = () => {
             });
           });
 
-          const config = jsonContent;
+          if (!Object.keys(constants).length) {
+            console.error('Invalid tune');
+          }
+
+          const config = json;
 
           // override / merge standard dialogs, constants and help
           config.dialogs = {
