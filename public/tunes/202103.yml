@@ -63981,10 +63981,14 @@ tables:
     title: VE Table
     page: 2
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBins
+      - rpm
+    yBins:
+      - fuelLoadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: veTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -63994,10 +63998,14 @@ tables:
     title: Fuel Table 2
     page: 11
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelRPM2Bins
+      - rpm
+    yBins:
+      - fuelLoad2Bins
+      - fuelLoad2
     xyLabels: []
-    zBins: ''
+    zBins: veTable2
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64007,10 +64015,14 @@ tables:
     title: Ignition Advance Table
     page: 3
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBins2
+      - rpm
+    yBins:
+      - mapBins1
+      - ignLoad
     xyLabels: []
-    zBins: ''
+    zBins: advTable1
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64020,10 +64032,14 @@ tables:
     title: Second Ignition Advance Table
     page: 14
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBins3
+      - rpm
+    yBins:
+      - mapBins2
+      - ignLoad
     xyLabels: []
-    zBins: ''
+    zBins: advTable2
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64033,10 +64049,14 @@ tables:
     title: AFR Table
     page: 5
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBinsAFR
+      - rpm
+    yBins:
+      - loadBinsAFR
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: afrTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64046,10 +64066,14 @@ tables:
     title: Boost Duty / Target
     page: 8
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBinsBoost
+      - rpm
+    yBins:
+      - tpsBinsBoost
+      - throttle
     xyLabels: []
-    zBins: ''
+    zBins: boostTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64059,10 +64083,14 @@ tables:
     title: VVT control Table
     page: 8
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBinsVVT
+      - rpm
+    yBins:
+      - loadBinsVVT
+      - vvtLoad
     xyLabels: []
-    zBins: ''
+    zBins: vvtTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64072,10 +64100,14 @@ tables:
     title: WMI control Table
     page: 8
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBinsWMI
+      - rpm
+    yBins:
+      - mapBinsWMI
+      - map
     xyLabels: []
-    zBins: ''
+    zBins: wmiTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64085,10 +64117,14 @@ tables:
     title: Fuel Staging Table
     page: 10
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBinsStaging
+      - rpm
+    yBins:
+      - loadBinsStaging
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: stagingTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64098,10 +64134,14 @@ tables:
     title: Fuel trim Table 1
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim1rpmBins
+      - rpm
+    yBins:
+      - fuelTrim1loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim1Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64111,10 +64151,14 @@ tables:
     title: Fuel trim Table 2
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim2rpmBins
+      - rpm
+    yBins:
+      - fuelTrim2loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim2Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64124,10 +64168,14 @@ tables:
     title: Fuel trim Table 3
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim3rpmBins
+      - rpm
+    yBins:
+      - fuelTrim3loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim3Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64137,10 +64185,14 @@ tables:
     title: Fuel trim Table 4
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim4rpmBins
+      - rpm
+    yBins:
+      - fuelTrim4loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim4Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64150,10 +64202,14 @@ tables:
     title: Fuel trim Table 5
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim5rpmBins
+      - rpm
+    yBins:
+      - fuelTrim5loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim5Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64163,10 +64219,14 @@ tables:
     title: Fuel trim Table 6
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim6rpmBins
+      - rpm
+    yBins:
+      - fuelTrim6loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim6Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64176,10 +64236,14 @@ tables:
     title: Fuel trim Table 7
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim7rpmBins
+      - rpm
+    yBins:
+      - fuelTrim7loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim7Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64189,10 +64253,14 @@ tables:
     title: Fuel trim Table 8
     page: 9
     help: http://speeduino.com/wiki/index.php/Tuning
-    xBins: []
-    yBins: []
+    xBins:
+      - fuelTrim8rpmBins
+      - rpm
+    yBins:
+      - fuelTrim8loadBins
+      - fuelLoad
     xyLabels: []
-    zBins: ''
+    zBins: fuelTrim8Table
     gridHeight: 0
     gridOrient: []
     upDownLabel: []
@@ -64202,10 +64270,14 @@ tables:
     title: Dwell map
     page: 4
     help: ''
-    xBins: []
-    yBins: []
+    xBins:
+      - rpmBinsDwell
+      - rpm
+    yBins:
+      - mapBinsDwell
+      - map
     xyLabels: []
-    zBins: ''
+    zBins: dwellTable
     gridHeight: 0
     gridOrient: []
     upDownLabel: []

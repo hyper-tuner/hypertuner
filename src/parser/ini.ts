@@ -19,9 +19,8 @@ class Parser {
   CONDITION_PATTERN: string;
 
   DIALOG_PATTERN: RegExp;
+
   HELP_PATTERN: RegExp;
-
-
 
   PANEL_PATTERN: RegExp;
 
@@ -77,9 +76,11 @@ class Parser {
 
   CURVE_Y_AXIS_PATTERN: RegExp;
 
-  CURVE_X_BINS_PATTERN: RegExp;
+  X_BINS_PATTERN: RegExp;
 
-  CURVE_Y_BINS_PATTERN: RegExp;
+  Y_BINS_PATTERN: RegExp;
+
+  Z_BINS_PATTERN: RegExp;
 
   CURVE_SIZE_PATTERN: RegExp;
 
@@ -147,10 +148,12 @@ class Parser {
     this.CURVE_LABELS_PATTERN = new RegExp(`^columnLabel\\s*=\\s*(?<labels>.+)${this.COMMENTS_PATTERN}`);
     this.CURVE_X_AXIS_PATTERN = new RegExp(`^xAxis\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
     this.CURVE_Y_AXIS_PATTERN = new RegExp(`^yAxis\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
-    this.CURVE_X_BINS_PATTERN = new RegExp(`^xBins\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
-    this.CURVE_Y_BINS_PATTERN = new RegExp(`^yBins\\s*=\\s*(?<value>.+)${this.COMMENTS_PATTERN}`);
     this.CURVE_SIZE_PATTERN = new RegExp(`^size\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
     this.CURVE_GAUGE_PATTERN = new RegExp(`^gauge\\s*=\\s*(?<value>.+)${this.COMMENTS_PATTERN}`);
+
+    this.X_BINS_PATTERN = new RegExp(`^xBins\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
+    this.Y_BINS_PATTERN = new RegExp(`^yBins\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
+    this.Z_BINS_PATTERN = new RegExp(`^zBins\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
 
     this.TABLE_PATTERN = new RegExp(`^table\\s*=\\s*(?<name>\\w+)\\s*,*\\s*(?<map>\\w+)\\s*,\\s*"(?<title>.+)"\\s*,\\s*(?<page>\\d+)${this.COMMENTS_PATTERN}`);
 
@@ -279,16 +282,16 @@ class Parser {
         .split(',').map(Number);
     }
 
-    match = line.match(this.CURVE_X_BINS_PATTERN);
+    match = line.match(this.X_BINS_PATTERN);
     if (match) {
       this.result.curves[this.currentCurve].xBins = match.groups!.values
         .split(',').map(Parser.sanitizeString);
     }
 
-    match = line.match(this.CURVE_Y_BINS_PATTERN);
+    match = line.match(this.Y_BINS_PATTERN);
     if (match) {
       this.result.curves[this.currentCurve].yBins
-        = Parser.sanitizeString(match.groups!.value);
+        = Parser.sanitizeString(match.groups!.values);
     }
 
     match = line.match(this.CURVE_SIZE_PATTERN);
@@ -323,9 +326,27 @@ class Parser {
         upDownLabel: [],
       };
     }
+
     match = line.match(this.HELP_PATTERN);
     if (match) {
       this.result.tables[this.currentTable].help = Parser.sanitizeString(match.groups!.help);
+    }
+
+    match = line.match(this.X_BINS_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].xBins = match.groups!.values
+        .split(',').map(Parser.sanitizeString);
+    }
+
+    match = line.match(this.Y_BINS_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].yBins = match.groups!.values
+        .split(',').map(Parser.sanitizeString);
+    }
+
+    match = line.match(this.Z_BINS_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].zBins = Parser.sanitizeString(match.groups!.values);
     }
   }
 
