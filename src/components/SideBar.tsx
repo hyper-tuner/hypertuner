@@ -72,7 +72,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
                 ${subMenu.condition};
               `);
             } catch (error) {
-              console.error('Menu condition evaluation failed with:', error.message);
+              console.info('Menu condition evaluation failed with:', error.message);
             }
           }
 

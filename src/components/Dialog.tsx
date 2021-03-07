@@ -239,7 +239,7 @@ const Dialog = ({
 
               // console.info(`Evaluated condition for '${field.name}':`, field.condition, ': result:', enabled);
             } catch (error) {
-              console.error('Field condition evaluation failed with:', error.message);
+              console.info('Field condition evaluation failed with:', error.message);
             }
           }
 
