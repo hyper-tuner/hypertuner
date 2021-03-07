@@ -88,6 +88,8 @@ class Parser {
 
   TABLE_PATTERN: RegExp;
 
+  TABLE_LABELS_PATTERN: RegExp;
+
   lines: string[];
 
   currentPage: number;
@@ -156,8 +158,7 @@ class Parser {
     this.Z_BINS_PATTERN = new RegExp(`^zBins\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
 
     this.TABLE_PATTERN = new RegExp(`^table\\s*=\\s*(?<name>\\w+)\\s*,*\\s*(?<map>\\w+)\\s*,\\s*"(?<title>.+)"\\s*,\\s*(?<page>\\d+)${this.COMMENTS_PATTERN}`);
-
-    // console.log(this.TABLE_PATTERN);
+    this.TABLE_LABELS_PATTERN = new RegExp(`^xyLabels\\s*=\\s*(?<values>.+)${this.COMMENTS_PATTERN}`);
 
     this.lines = buffer.toString().split('\n');
     this.currentPage = 1;
@@ -314,7 +315,7 @@ class Parser {
       this.result.tables[this.currentTable] = {
         name: match.groups!.name,
         map: match.groups!.map,
-        title: match.groups!.title,
+        title: Parser.sanitizeString(match.groups!.title),
         page: Number(match.groups!.page),
         help: '',
         xBins: [],
@@ -347,6 +348,12 @@ class Parser {
     match = line.match(this.Z_BINS_PATTERN);
     if (match) {
       this.result.tables[this.currentTable].zBins = Parser.sanitizeString(match.groups!.values);
+    }
+
+    match = line.match(this.TABLE_LABELS_PATTERN);
+    if (match) {
+      this.result.tables[this.currentTable].xyLabels = match.groups!.values
+        .split(',').map(Parser.sanitizeString);
     }
   }
 
