@@ -63194,9 +63194,9 @@ curves:
     xBins:
       - taeBins
       - TPSdot
-    yBins: taeRates
+    yBins:
+      - taeRates
     size: []
-    condition: ''
   time_accel_mapdot_curve:
     title: MAP based AE
     labels:
@@ -63213,9 +63213,9 @@ curves:
     xBins:
       - maeBins
       - MAPdot
-    yBins: maeRates
+    yBins:
+      - maeRates
     size: []
-    condition: ''
   dwell_correction_curve:
     title: Dwell voltage correction
     labels:
@@ -63232,9 +63232,9 @@ curves:
     xBins:
       - brvBins
       - batteryVoltage
-    yBins: dwellRates
+    yBins:
+      - dwellRates
     size: []
-    condition: ''
   injector_voltage_curve:
     title: Injector voltage correction
     labels:
@@ -63251,9 +63251,9 @@ curves:
     xBins:
       - brvBins
       - batteryVoltage
-    yBins: injBatRates
+    yBins:
+      - injBatRates
     size: []
-    condition: ''
   injector_timing_curve:
     title: Injector timing
     labels:
@@ -63270,9 +63270,9 @@ curves:
     xBins:
       - injAngRPM
       - rpm
-    yBins: injAng
+    yBins:
+      - injAng
     size: []
-    condition: ''
   airdensity_curve:
     title: IAT density correction
     labels:
@@ -63287,9 +63287,9 @@ curves:
     xBins:
       - airDenBins
       - iat
-    yBins: airDenRates
+    yBins:
+      - airDenRates
     size: []
-    condition: ''
   baroFuel_curve:
     title: Baro fuel correction
     labels:
@@ -63306,9 +63306,9 @@ curves:
     xBins:
       - baroFuelBins
       - baro
-    yBins: baroFuelValues
+    yBins:
+      - baroFuelValues
     size: []
-    condition: ''
   fuelTemp_curve:
     title: Fuel temp correction
     labels:
@@ -63323,9 +63323,9 @@ curves:
     xBins:
       - fuelTempBins
       - fuelTemp
-    yBins: fuelTempValues
+    yBins:
+      - fuelTempValues
     size: []
-    condition: ''
   iat_retard_curve:
     title: IAT timing retard
     labels:
@@ -63340,9 +63340,9 @@ curves:
     xBins:
       - iatRetBins
       - iat
-    yBins: iatRetRates
+    yBins:
+      - iatRetRates
     size: []
-    condition: ''
   clt_advance_curve:
     title: Cold Advance
     labels:
@@ -63355,9 +63355,9 @@ curves:
     xBins:
       - cltAdvBins
       - coolant
-    yBins: cltAdvValues
+    yBins:
+      - cltAdvValues
     size: []
-    condition: ''
   idle_advance_curve:
     title: Idle Advance
     labels:
@@ -63370,11 +63370,11 @@ curves:
     xBins:
       - idleAdvBins
       - CLIdleDelta
-    yBins: idleAdvValues
+    yBins:
+      - idleAdvValues
     size:
       - 450
       - 200
-    condition: ''
   iacPwm_curve:
     title: IAC PWM Duty
     labels:
@@ -63389,9 +63389,9 @@ curves:
     xBins:
       - iacBins
       - coolant
-    yBins: iacOLPWMVal
+    yBins:
+      - iacOLPWMVal
     size: []
-    condition: ''
   iacPwmCrank_curve:
     title: IAC PWM Cranking Duty
     labels:
@@ -63406,9 +63406,9 @@ curves:
     xBins:
       - iacCrankBins
       - coolant
-    yBins: iacCrankDuty
+    yBins:
+      - iacCrankDuty
     size: []
-    condition: ''
   iacStep_curve:
     title: IAC Stepper Motor
     labels:
@@ -63423,9 +63423,9 @@ curves:
     xBins:
       - iacBins
       - coolant
-    yBins: iacOLStepVal
+    yBins:
+      - iacOLStepVal
     size: []
-    condition: ''
   iacStepCrank_curve:
     title: IAC Stepper Motor Cranking
     labels:
@@ -63440,9 +63440,9 @@ curves:
     xBins:
       - iacCrankBins
       - coolant
-    yBins: iacCrankSteps
+    yBins:
+      - iacCrankSteps
     size: []
-    condition: ''
   iacClosedLoop_curve:
     title: Idle RPM Targets
     labels:
@@ -63457,11 +63457,11 @@ curves:
     xBins:
       - iacBins
       - coolant
-    yBins: iacCLValues
+    yBins:
+      - iacCLValues
     size:
       - 450
       - 200
-    condition: ''
   rotaryTrailing_curve:
     title: Rotary Trailing Split
     labels:
@@ -63477,9 +63477,9 @@ curves:
     xBins:
       - rotarySplitBins
       - fuelLoad
-    yBins: rotarySplitValues
+    yBins:
+      - rotarySplitValues
     size: []
-    condition: ''
   warmup_curve:
     title: Warmup Enrichment (WUE) Curve
     labels:
@@ -63494,9 +63494,9 @@ curves:
     xBins:
       - wueBins
       - coolant
-    yBins: wueRates
+    yBins:
+      - wueRates
     size: []
-    condition: ''
     gauge: cltGauge
   cranking_enrich_curve:
     title: Cranking Enrichment Curve
@@ -63512,9 +63512,9 @@ curves:
     xBins:
       - crankingEnrichBins
       - coolant
-    yBins: crankingEnrichValues
+    yBins:
+      - crankingEnrichValues
     size: []
-    condition: ''
   priming_pw_curve:
     title: Priming Pulsewidth
     labels:
@@ -63529,9 +63529,9 @@ curves:
     xBins:
       - primeBins
       - coolant
-    yBins: primePulse
+    yBins:
+      - primePulse
     size: []
-    condition: ''
     gauge: cltGauge
   afterstart_enrichment_curve:
     title: ASE - Enrichment %
@@ -63547,11 +63547,11 @@ curves:
     xBins:
       - aseBins
       - coolant
-    yBins: asePct
+    yBins:
+      - asePct
     size:
       - 50
       - 250
-    condition: ''
     gauge: cltGauge
   afterstart_enrichment_time:
     title: ASE - Duration
@@ -63567,11 +63567,11 @@ curves:
     xBins:
       - aseBins
       - coolant
-    yBins: aseCount
+    yBins:
+      - aseCount
     size:
       - 50
       - 250
-    condition: ''
     gauge: cltGauge
   flex_fuel_curve:
     title: Flex Fuel Adjustments
@@ -63589,11 +63589,11 @@ curves:
     xBins:
       - flexFuelBins
       - flex
-    yBins: flexFuelAdj
+    yBins:
+      - flexFuelAdj
     size:
       - 400
       - 200
-    condition: ''
   flex_adv_curve:
     title: Flex Timing Advance
     labels:
@@ -63610,11 +63610,11 @@ curves:
     xBins:
       - flexAdvBins
       - flex
-    yBins: flexAdvAdj
+    yBins:
+      - flexAdvAdj
     size:
       - 400
       - 200
-    condition: ''
   flex_boost_curve:
     title: Flex Boost Adjustments
     labels:
@@ -63629,11 +63629,11 @@ curves:
     xBins:
       - flexBoostBins
       - flex
-    yBins: flexBoostAdj
+    yBins:
+      - flexBoostAdj
     size:
       - 400
       - 200
-    condition: ''
   knock_window_angle_curve:
     title: Knock Window
     labels:
@@ -63648,11 +63648,11 @@ curves:
     xBins:
       - knock_window_rpms
       - rpm
-    yBins: knock_window_angle
+    yBins:
+      - knock_window_angle
     size:
       - 400
       - 200
-    condition: ''
   knock_window_duration_curve:
     title: Knock Window Duration
     labels:
@@ -63669,11 +63669,11 @@ curves:
     xBins:
       - knock_window_rpms
       - rpm
-    yBins: knock_window_dur
+    yBins:
+      - knock_window_dur
     size:
       - 400
       - 200
-    condition: ''
   oil_pressure_prot_curve:
     title: Oil Pressure Protection
     labels:
@@ -63690,11 +63690,11 @@ curves:
     xBins:
       - oilPressureProtRPM
       - rpm
-    yBins: oilPressureProtMins
+    yBins:
+      - oilPressureProtMins
     size:
       - 400
       - 200
-    condition: ''
   warmup_afr_curve:
     title: Target Adjustment
     labels:
@@ -63707,9 +63707,9 @@ curves:
     xBins:
       - wueBins
       - coolant
-    yBins: wueAFR
+    yBins:
+      - wueAFR
     size: []
-    condition: ''
   warmup_analyzer_curve:
     title: Warmup Enrichment
     labels:
@@ -63726,9 +63726,9 @@ curves:
     xBins:
       - wueBins
       - coolant
-    yBins: wueRecommended
+    yBins:
+      - wueRecommended
     size: []
-    condition: ''
   wmi_adv_curve:
     title: WMI Timing Advance
     labels:
@@ -63745,11 +63745,11 @@ curves:
     xBins:
       - wmiAdvBins
       - map
-    yBins: wmiAdvAdj
+    yBins:
+      - wmiAdvAdj
     size:
       - 400
       - 200
-    condition: ''
 tables:
   veTable1Tbl:
     name: veTable1Tbl
@@ -63766,7 +63766,8 @@ tables:
     xyLabels:
       - RPM
       - 'Fuel Load:'
-    zBins: veTable
+    zBins:
+      - veTable
     gridHeight: 2
     gridOrient:
       - 250
@@ -63790,7 +63791,8 @@ tables:
     xyLabels:
       - RPM
       - 'Fuel Load:'
-    zBins: veTable2
+    zBins:
+      - veTable2
     gridHeight: 2
     gridOrient:
       - 250
@@ -63814,7 +63816,8 @@ tables:
     xyLabels:
       - RPM
       - 'Ignition Load:'
-    zBins: advTable1
+    zBins:
+      - advTable1
     gridHeight: 3
     gridOrient: []
     upDownLabel:
@@ -63835,7 +63838,8 @@ tables:
     xyLabels:
       - RPM
       - 'Ignition Load:'
-    zBins: advTable2
+    zBins:
+      - advTable2
     gridHeight: 3
     gridOrient: []
     upDownLabel:
@@ -63854,7 +63858,8 @@ tables:
       - loadBinsAFR
       - fuelLoad
     xyLabels: []
-    zBins: afrTable
+    zBins:
+      - afrTable
     gridHeight: 1
     gridOrient:
       - 250
@@ -63876,7 +63881,8 @@ tables:
       - tpsBinsBoost
       - throttle
     xyLabels: []
-    zBins: boostTable
+    zBins:
+      - boostTable
     gridHeight: 3
     gridOrient: []
     upDownLabel:
@@ -63897,7 +63903,8 @@ tables:
     xyLabels:
       - RPM
       - 'VVT Load:'
-    zBins: vvtTable
+    zBins:
+      - vvtTable
     gridHeight: 3
     gridOrient: []
     upDownLabel:
@@ -63918,7 +63925,8 @@ tables:
     xyLabels:
       - RPM
       - 'WMI Load:'
-    zBins: wmiTable
+    zBins:
+      - wmiTable
     gridHeight: 3
     gridOrient: []
     upDownLabel:
@@ -63937,7 +63945,8 @@ tables:
       - loadBinsStaging
       - fuelLoad
     xyLabels: []
-    zBins: stagingTable
+    zBins:
+      - stagingTable
     gridHeight: 3
     gridOrient: []
     upDownLabel:
@@ -63956,7 +63965,8 @@ tables:
       - fuelTrim1loadBins
       - fuelLoad
     xyLabels: []
-    zBins: fuelTrim1Table
+    zBins:
+      - fuelTrim1Table
     gridHeight: 2
     gridOrient:
       - 250
@@ -63978,7 +63988,8 @@ tables:
       - fuelTrim2loadBins
       - fuelLoad
     xyLabels: []
-    zBins: fuelTrim2Table
+    zBins:
+      - fuelTrim2Table
     gridHeight: 2
     gridOrient:
       - 250
@@ -64000,7 +64011,8 @@ tables:
       - fuelTrim3loadBins
       - fuelLoad
     xyLabels: []
-    zBins: fuelTrim3Table
+    zBins:
+      - fuelTrim3Table
     gridHeight: 2
     gridOrient:
       - 250
@@ -64022,7 +64034,8 @@ tables:
       - fuelTrim4loadBins
       - fuelLoad
     xyLabels: []
-    zBins: fuelTrim4Table
+    zBins:
+      - fuelTrim4Table
     gridHeight: 2
     gridOrient:
       - 250

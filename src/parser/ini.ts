@@ -268,9 +268,8 @@ class Parser {
         xAxis: [],
         yAxis: [],
         xBins: [],
-        yBins: '',
+        yBins: [],
         size: [],
-        condition: '',
       };
     }
 
@@ -300,8 +299,8 @@ class Parser {
 
     match = line.match(this.Y_BINS_PATTERN);
     if (match) {
-      this.result.curves[this.currentCurve].yBins
-        = Parser.sanitizeString(match.groups!.values);
+      this.result.curves[this.currentCurve].yBins = match.groups!.values
+      .split(',').map(Parser.sanitizeString);
     }
 
     match = line.match(this.CURVE_SIZE_PATTERN);
@@ -330,7 +329,7 @@ class Parser {
         xBins: [],
         yBins: [],
         xyLabels: [],
-        zBins: '',
+        zBins: [],
         gridHeight: 0,
         gridOrient: [],
         upDownLabel: [],
@@ -356,7 +355,8 @@ class Parser {
 
     match = line.match(this.Z_BINS_PATTERN);
     if (match) {
-      this.result.tables[this.currentTable].zBins = Parser.sanitizeString(match.groups!.values);
+      this.result.tables[this.currentTable].zBins = match.groups!.values
+        .split(',').map(Parser.sanitizeString);
     }
 
     match = line.match(this.TABLE_LABELS_PATTERN);

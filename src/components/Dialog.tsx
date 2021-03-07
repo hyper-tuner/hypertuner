@@ -21,6 +21,7 @@ import {
   Config as ConfigType,
   Field as FieldType,
   Curve as CurveType,
+  Table as TableType,
   ScalarConstant as ScalarConstantType,
   ConstantTypes,
 } from '../types/config';
@@ -31,14 +32,36 @@ import { prepareConstDeclarations } from '../lib/utils';
 import { findOnPage } from '../utils/config/find';
 
 interface DialogsAndCurves {
-  [name: string]: DialogType | CurveType,
+  [name: string]: DialogType | CurveType | TableType,
 }
 
-interface RenderedPanel extends CurveType {
+interface RenderedPanel {
   type: string,
   name: string,
-  condition: string,
+  title: string;
+  labels: string[];
+  xAxis: number[];
+  yAxis: number[];
+  xBins: string[];
+  yBins: string[];
+  size: number[];
+  gauge?: string;
+  condition?: string,
   fields: FieldType[],
+  map: string;
+  page: number;
+  help: string;
+  xyLabels: string[];
+  zBins: string[];
+  gridHeight: number;
+  gridOrient: number[];
+  upDownLabel: string[];
+}
+
+enum PanelTypes {
+  FIELDS = 'fields',
+  CURVE = 'curve',
+  TABLE = 'table',
 }
 
 const mapStateToProps = (state: AppState) => ({
@@ -68,18 +91,18 @@ const Dialog = ({
 }) => {
   const isDataReady = Object.keys(tune.constants).length && Object.keys(config.constants).length;
 
-  const curveComponent = (curve: CurveType) => {
+  const renderCurve = (curve: CurveType) => {
     const x = tune.constants[curve.xBins[0]];
-    const y = tune.constants[curve.yBins];
+    const y = tune.constants[curve.yBins[0]];
     const xConstant = findOnPage(config, curve.xBins[0]) as ScalarConstantType;
-    const yConstant = findOnPage(config, curve.yBins) as ScalarConstantType;
+    const yConstant = findOnPage(config, curve.yBins[0]) as ScalarConstantType;
 
     return (
       <Curve
-        name={curve.yBins}
-        key={curve.yBins}
+        name={curve.yBins[0]}
+        key={curve.yBins[0]}
         disabled={false} // TODO: evaluate condition
-        help={config.help[curve.yBins]}
+        help={config.help[curve.yBins[0]]}
         xLabel={curve.labels[0]}
         yLabel={curve.labels[1]}
         xUnits={x.units}
@@ -118,7 +141,7 @@ const Dialog = ({
       return (
         <div style={containerStyle}>
           <Divider>{curveConfig.title}</Divider>
-          {curveComponent(curveConfig)}
+          {renderCurve(curveConfig)}
         </div>
       );
     }
@@ -127,6 +150,12 @@ const Dialog = ({
       <Result status="warning" title="Not found 👀" style={{ marginTop: 50 }} />
     );
   }
+
+  const renderTable = (table: TableType) => {
+    const test = '';
+
+    return <div>Table</div>;
+  };
 
   const calculateSpan = (dialogsCount: number) => {
     let xxl = 24;
@@ -157,17 +186,28 @@ const Dialog = ({
       const currentDialog = source[panelName];
 
       if (!currentDialog) {
-        if (!config.curves[panelName]) {
-          console.info('Panel does not exists:', panelName);
+        // resolve 2D map / curve panel
+        if (config.curves[panelName]) {
+          resolvedDialogs[panelName] = {
+            ...config.curves[panelName],
+            condition: source[dialogName].panels[panelName].condition || '',
+          };
 
           return;
         }
 
-        // resolve 2D map / curve panel
-        resolvedDialogs[panelName] = {
-          ...config.curves[panelName],
-          condition: source[dialogName].panels[panelName].condition || '',
-        };
+        // resolve 3D map / table panel
+        if (config.tables[panelName]) {
+          // console.log(config.tables[panelName]);
+          resolvedDialogs[panelName] = {
+            ...config.tables[panelName],
+            condition: source[dialogName].panels[panelName].condition || '',
+          };
+
+          return;
+        }
+
+        console.info('Unable to resolve panel:', panelName);
 
         return;
       }
@@ -187,10 +227,18 @@ const Dialog = ({
 
   // remove dummy dialogs and flatten to array
   const panels = Object.keys(resolvedDialogs).map((dialogName: string): RenderedPanel => {
-    const currentDialog: DialogType | CurveType = resolvedDialogs[dialogName];
-    const type = 'fields' in currentDialog ? 'fields' : 'curve';
-    const fields = type === 'curve' ? [] : (currentDialog as DialogType).fields
-      .filter((field) => field.title !== '' );
+    const currentDialog: DialogType | CurveType | TableType = resolvedDialogs[dialogName];
+    let type = PanelTypes.CURVE;
+    let fields: FieldType[] = [];
+
+    if ('fields' in currentDialog) {
+      type = PanelTypes.FIELDS;
+      fields = (currentDialog as DialogType)
+        .fields
+        .filter((field) => field.title !== '' );
+    } else if ('zBins' in currentDialog) {
+      type = PanelTypes.TABLE;
+    }
 
     return {
       type,
@@ -205,11 +253,19 @@ const Dialog = ({
       yBins: (currentDialog as CurveType).yBins,
       size: (currentDialog as CurveType).size,
       gauge: (currentDialog as CurveType).gauge,
+      map: (currentDialog as TableType).map,
+      page: (currentDialog as TableType).page,
+      help: (currentDialog as TableType).help,
+      xyLabels: (currentDialog as TableType).xyLabels,
+      zBins: (currentDialog as TableType).zBins,
+      gridHeight: (currentDialog as TableType).gridHeight,
+      gridOrient: (currentDialog as TableType).gridOrient,
+      upDownLabel: (currentDialog as TableType).upDownLabel,
     };
   });
 
   const panelsComponents = () => panels.map((panel: RenderedPanel) => {
-    if (panel.type === 'fields' && panel.fields.length === 0) {
+    if (panel.type === PanelTypes.FIELDS && panel.fields.length === 0) {
       return null;
     }
 
@@ -297,7 +353,9 @@ const Dialog = ({
           );
         })}
 
-        {panel.type === 'curve' && curveComponent(panel)}
+        {panel.type === PanelTypes.CURVE && renderCurve(panel)}
+
+        {panel.type === PanelTypes.TABLE && renderTable(panel)}
       </Col>
     );
   });

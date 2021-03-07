@@ -122,14 +122,14 @@ export interface Help {
 
 export interface Curve {
   title: string;
-  condition: string;
   labels: string[];
   xAxis: number[];
   yAxis: number[];
   xBins: string[];
-  yBins: string;
+  yBins: string[];
   size: number[];
   gauge?: string;
+  condition?: string;
 }
 
 export interface Table {
@@ -141,10 +141,11 @@ export interface Table {
   xBins: string[];
   yBins: string[];
   xyLabels: string[];
-  zBins: string;
+  zBins: string[];
   gridHeight: number;
   gridOrient: number[];
   upDownLabel: string[];
+  condition?: string;
 }
 
 export interface Config {
