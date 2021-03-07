@@ -26,5 +26,4 @@ yarn-error.log*
 .eslintcache
 
 # custom ts builds
-/src/electron.js
-/bin/ini.js
+/src/**/*.js

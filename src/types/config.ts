@@ -128,6 +128,7 @@ export interface Curve {
 }
 
 export interface Config {
+  [key: string]: any;
   megaTune: {
     signature: string;
   };
@@ -148,7 +149,7 @@ export interface Config {
     [name: string]: Curve;
   };
   outputChannels: {
-    [name: string]: ScalarConstant;
+    [name: string]: ScalarConstant | BitsConstant;
   };
   menus: Menus;
   help: Help;
