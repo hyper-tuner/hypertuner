@@ -724,63 +724,74 @@ const versions = [
 // const line = 'aeColdPct     = scalar, U08,      1,         "%",      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
 // const line = 'aeColdPct     = scalar, U08,      1,         { bitStringValue(algorithmUnits ,  algorithm) },      {fuelLoadMax},       {fuelLoadMax},   {fuelLoadMax},    {fuelLoadMax},       0 ;AE cold adjustment %';
 const line = 'aeColdPct     = scalar, U08,      1,         { bitStringValue(algorithmUnits ,  algorithm) },      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
+
+// const line2 = 'fuelTrim1Table      = array,  U08,     0,[6x6],     "%",    1.0,    -128,   -50,    50,        0';
 const line2 = 'fuelLoadBins = array,  U08,   272, [  16], { bitStringValue(algorithmUnits ,  algorithm) },        2.0,      0.0,   0.0,   {fuelLoadMax},      0';
 // const testParser = P.regexp(/[0–9]+/).map(s => Number(s));
 
 const space = P.optWhitespace;
 const units = P.regexp(/[^"]*/);
 const expression = P.regexp(/{.+?}/);
-const numbers = P.regexp(/[0-9.]*/);
+const numbers = P.regexp(/[0-9.-]*/);
 const equal = P.string('=');
 const quote = P.string('"');
 const type = P.regexp(/scalar|bits|array/);
 const comma = P.string(',');
 const size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32/);
 
-const scalarConstant = P.seqObj<any>(
-  ['name', P.letters],
+const delimiter = [space, comma, space];
+
+// first common part:
+// name = scalar, U08, 3,
+const baseParser: any = [
+  ['name', P.regexp(/[0-9a-z]*/i)],
   space, equal, space,
   ['type', type],
-  space, comma, space,
+  ...delimiter,
   ['size', size],
-  space, comma, space,
+  ...delimiter,
   ['offset', P.digits],
-  space, comma, space,
-  ['units', P.alt(
-    expression,
-    units.trim(space).wrap(quote, quote),
-  )],
-  space, comma, space,
-  ['scale', P.alt(
-    expression,
-    numbers,
-  )],
-  space, comma, space,
-  ['transform', P.alt(
-    expression,
-    numbers,
-  )],
-  space, comma, space,
-  ['min', P.alt(
-    expression,
-    numbers,
-  )],
-  space, comma, space,
-  ['max', P.alt(
-    expression,
-    numbers,
-  )],
-  space, comma, space,
+];
+
+const scalarRestParser: any = [
+  ['units', P.alt(expression, units.trim(space).wrap(quote, quote))],
+  ...delimiter,
+  ['scale', P.alt(expression, numbers)],
+  ...delimiter,
+  ['transform', P.alt(expression, numbers)],
+  ...delimiter,
+  ['min', P.alt(expression, numbers)],
+  ...delimiter,
+  ['max', P.alt(expression, numbers)],
+  ...delimiter,
   ['digits', P.digits],
   space, P.all,
+];
+
+const arrayConstant = P.seqObj<any>(
+  ...baseParser,
+  ...delimiter,
+  ['shape', P.regexp(/\[[0-9x\s]+\]/)],
+  ...delimiter,
+  ...scalarRestParser,
+);
+
+const scalarConstant = P.seqObj<any>(
+  ...baseParser,
+  ...delimiter,
+  ...scalarRestParser,
 );
 
 const iniLanguage = P.createLanguage({
   scalarConstant: () =>  scalarConstant,
+  arrayConstant: () =>  arrayConstant,
 });
 
 console.dir(
-  iniLanguage.scalarConstant.tryParse(line),
+  {
+    array: iniLanguage.arrayConstant.tryParse(line2),
+    scalar: iniLanguage.scalarConstant.tryParse(line),
+  },
   { depth: null, compact: false },
 );
 
