@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   Label,
 } from 'recharts';
-import Table from './Curve/Table';
+import Table from './Table';
 
 const Curve = ({
   name,

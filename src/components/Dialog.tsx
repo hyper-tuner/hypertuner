@@ -30,6 +30,7 @@ import {
 } from '../types/tune';
 import { prepareConstDeclarations } from '../lib/utils';
 import { findOnPage } from '../utils/config/find';
+import Table from './Dialog/Table';
 
 interface DialogsAndCurves {
   [name: string]: DialogType | CurveType | TableType,
@@ -149,11 +150,36 @@ const Dialog = ({
   };
 
   const renderTable = (table: TableType) => {
-    const test = '';
+    const x = tune.constants[table.xBins[0]];
+    const y = tune.constants[table.yBins[0]];
+    const xConstant = findOnPage(config, table.xBins[0]) as ScalarConstantType;
+    const yConstant = findOnPage(config, table.yBins[0]) as ScalarConstantType;
+
+    console.log({
+      table,
+      x,
+      y,
+      xConstant,
+      yConstant,
+    });
 
     return <div>
       {renderHelp(table.help)}
-      <div>Table</div>
+      {/* <Table
+        name={table.name}
+        key={table.name}
+        xLabel={table.xyLabels[0]}
+        yLabel={table.xyLabels[1]}
+        xData={[]}
+        yData={[]}
+        // xMin={xMin}
+        // xMax={xMax}
+        // yMin={yMin}
+        // yMax={yMax}
+        xUnits={xUnits}
+        yUnits={yUnits}
+        onChange={(newData: number[][]) => setData(mapData(newData))}
+      /> */}
     </div>;
   };
 

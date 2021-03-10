@@ -24,7 +24,7 @@ import {
   isEscape,
   isIncrement,
   isReplace,
-} from '../../../utils/keyboard/shortcuts';
+} from '../../utils/keyboard/shortcuts';
 
 type AxisType = 'x' | 'y';
 type CellsType = boolean[][];
@@ -58,7 +58,7 @@ const Table = ({
   xData: number[],
   yData: number[],
   disabled: boolean,
-  onChange: OnChangeType,
+  onChange?: OnChangeType,
   xMin: number,
   xMax: number,
   yMin: number,
@@ -87,7 +87,9 @@ const Table = ({
   const setData = (currentData: DataType) => {
     dataRef.current = currentData;
     _setData(currentData);
-    onChange(currentData);
+    if (onChange) {
+      onChange(currentData);
+    }
   };
   const modifyData = useCallback((operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
