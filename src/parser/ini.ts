@@ -721,40 +721,58 @@ const versions = [
 
 // this.SCALAR_BASE_PATTERN = '\\s*"(?<units>.*)"\\s*,*\\s*(?<scale>[\\-\\d.]+)\\s*,*\\s*(?<transform>[\\-\\d.]+)\\s*,*\\s*(?<min>[\\-\\d.]+)*\\s*,*\\s*(?<max>[\\-\\d.]+)*\\s*,*\\s*(?<digits>[\\d.]+)*';
 
-const line = 'aeColdPct     = scalar, U08,      1,         "%",      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
+// const line = 'aeColdPct     = scalar, U08,      1,         "%",      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
+// const line = 'aeColdPct     = scalar, U08,      1,         { bitStringValue(algorithmUnits ,  algorithm) },      {fuelLoadMax},       {fuelLoadMax},   {fuelLoadMax},    {fuelLoadMax},       0 ;AE cold adjustment %';
+const line = 'aeColdPct     = scalar, U08,      1,         { bitStringValue(algorithmUnits ,  algorithm) },      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
 const line2 = 'fuelLoadBins = array,  U08,   272, [  16], { bitStringValue(algorithmUnits ,  algorithm) },        2.0,      0.0,   0.0,   {fuelLoadMax},      0';
 // const testParser = P.regexp(/[0–9]+/).map(s => Number(s));
 
-const _ = P.optWhitespace;
+const space = P.optWhitespace;
 const units = P.regexp(/[^"]*/);
+const expression = P.regexp(/{.+?}/);
 const numbers = P.regexp(/[0-9.]*/);
-const eq = P.string('=');
-const quo = P.string('"');
+const equal = P.string('=');
+const quote = P.string('"');
 const type = P.regexp(/scalar|bits|array/);
 const comma = P.string(',');
 const size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32/);
 
 const scalarConstant = P.seqObj<any>(
   ['name', P.letters],
-  _, eq, _,
+  space, equal, space,
   ['type', type],
-  _, comma, _,
+  space, comma, space,
   ['size', size],
-  _, comma, _,
+  space, comma, space,
   ['offset', P.digits],
-  _, comma, _,
-  quo, ['units', units], quo,
-  _, comma, _,
-  ['scale', numbers],
-  _, comma, _,
-  ['transform', numbers],
-  _, comma, _,
-  ['min', numbers],
-  _, comma, _,
-  ['max', numbers],
-  _, comma, _,
+  space, comma, space,
+  ['units', P.alt(
+    expression,
+    units.trim(space).wrap(quote, quote),
+  )],
+  space, comma, space,
+  ['scale', P.alt(
+    expression,
+    numbers,
+  )],
+  space, comma, space,
+  ['transform', P.alt(
+    expression,
+    numbers,
+  )],
+  space, comma, space,
+  ['min', P.alt(
+    expression,
+    numbers,
+  )],
+  space, comma, space,
+  ['max', P.alt(
+    expression,
+    numbers,
+  )],
+  space, comma, space,
   ['digits', P.digits],
-  _, P.all,
+  space, P.all,
 );
 
 const iniLanguage = P.createLanguage({
@@ -762,7 +780,7 @@ const iniLanguage = P.createLanguage({
 });
 
 console.dir(
-  iniLanguage.scalarConstant.tryParse(line2),
+  iniLanguage.scalarConstant.tryParse(line),
   { depth: null, compact: false },
 );
 
