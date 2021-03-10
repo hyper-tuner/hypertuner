@@ -736,7 +736,6 @@ const expression = P.regexp(/{.+?}/);
 const numbers = P.regexp(/[0-9.-]*/);
 const equal = P.string('=');
 const quote = P.string('"');
-const type = P.regexp(/scalar|bits|array/);
 const comma = P.string(',');
 const size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32/);
 
@@ -744,10 +743,10 @@ const delimiter = [space, comma, space];
 
 // first common part:
 // name = scalar, U08, 3,
-const baseParser: any = [
+const baseParser: any = (type: string) => [
   ['name', P.regexp(/[0-9a-z]*/i)],
   space, equal, space,
-  ['type', type],
+  ['type', P.string(type)],
   ...delimiter,
   ['size', size],
   ...delimiter,
@@ -770,7 +769,7 @@ const scalarRestParser: any = [
 ];
 
 const arrayConstant = P.seqObj<any>(
-  ...baseParser,
+  ...baseParser('array'),
   ...delimiter,
   ['shape', P.regexp(/\[\s*\d+\s*(x\s*\d)*\s*\]/)],
   ...delimiter,
@@ -778,13 +777,13 @@ const arrayConstant = P.seqObj<any>(
 );
 
 const scalarConstant = P.seqObj<any>(
-  ...baseParser,
+  ...baseParser('scalar'),
   ...delimiter,
   ...scalarRestParser,
 );
 
 const bitsConstant = P.seqObj<any>(
-  ...baseParser,
+  ...baseParser('bits'),
   ...delimiter,
   ['fromTo', P.regexp(/\[\d+:\d+\]*/)],
   ...delimiter,
