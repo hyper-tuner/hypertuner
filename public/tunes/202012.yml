@@ -5325,7 +5325,7 @@ pcVariables:
     shape:
       columns: 128
       rows: 0
-    units: ' '
+    units: ''
     scale: 1
     transform: 0
     min: 0
@@ -5338,7 +5338,7 @@ pcVariables:
     shape:
       columns: 128
       rows: 0
-    units: ' '
+    units: ''
     scale: 1
     transform: 0
     min: 0
