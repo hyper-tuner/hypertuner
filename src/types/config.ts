@@ -69,7 +69,7 @@ export enum ConstantTypes {
   ARRAY = 'array',
 }
 
-export type ConstantSize = 'U08' | 'S08' | 'U16' | 'S16';
+export type ConstantSize = 'U08' | 'S08' | 'U16' | 'S16' | 'U32' | 'S32' | 'S64' | 'F32';
 
 export interface ScalarConstant {
   type: ConstantTypes.SCALAR;
