@@ -18,6 +18,8 @@ const SmartNumber = ({
   digits: number,
   disabled: boolean,
 }) => {
+  const isSlider = (u: string) => ['%', 'C']
+    .includes(`${u}`.toUpperCase());
   const sliderMarks: { [value: number]: string } = {};
   sliderMarks[min] = `${min}${units}`;
 
@@ -29,7 +31,7 @@ const SmartNumber = ({
     sliderMarks[max] = `${max}${units}`;
   }
 
-  if (['%', 'C', 'S', 'SEC', 'MS'].includes(`${units}`.toUpperCase())) {
+  if (isSlider(units || '')) {
     return (
       <Slider
         defaultValue={defaultValue}
