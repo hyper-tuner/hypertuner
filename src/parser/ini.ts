@@ -401,6 +401,14 @@ class INI {
       };
     }
 
+    const arrayShape = (val: string) => {
+      const parts = INI.sanitizeString(result.shape).split('x');
+      return {
+        columns: Number(parts[0]),
+        rows: parts[1] ? Number(parts[1]) : 0,
+      };
+    };
+
     let constant = {};
     switch (result.type) {
       case 'scalar':
@@ -408,6 +416,20 @@ class INI {
           type: result.type,
           size: result.size,
           offset: Number(result.offset),
+          units: INI.sanitizeString(result.units),
+          scale: INI.numberOrExpression(result.scale),
+          transform: INI.numberOrExpression(result.transform),
+          min: INI.numberOrExpression(result.min),
+          max: INI.numberOrExpression(result.max),
+          digits: INI.numberOrExpression(result.digits),
+        };
+        break;
+      case 'array':
+        constant = {
+          type: result.type,
+          size: result.size,
+          offset: Number(result.offset),
+          shape: arrayShape(result.shape),
           units: INI.sanitizeString(result.units),
           scale: INI.numberOrExpression(result.scale),
           transform: INI.numberOrExpression(result.transform),
