@@ -127,10 +127,10 @@ const Dialog = ({
         yLabel={curve.labels[1]}
         xUnits={x.units}
         yUnits={y.units}
-        xMin={xConstant.min}
-        xMax={xConstant.max}
-        yMin={yConstant.min}
-        yMax={yConstant.max}
+        xMin={xConstant.min as number}
+        xMax={xConstant.max as number}
+        yMin={yConstant.min as number}
+        yMax={yConstant.max as number}
         xData={
           (x.value as string)
             .split('\n')
@@ -382,8 +382,8 @@ const Dialog = ({
               input = <SmartNumber
                         defaultValue={Number(tuneField.value)}
                         digits={constant.digits}
-                        min={constant.min || 0}
-                        max={constant.max}
+                        min={(constant.min as number) || 0}
+                        max={constant.max as number}
                         disabled={!enabled}
                         units={constant.units}
                       />;

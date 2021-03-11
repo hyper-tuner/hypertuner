@@ -308,8 +308,8 @@ class INI {
   parseConstantsPage(page: number, line: string) {
     const delimiter = [this.space, this.comma, this.space];
     const sqrBrackets: [P.Parser<any>, P.Parser<any>] = [P.string('['), P.string(']')];
-    const fromTo: any = [
-      ['fromTo', P.regexp(/\d+:\d+/).trim(this.space).wrap(...sqrBrackets)],
+    const address: any = [
+      ['address', P.regexp(/\d+:\d+/).trim(this.space).wrap(...sqrBrackets)],
     ];
 
     // first common (eg. name = scalar, U08, 3,)
@@ -372,7 +372,7 @@ class INI {
     const bitsConstant = P.seqObj<any>(
       ...base('bits'),
       ...delimiter,
-      ...fromTo,
+      ...address,
       ...delimiter,
       ['values', P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma)],
       P.all,
@@ -382,7 +382,7 @@ class INI {
     const bitsShortConstant = P.seqObj<any>(
       ...base('bits'),
       ...delimiter,
-      ...fromTo,
+      ...address,
       P.all,
     );
 
@@ -409,7 +409,7 @@ class INI {
       };
     };
 
-    let constant = {};
+    let constant = {} as Constant;
     switch (result.type) {
       case 'scalar':
         constant = {
@@ -421,7 +421,7 @@ class INI {
           transform: INI.numberOrExpression(result.transform),
           min: INI.numberOrExpression(result.min),
           max: INI.numberOrExpression(result.max),
-          digits: INI.numberOrExpression(result.digits),
+          digits: Number(result.digits),
         };
         break;
       case 'array':
@@ -435,14 +435,23 @@ class INI {
           transform: INI.numberOrExpression(result.transform),
           min: INI.numberOrExpression(result.min),
           max: INI.numberOrExpression(result.max),
-          digits: INI.numberOrExpression(result.digits),
+          digits: Number(result.digits),
+        };
+        break;
+      case 'bits':
+        constant = {
+          type: result.type,
+          size: result.size,
+          offset: Number(result.offset),
+          address: result.address.split(':').map(Number),
+          values: (result.values || []).map(INI.sanitizeString),
         };
         break;
       default:
         break;
     }
 
-    this.result.constants.pages[page].data[result.name] = constant as Constant;
+    this.result.constants.pages[page].data[result.name] = constant;
   }
 
 //   parseCurves(line: string) {

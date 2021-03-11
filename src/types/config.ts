@@ -58,11 +58,6 @@ export interface ArrayShape {
   rows: number;
 }
 
-export interface BitsAddress {
-  from: number;
-  to: number;
-}
-
 export enum ConstantTypes {
   SCALAR = 'scalar',
   BITS = 'bits',
@@ -76,10 +71,10 @@ export interface ScalarConstant {
   size: ConstantSize;
   offset: number;
   units: string;
-  scale: number;
-  transform: number;
-  min: number;
-  max: number;
+  scale: number | string;
+  transform: number | string;
+  min: number | string;
+  max: number | string;
   digits: number;
 }
 
@@ -87,7 +82,7 @@ export interface BitsConstant {
   type: ConstantTypes.BITS;
   size: ConstantSize;
   offset: number;
-  address: BitsAddress;
+  address: number[];
   values: string[];
 }
 
@@ -97,10 +92,10 @@ export interface ArrayConstant {
   offset: number;
   shape: ArrayShape;
   units: string;
-  scale: number;
-  transform: number;
-  min: number;
-  max: number;
+  scale: number | string;
+  transform: number | string;
+  min: number | string;
+  max: number | string;
   digits: number;
 }
 
