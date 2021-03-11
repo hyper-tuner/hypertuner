@@ -307,9 +307,12 @@ class Ini {
 
   parseConstantsPage(page: number, line: string) {
     const delimiter = [this.space, this.comma, this.space];
+    const sqrBrackets: [P.Parser<any>, P.Parser<any>] = [P.string('['), P.string(']')];
+    const fromTo: any = [
+      ['fromTo', P.regexp(/\d+:\d+/).trim(this.space).wrap(...sqrBrackets)],
+    ];
 
-    // first common part:
-    // name = scalar, U08, 3,
+    // first common (eg. name = scalar, U08, 3,)
     const base: any = (type: string) => [
       ['name', P.regexp(/[0-9a-z_]*/i)],
       this.space, this.equal, this.space,
@@ -321,7 +324,6 @@ class Ini {
     ];
 
     const scalarShortRest: any = [
-      // TODO: ^[] (noneOf)
       ['units', P.alt(
         this.expression,
         P.regexp(/[^"]*/).trim(this.space).wrap(this.quote, this.quote),
@@ -361,7 +363,7 @@ class Ini {
     const arrayConstant = P.seqObj<any>(
       ...base('array'),
       ...delimiter,
-      ['shape', P.regexp(/\[\s*\d+\s*(x\s*\d+)*\s*\]/)],
+      ['shape', P.regexp(/\d+\s*(x\s*\d+)*/).trim(this.space).wrap(...sqrBrackets)],
       ...delimiter,
       ...scalarRest,
     );
@@ -370,7 +372,7 @@ class Ini {
     const bitsConstant = P.seqObj<any>(
       ...base('bits'),
       ...delimiter,
-      ['fromTo', P.regexp(/\[\d+:\d+\]*/)],
+      ...fromTo,
       ...delimiter,
       ['values', P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma)],
       P.all,
@@ -380,19 +382,9 @@ class Ini {
     const bitsShortConstant = P.seqObj<any>(
       ...base('bits'),
       ...delimiter,
-      ['fromTo', P.regexp(/\[\d+:\d+\]*/)],
+      ...fromTo,
       P.all,
     );
-
-    // const language = P.createLanguage({
-    //   scalarConstant: () =>  scalarConstant,
-    //   arrayConstant: () =>  arrayConstant,
-    //   bitsConstant: () =>  bitsConstant,
-    // });
-
-
-    // TODO: debug
-    // console.log(`Parsing: '${line}'`);
 
     const result = scalarConstant
       .or(scalarShortConstant)
@@ -405,7 +397,6 @@ class Ini {
       result,
       { depth: null, compact: false },
     );
-
 
     this.result.constants.pages = [];
   }
