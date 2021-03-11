@@ -15,7 +15,7 @@ import {
 
 console.log('------- start --------');
 
-class Ini {
+class INI {
 //   COMMENTS_PATTERN: string;
 
 //   CONDITION_PATTERN: string;
@@ -393,12 +393,34 @@ class Ini {
       .or(bitsShortConstant)
       .tryParse(line);
 
-    console.dir(
-      result,
-      { depth: null, compact: false },
-    );
+    if (!this.result.constants.pages[page]) {
+      this.result.constants.pages[page] = {
+        number: page,
+        size: 0,
+        data: {},
+      };
+    }
 
-    this.result.constants.pages = [];
+    let constant = {};
+    switch (result.type) {
+      case 'scalar':
+        constant = {
+          type: result.type,
+          size: result.size,
+          offset: Number(result.offset),
+          units: INI.sanitizeString(result.units),
+          scale: Number.isNaN(result.scale) ? INI.sanitizeString(result.scale) : Number(result.scale),
+          transform: Number.isNaN(result.transform) ? INI.sanitizeString(result.transform) : Number(result.transform),
+          min: Number.isNaN(result.min) ? INI.sanitizeString(result.min) : Number(result.min),
+          max: Number.isNaN(result.max) ? INI.sanitizeString(result.max) : Number(result.max),
+          digits: Number(result.digits),
+        };
+        break;
+      default:
+        break;
+    }
+
+    this.result.constants.pages[page].data[result.name] = constant as Constant;
   }
 
 //   parseCurves(line: string) {
@@ -891,8 +913,13 @@ const line3 = 'wmiEnabledPin   = bits,   U08,     158, [0:5], "Board Default", $
 //   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
 // });
 
-const result = new Ini(
+const result = new INI(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
 ).parse();
+
+console.dir(
+  result,
+  { depth: null, compact: false },
+);
 
 console.log('------- end --------');
