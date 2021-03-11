@@ -3,19 +3,19 @@ import path from 'path';
 import yaml from 'js-yaml';
 import * as P from 'parsimmon';
 
-// import {
-//   Config as ConfigType,
-//   Constant,
-//   ConstantSize as ConstantSizeType,
-//   ScalarConstant as ScalarConstantType,
-//   BitsConstant as BitsConstantType,
-//   ConstantTypes,
-//   ArrayConstant as ArrayConstantType,
-// } from '../types/config';
+import {
+  Config as ConfigType,
+  Constant,
+  ConstantSize as ConstantSizeType,
+  ScalarConstant as ScalarConstantType,
+  BitsConstant as BitsConstantType,
+  ConstantTypes,
+  ArrayConstant as ArrayConstantType,
+} from '../types/config';
 
 console.log('------- start --------');
 
-// class Parser {
+class Ini {
 //   COMMENTS_PATTERN: string;
 
 //   CONDITION_PATTERN: string;
@@ -98,23 +98,37 @@ console.log('------- start --------');
 
 //   TABLE_ORIENT_PATTERN: RegExp;
 
-//   lines: string[];
+  space: P.Parser<any>;
 
-//   currentPage: number;
+  expression: P.Parser<any>;
 
-//   currentDialog: string;
+  numbers: P.Parser<any>;
 
-//   currentPanel: string;
+  equal: P.Parser<any>;
 
-//   currentMenu: string;
+  quote: P.Parser<any>;
 
-//   currentCurve: string;
+  comma: P.Parser<any>;
 
-//   currentTable: string;
+  size: P.Parser<any>;
 
-//   result: ConfigType;
+  lines: string[];
 
-//   constructor(buffer: string) {
+  currentPage?: number;
+
+  currentDialog?: string;
+
+  currentPanel?: string;
+
+  currentMenu?: string;
+
+  currentCurve?: string;
+
+  currentTable?: string;
+
+  result: ConfigType;
+
+  constructor(buffer: string) {
 //     this.COMMENTS_PATTERN = '\\s*(?<comments>;.+)*';
 //     this.CONDITION_PATTERN = '\\s*,*\\s*(?<condition>{.+?}?)*';
 
@@ -171,94 +185,230 @@ console.log('------- start --------');
 //     this.TABLE_HEIGHT_PATTERN = new RegExp(`^gridHeight\\s*=\\s*(?<value>[\\d.]+)${this.COMMENTS_PATTERN}`);
 //     this.TABLE_ORIENT_PATTERN = new RegExp(`^gridOrient\\s*=\\s*(?<values>[\\d,\\s]+)${this.COMMENTS_PATTERN}`);
 
-//     this.lines = buffer.toString().split('\n');
-//     this.currentPage = 1;
-//     this.currentDialog = 'NONE';
-//     this.currentPanel = 'NONE';
-//     this.currentMenu = 'NONE';
-//     this.currentCurve = 'NONE';
-//     this.currentTable = 'NONE';
+    this.space = P.optWhitespace;
+    this.expression = P.regexp(/{.+?}/);
+    this.numbers = P.regexp(/[0-9.-]*/);
+    this.equal = P.string('=');
+    this.quote = P.string('"');
+    this.comma = P.string(',');
+    this.size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32/);
 
-//     this.result = {
-//       megaTune: {
-//         signature: '',
-//       },
-//       tunerStudio: {
-//         iniSpecVersion: 0,
-//       },
-//       defines: {},
-//       pcVariables: {},
-//       constants: {
-//         pages: [],
-//       },
-//       menus: {},
-//       dialogs: {},
-//       curves: {},
-//       tables: {},
-//       outputChannels: {},
-//       help: {},
-//     };
-//   }
+    this.lines = buffer.toString().split('\n');
+    this.currentPage = undefined;
+    this.currentDialog = undefined;
+    this.currentPanel = undefined;
+    this.currentMenu = undefined;
+    this.currentCurve = undefined;
+    this.currentTable = undefined;
 
-//   parse() {
-//     this.parseSections();
+    this.result = {
+      megaTune: {
+        signature: '',
+      },
+      tunerStudio: {
+        iniSpecVersion: 0,
+      },
+      defines: {},
+      pcVariables: {},
+      constants: {
+        pages: [],
+      },
+      menus: {},
+      dialogs: {},
+      curves: {},
+      tables: {},
+      outputChannels: {},
+      help: {},
+    };
+  }
 
-//     return this.result;
-//   }
+  parse() {
+    this.parseSections();
+
+    return this.result;
+  }
 
 //   // TODO: fix Idle advance mode in dwell settings
 
-//   parseSections() {
-//     let section: string;
+  parseSections() {
+    let section: string;
 
-//     this.lines.forEach((line) => {
-//       const trimmed = line.trim();
-//       if (trimmed === '' || trimmed.startsWith(';')) {
-//         return;
-//       }
+    this.lines.forEach((raw) => {
+      const line = raw.trim();
+      // skip empty lines and lines with comments only
+      // skip #EXPRESSION for now
+      if (line === '' || line.startsWith(';') || line.startsWith('#')) {
+        return;
+      }
 
-//       const matches = trimmed.match(this.SECTION_HEADER_PATTERN);
-//       if (matches) {
-//         // console.log('Found section:', matches.groups.section);
-//         section = matches.groups!.section;
-//       } else if (section) {
-//         this.parseSectionLine(section, trimmed);
-//       }
-//     });
-//   }
+      const result = P
+        .seqObj<any>(
+          ['section', P.letters.wrap(P.string('['), P.string(']'))],
+          P.all,
+        ).parse(line);
 
-//   parseSectionLine(section: string, line: string) {
-//     switch (section) {
-//       case 'PcVariables':
-//         this.parsePcVariables(line);
-//         break;
-//       case 'Constants':
-//         this.parseConstants(line);
-//         break;
-//       case 'Menu':
-//         this.parseMenu(line);
-//         break;
-//       case 'SettingContextHelp':
-//         this.parseKeyValue('help', line);
-//         break;
-//       case 'UserDefined':
-//         this.parseDialogs(line);
-//         break;
-//       case 'CurveEditor':
-//         this.parseCurves(line);
-//         break;
-//       case 'TableEditor':
-//           this.parseTables(line);
-//           break;
-//       case 'OutputChannels':
-//         this.parseOutputChannels(line);
-//         break;
-//       default:
-//         // TODO: rename sections, and do not use default, only explicit sections
-//         this.parseKeyValue(section, line);
-//         break;
-//     }
-//   }
+        // top level section found
+      if (result.status) {
+        section = result.value.section.trim();
+      } else if (section) {
+        this.parseSectionLine(section, line);
+      }
+    });
+  }
+
+  parseSectionLine(section: string, line: string) {
+    switch (section) {
+      case 'PcVariables':
+        // this.parsePcVariables(line);
+        break;
+      case 'Constants':
+        this.parseConstants(line);
+        break;
+      case 'Menu':
+        // this.parseMenu(line);
+        break;
+      case 'SettingContextHelp':
+        // this.parseKeyValue('help', line);
+        break;
+      case 'UserDefined':
+        // this.parseDialogs(line);
+        break;
+      case 'CurveEditor':
+        // this.parseCurves(line);
+        break;
+      case 'TableEditor':
+        // this.parseTables(line);
+        break;
+      case 'OutputChannels':
+        // this.parseOutputChannels(line);
+        break;
+      default:
+        // TODO: rename sections, and do not use default, only explicit sections
+        // this.parseKeyValue(section, line);
+        break;
+    }
+  }
+
+  parseConstants(line: string) {
+    const result = P
+      .seqObj<any>(
+        P.string('page'),
+        this.space, this.equal, this.space,
+        ['page', P.digits],
+        P.all,
+      ).parse(line);
+
+    if (result.status) {
+      this.currentPage = Number(result.value.page);
+    } else if (this.currentPage) {
+      this.parseConstantsPage(this.currentPage, line);
+    }
+  }
+
+  parseConstantsPage(page: number, line: string) {
+    const delimiter = [this.space, this.comma, this.space];
+
+    // first common part:
+    // name = scalar, U08, 3,
+    const base: any = (type: string) => [
+      ['name', P.regexp(/[0-9a-z_]*/i)],
+      this.space, this.equal, this.space,
+      ['type', P.string(type)],
+      ...delimiter,
+      ['size', this.size],
+      ...delimiter,
+      ['offset', P.digits],
+    ];
+
+    const scalarShortRest: any = [
+      // TODO: ^[] (noneOf)
+      ['units', P.alt(
+        this.expression,
+        P.regexp(/[^"]*/).trim(this.space).wrap(this.quote, this.quote),
+      )],
+      ...delimiter,
+      ['scale', P.alt(this.expression, this.numbers)],
+      ...delimiter,
+      ['transform', P.alt(this.expression, this.numbers)],
+    ];
+
+    const scalarRest: any = [
+      ...scalarShortRest,
+      ...delimiter,
+      ['min', P.alt(this.expression, this.numbers)],
+      ...delimiter,
+      ['max', P.alt(this.expression, this.numbers)],
+      ...delimiter,
+      ['digits', P.digits],
+      P.all,
+    ];
+
+    // normal scalar
+    const scalarConstant = P.seqObj<any>(
+      ...base('scalar'),
+      ...delimiter,
+      ...scalarRest,
+    );
+
+    // short version of scalar (e.g. 'divider')
+    const scalarShortConstant = P.seqObj<any>(
+      ...base('scalar'),
+      ...delimiter,
+      ...scalarShortRest,
+    );
+
+    // normal version of array
+    const arrayConstant = P.seqObj<any>(
+      ...base('array'),
+      ...delimiter,
+      ['shape', P.regexp(/\[\s*\d+\s*(x\s*\d+)*\s*\]/)],
+      ...delimiter,
+      ...scalarRest,
+    );
+
+    // normal version of bits
+    const bitsConstant = P.seqObj<any>(
+      ...base('bits'),
+      ...delimiter,
+      ['fromTo', P.regexp(/\[\d+:\d+\]*/)],
+      ...delimiter,
+      ['values', P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma)],
+      P.all,
+    );
+
+    // short version of bits
+    const bitsShortConstant = P.seqObj<any>(
+      ...base('bits'),
+      ...delimiter,
+      ['fromTo', P.regexp(/\[\d+:\d+\]*/)],
+      P.all,
+    );
+
+    // const language = P.createLanguage({
+    //   scalarConstant: () =>  scalarConstant,
+    //   arrayConstant: () =>  arrayConstant,
+    //   bitsConstant: () =>  bitsConstant,
+    // });
+
+
+    // TODO: debug
+    // console.log(`Parsing: '${line}'`);
+
+    const result = scalarConstant
+      .or(scalarShortConstant)
+      .or(arrayConstant)
+      .or(bitsConstant)
+      .or(bitsShortConstant)
+      .tryParse(line);
+
+    console.dir(
+      result,
+      { depth: null, compact: false },
+    );
+
+
+    this.result.constants.pages = [];
+  }
 
 //   parseCurves(line: string) {
 //     let match = line.match(this.CURVE_PATTERN);
@@ -705,12 +855,12 @@ console.log('------- start --------');
 
 //   static sanitizeComments = (val: string) => (val || '').replace(';', '').trim();
 
-//   static sanitizeString = (val: string) => val.replace(/"/g, '').trim();
+  static sanitizeString = (val: string) => val.replace(/"/g, '').trim();
 
 //   static stripComments = (val: string) => val.replace(/(\s*;.+$)/, '');
 
 //   static sanitizeCondition = (val: string) => val.replace(/^{\s*|\s*}$/g, '').trim();
-// }
+}
 
 const versions = [
   202012,
@@ -731,80 +881,15 @@ const line2 = 'fuelLoadBins = array,  U08,   272, [  16], { bitStringValue(algor
 // const line3 = 'iacStepTime  = bits , U08,      116, [3:5],      "INVALID","1", "2", "3", "4", "5", "6","INVALID"';
 const line3 = 'wmiEnabledPin   = bits,   U08,     158, [0:5], "Board Default", $DIGITAL_PIN, "Board Default", "Board Default" ; some comment';
 
-const space = P.optWhitespace;
-const expression = P.regexp(/{.+?}/);
-const numbers = P.regexp(/[0-9.-]*/);
-const equal = P.string('=');
-const quote = P.string('"');
-const comma = P.string(',');
-const size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32/);
 
-const delimiter = [space, comma, space];
-
-// first common part:
-// name = scalar, U08, 3,
-const baseParser: any = (type: string) => [
-  ['name', P.regexp(/[0-9a-z]*/i)],
-  space, equal, space,
-  ['type', P.string(type)],
-  ...delimiter,
-  ['size', size],
-  ...delimiter,
-  ['offset', P.digits],
-];
-
-const scalarRestParser: any = [
-  ['units', P.alt(expression, P.regexp(/[^"]*/).trim(space).wrap(quote, quote))],
-  ...delimiter,
-  ['scale', P.alt(expression, numbers)],
-  ...delimiter,
-  ['transform', P.alt(expression, numbers)],
-  ...delimiter,
-  ['min', P.alt(expression, numbers)],
-  ...delimiter,
-  ['max', P.alt(expression, numbers)],
-  ...delimiter,
-  ['digits', P.digits],
-  space, P.all,
-];
-
-const arrayConstant = P.seqObj<any>(
-  ...baseParser('array'),
-  ...delimiter,
-  ['shape', P.regexp(/\[\s*\d+\s*(x\s*\d)*\s*\]/)],
-  ...delimiter,
-  ...scalarRestParser,
-);
-
-const scalarConstant = P.seqObj<any>(
-  ...baseParser('scalar'),
-  ...delimiter,
-  ...scalarRestParser,
-);
-
-const bitsConstant = P.seqObj<any>(
-  ...baseParser('bits'),
-  ...delimiter,
-  ['fromTo', P.regexp(/\[\d+:\d+\]*/)],
-  ...delimiter,
-  ['values', P.regexp(/[^,;]*/).trim(space).sepBy(comma)],
-  space, P.all,
-);
-
-const iniLanguage = P.createLanguage({
-  scalarConstant: () =>  scalarConstant,
-  arrayConstant: () =>  arrayConstant,
-  bitsConstant: () =>  bitsConstant,
-});
-
-console.dir(
-  {
-    // scalar: iniLanguage.scalarConstant.tryParse(line),
-    // array: iniLanguage.arrayConstant.tryParse(line2),
-    bits: iniLanguage.bitsConstant.tryParse(line3),
-  },
-  { depth: null, compact: false },
-);
+// console.dir(
+//   {
+//     // scalar: iniLanguage.scalarConstant.tryParse(line),
+//     // array: iniLanguage.arrayConstant.tryParse(line2),
+//     bits: iniLanguage.bitsConstant.tryParse(line3),
+//   },
+//   { depth: null, compact: false },
+// );
 
 // versions.forEach((version) => {
 //   const result = new Parser(
@@ -814,5 +899,9 @@ console.dir(
 //   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
 //   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
 // });
+
+const result = new Ini(
+  fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
+).parse();
 
 console.log('------- end --------');
