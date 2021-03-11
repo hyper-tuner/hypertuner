@@ -409,11 +409,11 @@ class INI {
           size: result.size,
           offset: Number(result.offset),
           units: INI.sanitizeString(result.units),
-          scale: Number.isNaN(result.scale) ? INI.sanitizeString(result.scale) : Number(result.scale),
-          transform: Number.isNaN(result.transform) ? INI.sanitizeString(result.transform) : Number(result.transform),
-          min: Number.isNaN(result.min) ? INI.sanitizeString(result.min) : Number(result.min),
-          max: Number.isNaN(result.max) ? INI.sanitizeString(result.max) : Number(result.max),
-          digits: Number(result.digits),
+          scale: INI.numberOrExpression(result.scale),
+          transform: INI.numberOrExpression(result.transform),
+          min: INI.numberOrExpression(result.min),
+          max: INI.numberOrExpression(result.max),
+          digits: INI.numberOrExpression(result.digits),
         };
         break;
       default:
@@ -868,7 +868,11 @@ class INI {
 
 //   static sanitizeComments = (val: string) => (val || '').replace(';', '').trim();
 
+  static numberOrExpression = (val: string | undefined | null) => INI.isNumber(val || '0') ? Number(val || 0) : INI.sanitizeString(`${val}`);
+
   static sanitizeString = (val: string) => val.replace(/"/g, '').trim();
+
+  static isNumber = (val: string) => !Number.isNaN(Number(val));
 
 //   static stripComments = (val: string) => val.replace(/(\s*;.+$)/, '');
 
