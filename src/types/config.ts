@@ -153,7 +153,11 @@ export interface Table {
 export interface Config {
   [key: string]: any;
   megaTune: {
+    [key: string]: any;
     signature: string;
+    MTversion: number;
+    queryCommand: string;
+    versionInfo: string;
   };
   tunerStudio: {
     iniSpecVersion: number;

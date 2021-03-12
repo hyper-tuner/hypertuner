@@ -217,6 +217,9 @@ class INI {
     this.result = {
       megaTune: {
         signature: '',
+        MTversion: 0,
+        queryCommand: '',
+        versionInfo: '',
       },
       tunerStudio: {
         iniSpecVersion: 0,
@@ -274,6 +277,9 @@ class INI {
 
   private parseSectionLine(section: string, line: string) {
     switch (section) {
+      case 'MegaTune':
+        this.parseMegaTune(line);
+        break;
       case 'PcVariables':
         this.parsePcVariables(line);
         break;
@@ -284,7 +290,7 @@ class INI {
         this.parseMenu(line);
         break;
       case 'SettingContextHelp':
-        // this.parseKeyValue('help', line);
+        this.parseHelp(line);
         break;
       case 'UserDefined':
         // this.parseDialogs(line);
@@ -299,10 +305,45 @@ class INI {
         // this.parseOutputChannels(line);
         break;
       default:
-        // TODO: rename sections, and do not use default, only explicit sections
-        // this.parseKeyValue(section, line);
         break;
     }
+  }
+
+  private parseMegaTune(line: string) {
+    const { key, value } = this.parseKeyValue(line);
+    this.result.megaTune[key] = value;
+  }
+
+  private parseHelp(line: string) {
+    const { key, value } = this.parseKeyValue(line);
+    this.result.help[key] = value as string;
+  }
+
+  private parseKeyValue(line: string) {
+    const base: any = [
+      ['key', P.regexp(/[0-9a-z_]*/i)],
+      this.space, this.equal, this.space,
+    ];
+
+    const result = P
+      .seqObj<any>(
+        ...base,
+        ['value', this.notQuote.wrap(...this.quotes)],
+        P.all,
+      )
+      .or(P.seqObj<any>(
+        ...base,
+        ['value', this.numbers],
+        P.all,
+      ))
+      .tryParse(line);
+
+    return {
+      key: result.key as string,
+      value: INI.isNumber(result.value)
+        ? Number(result.value)
+        : INI.sanitizeString(result.value),
+    };
   }
 
   private parseMenu(line: string) {
@@ -1095,7 +1136,7 @@ const result = new INI(
 ).parse();
 
 console.dir(
-  result.menus,
+  result.help,
   { depth: null, compact: false },
 );
 
