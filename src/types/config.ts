@@ -62,14 +62,15 @@ export enum ConstantTypes {
   SCALAR = 'scalar',
   BITS = 'bits',
   ARRAY = 'array',
+  STRING = 'string',
 }
 
-export type ConstantSize = 'U08' | 'S08' | 'U16' | 'S16' | 'U32' | 'S32' | 'S64' | 'F32';
+export type ConstantSize = 'U08' | 'S08' | 'U16' | 'S16' | 'U32' | 'S32' | 'S64' | 'F32' | 'ASCII';
 
 export interface ScalarConstant {
   type: ConstantTypes.SCALAR;
   size: ConstantSize;
-  offset: number;
+  offset?: number;
   units: string;
   scale: number | string;
   transform: number | string;
@@ -81,7 +82,7 @@ export interface ScalarConstant {
 export interface BitsConstant {
   type: ConstantTypes.BITS;
   size: ConstantSize;
-  offset: number;
+  offset?: number;
   address: number[];
   values: string[];
 }
@@ -89,7 +90,7 @@ export interface BitsConstant {
 export interface ArrayConstant {
   type: ConstantTypes.ARRAY;
   size: ConstantSize;
-  offset: number;
+  offset?: number;
   shape: ArrayShape;
   units: string;
   scale: number | string;
@@ -99,7 +100,13 @@ export interface ArrayConstant {
   digits: number;
 }
 
-export type Constant = ScalarConstant | BitsConstant | ArrayConstant;
+export interface StringConstant {
+  type: ConstantTypes.SCALAR;
+  size: ConstantSize;
+  length: number;
+}
+
+export type Constant = ScalarConstant | BitsConstant | ArrayConstant | StringConstant;
 
 export interface Constants {
   [name: string]: Constant;

@@ -193,7 +193,7 @@ class INI {
     this.equal = P.string('=');
     this.quote = P.string('"');
     this.comma = P.string(',');
-    this.size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32/);
+    this.size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32|ASCII/);
     this.delimiter = [this.space, this.comma, this.space];
 
     this.lines = buffer.toString().split('\n');
@@ -263,10 +263,10 @@ class INI {
   parseSectionLine(section: string, line: string) {
     switch (section) {
       case 'PcVariables':
-        // this.parsePcVariables(line);
+        this.parsePcVariables(line);
         break;
       case 'Constants':
-        this.parseConstants(line);
+        // this.parseConstants(line);
         break;
       case 'Menu':
         // this.parseMenu(line);
@@ -294,33 +294,55 @@ class INI {
   }
 
   private parsePcVariables(line: string) {
-    // '^(?<type>scalar|bits|array)\\s*,*\\s*(?<size>[A-Z\\d]+)\\s*,*';
-    //  `${this.PC_VARIABLE_BASE_PATTERN}.+`);
-    // `${this.PC_VARIABLE_BASE_PATTERN}${this.SCALAR_BASE_PATTERN}${this.COMMENTS_PATTERN}$`);
-    // `${this.PC_VARIABLE_BASE_PATTERN}\\s*\\[(?<from>\\d+):(?<to>\\d+)\\],\\s*(?<values>.+?)${this.COMMENTS_PATTERN}$`);
-    // `${this.PC_VARIABLE_BASE_PATTERN}\\s*\\[(?<shape>.+)\\]\\s*,*${this.SCALAR_BASE_PATTERN}\\s*,*\\s*(?<extra>\\w+)*${this.COMMENTS_PATTERN}$`);
+    const result = this.parseConstAndVar(line, true);
 
-    // first common (eg. name = scalar, U08, 3,)
-    const base: any = (type: string) => [
-      ['name', P.regexp(/[0-9a-z_]*/i)],
-      this.space, this.equal, this.space,
-      ['type', P.string(type)],
-      ...this.delimiter,
-      ['size', this.size],
-    ];
+    let constant = {} as Constant;
+    switch (result.type) {
+      case 'scalar':
+        constant = {
+          type: result.type,
+          size: result.size,
+          units: INI.sanitizeString(result.units),
+          scale: INI.numberOrExpression(result.scale),
+          transform: INI.numberOrExpression(result.transform),
+          min: INI.numberOrExpression(result.min),
+          max: INI.numberOrExpression(result.max),
+          digits: Number(result.digits),
+        };
+        break;
+      case 'array':
+        constant = {
+          type: result.type,
+          size: result.size,
+          shape: INI.arrayShape(result.shape),
+          units: INI.sanitizeString(result.units),
+          scale: INI.numberOrExpression(result.scale),
+          transform: INI.numberOrExpression(result.transform),
+          min: INI.numberOrExpression(result.min),
+          max: INI.numberOrExpression(result.max),
+          digits: Number(result.digits),
+        };
+        break;
+      case 'bits':
+        constant = {
+          type: result.type,
+          size: result.size,
+          address: result.address.split(':').map(Number),
+          values: (result.values || []).map(INI.sanitizeString),
+        };
+        break;
+      case 'string':
+        constant = {
+          type: result.type,
+          size: result.size,
+          length: Number(result.length),
+        };
+      break;
+      default:
+        break;
+    }
 
-    // normal scalar
-    const scalar = P.seqObj<any>(
-      ...base('scalar'),
-      ...this.delimiter,
-    );
-
-    const result = scalar.tryParse(line);
-
-    console.dir(
-      result,
-      { depth: null, compact: false },
-    );
+    this.result.pcVariables[result.name] = constant;
   }
 
   private parseConstants(line: string) {
@@ -335,7 +357,7 @@ class INI {
     if (page.status) {
       this.currentPage = Number(page.value.page);
     } else if (this.currentPage) {
-      const result = this.parseConstant(line);
+      const result = this.parseConstAndVar(line);
 
       if (!this.result.constants.pages[this.currentPage]) {
         this.result.constants.pages[this.currentPage] = {
@@ -391,22 +413,35 @@ class INI {
     }
   }
 
-  private parseConstant(line: string) {
+  private parseConstAndVar(line: string, asPcVariable = false) {
     const sqrBrackets: [P.Parser<any>, P.Parser<any>] = [P.string('['), P.string(']')];
     const address: any = [
       ['address', P.regexp(/\d+:\d+/).trim(this.space).wrap(...sqrBrackets)],
     ];
 
     // first common (eg. name = scalar, U08, 3,)
-    const base: any = (type: string) => [
-      ['name', P.regexp(/[0-9a-z_]*/i)],
-      this.space, this.equal, this.space,
-      ['type', P.string(type)],
-      ...this.delimiter,
-      ['size', this.size],
-      ...this.delimiter,
-      ['offset', P.digits],
-    ];
+    const base: any = (type: string) => {
+      let list = [
+        ['name', P.regexp(/[0-9a-z_]*/i)],
+        this.space, this.equal, this.space,
+        ['type', P.string(type)],
+        ...this.delimiter,
+        ['size', this.size],
+      ];
+
+      // pcVariables don't have "offset"
+      if (!asPcVariable) {
+        list = [
+          ...list,
+          ...[
+            ...this.delimiter,
+            ['offset', P.digits],
+          ],
+        ];
+      }
+
+      return list;
+    };
 
     const scalarShortRest: any = [
       ['units', P.alt(
@@ -471,11 +506,20 @@ class INI {
       P.all,
     );
 
+    // string (in pcVariables)
+    const string = P.seqObj<any>(
+      ...base('string'),
+      ...this.delimiter,
+      ['length', P.digits],
+      P.all,
+    );
+
     return scalar
       .or(scalarShort)
       .or(array)
       .or(bits)
       .or(bitsShort)
+      .or(string)
       .tryParse(line);
   }
 
