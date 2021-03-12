@@ -108,6 +108,8 @@ class INI {
 
   quote: P.Parser<any>;
 
+  quotes: [P.Parser<any>, P.Parser<any>];
+
   comma: P.Parser<any>;
 
   size: P.Parser<any>;
@@ -196,6 +198,7 @@ class INI {
     this.numbers = P.regexp(/[0-9.-]*/);
     this.equal = P.string('=');
     this.quote = P.string('"');
+    this.quotes = [this.quote, this.quote];
     this.comma = P.string(',');
     this.size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32|ASCII/);
     this.delimiter = [this.space, this.comma, this.space];
@@ -275,7 +278,7 @@ class INI {
         this.parseConstants(line);
         break;
       case 'Menu':
-        // this.parseMenu(line);
+        this.parseMenu(line);
         break;
       case 'SettingContextHelp':
         // this.parseKeyValue('help', line);
@@ -300,13 +303,68 @@ class INI {
   }
 
   private parseMenu(line: string) {
-    const result = P
+    // skip root "menuDialog = main" for now
+    if (line.startsWith('menuDialog')) {
+      return;
+    }
+
+    const menuResult = P
       .seqObj<any>(
         P.string('menu'),
         this.space, this.equal, this.space,
-        ['name', P.regexp(/[0-9a-z_&/]*/i)],
+        ['name', this.notQuote.trim(this.space).wrap(...this.quotes)],
         P.all,
       ).parse(line);
+
+    if (menuResult.status) {
+      this.currentMenu = menuResult.value.name;
+    } else if (this.currentMenu) {
+
+      // subMenu = std_separator
+      const base: any = [
+        P.string('subMenu'),
+        this.space, this.equal, this.space,
+        ['name', P.regexp(/[0-9a-z_]*/i)],
+      ];
+
+      // subMenu = io_summary, "I/O Summary"
+      const withTitle: any = [
+        ...base,
+        ...this.delimiter,
+        ['title', this.notQuote.wrap(...this.quotes)],
+      ];
+
+      // subMenu = egoControl, "AFR/O2", 3
+      const withPage: any = [
+        ...withTitle,
+        ...this.delimiter,
+        ['page', P.digits],
+      ];
+
+      // subMenu = fuelTemp_curve, "Fuel Temp Correction", { flexEnabled }
+      const withCondition: any = [
+        ...withTitle,
+        ...this.delimiter,
+        ['condition', this.expression],
+        P.all,
+      ];
+
+      // subMenu = inj_trimad_B, "Sequential fuel trim (5-8)", 9, { nFuelChannels >= 5 }
+      const full: any = [
+        ...withPage,
+        ...this.delimiter,
+        ['condition', this.expression],
+      ];
+
+      const subMenuResult = P.seqObj<any>(...full, P.all)
+        .or(P.seqObj<any>(...withCondition, P.all))
+        .or(P.seqObj<any>(...withPage, P.all))
+        .or(P.seqObj<any>(...withTitle, P.all))
+        .or(P.seqObj<any>(...base, P.all))
+        .tryParse(line);
+
+      console.log(subMenuResult);
+    }
   }
 
   private parsePcVariables(line: string) {
@@ -461,7 +519,7 @@ class INI {
     const scalarShortRest: any = [
       ['units', P.alt(
         this.expression,
-        this.notQuote.trim(this.space).wrap(this.quote, this.quote),
+        this.notQuote.trim(this.space).wrap(...this.quotes),
       )],
       ...this.delimiter,
       ['scale', P.alt(this.expression, this.numbers)],
@@ -1021,7 +1079,7 @@ const result = new INI(
 ).parse();
 
 console.dir(
-  result,
+  result.menus,
   { depth: null, compact: false },
 );
 
