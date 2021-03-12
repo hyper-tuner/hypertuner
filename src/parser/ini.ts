@@ -915,30 +915,6 @@ const versions = [
   202103,
 ];
 
-// const buffer = fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8');
-
-// this.SCALAR_BASE_PATTERN = '\\s*"(?<units>.*)"\\s*,*\\s*(?<scale>[\\-\\d.]+)\\s*,*\\s*(?<transform>[\\-\\d.]+)\\s*,*\\s*(?<min>[\\-\\d.]+)*\\s*,*\\s*(?<max>[\\-\\d.]+)*\\s*,*\\s*(?<digits>[\\d.]+)*';
-
-const line = 'aeColdPct     = scalar, U08,      1,         "  %  ",      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
-// const line = 'aeColdPct     = scalar, U08,      1,         { bitStringValue(algorithmUnits ,  algorithm) },      {fuelLoadMax},       {fuelLoadMax},   {fuelLoadMax},    {fuelLoadMax},       0 ;AE cold adjustment %';
-// const line = 'aeColdPct     = scalar, U08,      1,         { bitStringValue(algorithmUnits ,  algorithm) },      1.0,       0,   100,    255,       0 ;AE cold adjustment %';
-
-// const line2 = 'fuelTrim1Table      = array,  U08,     0,[6x6],     "%",    1.0,    -128,   -50,    50,        0';
-const line2 = 'fuelLoadBins = array,  U08,   272, [  16], { bitStringValue(algorithmUnits ,  algorithm) },        2.0,      0.0,   0.0,   {fuelLoadMax},      0';
-
-// const line3 = 'iacStepTime  = bits , U08,      116, [3:5],      "INVALID","1", "2", "3", "4", "5", "6","INVALID"';
-const line3 = 'wmiEnabledPin   = bits,   U08,     158, [0:5], "Board Default", $DIGITAL_PIN, "Board Default", "Board Default" ; some comment';
-
-
-// console.dir(
-//   {
-//     // scalar: iniLanguage.scalarConstant.tryParse(line),
-//     // array: iniLanguage.arrayConstant.tryParse(line2),
-//     bits: iniLanguage.bitsConstant.tryParse(line3),
-//   },
-//   { depth: null, compact: false },
-// );
-
 // versions.forEach((version) => {
 //   const result = new Parser(
 //     fs.readFileSync(path.join(__dirname, `/../../public/tunes/${version}.ini`), 'utf8'),
