@@ -224,16 +224,20 @@ class INI {
       tunerStudio: {
         iniSpecVersion: 0,
       },
+
       defines: {},
+
       pcVariables: {},
       constants: {
         pages: [],
       },
       menus: {},
+
       dialogs: {},
       curves: {},
       tables: {},
       outputChannels: {},
+
       help: {},
     };
   }
@@ -252,8 +256,8 @@ class INI {
     this.lines.forEach((raw) => {
       const line = raw.trim();
       // skip empty lines and lines with comments only
-      // skip #EXPRESSION for now
-      if (line === '' || line.startsWith(';') || line.startsWith('#')) {
+      // skip #if for now
+      if (line === '' || line.startsWith(';') || (line.startsWith('#') && !line.startsWith('#define'))) {
         return;
       }
 
@@ -279,6 +283,9 @@ class INI {
     switch (section) {
       case 'MegaTune':
         this.parseMegaTune(line);
+        break;
+      case 'TunerStudio':
+        this.parseTunerStudio(line);
         break;
       case 'PcVariables':
         this.parsePcVariables(line);
@@ -312,6 +319,11 @@ class INI {
   private parseMegaTune(line: string) {
     const { key, value } = this.parseKeyValue(line);
     this.result.megaTune[key] = value;
+  }
+
+  private parseTunerStudio(line: string) {
+    const { key, value } = this.parseKeyValue(line);
+    this.result.tunerStudio[key] = value;
   }
 
   private parseHelp(line: string) {

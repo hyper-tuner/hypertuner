@@ -160,6 +160,7 @@ export interface Config {
     versionInfo: string;
   };
   tunerStudio: {
+    [key: string]: any;
     iniSpecVersion: number;
   };
   defines: {
