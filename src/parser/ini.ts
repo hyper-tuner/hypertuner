@@ -112,7 +112,11 @@ class INI {
 
   size: P.Parser<any>;
 
-  delimiter: P.Parser<any>[];
+  delimiter: [P.Parser<any>, P.Parser<any>, P.Parser<any>];
+
+  notQuote: P.Parser<any>;
+
+  sqrBrackets: [P.Parser<any>, P.Parser<any>];
 
   lines: string[];
 
@@ -195,6 +199,8 @@ class INI {
     this.comma = P.string(',');
     this.size = P.regexp(/U08|S08|U16|S16|U32|S32|S64|F32|ASCII/);
     this.delimiter = [this.space, this.comma, this.space];
+    this.notQuote = P.regexp(/[^"]*/);
+    this.sqrBrackets = [P.string('['), P.string(']')];
 
     this.lines = buffer.toString().split('\n');
 
@@ -232,9 +238,9 @@ class INI {
     return this.result;
   }
 
-//   // TODO: fix Idle advance mode in dwell settings
+  // TODO: fix Idle advance mode in dwell settings
 
-  parseSections() {
+  private parseSections() {
     let section: string;
 
     this.lines.forEach((raw) => {
@@ -260,13 +266,13 @@ class INI {
     });
   }
 
-  parseSectionLine(section: string, line: string) {
+  private parseSectionLine(section: string, line: string) {
     switch (section) {
       case 'PcVariables':
         this.parsePcVariables(line);
         break;
       case 'Constants':
-        // this.parseConstants(line);
+        this.parseConstants(line);
         break;
       case 'Menu':
         // this.parseMenu(line);
@@ -291,6 +297,16 @@ class INI {
         // this.parseKeyValue(section, line);
         break;
     }
+  }
+
+  private parseMenu(line: string) {
+    const result = P
+      .seqObj<any>(
+        P.string('menu'),
+        this.space, this.equal, this.space,
+        ['name', P.regexp(/[0-9a-z_&/]*/i)],
+        P.all,
+      ).parse(line);
   }
 
   private parsePcVariables(line: string) {
@@ -414,9 +430,8 @@ class INI {
   }
 
   private parseConstAndVar(line: string, asPcVariable = false) {
-    const sqrBrackets: [P.Parser<any>, P.Parser<any>] = [P.string('['), P.string(']')];
     const address: any = [
-      ['address', P.regexp(/\d+:\d+/).trim(this.space).wrap(...sqrBrackets)],
+      ['address', P.regexp(/\d+:\d+/).trim(this.space).wrap(...this.sqrBrackets)],
     ];
 
     // first common (eg. name = scalar, U08, 3,)
@@ -446,7 +461,7 @@ class INI {
     const scalarShortRest: any = [
       ['units', P.alt(
         this.expression,
-        P.regexp(/[^"]*/).trim(this.space).wrap(this.quote, this.quote),
+        this.notQuote.trim(this.space).wrap(this.quote, this.quote),
       )],
       ...this.delimiter,
       ['scale', P.alt(this.expression, this.numbers)],
@@ -483,7 +498,7 @@ class INI {
     const array = P.seqObj<any>(
       ...base('array'),
       ...this.delimiter,
-      ['shape', P.regexp(/\d+\s*(x\s*\d+)*/).trim(this.space).wrap(...sqrBrackets)],
+      ['shape', P.regexp(/\d+\s*(x\s*\d+)*/).trim(this.space).wrap(...this.sqrBrackets)],
       ...this.delimiter,
       ...scalarRest,
     );
