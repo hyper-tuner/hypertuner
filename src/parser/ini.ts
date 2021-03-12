@@ -263,7 +263,10 @@ class INI {
         // top level section found
       if (result.status) {
         section = result.value.section.trim();
-      } else if (section) {
+        return;
+      }
+
+      if (section) {
         this.parseSectionLine(section, line);
       }
     });
@@ -317,9 +320,15 @@ class INI {
       ).parse(line);
 
     if (menuResult.status) {
-      this.currentMenu = menuResult.value.name;
-    } else if (this.currentMenu) {
+      this.currentMenu = INI.sanitizeString(menuResult.value.name);
+      this.result.menus[this.currentMenu] = {
+        title: INI.sanitizeString(menuResult.value.name),
+        subMenus: {},
+      };
+      return;
+    }
 
+    if (this.currentMenu) {
       // subMenu = std_separator
       const base: any = [
         P.string('subMenu'),
@@ -363,7 +372,11 @@ class INI {
         .or(P.seqObj<any>(...base, P.all))
         .tryParse(line);
 
-      console.log(subMenuResult);
+      this.result.menus[this.currentMenu].subMenus[subMenuResult.name] = {
+        title: INI.sanitizeString(subMenuResult.title || ''),
+        page: Number(subMenuResult.page || 0),
+        condition: INI.sanitizeString(subMenuResult.condition || ''),
+      };
     }
   }
 
@@ -430,7 +443,10 @@ class INI {
 
     if (page.status) {
       this.currentPage = Number(page.value.page);
-    } else if (this.currentPage) {
+      return;
+    }
+
+    if (this.currentPage) {
       const result = this.parseConstAndVar(line);
 
       if (!this.result.constants.pages[this.currentPage]) {
