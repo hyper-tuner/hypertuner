@@ -282,10 +282,10 @@ class INI {
   private parseSectionLine(section: string, line: string) {
     switch (section) {
       case 'MegaTune':
-        this.parseMegaTune(line);
+        this.parseKeyValueFor('megaTune', line);
         break;
       case 'TunerStudio':
-        this.parseTunerStudio(line);
+        this.parseKeyValueFor('tunerStudio', line);
         break;
       case 'PcVariables':
         this.parsePcVariables(line);
@@ -297,7 +297,7 @@ class INI {
         this.parseMenu(line);
         break;
       case 'SettingContextHelp':
-        this.parseHelp(line);
+        this.parseKeyValueFor('help', line);
         break;
       case 'UserDefined':
         // this.parseDialogs(line);
@@ -316,19 +316,30 @@ class INI {
     }
   }
 
-  private parseMegaTune(line: string) {
-    const { key, value } = this.parseKeyValue(line);
-    this.result.megaTune[key] = value;
-  }
+//   parseDefines(line: string) {
+//     const match = line.match(this.DEFINE_PATTERN);
+//     if (match) {
+//       this.result.defines[match.groups!.key] = match.groups!.value.split(',')
+//         .map(Parser.sanitizeString);
 
-  private parseTunerStudio(line: string) {
-    const { key, value } = this.parseKeyValue(line);
-    this.result.tunerStudio[key] = value;
-  }
+//       const resolved = this.result.defines[match.groups!.key].map((val) => (
+//         val.startsWith('$')
+//           ? this.result.defines[val.slice(1)]
+//           : val
+//         )).flat();
 
-  private parseHelp(line: string) {
+//       this.result.defines[match.groups!.key] = resolved;
+//     }
+//   }
+
+  private parseKeyValueFor(section: string, line: string) {
     const { key, value } = this.parseKeyValue(line);
-    this.result.help[key] = value as string;
+
+    if (this.result[section][key]) {
+      Error(`Key: ${key} for section: ${section} already exist`);
+    }
+
+    this.result[section][key] = value;
   }
 
   private parseKeyValue(line: string) {
@@ -434,6 +445,10 @@ class INI {
   }
 
   private parsePcVariables(line: string) {
+    if (line.startsWith('#define')) {
+      return;
+    }
+
     const result = this.parseConstAndVar(line, true);
 
     let constant = {} as Constant;
@@ -486,6 +501,10 @@ class INI {
   }
 
   private parseConstants(line: string) {
+    if (line.startsWith('#define')) {
+      return;
+    }
+
     const page = P
       .seqObj<any>(
         P.string('page'),
