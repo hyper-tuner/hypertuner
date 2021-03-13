@@ -309,10 +309,47 @@ class INI {
         this.parseTables(line);
         break;
       case 'OutputChannels':
-        // this.parseOutputChannels(line);
+        this.parseOutputChannels(line);
         break;
       default:
         break;
+    }
+  }
+
+  private parseOutputChannels(line: string) {
+    try {
+      const result = this.parseConstAndVar(line);
+
+      console.log('FULL', result);
+    } catch (_) {
+      const base: any = [
+        ['name', this.name],
+        this.space, this.equal, this.space,
+      ];
+
+      // ochGetCommand    = "r\$tsCanId\x30%2o%2c"
+      // ochBlockSize     =  117
+      // coolant          = { coolantRaw - 40 }
+      // TODO: throttle   = { tps }, "%"
+      const result = P
+        .seqObj<any>(
+          ...base,
+          ['value', this.notQuote.wrap(...this.quotes)],
+          P.all,
+        )
+        .or(P.seqObj<any>(
+          ...base,
+          ['value', this.numbers],
+          P.all,
+        ))
+        .or(P.seqObj<any>(
+          ...base,
+          ['value', this.expression],
+          P.all,
+        ))
+        .tryParse(line);
+
+      console.log('SINGLE', result);
     }
   }
 
@@ -1025,7 +1062,7 @@ class INI {
     }
   }
 
-  private parseConstAndVar(line: string, asPcVariable = false) {
+  private parseConstAndVar(line: string, asPcVariable = false, asOutputChannel = false) {
     const address: any = [
       ['address', P.regexp(/\d+:\d+/).trim(this.space).wrap(...this.sqrBrackets)],
     ];
@@ -1616,9 +1653,9 @@ const result = new INI(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
 ).parse();
 
-console.dir(
-  result.tables,
-  { depth: null, compact: false },
-);
+// console.dir(
+//   result.tables,
+//   { depth: null, compact: false },
+// );
 
 console.log('------- end --------');
