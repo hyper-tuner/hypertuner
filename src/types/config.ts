@@ -6,8 +6,8 @@ export enum Switches {
 }
 
 export interface Field {
-  name: string;
   title: string;
+  name: string;
   condition?: string;
 }
 

@@ -6,11 +6,6 @@ import * as P from 'parsimmon';
 import {
   Config as ConfigType,
   Constant,
-  ConstantSize as ConstantSizeType,
-  ScalarConstant as ScalarConstantType,
-  BitsConstant as BitsConstantType,
-  ConstantTypes,
-  ArrayConstant as ArrayConstantType,
 } from '../types/config';
 
 console.log('------- start --------');
@@ -344,6 +339,7 @@ class INI {
         panels: {},
         fields: [],
       };
+
       return;
     }
 
@@ -391,7 +387,7 @@ class INI {
 
     if (panelResult.status) {
       if (!this.currentDialog) {
-        Error('Dialog not set');
+        throw new Error('Dialog not set');
       }
       this.currentPanel = panelResult.value.name;
 
@@ -401,17 +397,92 @@ class INI {
         fields: [],
         panels: {},
       };
+
       return;
     }
 
-    // TODO: settingSelector
+    // field = "Injector Layout"
+    const fieldBase: any = [
+      P.string('field'),
+      this.space, this.equal, this.space,
+      ['title', this.notQuote.wrap(...this.quotes)],
+    ];
+
+    // field = "Injector Layout", injLayout
+    const fieldWithName = [
+      ...fieldBase,
+      ...this.delimiter,
+      ['name', this.name],
+    ];
+
+    // field = "Low (E0) ", flexFreqLow, { flexEnabled }
+    const fieldWithCondition = [
+      ...fieldWithName,
+      ...this.delimiter,
+      ['condition', this.expression],
+    ];
+
+    const fieldResult = P
+      .seqObj<any>(
+        ...fieldWithCondition,
+        P.all,
+      )
+      .or(P.seqObj<any>(
+        ...fieldWithName,
+        P.all,
+      ))
+      .or(P.seqObj<any>(
+        ...fieldBase,
+        P.all,
+      ))
+      .parse(line);
+
+    if (fieldResult.status) {
+      if (!this.currentDialog) {
+        throw new Error('Dialog not set');
+      }
+
+      this.result.dialogs[this.currentDialog as string].fields.push({
+        title: INI.sanitizeString(fieldResult.value.title),
+        name: fieldResult.value.name,
+        condition: fieldResult.value.condition,
+      });
+
+      return;
+    }
+
+    // topicHelp = "https://wiki.speeduino.com/en/configuration/Engine_Constants"
+    const helpResult = P
+      .seqObj<any>(
+        P.string('topicHelp'),
+        this.space, this.equal, this.space,
+        ['help', this.notQuote.wrap(...this.quotes)],
+        P.all,
+      )
+      .parse(line);
+
+    if (!this.currentDialog) {
+      throw new Error('Dialog not set');
+    }
+
+    if (helpResult.status) {
+      this.result.dialogs[this.currentDialog as string].help = INI.sanitizeString(
+        helpResult.value.help,
+      );
+    }
+
+    // TODO: missing fields:
+    // - settingSelector
+    // - commandButton
   }
 
   private parseKeyValueFor(section: string, line: string) {
     const { key, value } = this.parseKeyValue(line);
 
     if (this.result[section][key]) {
-      Error(`Key: ${key} for section: ${section} already exist`);
+      // TODO: enable this for linting duplicates
+      return;
+      // throw new Error(`Key: ${key} for section: ${section} already exist`);
     }
 
     this.result[section][key] = value;
@@ -512,9 +583,9 @@ class INI {
         .tryParse(line);
 
       this.result.menus[this.currentMenu].subMenus[subMenuResult.name] = {
-        title: INI.sanitizeString(subMenuResult.title || ''),
+        title: INI.sanitizeString(subMenuResult.title),
         page: Number(subMenuResult.page || 0),
-        condition: INI.sanitizeString(subMenuResult.condition || ''),
+        condition: INI.sanitizeString(subMenuResult.condition),
       };
     }
   }
@@ -1229,7 +1300,7 @@ class INI {
 
   private static numberOrExpression = (val: string | undefined | null) => INI.isNumber(val || '0') ? Number(val || 0) : INI.sanitizeString(`${val}`);
 
-  private static sanitizeString = (val: string) => val.replace(/"/g, '').trim();
+  private static sanitizeString = (val: string) => `${val}`.replace(/"/g, '').trim();
 
   private static isNumber = (val: string) => !Number.isNaN(Number(val));
 
