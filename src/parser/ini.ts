@@ -122,6 +122,8 @@ class INI {
 
   sqrBrackets: [P.Parser<any>, P.Parser<any>];
 
+  inQuotes: P.Parser<any>;
+
   lines: string[];
 
   currentPage?: number;
@@ -207,6 +209,7 @@ class INI {
     this.delimiter = [this.space, this.comma, this.space];
     this.notQuote = P.regexp(/[^"]*/);
     this.sqrBrackets = [P.string('['), P.string(']')];
+    this.inQuotes = this.notQuote.trim(this.space).wrap(...this.quotes);
 
     this.lines = buffer.toString().split('\n');
 
@@ -239,13 +242,11 @@ class INI {
       curves: {},
       tables: {},
       outputChannels: {},
-
     };
   }
 
   parse() {
     this.parseSections();
-
     return this.result;
   }
 
@@ -268,7 +269,7 @@ class INI {
           P.all,
         ).parse(line);
 
-        // top level section found
+      // top level section found
       if (result.status) {
         section = result.value.section.trim();
         return;
@@ -301,7 +302,7 @@ class INI {
         this.parseKeyValueFor('help', line);
         break;
       case 'UserDefined':
-        // this.parseDialogs(line);
+        this.parseDialogs(line);
         break;
       case 'CurveEditor':
         // this.parseCurves(line);
@@ -315,6 +316,30 @@ class INI {
       default:
         break;
     }
+  }
+
+  private parseDialogs(line: string) {
+    const dialogBase: any = [
+      this.name,
+      this.space, this.equal, this.space,
+      ['name', this.name],
+      ...this.delimiter,
+      ['title', this.inQuotes],
+    ];
+    const dialogResult = P
+      .seqObj<any>(
+        ...dialogBase,
+        ...this.delimiter,
+        ['layout', this.name],
+        P.all,
+      )
+      .or(P.seqObj<any>(...dialogBase, P.all))
+      .parse(line);
+
+    if (dialogResult.status) {
+      console.log(dialogResult.value);
+    }
+
   }
 
   private parseKeyValueFor(section: string, line: string) {
@@ -364,7 +389,7 @@ class INI {
       .seqObj<any>(
         P.string('menu'),
         this.space, this.equal, this.space,
-        ['name', this.notQuote.trim(this.space).wrap(...this.quotes)],
+        ['name', this.inQuotes],
         P.all,
       ).parse(line);
 
@@ -615,7 +640,7 @@ class INI {
     const scalarShortRest: any = [
       ['units', P.alt(
         this.expression,
-        this.notQuote.trim(this.space).wrap(...this.quotes),
+        this.inQuotes,
       )],
       ...this.delimiter,
       ['scale', P.alt(this.expression, this.numbers)],
@@ -1174,9 +1199,9 @@ const result = new INI(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
 ).parse();
 
-console.dir(
-  result.defines,
-  { depth: null, compact: false },
-);
+// console.dir(
+//   result.defines,
+//   { depth: null, compact: false },
+// );
 
 console.log('------- end --------');
