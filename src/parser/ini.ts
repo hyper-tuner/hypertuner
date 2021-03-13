@@ -364,19 +364,33 @@ class INI {
     }
 
     // xAxis = 0, 1200, 6
-    const xAxisResult = P.seqObj<any>(
-      P.string('xAxis'),
+    // yAxis = 0, 1200, 6
+    const parseAxis = (name: string) => P.seqObj<any>(
+      P.string(name),
       this.space, this.equal, this.space,
       ['values', this.values],
       P.all,
     ).parse(line);
 
+    const xAxisResult = parseAxis('xAxis');
     if (xAxisResult.status) {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
 
       this.result.curves[this.currentCurve].labels = xAxisResult
+        .value
+        .values
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+    }
+
+    const yAxisResult = parseAxis('yAxis');
+    if (yAxisResult.status) {
+      if (!this.currentCurve) {
+        throw new Error('Curve not set');
+      }
+
+      this.result.curves[this.currentCurve].labels = yAxisResult
         .value
         .values
         .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
