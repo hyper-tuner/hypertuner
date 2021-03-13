@@ -365,6 +365,8 @@ class INI {
 
     // xAxis = 0, 1200, 6
     // yAxis = 0, 1200, 6
+    // xBins = taeBins, TPSdot
+    // yBins = taeRates
     const parseAxis = (name: string) => P.seqObj<any>(
       P.string(name),
       this.space, this.equal, this.space,
@@ -378,10 +380,12 @@ class INI {
         throw new Error('Curve not set');
       }
 
-      this.result.curves[this.currentCurve].labels = xAxisResult
+      this.result.curves[this.currentCurve].xAxis = xAxisResult
         .value
         .values
         .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+
+      return;
     }
 
     const yAxisResult = parseAxis('yAxis');
@@ -390,7 +394,49 @@ class INI {
         throw new Error('Curve not set');
       }
 
-      this.result.curves[this.currentCurve].labels = yAxisResult
+      this.result.curves[this.currentCurve].yAxis = yAxisResult
+        .value
+        .values
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+
+      return;
+    }
+
+    const xBinsResult = parseAxis('xBins');
+    if (xBinsResult.status) {
+      if (!this.currentCurve) {
+        throw new Error('Curve not set');
+      }
+
+      this.result.curves[this.currentCurve].xBins = xBinsResult
+        .value
+        .values
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+
+      return;
+    }
+
+    const yBinsResult = parseAxis('yBins');
+    if (yBinsResult.status) {
+      if (!this.currentCurve) {
+        throw new Error('Curve not set');
+      }
+
+      this.result.curves[this.currentCurve].yBins = yBinsResult
+        .value
+        .values
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+
+      return;
+    }
+
+    const size = parseAxis('size');
+    if (size.status) {
+      if (!this.currentCurve) {
+        throw new Error('Curve not set');
+      }
+
+      this.result.curves[this.currentCurve].size = size
         .value
         .values
         .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
@@ -1419,9 +1465,9 @@ const result = new INI(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
 ).parse();
 
-// console.dir(
-//   result.dialogs,
-//   { depth: null, compact: false },
-// );
+console.dir(
+  result.curves,
+  { depth: null, compact: false },
+);
 
 console.log('------- end --------');

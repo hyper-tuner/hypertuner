@@ -132,7 +132,6 @@ export interface Curve {
   yBins: string[];
   size: number[];
   gauge?: string;
-  condition?: string;
 }
 
 export interface Table {
