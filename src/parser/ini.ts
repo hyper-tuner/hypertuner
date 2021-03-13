@@ -227,21 +227,19 @@ class INI {
       tunerStudio: {
         iniSpecVersion: 0,
       },
-
-      defines: {},
-
       pcVariables: {},
       constants: {
         pages: [],
       },
+      defines: {},
       menus: {},
+      help: {},
 
       dialogs: {},
       curves: {},
       tables: {},
       outputChannels: {},
 
-      help: {},
     };
   }
 

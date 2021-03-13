@@ -163,13 +163,15 @@ export interface Config {
     [key: string]: any;
     iniSpecVersion: number;
   };
-  defines: {
-    [name: string]: string[];
-  };
   pcVariables: Constants;
   constants: {
     pages: Page[];
   };
+  defines: {
+    [name: string]: string[];
+  };
+  menus: Menus;
+  help: Help;
   dialogs: {
     [name: string]: Dialog;
   };
@@ -182,6 +184,4 @@ export interface Config {
   outputChannels: {
     [name: string]: ScalarConstant | BitsConstant;
   };
-  menus: Menus;
-  help: Help;
 }
