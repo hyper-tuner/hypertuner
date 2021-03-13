@@ -104,6 +104,8 @@ class INI {
 
   numbers: P.Parser<any>;
 
+  name: P.Parser<any>;
+
   equal: P.Parser<any>;
 
   quote: P.Parser<any>;
@@ -196,6 +198,7 @@ class INI {
     this.space = P.optWhitespace;
     this.expression = P.regexp(/{.+?}/);
     this.numbers = P.regexp(/[0-9.-]*/);
+    this.name = P.regexp(/[0-9a-z_]*/i);
     this.equal = P.string('=');
     this.quote = P.string('"');
     this.quotes = [this.quote, this.quote];
@@ -316,22 +319,6 @@ class INI {
     }
   }
 
-//   parseDefines(line: string) {
-//     const match = line.match(this.DEFINE_PATTERN);
-//     if (match) {
-//       this.result.defines[match.groups!.key] = match.groups!.value.split(',')
-//         .map(Parser.sanitizeString);
-
-//       const resolved = this.result.defines[match.groups!.key].map((val) => (
-//         val.startsWith('$')
-//           ? this.result.defines[val.slice(1)]
-//           : val
-//         )).flat();
-
-//       this.result.defines[match.groups!.key] = resolved;
-//     }
-//   }
-
   private parseKeyValueFor(section: string, line: string) {
     const { key, value } = this.parseKeyValue(line);
 
@@ -344,7 +331,7 @@ class INI {
 
   private parseKeyValue(line: string) {
     const base: any = [
-      ['key', P.regexp(/[0-9a-z_]*/i)],
+      ['key', this.name],
       this.space, this.equal, this.space,
     ];
 
@@ -397,7 +384,7 @@ class INI {
       const base: any = [
         P.string('subMenu'),
         this.space, this.equal, this.space,
-        ['name', P.regexp(/[0-9a-z_]*/i)],
+        ['name', this.name],
       ];
 
       // subMenu = io_summary, "I/O Summary"
@@ -444,8 +431,30 @@ class INI {
     }
   }
 
+  private parseDefines(line: string) {
+    const result = P.seqObj<any>(
+      P.string('#define'),
+      this.space,
+      ['name', this.name],
+      this.space, this.equal, this.space,
+      ['values', P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma)],
+      P.all,
+    ).tryParse(line);
+
+    this.result.defines[result.name] = result.values.map(INI.sanitizeString);
+
+    const resolved = this.result.defines[result.name].map((val) => (
+      val.startsWith('$')
+        ? this.result.defines[val.slice(1)]
+        : val
+      )).flat();
+
+    this.result.defines[result.name] = resolved;
+  }
+
   private parsePcVariables(line: string) {
     if (line.startsWith('#define')) {
+      this.parseDefines(line);
       return;
     }
 
@@ -502,6 +511,7 @@ class INI {
 
   private parseConstants(line: string) {
     if (line.startsWith('#define')) {
+      this.parseDefines(line);
       return;
     }
 
@@ -583,7 +593,7 @@ class INI {
     // first common (eg. name = scalar, U08, 3,)
     const base: any = (type: string) => {
       let list = [
-        ['name', P.regexp(/[0-9a-z_]*/i)],
+        ['name', this.name],
         this.space, this.equal, this.space,
         ['type', P.string(type)],
         ...this.delimiter,
@@ -1167,7 +1177,7 @@ const result = new INI(
 ).parse();
 
 console.dir(
-  result.help,
+  result.defines,
   { depth: null, compact: false },
 );
 
