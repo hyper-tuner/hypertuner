@@ -135,11 +135,10 @@ export interface Curve {
 }
 
 export interface Table {
-  name: string;
   map: string;
   title: string;
   page: number;
-  help: string;
+  help?: string;
   xBins: string[];
   yBins: string[];
   xyLabels: string[];
@@ -147,7 +146,6 @@ export interface Table {
   gridHeight: number;
   gridOrient: number[];
   upDownLabel: string[];
-  condition?: string;
 }
 
 export interface Config {

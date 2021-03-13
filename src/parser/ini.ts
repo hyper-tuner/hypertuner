@@ -306,13 +306,170 @@ class INI {
         this.parseCurves(line);
         break;
       case 'TableEditor':
-        // this.parseTables(line);
+        this.parseTables(line);
         break;
       case 'OutputChannels':
         // this.parseOutputChannels(line);
         break;
       default:
         break;
+    }
+  }
+
+  private parseTables(line: string) {
+    // table = veTable1Tbl,  veTable1Map, "VE Table", 2
+    const tableResult = P.seqObj<any>(
+      P.string('table'),
+      this.space, this.equal, this.space,
+      ['name', this.name],
+      ...this.delimiter,
+      ['map', this.name],
+      ...this.delimiter,
+      ['title', this.inQuotes],
+      ...this.delimiter,
+      ['page', P.digits],
+      P.all,
+    ).parse(line);
+
+    if (tableResult.status) {
+      this.currentTable = tableResult.value.name;
+      this.result.tables[this.currentTable!] = {
+        map: tableResult.value.map,
+        title: INI.sanitizeString(tableResult.value.title),
+        page: Number(tableResult.value.page),
+        xBins: [],
+        yBins: [],
+        xyLabels: [],
+        zBins: [],
+        gridHeight: 0,
+        gridOrient: [],
+        upDownLabel: [],
+      };
+
+      return;
+    }
+
+    // topicHelp = "http://speeduino.com/wiki/index.php/Tuning"
+    const helpResult = P.seqObj<any>(
+      P.string('topicHelp'),
+      this.space, this.equal, this.space,
+      ['help', this.inQuotes],
+      P.all,
+    ).parse(line);
+
+    if (helpResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].help = INI.sanitizeString(helpResult.value.help);
+
+      return;
+    }
+
+    // xBins       = rpmBins,  rpm
+    // yBins       = fuelLoadBins, fuelLoad
+    // xyLabels    = "RPM", "Fuel Load: "
+    // zBins       = veTable
+    // gridOrient  = 250,   0, 340
+    // upDownLabel = "(RICHER)", "(LEANER)"
+    const parseBins = (name: string) => P.seqObj<any>(
+      P.string(name),
+      this.space, this.equal, this.space,
+      ['values', this.values],
+      P.all,
+    ).parse(line);
+
+    const xBinsResult = parseBins('xBins');
+    if (xBinsResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].xBins = xBinsResult
+        .value
+        .values
+        .map(INI.sanitizeString);
+
+      return;
+    }
+
+    const yBinsResult = parseBins('yBins');
+    if (yBinsResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].yBins = yBinsResult
+        .value
+        .values
+        .map(INI.sanitizeString);
+
+      return;
+    }
+
+    const yxLabelsResult = parseBins('xyLabels');
+    if (yxLabelsResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].xyLabels = yxLabelsResult
+        .value
+        .values
+        .map(INI.sanitizeString);
+
+      return;
+    }
+
+    const zBinsResult = parseBins('zBins');
+    if (zBinsResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].zBins = zBinsResult
+        .value
+        .values
+        .map(INI.sanitizeString);
+
+      return;
+    }
+
+    // gridHeight  = 2.0
+    const gridHeightResult = P.seqObj<any>(
+      P.string('gridHeight'),
+      this.space, this.equal, this.space,
+      ['gridHeight', this.numbers],
+      P.all,
+    ).parse(line);
+
+    if (gridHeightResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].gridHeight = Number(gridHeightResult.value.gridHeight);
+
+      return;
+    }
+
+    const gridOrientResult = parseBins('gridOrient');
+    if (gridOrientResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].gridOrient = gridOrientResult
+        .value
+        .values
+        .map(Number);
+
+      return;
+    }
+
+    const upDownResult = parseBins('upDownLabel');
+    if (upDownResult.status) {
+      if (!this.currentTable) {
+        throw new Error('Table not set');
+      }
+      this.result.tables[this.currentTable].upDownLabel = upDownResult
+        .value
+        .values
+        .map(INI.sanitizeString);
     }
   }
 
@@ -329,7 +486,7 @@ class INI {
 
     if (curveResult.status) {
       this.currentCurve = curveResult.value.name;
-      this.result.curves[this.currentCurve as string] = {
+      this.result.curves[this.currentCurve!] = {
         title: INI.sanitizeString(curveResult.value.title),
         labels: [],
         xAxis: [],
@@ -354,7 +511,6 @@ class INI {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
-
       this.result.curves[this.currentCurve].labels = labelsResult
         .value
         .labels
@@ -379,7 +535,6 @@ class INI {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
-
       this.result.curves[this.currentCurve].xAxis = xAxisResult
         .value
         .values
@@ -393,7 +548,6 @@ class INI {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
-
       this.result.curves[this.currentCurve].yAxis = yAxisResult
         .value
         .values
@@ -407,7 +561,6 @@ class INI {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
-
       this.result.curves[this.currentCurve].xBins = xBinsResult
         .value
         .values
@@ -421,7 +574,6 @@ class INI {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
-
       this.result.curves[this.currentCurve].yBins = yBinsResult
         .value
         .values
@@ -435,7 +587,6 @@ class INI {
       if (!this.currentCurve) {
         throw new Error('Curve not set');
       }
-
       this.result.curves[this.currentCurve].size = size
         .value
         .values
@@ -463,7 +614,7 @@ class INI {
 
     if (dialogResult.status) {
       this.currentDialog = dialogResult.value.name;
-      this.result.dialogs[this.currentDialog as string] = {
+      this.result.dialogs[this.currentDialog!] = {
         title: INI.sanitizeString(dialogResult.value.title),
         layout: dialogResult.value.layout,
         panels: {},
@@ -521,7 +672,7 @@ class INI {
       }
       this.currentPanel = panelResult.value.name;
 
-      this.result.dialogs[this.currentDialog as string].panels[this.currentPanel as string] = {
+      this.result.dialogs[this.currentDialog!].panels[this.currentPanel!] = {
         layout: panelResult.value.layout,
         condition: panelResult.value.condition,
         fields: [],
@@ -572,7 +723,7 @@ class INI {
         throw new Error('Dialog not set');
       }
 
-      this.result.dialogs[this.currentDialog as string].fields.push({
+      this.result.dialogs[this.currentDialog!].fields.push({
         title: INI.sanitizeString(fieldResult.value.title),
         name: fieldResult.value.name,
         condition: fieldResult.value.condition,
@@ -596,7 +747,7 @@ class INI {
     }
 
     if (helpResult.status) {
-      this.result.dialogs[this.currentDialog as string].help = INI.sanitizeString(
+      this.result.dialogs[this.currentDialog!].help = INI.sanitizeString(
         helpResult.value.help,
       );
     }
@@ -1466,7 +1617,7 @@ const result = new INI(
 ).parse();
 
 console.dir(
-  result.curves,
+  result.tables,
   { depth: null, compact: false },
 );
 
