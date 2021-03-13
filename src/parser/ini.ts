@@ -320,7 +320,7 @@ class INI {
 
   private parseDialogs(line: string) {
     const dialogBase: any = [
-      this.name,
+      P.string('dialog'),
       this.space, this.equal, this.space,
       ['name', this.name],
       ...this.delimiter,
@@ -337,9 +337,74 @@ class INI {
       .parse(line);
 
     if (dialogResult.status) {
-      console.log(dialogResult.value);
+      this.currentDialog = dialogResult.value.name;
+      this.result.dialogs[this.currentDialog as string] = {
+        title: INI.sanitizeString(dialogResult.value.title),
+        layout: dialogResult.value.layout,
+        panels: {},
+        fields: [],
+      };
+      return;
     }
 
+    // panel = knock_window_angle_curve
+    const panelBase: any = [
+      P.string('panel'),
+      this.space, this.equal, this.space,
+      ['name', this.name],
+    ];
+
+    // panel = knock_window_angle_curve, West
+    const panelWithLayout = [
+      ...panelBase,
+      ...this.delimiter,
+      ['layout', this.name],
+    ];
+
+    // panel = flex_fuel_curve, { flexEnabled }
+    const panelWithCondition = [
+      ...panelBase,
+      ...this.delimiter,
+      ['condition', this.expression],
+    ];
+
+    const panelResult = P
+      .seqObj<any>(
+        ...panelWithLayout,
+        ...this.delimiter,
+        ['condition', this.expression],
+        P.all,
+      )
+      .or(P.seqObj<any>(
+        ...panelWithCondition,
+        P.all,
+      ))
+      .or(P.seqObj<any>(
+        ...panelWithLayout,
+        P.all,
+      ))
+      .or(P.seqObj<any>(
+        ...panelBase,
+        P.all,
+      ))
+      .parse(line);
+
+    if (panelResult.status) {
+      if (!this.currentDialog) {
+        Error('Dialog not set');
+      }
+      this.currentPanel = panelResult.value.name;
+
+      this.result.dialogs[this.currentDialog as string].panels[this.currentPanel as string] = {
+        layout: panelResult.value.layout,
+        condition: panelResult.value.condition,
+        fields: [],
+        panels: {},
+      };
+      return;
+    }
+
+    // TODO: settingSelector
   }
 
   private parseKeyValueFor(section: string, line: string) {
@@ -1199,9 +1264,9 @@ const result = new INI(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
 ).parse();
 
-// console.dir(
-//   result.defines,
-//   { depth: null, compact: false },
-// );
+console.dir(
+  result.dialogs,
+  { depth: null, compact: false },
+);
 
 console.log('------- end --------');

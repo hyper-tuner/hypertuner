@@ -12,7 +12,6 @@ export interface Field {
 }
 
 export interface Panel {
-  title?: string;
   layout: string;
   panels?: {
     [name: string]: Panel;
@@ -29,7 +28,7 @@ export interface Dialog {
     [name: string]: Panel;
   };
   fields: Field[];
-  condition: string;
+  // TODO: settingSelector
 }
 
 export interface Dialogs {
