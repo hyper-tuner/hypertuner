@@ -28,7 +28,9 @@ export interface Dialog {
     [name: string]: Panel;
   };
   fields: Field[];
-  // TODO: settingSelector
+  // TODO:
+  // settingSelector
+  // commandButton
 }
 
 export interface Dialogs {

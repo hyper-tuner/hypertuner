@@ -119,6 +119,8 @@ class INI {
 
   inQuotes: P.Parser<any>;
 
+  values: P.Parser<any>;
+
   lines: string[];
 
   currentPage?: number;
@@ -205,6 +207,7 @@ class INI {
     this.notQuote = P.regexp(/[^"]*/);
     this.sqrBrackets = [P.string('['), P.string(']')];
     this.inQuotes = this.notQuote.trim(this.space).wrap(...this.quotes);
+    this.values = P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma);
 
     this.lines = buffer.toString().split('\n');
 
@@ -232,8 +235,8 @@ class INI {
       defines: {},
       menus: {},
       help: {},
-
       dialogs: {},
+
       curves: {},
       tables: {},
       outputChannels: {},
@@ -300,7 +303,7 @@ class INI {
         this.parseDialogs(line);
         break;
       case 'CurveEditor':
-        // this.parseCurves(line);
+        this.parseCurves(line);
         break;
       case 'TableEditor':
         // this.parseTables(line);
@@ -310,6 +313,73 @@ class INI {
         break;
       default:
         break;
+    }
+  }
+
+  private parseCurves(line: string) {
+    // curve = time_accel_tpsdot_curve, "TPS based AE"
+    const curveResult = P.seqObj<any>(
+      P.string('curve'),
+      this.space, this.equal, this.space,
+      ['name', this.name],
+      ...this.delimiter,
+      ['title', this.inQuotes],
+      P.all,
+    ).parse(line);
+
+    if (curveResult.status) {
+      this.currentCurve = curveResult.value.name;
+      this.result.curves[this.currentCurve as string] = {
+        title: INI.sanitizeString(curveResult.value.title),
+        labels: [],
+        xAxis: [],
+        yAxis: [],
+        xBins: [],
+        yBins: [],
+        size: [],
+      };
+
+      return;
+    }
+
+    // columnLabel = "TPSdot", "Added"
+    const labelsResult = P.seqObj<any>(
+      P.string('columnLabel'),
+      this.space, this.equal, this.space,
+      ['labels', this.values],
+      P.all,
+    ).parse(line);
+
+    if (labelsResult.status) {
+      if (!this.currentCurve) {
+        throw new Error('Curve not set');
+      }
+
+      this.result.curves[this.currentCurve].labels = labelsResult
+        .value
+        .labels
+        .map(INI.sanitizeString);
+
+      return;
+    }
+
+    // xAxis = 0, 1200, 6
+    const xAxisResult = P.seqObj<any>(
+      P.string('xAxis'),
+      this.space, this.equal, this.space,
+      ['values', this.values],
+      P.all,
+    ).parse(line);
+
+    if (xAxisResult.status) {
+      if (!this.currentCurve) {
+        throw new Error('Curve not set');
+      }
+
+      this.result.curves[this.currentCurve].labels = xAxisResult
+        .value
+        .values
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
     }
   }
 
@@ -596,7 +666,7 @@ class INI {
       this.space,
       ['name', this.name],
       this.space, this.equal, this.space,
-      ['values', P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma)],
+      ['values', this.values],
       P.all,
     ).tryParse(line);
 
@@ -824,7 +894,7 @@ class INI {
       ...this.delimiter,
       ...address,
       ...this.delimiter,
-      ['values', P.regexp(/[^,;]*/).trim(this.space).sepBy(this.comma)],
+      ['values', this.values],
       P.all,
     );
 
@@ -1335,9 +1405,9 @@ const result = new INI(
   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
 ).parse();
 
-console.dir(
-  result.dialogs,
-  { depth: null, compact: false },
-);
+// console.dir(
+//   result.dialogs,
+//   { depth: null, compact: false },
+// );
 
 console.log('------- end --------');
