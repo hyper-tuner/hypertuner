@@ -107,6 +107,19 @@ export interface StringConstant {
   length: number;
 }
 
+export interface OutputChannel {
+  type: ConstantTypes.SCALAR | ConstantTypes.BITS;
+  size: ConstantSize;
+  offset: number;
+  units: string;
+  scale: number | string;
+  transform: number | string;
+}
+
+export interface SimpleConstant {
+  value: string;
+}
+
 export type Constant = ScalarConstant | BitsConstant | ArrayConstant | StringConstant;
 
 export interface Constants {
@@ -180,6 +193,6 @@ export interface Config {
     [name: string]: Table;
   };
   outputChannels: {
-    [name: string]: ScalarConstant | BitsConstant;
+    [name: string]: OutputChannel | SimpleConstant;
   };
 }

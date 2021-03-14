@@ -236,7 +236,6 @@ class INI {
       menus: {},
       help: {},
       dialogs: {},
-
       curves: {},
       tables: {},
       outputChannels: {},
@@ -320,17 +319,25 @@ class INI {
     try {
       const result = this.parseConstAndVar(line);
 
-      console.log('FULL', result);
+      this.result.outputChannels[result.name] = {
+        type: result.type,
+        size: result.size,
+        offset: Number(result.offset),
+        units: INI.sanitize(result.units),
+        scale: INI.isNumber(result.scale) ? Number(result.scale) : INI.sanitize(result.scale),
+        transform: INI.isNumber(result.transform) ? Number(result.transform) : INI.sanitize(result.transform),
+      };
+      return;
     } catch (_) {
       const base: any = [
         ['name', this.name],
         this.space, this.equal, this.space,
       ];
 
+      // TODO: throttle   = { tps }, "%"
       // ochGetCommand    = "r\$tsCanId\x30%2o%2c"
       // ochBlockSize     =  117
       // coolant          = { coolantRaw - 40 }
-      // TODO: throttle   = { tps }, "%"
       const result = P
         .seqObj<any>(
           ...base,
@@ -339,17 +346,19 @@ class INI {
         )
         .or(P.seqObj<any>(
           ...base,
-          ['value', this.numbers],
+          ['value', this.expression],
           P.all,
         ))
         .or(P.seqObj<any>(
           ...base,
-          ['value', this.expression],
+          ['value', this.numbers],
           P.all,
         ))
         .tryParse(line);
 
-      console.log('SINGLE', result);
+      this.result.outputChannels[result.name] = {
+        value: INI.sanitize(result.value),
+      };
     }
   }
 
@@ -372,7 +381,7 @@ class INI {
       this.currentTable = tableResult.value.name;
       this.result.tables[this.currentTable!] = {
         map: tableResult.value.map,
-        title: INI.sanitizeString(tableResult.value.title),
+        title: INI.sanitize(tableResult.value.title),
         page: Number(tableResult.value.page),
         xBins: [],
         yBins: [],
@@ -398,7 +407,7 @@ class INI {
       if (!this.currentTable) {
         throw new Error('Table not set');
       }
-      this.result.tables[this.currentTable].help = INI.sanitizeString(helpResult.value.help);
+      this.result.tables[this.currentTable].help = INI.sanitize(helpResult.value.help);
 
       return;
     }
@@ -424,7 +433,7 @@ class INI {
       this.result.tables[this.currentTable].xBins = xBinsResult
         .value
         .values
-        .map(INI.sanitizeString);
+        .map(INI.sanitize);
 
       return;
     }
@@ -437,7 +446,7 @@ class INI {
       this.result.tables[this.currentTable].yBins = yBinsResult
         .value
         .values
-        .map(INI.sanitizeString);
+        .map(INI.sanitize);
 
       return;
     }
@@ -450,7 +459,7 @@ class INI {
       this.result.tables[this.currentTable].xyLabels = yxLabelsResult
         .value
         .values
-        .map(INI.sanitizeString);
+        .map(INI.sanitize);
 
       return;
     }
@@ -463,7 +472,7 @@ class INI {
       this.result.tables[this.currentTable].zBins = zBinsResult
         .value
         .values
-        .map(INI.sanitizeString);
+        .map(INI.sanitize);
 
       return;
     }
@@ -506,7 +515,7 @@ class INI {
       this.result.tables[this.currentTable].upDownLabel = upDownResult
         .value
         .values
-        .map(INI.sanitizeString);
+        .map(INI.sanitize);
     }
   }
 
@@ -524,7 +533,7 @@ class INI {
     if (curveResult.status) {
       this.currentCurve = curveResult.value.name;
       this.result.curves[this.currentCurve!] = {
-        title: INI.sanitizeString(curveResult.value.title),
+        title: INI.sanitize(curveResult.value.title),
         labels: [],
         xAxis: [],
         yAxis: [],
@@ -551,7 +560,7 @@ class INI {
       this.result.curves[this.currentCurve].labels = labelsResult
         .value
         .labels
-        .map(INI.sanitizeString);
+        .map(INI.sanitize);
 
       return;
     }
@@ -575,7 +584,7 @@ class INI {
       this.result.curves[this.currentCurve].xAxis = xAxisResult
         .value
         .values
-        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitize(val));
 
       return;
     }
@@ -588,7 +597,7 @@ class INI {
       this.result.curves[this.currentCurve].yAxis = yAxisResult
         .value
         .values
-        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitize(val));
 
       return;
     }
@@ -601,7 +610,7 @@ class INI {
       this.result.curves[this.currentCurve].xBins = xBinsResult
         .value
         .values
-        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitize(val));
 
       return;
     }
@@ -614,7 +623,7 @@ class INI {
       this.result.curves[this.currentCurve].yBins = yBinsResult
         .value
         .values
-        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitize(val));
 
       return;
     }
@@ -627,7 +636,7 @@ class INI {
       this.result.curves[this.currentCurve].size = size
         .value
         .values
-        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitizeString(val));
+        .map((val: string) => INI.isNumber(val) ? Number(val) : INI.sanitize(val));
     }
   }
 
@@ -652,7 +661,7 @@ class INI {
     if (dialogResult.status) {
       this.currentDialog = dialogResult.value.name;
       this.result.dialogs[this.currentDialog!] = {
-        title: INI.sanitizeString(dialogResult.value.title),
+        title: INI.sanitize(dialogResult.value.title),
         layout: dialogResult.value.layout,
         panels: {},
         fields: [],
@@ -761,7 +770,7 @@ class INI {
       }
 
       this.result.dialogs[this.currentDialog!].fields.push({
-        title: INI.sanitizeString(fieldResult.value.title),
+        title: INI.sanitize(fieldResult.value.title),
         name: fieldResult.value.name,
         condition: fieldResult.value.condition,
       });
@@ -784,7 +793,7 @@ class INI {
     }
 
     if (helpResult.status) {
-      this.result.dialogs[this.currentDialog!].help = INI.sanitizeString(
+      this.result.dialogs[this.currentDialog!].help = INI.sanitize(
         helpResult.value.help,
       );
     }
@@ -829,7 +838,7 @@ class INI {
       key: result.key as string,
       value: INI.isNumber(result.value)
         ? Number(result.value)
-        : INI.sanitizeString(result.value),
+        : INI.sanitize(result.value),
     };
   }
 
@@ -848,9 +857,9 @@ class INI {
       ).parse(line);
 
     if (menuResult.status) {
-      this.currentMenu = INI.sanitizeString(menuResult.value.name);
+      this.currentMenu = INI.sanitize(menuResult.value.name);
       this.result.menus[this.currentMenu] = {
-        title: INI.sanitizeString(menuResult.value.name),
+        title: INI.sanitize(menuResult.value.name),
         subMenus: {},
       };
       return;
@@ -901,9 +910,9 @@ class INI {
         .tryParse(line);
 
       this.result.menus[this.currentMenu].subMenus[subMenuResult.name] = {
-        title: INI.sanitizeString(subMenuResult.title),
+        title: INI.sanitize(subMenuResult.title),
         page: Number(subMenuResult.page || 0),
-        condition: INI.sanitizeString(subMenuResult.condition),
+        condition: INI.sanitize(subMenuResult.condition),
       };
     }
   }
@@ -918,7 +927,7 @@ class INI {
       P.all,
     ).tryParse(line);
 
-    this.result.defines[result.name] = result.values.map(INI.sanitizeString);
+    this.result.defines[result.name] = result.values.map(INI.sanitize);
 
     const resolved = this.result.defines[result.name].map((val) => (
       val.startsWith('$')
@@ -943,7 +952,7 @@ class INI {
         constant = {
           type: result.type,
           size: result.size,
-          units: INI.sanitizeString(result.units),
+          units: INI.sanitize(result.units),
           scale: INI.numberOrExpression(result.scale),
           transform: INI.numberOrExpression(result.transform),
           min: INI.numberOrExpression(result.min),
@@ -956,7 +965,7 @@ class INI {
           type: result.type,
           size: result.size,
           shape: INI.arrayShape(result.shape),
-          units: INI.sanitizeString(result.units),
+          units: INI.sanitize(result.units),
           scale: INI.numberOrExpression(result.scale),
           transform: INI.numberOrExpression(result.transform),
           min: INI.numberOrExpression(result.min),
@@ -969,7 +978,7 @@ class INI {
           type: result.type,
           size: result.size,
           address: result.address.split(':').map(Number),
-          values: (result.values || []).map(INI.sanitizeString),
+          values: (result.values || []).map(INI.sanitize),
         };
         break;
       case 'string':
@@ -1023,7 +1032,7 @@ class INI {
             type: result.type,
             size: result.size,
             offset: Number(result.offset),
-            units: INI.sanitizeString(result.units),
+            units: INI.sanitize(result.units),
             scale: INI.numberOrExpression(result.scale),
             transform: INI.numberOrExpression(result.transform),
             min: INI.numberOrExpression(result.min),
@@ -1037,7 +1046,7 @@ class INI {
             size: result.size,
             offset: Number(result.offset),
             shape: INI.arrayShape(result.shape),
-            units: INI.sanitizeString(result.units),
+            units: INI.sanitize(result.units),
             scale: INI.numberOrExpression(result.scale),
             transform: INI.numberOrExpression(result.transform),
             min: INI.numberOrExpression(result.min),
@@ -1051,7 +1060,7 @@ class INI {
             size: result.size,
             offset: Number(result.offset),
             address: result.address.split(':').map(Number),
-            values: (result.values || []).map(INI.sanitizeString),
+            values: (result.values || []).map(INI.sanitize),
           };
           break;
         default:
@@ -1062,7 +1071,7 @@ class INI {
     }
   }
 
-  private parseConstAndVar(line: string, asPcVariable = false, asOutputChannel = false) {
+  private parseConstAndVar(line: string, asPcVariable = false) {
     const address: any = [
       ['address', P.regexp(/\d+:\d+/).trim(this.space).wrap(...this.sqrBrackets)],
     ];
@@ -1125,6 +1134,7 @@ class INI {
       ...base('scalar'),
       ...this.delimiter,
       ...scalarShortRest,
+      P.all,
     );
 
     // normal version of array
@@ -1189,7 +1199,7 @@ class INI {
 //     match = line.match(this.CURVE_LABELS_PATTERN);
 //     if (match) {
 //       this.result.curves[this.currentCurve].labels = match.groups!.labels
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.CURVE_X_AXIS_PATTERN);
@@ -1207,13 +1217,13 @@ class INI {
 //     match = line.match(this.X_BINS_PATTERN);
 //     if (match) {
 //       this.result.curves[this.currentCurve].xBins = match.groups!.values
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.Y_BINS_PATTERN);
 //     if (match) {
 //       this.result.curves[this.currentCurve].yBins = match.groups!.values
-//       .split(',').map(Parser.sanitizeString);
+//       .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.CURVE_SIZE_PATTERN);
@@ -1225,7 +1235,7 @@ class INI {
 //     match = line.match(this.CURVE_GAUGE_PATTERN);
 //     if (match) {
 //       this.result.curves[this.currentCurve].gauge
-//         = Parser.sanitizeString(match.groups!.value);
+//         = Parser.sanitize(match.groups!.value);
 //     }
 //   }
 
@@ -1236,7 +1246,7 @@ class INI {
 //       this.result.tables[this.currentTable] = {
 //         name: match.groups!.name,
 //         map: match.groups!.map,
-//         title: Parser.sanitizeString(match.groups!.title),
+//         title: Parser.sanitize(match.groups!.title),
 //         page: Number(match.groups!.page),
 //         help: '',
 //         xBins: [],
@@ -1251,31 +1261,31 @@ class INI {
 
 //     match = line.match(this.HELP_PATTERN);
 //     if (match) {
-//       this.result.tables[this.currentTable].help = Parser.sanitizeString(match.groups!.help);
+//       this.result.tables[this.currentTable].help = Parser.sanitize(match.groups!.help);
 //     }
 
 //     match = line.match(this.X_BINS_PATTERN);
 //     if (match) {
 //       this.result.tables[this.currentTable].xBins = match.groups!.values
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.Y_BINS_PATTERN);
 //     if (match) {
 //       this.result.tables[this.currentTable].yBins = match.groups!.values
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.Z_BINS_PATTERN);
 //     if (match) {
 //       this.result.tables[this.currentTable].zBins = match.groups!.values
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.TABLE_LABELS_PATTERN);
 //     if (match) {
 //       this.result.tables[this.currentTable].xyLabels = match.groups!.values
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 
 //     match = line.match(this.TABLE_HEIGHT_PATTERN);
@@ -1292,7 +1302,7 @@ class INI {
 //     match = line.match(this.TABLE_UP_DW_LABELS_PATTERN);
 //     if (match) {
 //       this.result.tables[this.currentTable].upDownLabel = match.groups!.values
-//         .split(',').map(Parser.sanitizeString);
+//         .split(',').map(Parser.sanitize);
 //     }
 //   }
 
@@ -1377,7 +1387,7 @@ class INI {
 //     const match = line.match(this.DEFINE_PATTERN);
 //     if (match) {
 //       this.result.defines[match.groups!.key] = match.groups!.value.split(',')
-//         .map(Parser.sanitizeString);
+//         .map(Parser.sanitize);
 
 //       const resolved = this.result.defines[match.groups!.key].map((val) => (
 //         val.startsWith('$')
@@ -1422,7 +1432,7 @@ class INI {
 //     }
 //     match = line.match(this.HELP_PATTERN);
 //     if (match) {
-//       this.result.dialogs[this.currentDialog].help = Parser.sanitizeString(match.groups!.help);
+//       this.result.dialogs[this.currentDialog].help = Parser.sanitize(match.groups!.help);
 
 //       return;
 //     }
@@ -1446,8 +1456,8 @@ class INI {
 //     match = line.match(this.FIELD_PATTERN);
 //     if (match) {
 //       this.result.dialogs[this.currentDialog].fields.push({
-//         name: match.groups!.name ? Parser.sanitizeString(match.groups!.name) : '_fieldText_',
-//         title: Parser.sanitizeString(match.groups!.title),
+//         name: match.groups!.name ? Parser.sanitize(match.groups!.name) : '_fieldText_',
+//         title: Parser.sanitize(match.groups!.title),
 //         condition: Parser.sanitizeCondition(match.groups!.condition || ''),
 //       });
 //     }
@@ -1578,7 +1588,7 @@ class INI {
 //       type: ConstantTypes.SCALAR,
 //       size: match.groups!.size as ConstantSizeType,
 //       offset: Number(match.groups!.offset || 0),
-//       units: Parser.sanitizeString(match.groups!.units),
+//       units: Parser.sanitize(match.groups!.units),
 //       scale: Number(match.groups!.scale),
 //       transform: Number(match.groups!.transform),
 //       min: Number(match.groups!.min) || 0,
@@ -1605,7 +1615,7 @@ class INI {
 //         columns: Number(columns),
 //         rows: Number(rows || 0),
 //       },
-//       units: Parser.sanitizeString(match.groups!.units),
+//       units: Parser.sanitize(match.groups!.units),
 //       scale: Number(match.groups!.scale),
 //       transform: Number(match.groups!.transform),
 //       min: Number(match.groups!.min),
@@ -1616,14 +1626,14 @@ class INI {
 
 //   static sanitizeComments = (val: string) => (val || '').replace(';', '').trim();
 
-  private static numberOrExpression = (val: string | undefined | null) => INI.isNumber(val || '0') ? Number(val || 0) : INI.sanitizeString(`${val}`);
+  private static numberOrExpression = (val: string | undefined | null) => INI.isNumber(val || '0') ? Number(val || 0) : INI.sanitize(`${val}`);
 
-  private static sanitizeString = (val: string) => `${val}`.replace(/"/g, '').trim();
+  private static sanitize = (val: string) => `${val}`.replace(/"/g, '').trim();
 
   private static isNumber = (val: string) => !Number.isNaN(Number(val));
 
   private static arrayShape = (val: string) => {
-    const parts = INI.sanitizeString(val).split('x');
+    const parts = INI.sanitize(val).split('x');
     return {
       columns: Number(parts[0]),
       rows: parts[1] ? Number(parts[1]) : 0,
@@ -1654,7 +1664,7 @@ const result = new INI(
 ).parse();
 
 // console.dir(
-//   result.tables,
+//   result.outputChannels,
 //   { depth: null, compact: false },
 // );
 
