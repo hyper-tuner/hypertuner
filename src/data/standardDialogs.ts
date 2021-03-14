@@ -7,10 +7,8 @@ const standardDialogs: DialogsType = {
     title: 'Engine Constants',
     help: 'https://wiki.speeduino.com/en/configuration/Engine_Constants',
     layout: '',
-    condition: '',
     panels: {
       engine_constants_southwest: {
-        title: 'Speeduino Board',
         layout: '',
         fields: [], // overridden by ini file
         condition: '',

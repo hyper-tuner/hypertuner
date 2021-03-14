@@ -228,17 +228,17 @@ class INI {
       tunerStudio: {
         iniSpecVersion: 0,
       },
+      defines: {},
       pcVariables: {},
       constants: {
         pages: [],
       },
-      defines: {},
       menus: {},
-      help: {},
       dialogs: {},
       curves: {},
       tables: {},
       outputChannels: {},
+      help: {},
     };
   }
 
@@ -1010,16 +1010,16 @@ class INI {
       ).parse(line);
 
     if (page.status) {
-      this.currentPage = Number(page.value.page);
+      this.currentPage = Number(page.value.page) - 1;
       return;
     }
 
-    if (this.currentPage) {
+    if (INI.isNumber(this.currentPage)) {
       const result = this.parseConstAndVar(line);
 
-      if (!this.result.constants.pages[this.currentPage]) {
-        this.result.constants.pages[this.currentPage] = {
-          number: this.currentPage,
+      if (!this.result.constants.pages[this.currentPage!]) {
+        this.result.constants.pages[this.currentPage!] = {
+          number: this.currentPage! + 1,
           size: 0,
           data: {},
         };
@@ -1067,7 +1067,12 @@ class INI {
           break;
       }
 
-      this.result.constants.pages[this.currentPage].data[result.name] = constant;
+      if (this.result.constants.pages[this.currentPage!].data[result.name]) {
+        // TODO: if else
+        return;
+      }
+
+      this.result.constants.pages[this.currentPage!].data[result.name] = constant;
     }
   }
 
@@ -1630,7 +1635,7 @@ class INI {
 
   private static sanitize = (val: string) => `${val}`.replace(/"/g, '').trim();
 
-  private static isNumber = (val: string) => !Number.isNaN(Number(val));
+  private static isNumber = (val: any) => !Number.isNaN(Number(val));
 
   private static arrayShape = (val: string) => {
     const parts = INI.sanitize(val).split('x');

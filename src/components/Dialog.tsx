@@ -47,11 +47,10 @@ interface RenderedPanel {
   yBins: string[];
   size: number[];
   gauge?: string;
-  condition?: string,
   fields: FieldType[],
   map: string;
   page: number;
-  help: string;
+  help?: string;
   xyLabels: string[];
   zBins: string[];
   gridHeight: number;
@@ -250,7 +249,6 @@ const Dialog = ({
         if (config.curves[panelName]) {
           resolvedDialogs[panelName] = {
             ...config.curves[panelName],
-            condition: source[dialogName].panels[panelName].condition || '',
           };
 
           return;
@@ -260,7 +258,6 @@ const Dialog = ({
         if (config.tables[panelName]) {
           resolvedDialogs[panelName] = {
             ...config.tables[panelName],
-            condition: source[dialogName].panels[panelName].condition || '',
           };
 
           return;
@@ -303,7 +300,6 @@ const Dialog = ({
       type,
       name: dialogName,
       title: currentDialog.title,
-      condition: currentDialog.condition,
       fields,
       labels: (currentDialog as CurveType).labels,
       xAxis: (currentDialog as CurveType).xAxis,
@@ -381,11 +377,11 @@ const Dialog = ({
             case ConstantTypes.SCALAR:
               input = <SmartNumber
                         defaultValue={Number(tuneField.value)}
-                        digits={constant.digits}
-                        min={(constant.min as number) || 0}
-                        max={constant.max as number}
+                        digits={(constant as ScalarConstantType).digits}
+                        min={((constant as ScalarConstantType).min as number) || 0}
+                        max={(constant as ScalarConstantType).max as number}
                         disabled={!enabled}
-                        units={constant.units}
+                        units={(constant as ScalarConstantType).units}
                       />;
               break;
 
