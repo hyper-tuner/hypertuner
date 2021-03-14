@@ -1650,19 +1650,18 @@ const versions = [
   202103,
 ];
 
-// versions.forEach((version) => {
-//   const result = new Parser(
-//     fs.readFileSync(path.join(__dirname, `/../../public/tunes/${version}.ini`), 'utf8'),
-//   ).parse();
+versions.forEach((version) => {
+  const result = new INI(
+    fs.readFileSync(path.join(__dirname, `/../../public/tunes/${version}.ini`), 'utf8'),
+  ).parse();
 
-//   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
-//   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
-// });
+  fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
+  fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
+});
 
-const result = new INI(
-  fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
-).parse();
-
+// const result = new INI(
+//   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
+// ).parse();
 // console.dir(
 //   result.outputChannels,
 //   { depth: null, compact: false },
