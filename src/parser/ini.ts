@@ -866,7 +866,7 @@ class INI {
 
       this.currentMenu = name;
       this.result.menus[this.currentMenu] = {
-        title: title === undefined ? '' : title,
+        title: INI.sanitize(title),
         subMenus: {},
       };
       return;
@@ -1657,7 +1657,7 @@ class INI {
 
   private static numberOrExpression = (val: string | undefined | null) => INI.isNumber(val || '0') ? Number(val || 0) : INI.sanitize(`${val}`);
 
-  private static sanitize = (val: string) => `${val}`.replace(/"/g, '').trim();
+  private static sanitize = (val: any) => val === undefined ? '' : `${val}`.replace(/"/g, '').trim();
 
   private static isNumber = (val: any) => !Number.isNaN(Number(val));
 
