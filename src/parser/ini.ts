@@ -985,7 +985,7 @@ class INI {
           type: result.type,
           size: result.size,
           address: result.address.split(':').map(Number),
-          values: (result.values || []).map(INI.sanitize),
+          values: this.resolveBitsValues(result.name, result.values || []),
         };
         break;
       case 'string':
@@ -1086,13 +1086,10 @@ class INI {
   private resolveBitsValues(name: string, values: string[]) {
     return values.map((val: string) => {
       const resolve = () => {
-        console.log(`Resolving ${name}`);
-
         const resolved = this.result.defines[val.slice(1)];
         if (!resolve) {
           throw new Error(`Unable to resolve bits values for ${name}`);
         }
-
         return resolved;
       };
 
