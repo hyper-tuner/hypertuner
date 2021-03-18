@@ -857,9 +857,16 @@ class INI {
       ).parse(line);
 
     if (menuResult.status) {
-      this.currentMenu = INI.sanitize(menuResult.value.name);
+      const title = INI
+        .sanitize(menuResult.value.name)
+        .replace(/&/g, '');
+      const name = title
+        .toLowerCase()
+        .replace(/([^\w]\w)/g, (g) => g[1].toUpperCase()); // camelCase
+
+      this.currentMenu = name;
       this.result.menus[this.currentMenu] = {
-        title: INI.sanitize(menuResult.value.name),
+        title: title === undefined ? '' : title,
         subMenus: {},
       };
       return;
@@ -912,7 +919,7 @@ class INI {
       this.result.menus[this.currentMenu].subMenus[subMenuResult.name] = {
         title: INI.sanitize(subMenuResult.title),
         page: Number(subMenuResult.page || 0),
-        condition: INI.sanitize(subMenuResult.condition),
+        condition: subMenuResult.condition ? INI.sanitize(subMenuResult.condition) : '',
       };
     }
   }
@@ -1060,7 +1067,7 @@ class INI {
             size: result.size,
             offset: Number(result.offset),
             address: result.address.split(':').map(Number),
-            values: (result.values || []).map(INI.sanitize),
+            values: this.resolveBitsValues(result.name, result.values || []),
           };
           break;
         default:
@@ -1074,6 +1081,23 @@ class INI {
 
       this.result.constants.pages[this.currentPage!].data[result.name] = constant;
     }
+  }
+
+  private resolveBitsValues(name: string, values: string[]) {
+    return values.map((val: string) => {
+      const resolve = () => {
+        console.log(`Resolving ${name}`);
+
+        const resolved = this.result.defines[val.slice(1)];
+        if (!resolve) {
+          throw new Error(`Unable to resolve bits values for ${name}`);
+        }
+
+        return resolved;
+      };
+
+      return val.startsWith('$') ? resolve() : INI.sanitize(val);
+    }).flat();
   }
 
   private parseConstAndVar(line: string, asPcVariable = false) {
@@ -1663,6 +1687,8 @@ versions.forEach((version) => {
   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.yml`), yaml.dump(result));
   fs.writeFileSync(path.join(__dirname, `/../../public/tunes/${version}.json`), JSON.stringify(result));
 });
+
+
 
 // const result = new INI(
 //   fs.readFileSync(path.join(__dirname, `/../../public/tunes/${versions[1]}.ini`), 'utf8'),
