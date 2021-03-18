@@ -749,11 +749,25 @@ class INI {
       ['condition', this.expression],
     ];
 
+    // NOTE: this is probably a mistake, investigate that
+    // field = "AUX Input 0", caninput_sel0a, {}, { (!enable_secondarySerial && (!enable_intcan || (enable_intcan && intcan_available == 0))) }
+    const fieldWithDoubleCondition = [
+      ...fieldWithName,
+      ...this.delimiter,
+      P.regexp(/{.*?}/),
+      ...this.delimiter,
+      ['condition', this.expression],
+    ];
+
     const fieldResult = P
       .seqObj<any>(
-        ...fieldWithCondition,
+        ...fieldWithDoubleCondition,
         P.all,
       )
+      .or(P.seqObj<any>(
+        ...fieldWithCondition,
+        P.all,
+      ))
       .or(P.seqObj<any>(
         ...fieldWithName,
         P.all,
@@ -801,6 +815,7 @@ class INI {
     // TODO: missing fields:
     // - settingSelector
     // - commandButton
+    // - displayOnlyField
   }
 
   private parseKeyValueFor(section: string, line: string) {
