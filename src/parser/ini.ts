@@ -770,8 +770,8 @@ class INI {
       }
 
       this.result.dialogs[this.currentDialog!].fields.push({
+        name: fieldResult.value.name || '_fieldText_',
         title: INI.sanitize(fieldResult.value.title),
-        name: fieldResult.value.name,
         condition: fieldResult.value.condition,
       });
 
