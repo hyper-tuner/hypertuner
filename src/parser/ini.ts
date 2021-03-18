@@ -1086,15 +1086,17 @@ class INI {
   private resolveBitsValues(name: string, values: string[]) {
     return values.map((val: string) => {
       const resolve = () => {
-        const resolved = this.result.defines[val.slice(1)];
-        if (!resolve) {
+        const defineName = INI.sanitize(val.slice(1)); // name without $
+        const resolved = this.result.defines[defineName];
+        if (!resolved) {
           throw new Error(`Unable to resolve bits values for ${name}`);
         }
+
         return resolved;
       };
 
       return val.startsWith('$') ? resolve() : INI.sanitize(val);
-    }).flat();
+    }).flat().filter((val) => val !== '');
   }
 
   private parseConstAndVar(line: string, asPcVariable = false) {
