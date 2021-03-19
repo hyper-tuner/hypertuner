@@ -27,6 +27,8 @@ import {
   FileZipOutlined,
   SaveOutlined,
   DesktopOutlined,
+  GlobalOutlined,
+  LinkOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
@@ -84,6 +86,17 @@ const TopBar = () => {
     </Menu>
   );
 
+  const shareMenu = (
+    <Menu>
+      <Menu.Item icon={<LinkOutlined />}>
+        Create link
+      </Menu.Item>
+      <Menu.Item icon={<GlobalOutlined />}>
+        Publish to Hub
+      </Menu.Item>
+    </Menu>
+  );
+
   const searchInput = useRef<Input | null>(null);
   const handleGlobalKeyboard = (e: KeyboardEvent) => {
     if (isCommand(e)) {
@@ -136,10 +149,14 @@ const TopBar = () => {
                 {xl && 'Download'}
               </Button>
             </Dropdown>
-            <Button icon={<ShareAltOutlined />}>
-              {/* TODO: add mobile native share */}
-              {lg && 'Share'}
-            </Button>
+            <Dropdown
+              overlay={shareMenu}
+              placement="bottomCenter"
+            >
+              <Button icon={<ShareAltOutlined />}>
+                {lg && 'Share'}
+              </Button>
+            </Dropdown>
             <Dropdown
               overlay={userMenu}
               placement="bottomCenter"

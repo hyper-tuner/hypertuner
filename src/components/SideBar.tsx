@@ -55,6 +55,10 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
         title={menus[menuName].title}
       >
         {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => {
+          if (subMenuName === 'std_separator') {
+            return <Menu.Divider key={buildLinkUrl(menuName, subMenuName)} />;
+          }
+
           const subMenu = menus[menuName].subMenus[subMenuName];
           let enabled = true;
 
