@@ -30,7 +30,8 @@ import {
 } from '../types/tune';
 import { prepareConstDeclarations } from '../lib/utils';
 import { findOnPage } from '../utils/config/find';
-import Table from './Dialog/Table';
+import { parseValues } from '../utils/tune/table';
+import Map from './Dialog/Map';
 
 interface DialogsAndCurves {
   [name: string]: DialogType | CurveType | TableType,
@@ -130,25 +131,13 @@ const Dialog = ({
         xMax={xConstant.max as number}
         yMin={yConstant.min as number}
         yMax={yConstant.max as number}
-        xData={
-          (x.value as string)
-            .split('\n')
-            .map((val) => val.trim())
-            .filter((val) => val !== '')
-            .map(Number)
-        }
-        yData={
-          (y.value as string)
-            .split('\n')
-            .map((val) => val.trim())
-            .filter((val) => val !== '')
-            .map(Number)
-        }
+        xData={parseValues(x.value as string)}
+        yData={parseValues(y.value as string)}
       />
     );
   };
 
-  const renderTable = (table: TableType) => {
+  const renderTable = (table: TableType | RenderedPanel) => {
     const x = tune.constants[table.xBins[0]];
     const y = tune.constants[table.yBins[0]];
     const xConstant = findOnPage(config, table.xBins[0]) as ScalarConstantType;
@@ -164,21 +153,23 @@ const Dialog = ({
 
     return <div>
       {renderHelp(table.help)}
-      {/* <Table
-        name={table.name}
-        key={table.name}
+      <Map
+        name={(table as RenderedPanel).name}
+        key={(table as RenderedPanel).name}
         xLabel={table.xyLabels[0]}
         yLabel={table.xyLabels[1]}
-        xData={[]}
-        yData={[]}
-        // xMin={xMin}
-        // xMax={xMax}
-        // yMin={yMin}
-        // yMax={yMax}
-        xUnits={xUnits}
-        yUnits={yUnits}
-        onChange={(newData: number[][]) => setData(mapData(newData))}
-      /> */}
+        xData={parseValues(x.value as string)}
+        yData={parseValues(y.value as string)}
+        disabled={false}
+        xMin={xConstant.min as number}
+        xMax={xConstant.max as number}
+        yMin={yConstant.min as number}
+        yMax={yConstant.max as number}
+        xUnits={x.units}
+        yUnits={y.units}
+        onChange={(data) => console.log(data)}
+        // onChange={(newData: number[][]) => setData(mapData(newData))}
+      />
     </div>;
   };
 
