@@ -30,7 +30,7 @@ import {
 } from '../types/tune';
 import { prepareConstDeclarations } from '../lib/utils';
 import { findOnPage } from '../utils/config/find';
-import { parseValues } from '../utils/tune/table';
+import { parseXy, parseZ } from '../utils/tune/table';
 import Map from './Dialog/Map';
 
 interface DialogsAndCurves {
@@ -125,14 +125,14 @@ const Dialog = ({
         help={config.help[curve.yBins[0]]}
         xLabel={curve.labels[0]}
         yLabel={curve.labels[1]}
-        xUnits={x.units}
-        yUnits={y.units}
+        xUnits={xConstant.units}
+        yUnits={yConstant.units}
         xMin={xConstant.min as number}
         xMax={xConstant.max as number}
         yMin={yConstant.min as number}
         yMax={yConstant.max as number}
-        xData={parseValues(x.value as string)}
-        yData={parseValues(y.value as string)}
+        xData={parseXy(x.value as string)}
+        yData={parseXy(y.value as string)}
       />
     );
   };
@@ -140,15 +140,20 @@ const Dialog = ({
   const renderTable = (table: TableType | RenderedPanel) => {
     const x = tune.constants[table.xBins[0]];
     const y = tune.constants[table.yBins[0]];
+    const z = tune.constants[table.zBins[0]];
     const xConstant = findOnPage(config, table.xBins[0]) as ScalarConstantType;
     const yConstant = findOnPage(config, table.yBins[0]) as ScalarConstantType;
+    const zConstant = findOnPage(config, table.zBins[0]) as ScalarConstantType;
 
     console.log({
       table,
       x,
       y,
+      z,
       xConstant,
       yConstant,
+      zConstant,
+      zData: parseZ(z.value as string),
     });
 
     return <div>
@@ -158,15 +163,20 @@ const Dialog = ({
         key={(table as RenderedPanel).name}
         xLabel={table.xyLabels[0]}
         yLabel={table.xyLabels[1]}
-        xData={parseValues(x.value as string)}
-        yData={parseValues(y.value as string)}
+        xData={parseXy(x.value as string)}
+        yData={parseXy(y.value as string)}
+        zData={parseZ(z.value as string)}
         disabled={false}
         xMin={xConstant.min as number}
         xMax={xConstant.max as number}
         yMin={yConstant.min as number}
         yMax={yConstant.max as number}
+        // xUnits={xConstant.units}
+        // yUnits={yConstant.units}
+        // zUnits={zConstant.units}
         xUnits={x.units}
         yUnits={y.units}
+        zUnits={z.units}
         onChange={(data) => console.log(data)}
         // onChange={(newData: number[][]) => setData(mapData(newData))}
       />

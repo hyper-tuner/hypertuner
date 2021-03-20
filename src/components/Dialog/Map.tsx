@@ -43,6 +43,7 @@ const Map = ({
   yLabel,
   xData,
   yData,
+  zData,
   disabled,
   onChange,
   xMin,
@@ -51,12 +52,14 @@ const Map = ({
   yMax,
   xUnits = '',
   yUnits = '',
+  zUnits = '',
 }: {
   name: string,
   xLabel: string,
   yLabel: string,
   xData: number[],
   yData: number[],
+  zData: number[][],
   disabled: boolean,
   onChange?: OnChangeType,
   xMin: number,
@@ -65,6 +68,7 @@ const Map = ({
   yMax: number,
   xUnits?: string,
   yUnits?: string,
+  zUnits?: string,
 }) => {
   const titleProps = { disabled: true };
   const [isModalVisible, setIsModalVisible] = useState(false);
