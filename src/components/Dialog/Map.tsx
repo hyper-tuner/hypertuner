@@ -75,11 +75,11 @@ const Map = ({
   const [modalValue, setModalValue] = useState<number | undefined>();
   const [data, _setData] = useState<DataType>([yData, xData]);
   // data starts from `1` index, 0 is title / name
-  const rowsCount = data[1].length + 1;
-  const generateCells = () => [
-    Array(rowsCount).fill(false),
-    Array(rowsCount).fill(false),
-  ];
+  // const rowsCount = data[1].length + 1;
+
+  const generateCells = () => Array(xData.length).fill(
+    Array(yData.length).fill(false),
+  );
   const [cells, _setCells] = useState<CellsType>(generateCells());
   const cellsRef = useRef(cells);
   const dataRef = useRef(data);
@@ -214,15 +214,18 @@ const Map = ({
     return [hue, saturation, lightness];
   };
 
-  const renderRow = (axis: AxisType, input: number[]) => input
+  const min = Math.min(...zData.map((row) => Math.min(...row)));
+  const max = Math.max(...zData.map((row) => Math.max(...row)));
+
+  const renderRow = (rowIndex: number, input: number[]) => input
     .map((value, index) => {
-      const hsl = colorHsl(Math.min(...input), Math.max(...input), value);
+      const hsl = colorHsl(min, max, value);
       const [hue, sat, light] = hsl;
 
       return (
         <td
           className="value"
-          key={`${axis}-${index}-${value}-${hsl.join('-')}`}
+          key={`${rowIndex}-${index}-${value}-${hsl.join('-')}`}
           style={{
             backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)`,
           }}
@@ -250,14 +253,11 @@ const Map = ({
             value={cells}
             onChange={setCells}
           >
-            <tr>
-              <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
-              {renderRow('y', data[0])}
-            </tr>
-            <tr>
-              <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
-              {renderRow('x', data[1])}
-            </tr>
+            {zData.map((row, i) => (
+              <tr key={`row-${i}`}>
+                {renderRow(i, row)}
+              </tr>
+            ))}
           </TableDragSelect>
         </Popover>
       </div>

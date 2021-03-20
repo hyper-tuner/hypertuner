@@ -8,4 +8,5 @@ export const parseXy = (value: string) => value
 export const parseZ = (value: string) => value
   .trim()
   .split('\n')
-  .map((val) => val.trim().split(' ').map(Number));
+  .map((val) => val.trim().split(' ').map(Number))
+  .reverse();

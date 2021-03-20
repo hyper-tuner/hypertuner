@@ -145,16 +145,16 @@ const Dialog = ({
     const yConstant = findOnPage(config, table.yBins[0]) as ScalarConstantType;
     const zConstant = findOnPage(config, table.zBins[0]) as ScalarConstantType;
 
-    console.log({
-      table,
-      x,
-      y,
-      z,
-      xConstant,
-      yConstant,
-      zConstant,
-      zData: parseZ(z.value as string),
-    });
+    // console.log({
+    //   table,
+    //   x,
+    //   y,
+    //   z,
+    //   xConstant,
+    //   yConstant,
+    //   zConstant,
+    //   zData: parseZ(z.value as string),
+    // });
 
     return <div>
       {renderHelp(table.help)}
