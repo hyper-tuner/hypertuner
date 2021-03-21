@@ -161,6 +161,10 @@ export interface Table {
   upDownLabel: string[];
 }
 
+export interface OutputChannels {
+  [name: string]: OutputChannel | SimpleConstant;
+}
+
 export interface Config {
   [key: string]: any;
   megaTune: {
@@ -192,7 +196,5 @@ export interface Config {
   tables: {
     [name: string]: Table;
   };
-  outputChannels: {
-    [name: string]: OutputChannel | SimpleConstant;
-  };
+  outputChannels: OutputChannels;
 }

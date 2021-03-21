@@ -31,7 +31,7 @@ import {
 import { findOnPage } from '../utils/config/find';
 import { parseXy, parseZ } from '../utils/tune/table';
 import Map from './Dialog/Map';
-import { prepareConstDeclarations } from '../utils/tune/expression';
+import { evaluateExpression, isExpression } from '../utils/tune/expression';
 
 interface DialogsAndCurves {
   [name: string]: DialogType | CurveType | TableType,
@@ -141,8 +141,6 @@ const Dialog = ({
     const x = tune.constants[table.xBins[0]];
     const y = tune.constants[table.yBins[0]];
     const z = tune.constants[table.zBins[0]];
-    const xConstant = findOnPage(config, table.xBins[0]) as ScalarConstantType;
-    const yConstant = findOnPage(config, table.yBins[0]) as ScalarConstantType;
     const zConstant = findOnPage(config, table.zBins[0]) as ScalarConstantType;
 
     // console.log({
@@ -150,32 +148,34 @@ const Dialog = ({
     //   x,
     //   y,
     //   z,
-    //   xConstant,
-    //   yConstant,
     //   zConstant,
     //   zData: parseZ(z.value as string),
     // });
+
+    let max = 0;
+    if (isExpression(zConstant.max)) {
+      max = evaluateExpression(zConstant.max as string, tune.constants, config);
+    }
+
+    let min = 0;
+    if (isExpression(zConstant.min)) {
+      min = evaluateExpression(zConstant.min as string, tune.constants, config);
+    }
 
     return <div>
       {renderHelp(table.help)}
       <Map
         name={table.map}
         key={table.map}
-        xLabel={table.xyLabels[0]}
-        yLabel={table.xyLabels[1]}
         xData={parseXy(x.value as string)}
         yData={parseXy(y.value as string).reverse()}
         zData={parseZ(z.value as string)}
         disabled={false}
-        zMin={zConstant.min as number}
-        zMax={zConstant.max as number}
+        zMin={min}
+        zMax={max}
         digits={zConstant.digits as number}
-        // xUnits={xConstant.units}
-        // yUnits={yConstant.units}
-        // zUnits={zConstant.units}
-        xUnits={x.units}
-        yUnits={y.units}
-        zUnits={z.units}
+        xUnits={x.units as string}
+        yUnits={y.units as string}
       />
     </div>;
   };
@@ -329,27 +329,11 @@ const Dialog = ({
           const constant = findOnPage(config, field.name);
           const tuneField = tune.constants[field.name];
           const help = config.help[field.name];
-
           let input;
           let enabled = true;
 
           if (field.condition) {
-            // TODO: move this outside and evaluate, return object / array
-            const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
-            try {
-              // TODO: strip eval from `command` etc
-              // https://www.electronjs.org/docs/tutorial/security
-              // eslint-disable-next-line no-eval
-              enabled = eval(`
-                'use strict';
-                ${constDeclarations.join('')}
-                ${field.condition};
-              `);
-
-              // console.info(`Evaluated condition for '${field.name}':`, field.condition, ': result:', enabled);
-            } catch (error) {
-              console.info('Field condition evaluation failed with:', error.message);
-            }
+            enabled = evaluateExpression(field.condition, tune.constants, config);
           }
 
           if (field.name === '_fieldText_' && enabled) {

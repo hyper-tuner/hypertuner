@@ -1,10 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 
 import {
-  Fragment,
-  useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -28,7 +25,6 @@ import {
   isReplace,
 } from '../../utils/keyboard/shortcuts';
 
-type AxisType = 'x' | 'y';
 type CellsType = boolean[][];
 type DataType = number[][];
 type OnChangeType = (data: DataType) => void;
@@ -41,8 +37,6 @@ type HslType = [number, number, number];
 
 const Map = ({
   name,
-  xLabel,
-  yLabel,
   xData,
   yData,
   zData,
@@ -51,13 +45,10 @@ const Map = ({
   zMin,
   zMax,
   digits,
-  xUnits = '',
-  yUnits = '',
-  zUnits = '',
+  xUnits,
+  yUnits,
 }: {
   name: string,
-  xLabel: string,
-  yLabel: string,
   xData: number[],
   yData: number[],
   zData: number[][],
@@ -66,9 +57,8 @@ const Map = ({
   zMin: number,
   zMax: number,
   digits: number,
-  xUnits?: string,
-  yUnits?: string,
-  zUnits?: string,
+  xUnits: string,
+  yUnits: string,
 }) => {
   const titleProps = { disabled: true };
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -209,7 +199,7 @@ const Map = ({
       if (index === 0) {
         result.push((
           <td {...titleProps} className="title-map" key={`y-${yValue}`}>
-            {yValue}
+            {`${yValue}`}
           </td>
         ));
       }
@@ -251,10 +241,12 @@ const Map = ({
               </tr>
             ))}
             <tr>
-              <td {...titleProps} className="title-map" />
+              <td {...titleProps} className="title-map">
+                {yUnits} / {xUnits}
+              </td>
               {xData.map((xValue) => (
                 <td {...titleProps} key={`x-${xValue}`}>
-                  {xValue}
+                  {`${xValue}`}
                 </td>
               ))}
             </tr>

@@ -2,6 +2,7 @@ import { Layout, Menu, Skeleton } from 'antd';
 import { connect } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { useCallback } from 'react';
 import store from '../store';
 import { AppState, UIState } from '../types/state';
 import {
@@ -12,7 +13,7 @@ import {
   Tune as TuneType,
 } from '../types/tune';
 import Icon from './SideBar/Icon';
-import { prepareConstDeclarations } from '../utils/tune/expression';
+import { evaluateExpression } from '../utils/tune/expression';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -32,8 +33,8 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
     collapsed: ui.sidebarCollapsed,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
-
   const { pathname } = useLocation();
+  const checkCondition = useCallback((condition: string) => evaluateExpression(condition, tune.constants, config), [tune.constants, config]);
 
   if (!config || !config.constants) {
     return (
@@ -63,21 +64,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
           let enabled = true;
 
           if (subMenu.condition) {
-            // TODO: move this outside and evaluate, return object / array
-            // optimise this
-            const constDeclarations = prepareConstDeclarations(tune.constants, config.constants.pages);
-            try {
-              // TODO: strip eval from `command` etc
-              // https://www.electronjs.org/docs/tutorial/security
-              // eslint-disable-next-line no-eval
-              enabled = eval(`
-                'use strict';
-                ${constDeclarations.join('')}
-                ${subMenu.condition};
-              `);
-            } catch (error) {
-              console.info('Menu condition evaluation failed with:', error.message);
-            }
+            enabled = checkCondition(subMenu.condition);
           }
 
           return (<Menu.Item

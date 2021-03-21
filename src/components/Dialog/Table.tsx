@@ -49,8 +49,8 @@ const Table = ({
   xMax,
   yMin,
   yMax,
-  xUnits = '',
-  yUnits = '',
+  xUnits,
+  yUnits,
 }: {
   name: string,
   xLabel: string,
@@ -63,8 +63,8 @@ const Table = ({
   xMax: number,
   yMin: number,
   yMax: number,
-  xUnits?: string,
-  yUnits?: string,
+  xUnits: string,
+  yUnits: string,
 }) => {
   const titleProps = { disabled: true };
   const [isModalVisible, setIsModalVisible] = useState(false);
