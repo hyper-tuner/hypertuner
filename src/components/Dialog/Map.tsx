@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 
 import {
+  Fragment,
   useCallback,
   useEffect,
   useMemo,
@@ -47,10 +48,8 @@ const Map = ({
   zData,
   disabled,
   onChange,
-  xMin,
-  xMax,
-  yMin,
-  yMax,
+  zMin,
+  zMax,
   xUnits = '',
   yUnits = '',
   zUnits = '',
@@ -63,10 +62,8 @@ const Map = ({
   zData: number[][],
   disabled: boolean,
   onChange?: OnChangeType,
-  xMin: number,
-  xMax: number,
-  yMin: number,
-  yMax: number,
+  zMin: number,
+  zMax: number,
   xUnits?: string,
   yUnits?: string,
   zUnits?: string,
@@ -76,9 +73,9 @@ const Map = ({
   const [modalValue, setModalValue] = useState<number | undefined>();
   const [data, _setData] = useState<DataType>(zData);
   const generateCells = () => Array.from(
-    Array(yData.length).fill(false), () => new Array(xData.length).fill(false),
+    Array(yData.length + 1).fill(false),
+    () => new Array(xData.length + 1).fill(false),
   );
-
   const [cells, _setCells] = useState<CellsType>(generateCells());
   const cellsRef = useRef(cells);
   const dataRef = useRef(data);
@@ -94,14 +91,8 @@ const Map = ({
       onChange(currentData);
     }
   };
-  const modifyData = useCallback((operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
+  const modifyData = (operation: Operations, currentCells: CellsType, currentData: DataType, value = 0): DataType => {
     const newData = [...currentData.map((row) => [...row])];
-    // rowIndex: [0 => Y, 1 => X]
-    const isY = (row: number) => row === 0;
-    const isX = (row: number) => row === 1;
-    const isNotGreater = (row: number, val: number) => (isY(row) && val < yMax) || (isX(row) && val < xMax);
-    const isNotLess = (row: number, val: number) => (isY(row) && val > yMin) || (isX(row) && val > xMin);
-
     currentCells.forEach((_, rowIndex) => {
       currentCells[rowIndex].forEach((selected, valueIndex) => {
         if (!selected) {
@@ -111,33 +102,24 @@ const Map = ({
         const current = newData[rowIndex][valueIndex - 1];
         switch (operation) {
           case Operations.INC:
-            if (isNotGreater(rowIndex, current)) {
+            if (current < zMax) {
               newData[rowIndex][valueIndex - 1] += 1;
             }
             break;
           case Operations.DEC:
-            if (isNotLess(rowIndex, current)) {
+            if (current > zMin) {
               newData[rowIndex][valueIndex - 1] -= 1;
             }
             break;
           case Operations.REPLACE:
-            if (isX(rowIndex) && value > xMax) {
-              newData[rowIndex][valueIndex - 1] = xMax;
+            if (value > zMax) {
+              newData[rowIndex][valueIndex - 1] = zMax;
               break;
             }
-            if (isX(rowIndex) && value < xMin) {
-              newData[rowIndex][valueIndex - 1] = xMin;
+            if (value < zMin) {
+              newData[rowIndex][valueIndex - 1] = zMin;
               break;
             }
-            if (isY(rowIndex) && value < yMin) {
-              newData[rowIndex][valueIndex - 1] = yMin;
-              break;
-            }
-            if (isY(rowIndex) && value > yMax) {
-              newData[rowIndex][valueIndex - 1] = yMax;
-              break;
-            }
-
             newData[rowIndex][valueIndex - 1] = value;
             break;
           default:
@@ -147,7 +129,7 @@ const Map = ({
     });
 
     return [...newData];
-  }, [xMax, xMin, yMax, yMin]);
+  };
 
   const oneModalOk = () => {
     setData(modifyData(Operations.REPLACE, cellsRef.current, dataRef.current, modalValue));
@@ -193,7 +175,7 @@ const Map = ({
     return () => {
       document.removeEventListener('keydown', keyboardListener);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const colorHsl = (min: number, max: number, value: number): HslType => {
@@ -213,27 +195,39 @@ const Map = ({
     return [hue, saturation, lightness];
   };
 
-  const min = useMemo(() => Math.min(...data.map((row) => Math.min(...row))), [data]);
-  const max = useMemo(() => Math.max(...data.map((row) => Math.max(...row))), [data]);
+  const min = Math.min(...data.map((row) => Math.min(...row)));
+  const max = Math.max(...data.map((row) => Math.max(...row)));
 
   const renderRow = (rowIndex: number, input: number[]) => input
     .map((value, index) => {
       const [hue, sat, light] = colorHsl(min, max, value);
+      const yValue = yData[rowIndex];
+      const result = [];
 
-      return (
+      if (index === 0) {
+        result.push((
+          <td {...titleProps} className="title-map" key={`y-${yValue}`}>
+            {yValue}
+          </td>
+        ));
+      }
+
+      result.push((
         <td
           className="value"
-          key={`${rowIndex}-${index}-${value}`}
+          key={`${rowIndex}-${index}-${value}-${hue}${sat}${light}`}
           style={{ backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)` }}
         >
           {`${value}`}
         </td>
-      );
+      ));
+
+      return result;
     });
 
   return (
     <>
-      <div className="table table-2d">
+      <div className="table">
         <Popover
           visible={cells.flat().find((val) => val === true) === true}
           content={
@@ -254,6 +248,14 @@ const Map = ({
                 {renderRow(i, row)}
               </tr>
             ))}
+            <tr>
+              <td {...titleProps} className="title-map" />
+              {xData.map((xValue) => (
+                <td {...titleProps} key={`x-${xValue}`}>
+                  {xValue}
+                </td>
+              ))}
+            </tr>
           </TableDragSelect>
         </Popover>
       </div>

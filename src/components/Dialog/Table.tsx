@@ -217,7 +217,7 @@ const Table = ({
       return (
         <td
           className="value"
-          key={`${axis}-${index}-${value}`}
+          key={`${axis}-${index}-${value}-${hue}${sat}${light}`}
           style={{ backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)` }}
         >
           {`${value}`}
@@ -244,11 +244,11 @@ const Table = ({
             onChange={setCells}
           >
             <tr>
-              <td {...titleProps} className="title" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
+              <td {...titleProps} className="title-curve" key={yLabel}>{`${yLabel} (${yUnits})`}</td>
               {renderRow('y', data[0])}
             </tr>
             <tr>
-              <td {...titleProps} className="title" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
+              <td {...titleProps} className="title-curve" key={xLabel}>{`${xLabel} (${xUnits})`}</td>
               {renderRow('x', data[1])}
             </tr>
           </TableDragSelect>

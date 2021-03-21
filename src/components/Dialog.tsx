@@ -164,21 +164,17 @@ const Dialog = ({
         xLabel={table.xyLabels[0]}
         yLabel={table.xyLabels[1]}
         xData={parseXy(x.value as string)}
-        yData={parseXy(y.value as string)}
+        yData={parseXy(y.value as string).reverse()}
         zData={parseZ(z.value as string)}
         disabled={false}
-        xMin={xConstant.min as number}
-        xMax={xConstant.max as number}
-        yMin={yConstant.min as number}
-        yMax={yConstant.max as number}
+        zMin={zConstant.min as number}
+        zMax={zConstant.max as number}
         // xUnits={xConstant.units}
         // yUnits={yConstant.units}
         // zUnits={zConstant.units}
         xUnits={x.units}
         yUnits={y.units}
         zUnits={z.units}
-        onChange={(data) => console.log(data)}
-        // onChange={(newData: number[][]) => setData(mapData(newData))}
       />
     </div>;
   };
