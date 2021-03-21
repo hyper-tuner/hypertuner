@@ -10,6 +10,7 @@ import {
   Menu,
   Dropdown,
   Typography,
+  Radio,
 } from 'antd';
 import {
   UserOutlined,
@@ -29,18 +30,23 @@ import {
   DesktopOutlined,
   GlobalOutlined,
   LinkOutlined,
+  DownOutlined,
+  SearchOutlined,
 } from '@ant-design/icons';
 import { useEffect, useRef } from 'react';
 import store from '../store';
 import { isMac } from '../lib/env';
-import { isCommand, isEscape, isToggleSidebar } from '../utils/keyboard/shortcuts';
+import {
+  isCommand,
+  isToggleSidebar,
+} from '../utils/keyboard/shortcuts';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
 const { SubMenu } = Menu;
 
 const TopBar = () => {
-  const { lg, xl } = useBreakpoint();
+  const { sm } = useBreakpoint();
 
   const userMenu = (
     <Menu>
@@ -62,32 +68,32 @@ const TopBar = () => {
     </Menu>
   );
 
-  const downloadMenu = (
-    <Menu>
-      <SubMenu title="Tune" icon={<SlidersOutlined />}>
-        <Menu.Item icon={<SaveOutlined />}>
-          Download
-        </Menu.Item>
-        <Menu.Item icon={<DesktopOutlined />}>
-          Open in app
-        </Menu.Item>
-      </SubMenu>
-      <SubMenu title="Logs" icon={<LineChartOutlined />}>
-        <Menu.Item icon={<FileZipOutlined />}>
-          MLG
-        </Menu.Item>
-        <Menu.Item icon={<FileTextOutlined />}>
-          MSL
-        </Menu.Item>
-        <Menu.Item icon={<FileExcelOutlined />}>
-          CSV
-        </Menu.Item>
-      </SubMenu>
-    </Menu>
-  );
-
   const shareMenu = (
     <Menu>
+      <Menu.Item icon={<CloudUploadOutlined />}>
+        Upload
+      </Menu.Item>
+      <SubMenu title="Download" icon={<CloudDownloadOutlined />}>
+        <SubMenu title="Tune" icon={<SlidersOutlined />}>
+          <Menu.Item icon={<SaveOutlined />}>
+            Download
+          </Menu.Item>
+          <Menu.Item icon={<DesktopOutlined />}>
+            Open in app
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu title="Logs" icon={<LineChartOutlined />}>
+          <Menu.Item icon={<FileZipOutlined />}>
+            MLG
+          </Menu.Item>
+          <Menu.Item icon={<FileTextOutlined />}>
+            MSL
+          </Menu.Item>
+          <Menu.Item icon={<FileExcelOutlined />}>
+            CSV
+          </Menu.Item>
+        </SubMenu>
+      </SubMenu>
       <Menu.Item icon={<LinkOutlined />}>
         Create link
       </Menu.Item>
@@ -120,48 +126,40 @@ const TopBar = () => {
   return (
     <Header className="app-top-bar">
       <Row>
-        <Col span={0} sm={8} />
-        <Col span={0} sm={8} style={{ textAlign: 'center' }}>
-          <Tooltip title={
-            <>
-              <Typography.Text keyboard>{isMac ? '⌘' : 'CTRL'}</Typography.Text>
-              <Typography.Text keyboard>P</Typography.Text>
-            </>
-          }>
-            <Input
-              ref={searchInput}
-              onKeyUp={(e) => isEscape(e) && e.currentTarget.blur()}
-              placeholder="Search / Command"
-              className="electron-not-draggable"
-            />
-          </Tooltip>
+        <Col span={0} md={8} sm={0} />
+        <Col span={12} md={8} sm={16} style={{ textAlign: 'center' }}>
+          <Radio.Group
+            options={['Tune', 'Logs', 'Diagnostics']}
+            defaultValue="Tune"
+            optionType="button"
+            buttonStyle="solid"
+          />
         </Col>
-        <Col span={24} sm={8} style={{ textAlign: 'right' }}>
+        <Col span={12} md={8} sm={8} style={{ textAlign: 'right' }}>
           <Space className="electron-not-draggable">
-            <Button icon={<CloudUploadOutlined />}>
-              {lg && 'Upload'}
-            </Button>
-            <Dropdown
-              overlay={downloadMenu}
-              placement="bottomCenter"
-            >
-              <Button icon={<CloudDownloadOutlined />}>
-                {xl && 'Download'}
-              </Button>
-            </Dropdown>
+            <Tooltip title={
+              <>
+                <Typography.Text keyboard>{isMac ? '⌘' : 'CTRL'}</Typography.Text>
+                <Typography.Text keyboard>P</Typography.Text>
+              </>
+            }>
+              {sm && <Button icon={<SearchOutlined />} />}
+            </Tooltip>
             <Dropdown
               overlay={shareMenu}
               placement="bottomCenter"
             >
               <Button icon={<ShareAltOutlined />}>
-                {lg && 'Share'}
+                <DownOutlined />
               </Button>
             </Dropdown>
             <Dropdown
               overlay={userMenu}
               placement="bottomCenter"
             >
-              <Button icon={<UserOutlined />} />
+              <Button icon={<UserOutlined />}>
+                <DownOutlined />
+              </Button>
             </Dropdown>
           </Space>
         </Col>
