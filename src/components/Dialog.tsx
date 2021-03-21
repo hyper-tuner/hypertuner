@@ -143,21 +143,13 @@ const Dialog = ({
     const z = tune.constants[table.zBins[0]];
     const zConstant = findOnPage(config, table.zBins[0]) as ScalarConstantType;
 
-    // console.log({
-    //   table,
-    //   x,
-    //   y,
-    //   z,
-    //   zConstant,
-    //   zData: parseZ(z.value as string),
-    // });
-
-    let max = 0;
+    let max = zConstant.max as number;
     if (isExpression(zConstant.max)) {
+      console.log(zConstant.max);
       max = evaluateExpression(zConstant.max as string, tune.constants, config);
     }
 
-    let min = 0;
+    let min = zConstant.min as number;
     if (isExpression(zConstant.min)) {
       min = evaluateExpression(zConstant.min as string, tune.constants, config);
     }
