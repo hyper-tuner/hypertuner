@@ -159,8 +159,8 @@ const Dialog = ({
     return <div>
       {renderHelp(table.help)}
       <Map
-        name={(table as RenderedPanel).name}
-        key={(table as RenderedPanel).name}
+        name={table.map}
+        key={table.map}
         xLabel={table.xyLabels[0]}
         yLabel={table.xyLabels[1]}
         xData={parseXy(x.value as string)}

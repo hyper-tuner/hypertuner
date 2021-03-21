@@ -212,16 +212,13 @@ const Table = ({
 
   const renderRow = (axis: AxisType, input: number[]) => input
     .map((value, index) => {
-      const hsl = colorHsl(Math.min(...input), Math.max(...input), value);
-      const [hue, sat, light] = hsl;
+      const [hue, sat, light] = colorHsl(Math.min(...input), Math.max(...input), value);
 
       return (
         <td
           className="value"
-          key={`${axis}-${index}-${value}-${hsl.join('-')}`}
-          style={{
-            backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)`,
-          }}
+          key={`${axis}-${index}-${value}`}
+          style={{ backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)` }}
         >
           {`${value}`}
         </td>

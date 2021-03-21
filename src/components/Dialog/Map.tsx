@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -73,13 +74,11 @@ const Map = ({
   const titleProps = { disabled: true };
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalValue, setModalValue] = useState<number | undefined>();
-  const [data, _setData] = useState<DataType>([yData, xData]);
-  // data starts from `1` index, 0 is title / name
-  // const rowsCount = data[1].length + 1;
-
-  const generateCells = () => Array(xData.length).fill(
-    Array(yData.length).fill(false),
+  const [data, _setData] = useState<DataType>(zData);
+  const generateCells = () => Array.from(
+    Array(yData.length).fill(false), () => new Array(xData.length).fill(false),
   );
+
   const [cells, _setCells] = useState<CellsType>(generateCells());
   const cellsRef = useRef(cells);
   const dataRef = useRef(data);
@@ -214,21 +213,18 @@ const Map = ({
     return [hue, saturation, lightness];
   };
 
-  const min = Math.min(...zData.map((row) => Math.min(...row)));
-  const max = Math.max(...zData.map((row) => Math.max(...row)));
+  const min = useMemo(() => Math.min(...data.map((row) => Math.min(...row))), [data]);
+  const max = useMemo(() => Math.max(...data.map((row) => Math.max(...row))), [data]);
 
   const renderRow = (rowIndex: number, input: number[]) => input
     .map((value, index) => {
-      const hsl = colorHsl(min, max, value);
-      const [hue, sat, light] = hsl;
+      const [hue, sat, light] = colorHsl(min, max, value);
 
       return (
         <td
           className="value"
-          key={`${rowIndex}-${index}-${value}-${hsl.join('-')}`}
-          style={{
-            backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)`,
-          }}
+          key={`${rowIndex}-${index}-${value}`}
+          style={{ backgroundColor: `hsl(${hue}, ${sat}%, ${light}%)` }}
         >
           {`${value}`}
         </td>
@@ -253,7 +249,7 @@ const Map = ({
             value={cells}
             onChange={setCells}
           >
-            {zData.map((row, i) => (
+            {data.map((row, i) => (
               <tr key={`row-${i}`}>
                 {renderRow(i, row)}
               </tr>
