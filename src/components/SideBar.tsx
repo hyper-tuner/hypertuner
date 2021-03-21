@@ -12,7 +12,7 @@ import {
   Tune as TuneType,
 } from '../types/tune';
 import Icon from './SideBar/Icon';
-import { prepareConstDeclarations } from '../lib/utils';
+import { prepareConstDeclarations } from '../utils/tune/expression';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;

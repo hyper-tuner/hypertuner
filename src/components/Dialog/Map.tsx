@@ -50,6 +50,7 @@ const Map = ({
   onChange,
   zMin,
   zMax,
+  digits,
   xUnits = '',
   yUnits = '',
   zUnits = '',
@@ -64,6 +65,7 @@ const Map = ({
   onChange?: OnChangeType,
   zMin: number,
   zMax: number,
+  digits: number,
   xUnits?: string,
   yUnits?: string,
   zUnits?: string,
@@ -103,12 +105,12 @@ const Map = ({
         switch (operation) {
           case Operations.INC:
             if (current < zMax) {
-              newData[rowIndex][valueIndex - 1] += 1;
+              newData[rowIndex][valueIndex - 1] = Number((newData[rowIndex][valueIndex - 1] + 10**-digits).toFixed(digits));
             }
             break;
           case Operations.DEC:
             if (current > zMin) {
-              newData[rowIndex][valueIndex - 1] -= 1;
+              newData[rowIndex][valueIndex - 1] = Number((newData[rowIndex][valueIndex - 1] - 10**-digits).toFixed(digits));
             }
             break;
           case Operations.REPLACE:

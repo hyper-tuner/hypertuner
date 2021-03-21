@@ -28,10 +28,10 @@ import {
 import {
   Tune as TuneType,
 } from '../types/tune';
-import { prepareConstDeclarations } from '../lib/utils';
 import { findOnPage } from '../utils/config/find';
 import { parseXy, parseZ } from '../utils/tune/table';
 import Map from './Dialog/Map';
+import { prepareConstDeclarations } from '../utils/tune/expression';
 
 interface DialogsAndCurves {
   [name: string]: DialogType | CurveType | TableType,
@@ -169,6 +169,7 @@ const Dialog = ({
         disabled={false}
         zMin={zConstant.min as number}
         zMax={zConstant.max as number}
+        digits={zConstant.digits as number}
         // xUnits={xConstant.units}
         // yUnits={yConstant.units}
         // zUnits={zConstant.units}
