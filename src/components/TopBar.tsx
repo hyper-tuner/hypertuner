@@ -128,12 +128,14 @@ const TopBar = () => {
       <Row>
         <Col span={0} md={8} sm={0} />
         <Col span={12} md={8} sm={16} style={{ textAlign: 'center' }}>
-          <Radio.Group
-            options={['Tune', 'Logs', 'Diagnostics']}
-            defaultValue="Tune"
-            optionType="button"
-            buttonStyle="solid"
-          />
+          <div className="electron-not-draggable">
+            <Radio.Group
+              options={['Tune', 'Logs', 'Diagnostics']}
+              defaultValue="Tune"
+              optionType="button"
+              buttonStyle="solid"
+            />
+          </div>
         </Col>
         <Col span={12} md={8} sm={8} style={{ textAlign: 'right' }}>
           <Space className="electron-not-draggable">
