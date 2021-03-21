@@ -206,11 +206,11 @@ const Dialog = ({
     );
   }
 
-  const calculateSpan = (dialogsCount: number) => {
+  const calculateSpan = (type: PanelTypes, dialogsCount: number) => {
     let xxl = 24;
     const xl = 24;
 
-    if (dialogsCount > 1) {
+    if (dialogsCount > 1 && type === PanelTypes.FIELDS) {
       xxl = 12;
     }
 
@@ -315,7 +315,7 @@ const Dialog = ({
     }
 
     return (
-      <Col key={panel.name} {...calculateSpan(panels.length)}>
+      <Col key={panel.name} {...calculateSpan(panel.type as PanelTypes, panels.length)}>
         <Divider>{panel.title}</Divider>
         {(panel.fields).map((field: FieldType) => {
           const constant = findOnPage(config, field.name);
