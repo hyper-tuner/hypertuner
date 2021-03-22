@@ -1,6 +1,7 @@
 import {
   matchPath,
   useLocation,
+  useHistory,
 } from 'react-router';
 import {
   Layout,
@@ -52,6 +53,7 @@ const { SubMenu } = Menu;
 const TopBar = () => {
   const { sm } = useBreakpoint();
   const { pathname } = useLocation();
+  const history = useHistory();
   const matchedTabPath = useMemo(() => matchPath(pathname, { path: Routes.TAB }), [pathname]);
 
   const userMenu = (
@@ -137,6 +139,7 @@ const TopBar = () => {
             defaultValue={(matchedTabPath as any).url}
             optionType="button"
             buttonStyle="solid"
+            onChange={(e) => history.push(e.target.value)}
           >
             <Radio.Button value={Routes.TUNE}>Tune</Radio.Button>
             <Radio.Button value={Routes.LOG}>Log</Radio.Button>

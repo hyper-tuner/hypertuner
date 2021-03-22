@@ -77,10 +77,6 @@ const SideBar = ({
     dialog: sub,
   }), []);
 
-  console.log({
-    matchedPath,
-  });
-
   const menusList = useCallback((menus: MenusType) => (
     Object.keys(menus).map((menuName: string) => {
       if (SKIP_MENUS.includes(menuName)) {
