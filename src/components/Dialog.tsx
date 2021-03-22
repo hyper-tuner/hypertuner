@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   Form,
@@ -32,6 +33,7 @@ import { findOnPage } from '../utils/config/find';
 import { parseXy, parseZ } from '../utils/tune/table';
 import Map from './Dialog/Map';
 import { evaluateExpression, isExpression } from '../utils/tune/expression';
+import { storageSet } from '../utils/storage';
 
 interface DialogsAndCurves {
   [name: string]: DialogType | CurveType | TableType,
@@ -82,15 +84,21 @@ const skeleton = (<div style={containerStyle}>
 const Dialog = ({
   config,
   tune,
+  url,
   name,
   burnButton,
 }: {
   config: ConfigType,
   tune: TuneType,
   name: string,
+  url: string,
   burnButton: any
 }) => {
   const isDataReady = Object.keys(tune.constants).length && Object.keys(config.constants).length;
+
+  useEffect(() => {
+    storageSet('lastDialog', url);
+  }, [url]);
 
   const renderHelp = (link?: string) => (link &&
     <Popover

@@ -22,6 +22,7 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
 import { Routes } from './routes';
 import { Config as ConfigType } from './types/config';
+import { storageGet } from './utils/storage';
 
 const { Content } = Layout;
 
@@ -39,6 +40,7 @@ const App = ({ ui, config }: { ui: UIState, config: ConfigType }) => {
     exact: true,
   }) || { url: '', params: { category: '', dialog: '' } }, [pathname]);
 
+  const lastDialogPath = storageGet('lastDialog');
   const firstDialogPath = useMemo(() => {
     if (!config.menus) {
       return null;
@@ -72,7 +74,7 @@ const App = ({ ui, config }: { ui: UIState, config: ConfigType }) => {
           </Route>
           <Route path={Routes.TUNE}>
             <Route path={Routes.TUNE} exact>
-              {firstDialogPath && <Redirect to={firstDialogPath} />}
+              {firstDialogPath && <Redirect to={lastDialogPath || firstDialogPath} />}
             </Route>
             <Layout style={{ marginLeft: margin }}>
               <SideBar matchedPath={dialogMatchedPath} />
@@ -81,6 +83,7 @@ const App = ({ ui, config }: { ui: UIState, config: ConfigType }) => {
                   <PerfectScrollbar options={{ suppressScrollX: true }}>
                     <Dialog
                       name={dialogMatchedPath.params.dialog}
+                      url={dialogMatchedPath.url}
                       burnButton={isDesktop && <BurnButton />}
                     />
                   </PerfectScrollbar>
