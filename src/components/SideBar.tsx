@@ -26,6 +26,7 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 export interface DialogMatchedPathType {
+  url: string;
   params: {
     category: string;
     dialog: string;
@@ -135,10 +136,11 @@ const SideBar = ({
     <Sider {...siderProps} className="app-sidebar">
       <PerfectScrollbar options={{ suppressScrollX: true }}>
         <Menu
-          defaultSelectedKeys={[(matchedPath as any).url]}
+          defaultSelectedKeys={[matchedPath.url]}
           defaultOpenKeys={[`/${matchedPath.params.category}`]}
           mode="inline"
           style={{ height: '100%' }}
+          key={matchedPath.url}
         >
           {Object.keys(tune.constants).length && menusList(config.menus)}
         </Menu>

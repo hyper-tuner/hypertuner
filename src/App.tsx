@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   matchPath,
+  Redirect,
 } from 'react-router-dom';
 import { Layout, Result } from 'antd';
 import { connect } from 'react-redux';
@@ -33,7 +34,7 @@ const App = ({ ui }: { ui: UIState }) => {
   const dialogMatchedPath: DialogMatchedPathType = useMemo(() => matchPath(pathname, {
     path: Routes.DIALOG,
     exact: true,
-  }) || { params: { category: 'not_found', dialog: 'not_found' } }, [pathname]);
+  }) || { url: '', params: { category: '', dialog: '' } }, [pathname]);
 
   // const beforeUnload = (e: BeforeUnloadEvent) => {
   //   // cancel the event
@@ -56,7 +57,13 @@ const App = ({ ui }: { ui: UIState }) => {
       <Layout>
         <TopBar />
         <Switch>
+          <Route path={Routes.ROOT} exact>
+            <Redirect to="/tune" />
+          </Route>
           <Route path={Routes.TUNE}>
+            <Route path={Routes.TUNE} exact>
+              <Redirect to="/tune/1" />
+            </Route>
             <Layout style={{ marginLeft: margin }}>
               <SideBar matchedPath={dialogMatchedPath} />
               <Layout className="app-content">
