@@ -8491,12 +8491,12 @@ constants:
           shape:
             columns: 16
             rows: 16
-          units: Lambda
-          scale: '{ 0.1 / stoich }'
+          units: AFR
+          scale: 0.1
           transform: 0
-          min: 0
-          max: 2
-          digits: 3
+          min: 7
+          max: 25.5
+          digits: 1
         rpmBinsAFR:
           type: array
           size: U08
