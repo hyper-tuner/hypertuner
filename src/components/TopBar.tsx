@@ -37,7 +37,11 @@ import {
   DownOutlined,
   SearchOutlined,
 } from '@ant-design/icons';
-import { useEffect, useMemo, useRef } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import store from '../store';
 import { isMac } from '../utils/env';
 import {

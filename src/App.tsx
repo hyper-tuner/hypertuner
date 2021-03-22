@@ -5,6 +5,7 @@ import {
   Route,
   matchPath,
   Redirect,
+  generatePath,
 } from 'react-router-dom';
 import { Layout, Result } from 'antd';
 import { connect } from 'react-redux';
@@ -20,15 +21,17 @@ import { isDesktop } from './utils/env';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';
 import { Routes } from './routes';
+import { Config as ConfigType } from './types/config';
 
 const { Content } = Layout;
 
 const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
   status: state.status,
+  config: state.config,
 });
 
-const App = ({ ui }: { ui: UIState }) => {
+const App = ({ ui, config }: { ui: UIState, config: ConfigType }) => {
   const margin = ui.sidebarCollapsed ? 80 : 250;
   const { pathname } = useLocation();
   const dialogMatchedPath: DialogMatchedPathType = useMemo(() => matchPath(pathname, {
@@ -36,12 +39,19 @@ const App = ({ ui }: { ui: UIState }) => {
     exact: true,
   }) || { url: '', params: { category: '', dialog: '' } }, [pathname]);
 
-  // const beforeUnload = (e: BeforeUnloadEvent) => {
-  //   // cancel the event
-  //   e.preventDefault();
-  //   // Chrome requires returnValue to be set
-  //   e.returnValue = '';
-  // };
+  const firstDialogPath = useMemo(() => {
+    if (!config.menus) {
+      return null;
+    }
+
+    const firstCategory = Object.keys(config.menus)[0];
+    const firstDialog = Object.keys(config.menus[firstCategory].subMenus)[0];
+    return generatePath(Routes.DIALOG, { category: firstCategory, dialog: firstDialog });
+  }, [config.menus]);
+
+  console.log({
+    firstDialogPath,
+  });
 
   useEffect(() => {
     loadAll();
@@ -62,7 +72,7 @@ const App = ({ ui }: { ui: UIState }) => {
           </Route>
           <Route path={Routes.TUNE}>
             <Route path={Routes.TUNE} exact>
-              <Redirect to="/tune/1" />
+              {firstDialogPath && <Redirect to={firstDialogPath} />}
             </Route>
             <Layout style={{ marginLeft: margin }}>
               <SideBar matchedPath={dialogMatchedPath} />
