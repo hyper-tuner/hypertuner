@@ -129,7 +129,7 @@ const TopBar = () => {
         <Col span={0} md={8} sm={0} />
         <Col span={12} md={8} sm={16} style={{ textAlign: 'center' }}>
           <Radio.Group
-            options={['Tune', 'Logs', 'Diagnose']}
+            options={['Tune', 'Log', 'Diagnose']}
             defaultValue="Tune"
             optionType="button"
             buttonStyle="solid"
