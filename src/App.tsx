@@ -4,13 +4,13 @@ import { Layout } from 'antd';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dialog from './components/Dialog';
-import { loadAll } from './lib/api';
+import { loadAll } from './utils/api';
 import SideBar from './components/SideBar';
 import { AppState, UIState } from './types/state';
 import BurnButton from './components/BurnButton';
 import TopBar from './components/TopBar';
 import StatusBar from './components/StatusBar';
-import { isDesktop } from './lib/env';
+import { isDesktop } from './utils/env';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './App.less';

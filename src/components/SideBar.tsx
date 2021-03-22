@@ -63,6 +63,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
           const subMenu = menus[menuName].subMenus[subMenuName];
           let enabled = true;
 
+          // TODO: optimize this!
           if (subMenu.condition) {
             enabled = checkCondition(subMenu.condition);
           }
