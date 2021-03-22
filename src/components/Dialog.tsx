@@ -145,7 +145,6 @@ const Dialog = ({
 
     let max = zConstant.max as number;
     if (isExpression(zConstant.max)) {
-      console.log(zConstant.max);
       max = evaluateExpression(zConstant.max as string, tune.constants, config);
     }
 

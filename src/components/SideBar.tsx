@@ -24,6 +24,20 @@ const mapStateToProps = (state: AppState) => ({
   ui: state.ui,
 });
 
+const SKIP_MENUS = [
+  'help',
+  'hardwareTesting',
+  '3dTuningMaps',
+  'dataLogging',
+  'tools',
+];
+
+const SKIP_SUB_MENUS = [
+  '/settings/gaugeLimits',
+  '/settings/io_summary',
+  '/tuning/std_realtime',
+];
+
 const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui: UIState }) => {
   const sidebarWidth = 250;
   const siderProps = {
@@ -35,6 +49,51 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
   } as any;
   const { pathname } = useLocation();
   const checkCondition = useCallback((condition: string) => evaluateExpression(condition, tune.constants, config), [tune.constants, config]);
+  const buildLinkUrl = useCallback((main: string, sub: string) => `/${main}/${sub}`, []);
+
+  const menusList = useCallback((menus: MenusType) => (
+    Object.keys(menus).map((menuName: string) => {
+      if (SKIP_MENUS.includes(menuName)) {
+        return null;
+      }
+
+      return (
+        <SubMenu
+          key={`/${menuName}`}
+          icon={<Icon name={menuName} />}
+          title={menus[menuName].title}
+        >
+          {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => {
+            if (subMenuName === 'std_separator') {
+              return <Menu.Divider key={buildLinkUrl(menuName, subMenuName)} />;
+            }
+
+            if (SKIP_SUB_MENUS.includes(buildLinkUrl(menuName, subMenuName))) {
+              return null;
+            }
+
+            const subMenu = menus[menuName].subMenus[subMenuName];
+            let enabled = true;
+
+            // TODO: optimize this!
+            if (subMenu.condition) {
+              enabled = checkCondition(subMenu.condition);
+            }
+
+            return (<Menu.Item
+              key={buildLinkUrl(menuName, subMenuName)}
+              icon={<Icon name={subMenuName} />}
+              disabled={!enabled}
+            >
+              <Link to={buildLinkUrl(menuName, subMenuName)}>
+                {subMenu.title}
+              </Link>
+            </Menu.Item>);
+          })}
+        </SubMenu>
+      );
+    })
+  ), [buildLinkUrl, checkCondition]);
 
   if (!config || !config.constants) {
     return (
@@ -45,42 +104,6 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
       </Sider>
     );
   }
-
-  const buildLinkUrl = (main: string, sub: string) => `/${main}/${sub}`;
-
-  const menusList = (menus: MenusType) => (
-    Object.keys(menus).map((menuName: string) => (
-      <SubMenu
-        key={`/${menuName}`}
-        icon={<Icon name={menuName} />}
-        title={menus[menuName].title}
-      >
-        {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => {
-          if (subMenuName === 'std_separator') {
-            return <Menu.Divider key={buildLinkUrl(menuName, subMenuName)} />;
-          }
-
-          const subMenu = menus[menuName].subMenus[subMenuName];
-          let enabled = true;
-
-          // TODO: optimize this!
-          if (subMenu.condition) {
-            enabled = checkCondition(subMenu.condition);
-          }
-
-          return (<Menu.Item
-            key={buildLinkUrl(menuName, subMenuName)}
-            icon={<Icon name={subMenuName} />}
-            disabled={!enabled}
-          >
-            <Link to={buildLinkUrl(menuName, subMenuName)}>
-              {subMenu.title}
-            </Link>
-          </Menu.Item>);
-        })}
-      </SubMenu>
-    ))
-  );
 
   return (
     <Sider {...siderProps} className="app-sidebar">

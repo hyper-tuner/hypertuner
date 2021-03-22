@@ -74,6 +74,12 @@ export const evaluateExpression = (expression: string, tuneConstants: TuneConsta
     // eslint-disable-next-line no-eval
     return eval(`
       'use strict';
+      const arrayValue = (number, layout) => number;
+      const array = {
+        boardFuelOutputs: 4,
+        boardIgnOutputs: 4,
+      };
+
       const coolantRaw = 21;
       const iatRaw = 21;
       const fuelTempRaw = 21;
@@ -82,12 +88,6 @@ export const evaluateExpression = (expression: string, tuneConstants: TuneConsta
       const tps = 0;
       const rpm = 0;
       const nSquirts = 1;
-
-      const arrayValue = (number, layout) => number;
-      const array = {
-        boardFuelOutputs: 4,
-        boardIgnOutputs: 4,
-      };
       const boostCutFuel = 0;
       const boostCutSpark = 0;
       const afr = 14.7;
