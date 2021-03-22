@@ -54,7 +54,7 @@ const TopBar = () => {
   const { sm } = useBreakpoint();
   const { pathname } = useLocation();
   const history = useHistory();
-  const matchedTabPath = useMemo(() => matchPath(pathname, { path: Routes.TAB }), [pathname]);
+  const matchedTabPath: any = useMemo(() => matchPath(pathname, { path: Routes.TAB }), [pathname]);
 
   const userMenu = (
     <Menu>
@@ -136,7 +136,8 @@ const TopBar = () => {
         <Col span={0} md={8} sm={0} />
         <Col span={12} md={8} sm={16} style={{ textAlign: 'center' }}>
           <Radio.Group
-            defaultValue={(matchedTabPath as any).url}
+            key={matchedTabPath?.url}
+            defaultValue={matchedTabPath?.url}
             optionType="button"
             buttonStyle="solid"
             onChange={(e) => history.push(e.target.value)}
