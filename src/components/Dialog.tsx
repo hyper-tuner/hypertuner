@@ -201,7 +201,11 @@ const Dialog = ({
     }
 
     return (
-      <Result status="warning" title="Not found 👀" style={{ marginTop: 50 }} />
+      <Result
+        status="warning"
+        title="Dialog not found"
+        style={{ marginTop: 50 }}
+      />
     );
   }
 

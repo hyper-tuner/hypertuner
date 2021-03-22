@@ -1,4 +1,8 @@
 import {
+  matchPath,
+  useLocation,
+} from 'react-router';
+import {
   Layout,
   Space,
   Button,
@@ -32,13 +36,14 @@ import {
   DownOutlined,
   SearchOutlined,
 } from '@ant-design/icons';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import store from '../store';
 import { isMac } from '../utils/env';
 import {
   isCommand,
   isToggleSidebar,
 } from '../utils/keyboard/shortcuts';
+import { Routes } from '../routes';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -46,6 +51,8 @@ const { SubMenu } = Menu;
 
 const TopBar = () => {
   const { sm } = useBreakpoint();
+  const { pathname } = useLocation();
+  const matchedTabPath = useMemo(() => matchPath(pathname, { path: Routes.TAB }), [pathname]);
 
   const userMenu = (
     <Menu>
@@ -127,11 +134,14 @@ const TopBar = () => {
         <Col span={0} md={8} sm={0} />
         <Col span={12} md={8} sm={16} style={{ textAlign: 'center' }}>
           <Radio.Group
-            options={['Tune', 'Log', 'Diagnose']}
-            defaultValue="Tune"
+            defaultValue={(matchedTabPath as any).url}
             optionType="button"
             buttonStyle="solid"
-          />
+          >
+            <Radio.Button value={Routes.TUNE}>Tune</Radio.Button>
+            <Radio.Button value={Routes.LOG}>Log</Radio.Button>
+            <Radio.Button value={Routes.DIAGNOSE}>Diagnose</Radio.Button>
+          </Radio.Group>
         </Col>
         <Col span={12} md={8} sm={8} style={{ textAlign: 'right' }}>
           <Space className="electron-not-draggable">

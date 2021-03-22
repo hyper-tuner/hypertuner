@@ -1,10 +1,16 @@
 import { Layout, Menu, Skeleton } from 'antd';
 import { connect } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import {
+  generatePath,
+  Link,
+} from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useCallback } from 'react';
 import store from '../store';
-import { AppState, UIState } from '../types/state';
+import {
+  AppState,
+  UIState,
+} from '../types/state';
 import {
   Config as ConfigType,
   Menus as MenusType,
@@ -14,9 +20,17 @@ import {
 } from '../types/tune';
 import Icon from './SideBar/Icon';
 import { evaluateExpression } from '../utils/tune/expression';
+import { Routes } from '../routes';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
+
+export interface DialogMatchedPathType {
+  params: {
+    category: string;
+    dialog: string;
+  };
+}
 
 const mapStateToProps = (state: AppState) => ({
   config: state.config,
@@ -33,12 +47,22 @@ const SKIP_MENUS = [
 ];
 
 const SKIP_SUB_MENUS = [
-  '/settings/gaugeLimits',
-  '/settings/io_summary',
-  '/tuning/std_realtime',
+  'settings/gaugeLimits',
+  'settings/io_summary',
+  'tuning/std_realtime',
 ];
 
-const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui: UIState }) => {
+const SideBar = ({
+  config,
+  tune,
+  ui,
+  matchedPath,
+}: {
+  config: ConfigType,
+  tune: TuneType,
+  ui: UIState,
+  matchedPath: DialogMatchedPathType,
+}) => {
   const sidebarWidth = 250;
   const siderProps = {
     width: sidebarWidth,
@@ -47,9 +71,15 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
     collapsed: ui.sidebarCollapsed,
     onCollapse: (collapsed: boolean) => store.dispatch({ type: 'ui/sidebarCollapsed', payload: collapsed }),
   } as any;
-  const { pathname } = useLocation();
   const checkCondition = useCallback((condition: string) => evaluateExpression(condition, tune.constants, config), [tune.constants, config]);
-  const buildLinkUrl = useCallback((main: string, sub: string) => `/${main}/${sub}`, []);
+  const buildLink = useCallback((main: string, sub: string) => generatePath(Routes.DIALOG, {
+    category: main,
+    dialog: sub,
+  }), []);
+
+  console.log({
+    matchedPath,
+  });
 
   const menusList = useCallback((menus: MenusType) => (
     Object.keys(menus).map((menuName: string) => {
@@ -65,10 +95,10 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
         >
           {Object.keys(menus[menuName].subMenus).map((subMenuName: string) => {
             if (subMenuName === 'std_separator') {
-              return <Menu.Divider key={buildLinkUrl(menuName, subMenuName)} />;
+              return <Menu.Divider key={buildLink(menuName, subMenuName)} />;
             }
 
-            if (SKIP_SUB_MENUS.includes(buildLinkUrl(menuName, subMenuName))) {
+            if (SKIP_SUB_MENUS.includes(`${menuName}/${subMenuName}`)) {
               return null;
             }
 
@@ -81,11 +111,11 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
             }
 
             return (<Menu.Item
-              key={buildLinkUrl(menuName, subMenuName)}
+              key={buildLink(menuName, subMenuName)}
               icon={<Icon name={subMenuName} />}
               disabled={!enabled}
             >
-              <Link to={buildLinkUrl(menuName, subMenuName)}>
+              <Link to={buildLink(menuName, subMenuName)}>
                 {subMenu.title}
               </Link>
             </Menu.Item>);
@@ -93,7 +123,7 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
         </SubMenu>
       );
     })
-  ), [buildLinkUrl, checkCondition]);
+  ), [buildLink, checkCondition]);
 
   if (!config || !config.constants) {
     return (
@@ -109,10 +139,8 @@ const SideBar = ({ config, tune, ui }: { config: ConfigType, tune: TuneType, ui:
     <Sider {...siderProps} className="app-sidebar">
       <PerfectScrollbar options={{ suppressScrollX: true }}>
         <Menu
-          defaultSelectedKeys={[pathname]}
-          defaultOpenKeys={[
-            `/${pathname.substr(1).split('/')[0]}`,
-          ]}
+          defaultSelectedKeys={[(matchedPath as any).url]}
+          defaultOpenKeys={[`/${matchedPath.params.category}`]}
           mode="inline"
           style={{ height: '100%' }}
         >
