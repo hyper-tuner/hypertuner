@@ -42,7 +42,7 @@
     "mlg-converter": "^0.1.5",
     "parsimmon": "^1.16.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react-dom": "^17.0.2",
     "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
