@@ -1,5 +1,6 @@
 # SpeedyTuner
 
+![License](https://img.shields.io/github/license/speedy-tuner/speedy-tuner)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fspeedy-tuner%2Fspeedy-tuner.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fspeedy-tuner%2Fspeedy-tuner?ref=badge_shield)
 
 Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
