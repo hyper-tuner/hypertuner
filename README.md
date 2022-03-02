@@ -7,6 +7,10 @@ Slick and modern way to tune your [Speeduino ECU](https://speeduino.com/).
 
 For web version please see [speedy-tuner-cloud](https://github.com/speedy-tuner/speedy-tuner-cloud).
 
+## SpeedyTuner Cloud
+
+[speedy-tuner/speedy-tuner-cloud](https://github.com/speedy-tuner/speedy-tuner-cloud)
+
 ## Project main goals
 
 - 🚀 always free and open source (FOSS)
