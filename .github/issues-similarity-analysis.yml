@@ -1,0 +1,18 @@
+
+name: Issues Similarity Analysis
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  similarity-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: analysis
+        uses: actions-cool/issues-similarity-analysis@v1
+        with:
+          show-footer: false
+          comment-body: '${index}. ${similarity} #${number}'
+          filter-threshold: 0.5
+          since-days: 730
