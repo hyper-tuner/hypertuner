@@ -5,7 +5,7 @@
 <h1 align="center">HyperTuner</h1>
 
 <div align="center">
-  <p><sub>Slick and modern way to tune your ECU</sub></p>
+  <p><sub>Slick and modern way to tune your ECU.</sub></p>
 </div>
 
 <br/>
@@ -33,6 +33,14 @@
 ## HyperTuner Cloud
 
 [hyper-tuner/hyper-tuner-cloud](https://github.com/hyper-tuner/hyper-tuner-cloud)
+
+## Support this project
+
+[GitHub Sponsors](https://github.com/sponsors/karniv00l)
+
+## Discord server
+
+[![HyperTuner Discord server](https://dcbadge.vercel.app/api/server/HdxznPUA)](https://discord.gg/HdxznPUA)
 
 ### Development
 
