@@ -40,7 +40,7 @@
 
 ## Discord server
 
-[![HyperTuner Discord server](https://dcbadge.vercel.app/api/server/HdxznPUA)](https://discord.gg/HdxznPUA)
+[![HyperTuner Discord server](https://dcbadge.vercel.app/api/server/eaTjzZQNQZ)](https://discord.gg/eaTjzZQNQZ)
 
 ### Development
 
