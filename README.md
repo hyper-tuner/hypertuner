@@ -32,7 +32,7 @@
 
 ## HyperTuner Cloud
 
-[hyper-tuner/hyper-tuner-cloud](https://github.com/hyper-tuner/hyper-tuner-cloud)
+[hyper-tuner/hypertuner-cloud](https://github.com/hyper-tuner/hypertuner-cloud)
 
 ## Support this project
 
