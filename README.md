@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/public/icons/icon.png" alt="HyperTuner" width="100">
+  <img src="/public/icons/logo.png" alt="HyperTuner" width="100">
 </p>
 
 <h1 align="center">HyperTuner</h1>
