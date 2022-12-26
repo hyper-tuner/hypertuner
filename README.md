@@ -5,14 +5,14 @@
 <h1 align="center">HyperTuner</h1>
 
 <div align="center">
-  <p><sub>Slick and modern way to tune your ECU.</sub></p>
+  <p><sub>Slick and modern way to tune your ECU</sub></p>
 </div>
 
 <br/>
 
 <div align="center">
   <p>
-    <img alt="License" src="https://img.shields.io/github/license/hyper-tuner/hyper-tuner">
+    <img alt="License" src="https://img.shields.io/github/license/hyper-tuner/hypertuner">
   </p>
 </div>
 
@@ -21,13 +21,12 @@
 ## Project main goals
 
 - 🚀 always free and open source (FOSS)
-- 💻 📱 cross-platform (Android, iOS, Linux, MacOS, Windows, ChromeOS)
-- 🔥 `60/120 FPS` animations
+- 💻 📱 true cross-platform (Android, iOS, Linux, MacOS, Windows) with data synchronization and backups
+- 🔌 wide range of connectivity (Bluetooth v3/4/5, USB, WiFi)
 - 🏎 fast startup and low resource consumption
-- 👏 fully featured
-  - 🚗 all tuning essentials and beyond
+- 👏 fully featured - all tuning essentials and beyond
 - 👍 good user experience
-  - 💎 intuitive, modern and responsive UI
+  - 💎 clean, intuitive, modern and responsive UI
   - 👶 easy for newcomers with tips, tools and simple diagnostics
 
 ## HyperTuner Cloud
@@ -42,6 +41,11 @@
 
 [![HyperTuner Discord server](https://dcbadge.vercel.app/api/server/eaTjzZQNQZ)](https://discord.gg/eaTjzZQNQZ)
 
-### Development
+## Development
 
-*Not yet started.*
+> **Note**
+> Development is currently in progress in a private repository. Once the app reaches a usable `alpha` state, it will be pushed here.
+
+## License
+
+[GPL v3](LICENSE)
