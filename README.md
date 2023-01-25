@@ -5,7 +5,7 @@
 <h1 align="center">HyperTuner</h1>
 
 <div align="center">
-  <p><sub>Slick and modern way to tune your ECU</sub></p>
+  <p><sub>Open source tuning for everyone</sub></p>
 </div>
 
 <br/>
@@ -21,7 +21,7 @@
 ## Project main goals
 
 - 🚀 always free and open source (FOSS)
-- 💻 📱 true cross-platform (Android, iOS, Linux, MacOS, Windows) with data synchronization and backups
+- 💻 📱 true cross-platform (Windows, MacOS, Linux/Embedded, Android, iOS) with data synchronization and backups
 - 🔌 wide range of connectivity (Bluetooth v3/4/5, USB, WiFi)
 - 🏎 fast startup and low resource consumption
 - 👏 fully featured - all tuning essentials and beyond
